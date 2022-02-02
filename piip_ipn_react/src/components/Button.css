@@ -1,5 +1,6 @@
 :root {
-    --primary: #3acbf7;
+    /*--primary: #3acbf7;*/
+    --primary: #202731;
 }
 .btn {
     padding: 8px 20px;
