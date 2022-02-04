@@ -1,12 +1,12 @@
 import React from 'react'
 import '../../App.css'
 
-function LogIn() {
+function Problems() {
     return (
         <>
-            <h1>Log In</h1>
+            <h1>Problems</h1>
         </>
     )
 }
 
-export default LogIn
+export default Problems

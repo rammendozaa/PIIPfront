@@ -1,12 +1,12 @@
 import React from 'react'
 import '../../App.css'
 
-function LogIn() {
+function SoftSkills() {
     return (
         <>
-            <h1>Log In</h1>
+            <h1>SoftSkills</h1>
         </>
     )
 }
 
-export default LogIn
+export default SoftSkills

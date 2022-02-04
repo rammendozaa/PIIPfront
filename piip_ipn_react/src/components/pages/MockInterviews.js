@@ -1,12 +1,12 @@
 import React from 'react'
 import '../../App.css'
 
-function LogIn() {
+function MockInterviews() {
     return (
         <>
-            <h1>Log In</h1>
+            <h1>MockInterviews</h1>
         </>
     )
 }
 
-export default LogIn
+export default MockInterviews
