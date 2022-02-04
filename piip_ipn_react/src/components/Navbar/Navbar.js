@@ -29,34 +29,43 @@ function Navbar() {
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                         PIIP IPN
-                        <i className="fab fa-typo3" />
                     </Link>
                     <div className="menu-icon" onClick={handleClick}>
                         <i className={click ? "fas fa-times" : "fas fa-bars"} />
                     </div>
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
                         <li className='nav-item'>
-                            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
-                                Home
+                            <Link to="/problems" className="nav-links" onClick={closeMobileMenu}>
+                                Problems
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to="/services" className="nav-links" onClick={closeMobileMenu}>
-                                Services
+                            <Link to="/topics" className="nav-links" onClick={closeMobileMenu}>
+                                Topics
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to="/products" className="nav-links" onClick={closeMobileMenu}>
-                                Products
+                            <Link to="/mock-interviews" className="nav-links" onClick={closeMobileMenu}>
+                                Mock Interview
                             </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to="/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>
-                                Sign Up
+                            <Link to="/soft-skills" className="nav-links" onClick={closeMobileMenu}>
+                                Soft Skills
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to="/company-tracking" className="nav-links" onClick={closeMobileMenu}>
+                                Company Tracking
+                            </Link>
+                        </li>
+                        <li className='nav-item'>
+                            <Link to="/log-in" className="nav-links-mobile" onClick={closeMobileMenu}>
+                                Log In
                             </Link>
                         </li>
                     </ul>
-                    {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+                    {button && <Button buttonStyle="btn--outline">Log In</Button>}
                 </div>
             </nav>
         </>
