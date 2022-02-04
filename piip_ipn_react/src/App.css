@@ -16,6 +16,14 @@
   font-size: 3rem;
 }
 
+.home {
+  background-image: url('/public/images/home.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #202731;
+  font-size: 100px;
+}
 .services {
   /*background-image: url('/images/img-2.jpg');*/
   background-position: center;
