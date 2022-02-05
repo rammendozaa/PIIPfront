@@ -1,10 +1,13 @@
 import React from 'react'
 import '../../App.css'
+import { Form } from '../Form'
 
 function LogIn() {
     return (
         <>
-            <h1>Log In</h1>
+            <div className='main-container'>
+                <Form/>
+            </div>
         </>
     )
 }

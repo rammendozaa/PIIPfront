@@ -5,48 +5,14 @@
   font-family: 'PT Sans', sans-serif;
 }
 
-.home,
-.services,
-.products,
-.sign-up {
-  display: flex;
-  height: 90vh;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-}
-
-.home {
-  background-image: url('/public/images/home.png');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: #202731;
-  font-size: 100px;
-}
-.services {
-  /*background-image: url('/images/img-2.jpg');*/
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
-.products {
-  /*background-image: url('/images/img-1.jpg');*/
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
-.sign-up {
-  /*background-image: url('/images/img-8.jpg');*/
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
+.main-container{
+    background-color: #202731;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
 }
