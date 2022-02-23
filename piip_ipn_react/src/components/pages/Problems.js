@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Datatable from '../Datatable'
-import '../../App.css'
+import './Problems.css'
 
 function Problems() {
     const [data, setData] = useState([
@@ -19,10 +19,18 @@ function Problems() {
 
     return (
         <>
-            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}></input>
-            <Datatable data={search(data)}/>
+            <div className='main-container'>
+                <div className='search_wrap'>
+                    <div className='search_box'>
+                        <div className='btn btn-common'>
+                            <i className='fas fa-search'></i> 
+                        </div>
+                        <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
+                    </div>
+                </div>
+                <Datatable data={search(data)}/>
+            </div>
         </>
     )
 }
-
 export default Problems

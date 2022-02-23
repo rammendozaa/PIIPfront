@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import '../../App.css'
 import Cards from '../Cards'
 
 function Topics() {
@@ -34,8 +33,17 @@ function Topics() {
 
     return (
         <>
-            <input type="text" value={query} onChange={(e) => setQuery(e.target.value)}></input>
-            <Cards data={search(data)}/>
+            <div className='main-container'>
+                <div className='search_wrap'>
+                    <div className='search_box'>
+                        <div className='btn btn-common'>
+                            <i className='fas fa-search'></i> 
+                        </div>
+                        <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
+                    </div>
+                </div>
+                <Cards data={search(data)}/>
+            </div>
         </>
     )
 }

@@ -1,7 +1,9 @@
+import './Datatable.css' 
+
 function Datatable({data}) {
     const colums = data[0] && Object.keys(data[0])
   return (
-      <table>
+      <table className='content-table'>
           <thead>
             <tr>{data[0] && colums.map(heading => <th>{heading}</th>)}</tr>
           </thead>

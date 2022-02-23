@@ -1,10 +1,11 @@
 import React from 'react'
-import '../../App.css'
 
 function SoftSkills() {
     return (
         <>
-            <h1>SoftSkills</h1>
+            <div className='main-container'>
+                <h1>SoftSkills</h1>
+            </div>
         </>
     )
 }
