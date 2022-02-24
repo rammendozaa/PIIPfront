@@ -1,4 +1,4 @@
-.main-container{
+.problems-container{
     width: 100%;
     height: 100%;
     background-color: #202731;
@@ -8,24 +8,24 @@
     justify-content: center;
 }
 
-.main-container .input{
+.problems-container .input{
     border: 0;
     outline: none;
     color: #8b7d77;
 }
 
-.search_wrap{
+.problems-container  .search_wrap{
     width: 80%;
     margin: 30px auto;
 }
 
-.search_wrap .search_box{
+.problems-container .search_wrap .search_box{
     position: relative;
-    width: 500px;
+    width: 390px;
     height: 60px;
 }
 
-.search_wrap .search_box .input{
+.problems-container .search_wrap .search_box .input{
     position: absolute;
     top: 0;
     left: 0;
@@ -36,7 +36,7 @@
     font-size: 18px;
 }
 
-.search_wrap .search_box .btn{
+.problems-container .search_wrap .search_box .btn{
     position: absolute;
     top: 0;
     right: 0;
@@ -47,11 +47,11 @@
     cursor: pointer;
 }
 
-.search_wrap .search_box .btn:hover{
+.problems-container .search_wrap .search_box .btn:hover{
     background: #708bd2;
 }
 
-.search_wrap .search_box .btn.btn-common .fas{
+.problems-container .search_wrap .search_box .btn.btn-common .fas{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -60,11 +60,17 @@
     font-size: 20px;
 }
 
-.search_wrap .search_box .btn{
+.problems-container .search_wrap .search_box .btn{
     right: 0;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
-.search_wrap .search_box .input{
+.problems-container .search_wrap .search_box .input{
     padding-right: 80px;
+}
+
+@media screen and (max-width: 500px){
+    .problems-container .search_wrap .search_box{
+        width: 100%;
+    }
 }
