@@ -8,6 +8,38 @@ function CompanyTracking() {
         {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
         {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
         {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p1", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
+        {"Company" : "p2", "Link" : "www.google.com", "next-interview" : "calendar", "status" : "solved"},
     ]);
     const [query, setQuery] = useState("");
 
@@ -19,7 +51,7 @@ function CompanyTracking() {
 
     return (
         <>
-            <div className='main-container'>
+            <div className='company-container'>
                 <div className='search_wrap'>
                     <div className='search_box'>
                         <div className='btn btn-common'>

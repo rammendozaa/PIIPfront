@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import Cards from '../Cards'
+import './Topics.css'
 
 function Topics() {
     const [data, setData] = useState([
@@ -33,7 +34,7 @@ function Topics() {
 
     return (
         <>
-            <div className='main-container'>
+            <div className='topics-container'>
                 <div className='search_wrap'>
                     <div className='search_box'>
                         <div className='btn btn-common'>

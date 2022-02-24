@@ -3,6 +3,7 @@ import './Datatable.css'
 function Datatable({data}) {
     const colums = data[0] && Object.keys(data[0])
   return (
+    <div className='div-table'>
       <table className='content-table'>
           <thead>
             <tr>{data[0] && colums.map(heading => <th>{heading}</th>)}</tr>
@@ -17,6 +18,7 @@ function Datatable({data}) {
             }
           </tbody>
       </table>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FormSignUp from './FormSignUp';
+import FormLogin from './FormLogIn';
 import FormSuccess from './FormSuccess';
 import './Form.css';
 
@@ -15,9 +15,9 @@ export const Form = () => {
             <div className='form-container'>
                 <span className='close-btn'>x</span>
                 <div className='form-content-left'>
-                    <img src='images/img-2.svg' alt='spaceship' className='form-img'/>
+                    <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormSignUp submitForm={submitForm} />) : (<FormSuccess />)}
+                {!isSubmitted ? (<FormLogin submitForm={submitForm} />) : (<FormSuccess />)}
             </div>
         </>
     );
