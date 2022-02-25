@@ -20,7 +20,7 @@ function Topics() {
             "src" : "images/img-4.svg",
             "text" : "Graphs",
             "label" : "Graphs",
-            "path" : "/graphs"
+            "path" : "/topic"
         },
     ]);
 
