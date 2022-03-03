@@ -8,11 +8,34 @@
     justify-content: center;
     overflow: hidden;
 }
-.problem-container .problem{
+.problem-container .problem-data{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    height: 40%;
+    justify-content: center;
+}
+.problem-container .problem-data .info{
+    background-color: purple;
+    width: 10%;
+}
+
+.problem-container .problem-data .description{
+    background-color: yellow;
+    width: 80%;
+}
+
+.problem-container .problem-execution{
+    background-color: red;
+    height: 30%;
+    width: 90%;
+    overflow: hidden;
+}
+/*.problem-container .problem{
     width: 80%;
     overflow: auto;
     height: 80%;
     background: #fff;
     padding: 1%;
     border-radius: 10px;
-}
+}*/

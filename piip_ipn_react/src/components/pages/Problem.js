@@ -1,6 +1,7 @@
 import MarkdownRender from "../MarkdownRender";
-
 import './Problem.css'
+//import Compiler from "../Compiler.js";
+import Compiler2 from "../Compiler2";
 
 function Problem() {
 const html = `
@@ -13,8 +14,16 @@ Each point of the road has a coordinate $$x$$ ($$$0 \\le x \\le \\ell$$$), which
     return (
         <>
             <div className="problem-container">
-                <div className="problem">
-                    <MarkdownRender children={html} />
+                <div className="problem-data">
+                    <div className="info">
+                        <h1>Problem A</h1>
+                    </div>
+                    <div className="description">
+                        <MarkdownRender children={html} />
+                    </div>
+                </div>
+                <div className="problem-execution">
+                    <Compiler2/>
                 </div>
             </div>
         </>
