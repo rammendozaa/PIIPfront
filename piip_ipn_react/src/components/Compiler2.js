@@ -143,7 +143,7 @@ export const Compiler2 = () => {
     );*/
     return (
         <div className="compiler">
-            <div className="editor-toolbar">
+            <div className="compiler-toolbar">
                 <label htmlFor="tags">
                     <b className="heading">Language:</b>
                 </label>
@@ -169,21 +169,33 @@ export const Compiler2 = () => {
                     onChange={(e) => setCode(e.target.value)}
                 >
                 </textarea>
-                <textarea
-                    id="input"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}>
-                </textarea>
-                <textarea id="output"></textarea>
-                <button
-                    type="submit"
-                    className="btn btn-danger ml-2 mr-2 "
-                    onClick={handleClick}
-                >
-                <i className="fas fa-cog fa-fw">
-                    </i>Run
-                </button>
+                <textarea id="output" className="output"></textarea>
             </div>
+            <div className="compiler-footbar">
+                <div className="left">
+                    <textarea
+                        id="input"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}>
+                    </textarea>
+                </div>
+                <div className="right">
+                    <button
+                        type="run"
+                        className="btn runCode"
+                        onClick={handleClick}
+                    >
+                    Run
+                    </button>
+                    <button
+                        type="submit"
+                        className="btn submitCode"
+                        onClick={handleClick}
+                    >
+                    Submit
+                    </button>
+                </div>
+            </div> 
         </div>
     )
 };
