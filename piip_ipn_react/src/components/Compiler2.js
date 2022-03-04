@@ -21,7 +21,9 @@ export const Compiler2 = () => {
     const [code, setCode] = useState("");
     const [language_id, setLanguageId] = useState(52);
     const [input, setInput] = useState("");
-
+    const [submissionStatus, setSubmissionStatus] = useState("hola")
+    const [submissionUrl, setSubmissionUrl] = useState("");
+    
     const handleClick = () => {
         console.log("Datos"+input);
         let outputText = document.getElementById("output");
@@ -77,6 +79,24 @@ export const Compiler2 = () => {
             //}
         }); 
     }
+    const submitCode = () => {
+        setSubmissionStatus("Submitting ...")
+        fetch('/problem/submit')
+        .then((response) => response.json())
+        .then((data) => {
+            setSubmissionUrl(data.submissionUrl)
+            console.log(data.submissionUrl)
+        })
+    }
+    useEffect(() => {
+        const url = '/submission/?submissionUrl='+submissionUrl
+        if("".localeCompare(submissionUrl) != 0){
+            fetch(url).then(res => res.json()).then(data => {
+                setSubmissionStatus(data.status.verdict)
+                console.log("Veredicto: "+data.status.verdict)
+            });
+        }
+    });
     /*return (
         <>
             <div className="row container-fluid">
@@ -178,6 +198,8 @@ export const Compiler2 = () => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}>
                     </textarea>
+                    <a href={submissionUrl}>See submision</a>
+                    <p>{submissionStatus}</p>
                 </div>
                 <div className="right">
                     <button
@@ -190,7 +212,7 @@ export const Compiler2 = () => {
                     <button
                         type="submit"
                         className="btn submitCode"
-                        onClick={handleClick}
+                        onClick={submitCode}
                     >
                     Submit
                     </button>
