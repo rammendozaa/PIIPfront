@@ -12,6 +12,7 @@ import CompanyTracking from './components/pages/CompanyTracking.js'
 import LogIn from './components/pages/LogIn.js'
 import Topic from './components/pages/Topic.js'
 import Problem from './components/pages/Problem.js'
+import CourseContent from './components/pages/CourseContent';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path='/log-in' element={<LogIn/>}/>
           <Route path='/topic' element={<Topic/>} />
           <Route path='/problem' element={<Problem/>} />
+          <Route path='/my-course' element={<CourseContent/>} />
         </Routes>
       </Router>
     </>
