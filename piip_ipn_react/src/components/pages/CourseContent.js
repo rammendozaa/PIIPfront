@@ -138,7 +138,7 @@ function CourseContent() {
                                                 : null
                                         }
                                         {
-                                            clicked == indexSection
+                                            clicked === indexSection
                                             ?
                                             (
                                                 <div className='AddNewActivity' onClick={() => addNewActivity(indexSection)}>

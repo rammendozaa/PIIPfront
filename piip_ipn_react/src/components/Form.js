@@ -3,7 +3,7 @@ import FormLogin from './FormLogIn';
 import FormSuccess from './FormSuccess';
 import './Form.css';
 
-export const Form = () => {
+export const Form = ({setToken}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     function submitForm() {
@@ -17,7 +17,7 @@ export const Form = () => {
                 <div className='form-content-left'>
                     <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormLogin submitForm={submitForm} />) : (<FormSuccess />)}
+                {!isSubmitted ? (<FormLogin submitForm={submitForm} setToken={setToken} />) : (<FormSuccess />)}
             </div>
         </>
     );
