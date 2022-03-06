@@ -3,8 +3,8 @@ import useForm from './useForm';
 import validate from './validateInfo'
 import './Form.css'
 
-const FormLogin = ({ submitForm, setToken, validToken }) => {
-    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate, setToken, validToken)
+const FormLogin = ({ submitForm, setToken, validToken, setRole}) => {
+    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate, setToken, validToken, setRole)
 
     return (
         <div className='form-content-right'>

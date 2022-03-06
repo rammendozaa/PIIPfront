@@ -3,7 +3,7 @@ import { Form } from '../Form'
 import './Login.css'
 import { Navigate } from 'react-router-dom';
 
-function LogIn({validToken, setToken}) {
+function LogIn({validToken, setToken, setRole}) {
     if(validToken()){
         return(
            <Navigate to="/my-course"/>
@@ -12,7 +12,7 @@ function LogIn({validToken, setToken}) {
     return (
         <>
             <div className='login-container'>
-                <Form validToken={validToken} setToken={setToken}/>
+                <Form validToken={validToken} setToken={setToken} setRole={setRole}/>
             </div>
         </>
     )
