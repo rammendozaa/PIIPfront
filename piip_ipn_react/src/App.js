@@ -13,13 +13,14 @@ import Topic from './components/pages/Topic.js'
 import Problem from './components/pages/Problem.js'
 import CourseContent from './components/pages/CourseContent';
 import NotFound from './components/pages/NotFound';
-
+import useToken from './components/useToken';
 
 function App() {
+  const { token, removeToken, setToken } = useToken();
   return (
     <>
       <Router>
-        <Navbar />
+        <Navbar token={token}/>
         <Routes>
           <Route path='/' exact element={<Home/>}/>
           <Route path='/problems' element={<Problems/>}/>
@@ -27,7 +28,7 @@ function App() {
           <Route path='/mock-interviews' element={<MockInterviews/>}/>
           <Route path='/soft-skills' exact element={<SoftSkills/>}/>
           <Route path='/company-tracking' exact element={<CompanyTracking/>}/>
-          <Route path='/log-in' element={<LogIn/>}/>
+          <Route path='/log-in' element={<LogIn setToken={setToken}/>}/>
           <Route path='/topic' element={<Topic/>} />
           <Route path='/problem' element={<Problem/>} />
           <Route path='/my-course' element={<CourseContent/>} />

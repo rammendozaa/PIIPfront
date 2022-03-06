@@ -2,11 +2,11 @@ import React from 'react'
 import { Form } from '../Form'
 import './Login.css'
 
-function LogIn() {
+function LogIn({setToken}) {
     return (
         <>
             <div className='login-container'>
-                <Form/>
+                <Form setToken={setToken}/>
             </div>
         </>
     )
