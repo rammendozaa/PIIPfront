@@ -43,6 +43,11 @@ function Navbar({validToken, removeToken}) {
             return (
                 <>
                     <ul className={click ? "nav-menu active" : "nav-menu"}>
+                    <li className='nav-item'>
+                            <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
+                                My Course
+                            </Link>
+                        </li>
                         <li className='nav-item'>
                             <Link to="/problems" className="nav-links" onClick={closeMobileMenu}>
                                 Problems

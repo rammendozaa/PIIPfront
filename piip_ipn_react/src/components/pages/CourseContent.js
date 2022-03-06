@@ -64,13 +64,6 @@ function CourseContent() {
                         {"ActivityName": "S2 A2", "Description": "Perro"}
                     ]
                 },
-                {
-                    "SectionName": "Section 9",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
             ]
         }
     );
@@ -121,6 +114,7 @@ function CourseContent() {
                                             <h1>{section.SectionName}</h1>
                                             <span>{clicked === indexSection ? <FiMinus /> : <FiPlus />}</span>
                                         </div>
+                                        <div className='activities-container'>
                                         {
                                             clicked === indexSection 
                                                 ? 
@@ -148,6 +142,7 @@ function CourseContent() {
                                             )
                                             :null
                                         }
+                                        </div>
                                     </>
                                     );
                                 })}
