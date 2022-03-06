@@ -14,21 +14,22 @@ import Problem from './components/pages/Problem.js'
 import CourseContent from './components/pages/CourseContent';
 import NotFound from './components/pages/NotFound';
 import useToken from './components/useToken';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const { token, removeToken, setToken } = useToken();
+  const { token, setToken, removeToken, validToken } = useToken();
   return (
     <>
       <Router>
-        <Navbar token={token}/>
+        <Navbar validToken={validToken} removeToken={removeToken}/>
         <Routes>
           <Route path='/' exact element={<Home/>}/>
-          <Route path='/problems' element={<Problems/>}/>
+          <Route path='/problems' element={<PrivateRoute validToken={validToken}><Problems token={token}/></PrivateRoute>}/>
           <Route path='/topics' exact element={<Topics/>}/>
           <Route path='/mock-interviews' element={<MockInterviews/>}/>
           <Route path='/soft-skills' exact element={<SoftSkills/>}/>
           <Route path='/company-tracking' exact element={<CompanyTracking/>}/>
-          <Route path='/log-in' element={<LogIn setToken={setToken}/>}/>
+          <Route path='/log-in' element={<LogIn validToken={validToken} setToken={setToken}/>}/>
           <Route path='/topic' element={<Topic/>} />
           <Route path='/problem' element={<Problem/>} />
           <Route path='/my-course' element={<CourseContent/>} />
