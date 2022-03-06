@@ -1,4 +1,3 @@
-import React, {useState,useEffect} from 'react'
 import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -13,6 +12,8 @@ import LogIn from './components/pages/LogIn.js'
 import Topic from './components/pages/Topic.js'
 import Problem from './components/pages/Problem.js'
 import CourseContent from './components/pages/CourseContent';
+import NotFound from './components/pages/NotFound';
+
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/topic' element={<Topic/>} />
           <Route path='/problem' element={<Problem/>} />
           <Route path='/my-course' element={<CourseContent/>} />
+          <Route path='*' element={<NotFound/>} />
         </Routes>
       </Router>
     </>
