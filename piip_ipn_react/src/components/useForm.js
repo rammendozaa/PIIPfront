@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const useForm = (submitForm, validate, setToken, validToken) => {
+const useForm = (submitForm, validate, setToken, validToken, setRole) => {
     const [values,setValues] = useState({
         username: '',
         email: '',
@@ -30,6 +30,7 @@ const useForm = (submitForm, validate, setToken, validToken) => {
         .then(data => {
             console.log("Token assigned: ",data.access_token)
             setToken(data.access_token)
+            setRole(data.role)
         });
     }
 

@@ -8,6 +8,12 @@ function useToken() {
   }
 
   const [token, setToken] = useState(getToken());
+  const [role, setRole] = useState(getToken());
+
+  function saveRole(userRole){
+    localStorage.setItem('role', userRole)
+    setRole(userRole)
+  }
 
   function saveToken(userToken) {
     localStorage.setItem('token', userToken);
@@ -31,7 +37,9 @@ function useToken() {
     token,
     setToken: saveToken,
     removeToken,
-    validToken
+    validToken,
+    role,
+    setRole, saveRole
   }
 
 }

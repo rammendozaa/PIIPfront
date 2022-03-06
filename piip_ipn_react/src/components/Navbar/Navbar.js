@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import './Navbar.css'
 
 
-function Navbar({validToken, removeToken}) {
+function Navbar({validToken, removeToken, role}) {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
     const handleClick = () => setClick(!click);
@@ -40,43 +40,58 @@ function Navbar({validToken, removeToken}) {
                 </ul>
             )
         }else{
-            return (
-                <>
-                    <ul className={click ? "nav-menu active" : "nav-menu"}>
-                    <li className='nav-item'>
-                            <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
-                                My Course
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link to="/problems" className="nav-links" onClick={closeMobileMenu}>
-                                Problems
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link to="/topics" className="nav-links" onClick={closeMobileMenu}>
-                                Topics
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link to="/mock-interviews" className="nav-links" onClick={closeMobileMenu}>
-                                Mock Interview
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link to="/soft-skills" className="nav-links" onClick={closeMobileMenu}>
-                                Soft Skills
-                            </Link>
-                        </li>
-                        <li className='nav-item'>
-                            <Link to="/company-tracking" className="nav-links" onClick={closeMobileMenu}>
-                                Company Tracking
-                            </Link>
-                        </li>
-                    </ul>
-                    {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
-                </>
-            )
+            if(role === "mentor"){
+                return (
+                    <>
+                        <ul className={click ? "nav-menu active" : "nav-menu"}>
+                            <li className='nav-item'>
+                                <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
+                                    My Students
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
+                    </>
+                )
+            }else{
+                return (
+                    <>
+                        <ul className={click ? "nav-menu active" : "nav-menu"}>
+                            <li className='nav-item'>
+                                <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
+                                    My Course
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/problems" className="nav-links" onClick={closeMobileMenu}>
+                                    Problems
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/topics" className="nav-links" onClick={closeMobileMenu}>
+                                    Topics
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/mock-interviews" className="nav-links" onClick={closeMobileMenu}>
+                                    Mock Interview
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/soft-skills" className="nav-links" onClick={closeMobileMenu}>
+                                    Soft Skills
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/company-tracking" className="nav-links" onClick={closeMobileMenu}>
+                                    Company Tracking
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
+                    </>
+                )   
+            }
         }
     }
     return (

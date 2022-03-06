@@ -17,11 +17,11 @@ import useToken from './components/useToken';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const { token, setToken, removeToken, validToken } = useToken();
+  const { token, setToken, removeToken, validToken, role, setRole } = useToken();
   return (
     <>
       <Router>
-        <Navbar validToken={validToken} removeToken={removeToken}/>
+        <Navbar validToken={validToken} removeToken={removeToken} role={role} />
         <Routes>
           <Route path='/' exact element={<Home/>}/>
           <Route path='/problems' element={<PrivateRoute validToken={validToken}><Problems token={token}/></PrivateRoute>}/>
@@ -29,7 +29,7 @@ function App() {
           <Route path='/mock-interviews' element={<PrivateRoute validToken={validToken}><MockInterviews/></PrivateRoute>}/>
           <Route path='/soft-skills' exact element={<PrivateRoute validToken={validToken}><SoftSkills/></PrivateRoute>}/>
           <Route path='/company-tracking' exact element={<PrivateRoute validToken={validToken}><CompanyTracking/></PrivateRoute>}/>
-          <Route path='/log-in' element={<LogIn validToken={validToken} setToken={setToken}/>}/>
+          <Route path='/log-in' element={<LogIn validToken={validToken} setToken={setToken} setRole={setRole}/>}/>
           <Route path='/topic' element={<PrivateRoute validToken={validToken}><Topic/></PrivateRoute>} />
           <Route path='/problem' element={<PrivateRoute validToken={validToken}><Problem/></PrivateRoute>} />
           <Route path='/my-course' element={<PrivateRoute validToken={validToken}><CourseContent/></PrivateRoute>} />

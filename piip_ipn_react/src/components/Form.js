@@ -6,7 +6,7 @@ import './Form.css';
 
 
 // vale verga
-export const Form = ({validToken, setToken}) => {
+export const Form = ({validToken, setToken, setRole}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     function submitForm() {
@@ -19,7 +19,7 @@ export const Form = ({validToken, setToken}) => {
                 <div className='form-content-left'>
                     <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormLogin submitForm={submitForm} setToken={setToken} validToken={validToken} />) : (<FormSuccess />)}
+                {!isSubmitted ? (<FormLogin submitForm={submitForm} setToken={setToken} validToken={validToken} setRole={setRole} />) : (<FormSuccess />)}
             </div>
         </>
     );
