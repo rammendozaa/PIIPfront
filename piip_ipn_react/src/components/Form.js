@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import FormLogin from './FormLogIn';
 import FormSuccess from './FormSuccess';
-
 import './Form.css';
 
-export const Form = ({validToken, setToken}) => {
+export const Form = ({setToken}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     function submitForm() {
         setIsSubmitted(true);
+
     }
     return (
         <>
@@ -17,7 +17,7 @@ export const Form = ({validToken, setToken}) => {
                 <div className='form-content-left'>
                     <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormLogin submitForm={submitForm} setToken={setToken} validToken={validToken} />) : (<FormSuccess />)}
+                {!isSubmitted ? (<FormLogin submitForm={submitForm} setToken={setToken} />) : (<FormSuccess />)}
             </div>
         </>
     );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Datatable from '../Datatable'
 import './Problems.css'
 
-function Problems({token}) {
+function Problems() {
     const [data, setData] = useState([]);
     const [query, setQuery] = useState("");
 
@@ -13,14 +13,7 @@ function Problems({token}) {
     }
 
     useEffect(() => {
-        fetch('/problems',{
-            method: "GET",
-            headers: {
-                "Authorization": 'Bearer ' + token
-            },
-        })
-        .then(res => res.json())
-        .then(data => {
+        fetch('/problems').then(res => res.json()).then(data => {
             setData(data)
         });
     });

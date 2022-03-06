@@ -14,14 +14,13 @@ import Problem from './components/pages/Problem.js'
 import CourseContent from './components/pages/CourseContent';
 import NotFound from './components/pages/NotFound';
 import useToken from './components/useToken';
-import PrivateRoute from './components/PrivateRoute';
 
 function App() {
-  const { token, setToken, removeToken, validToken } = useToken();
+  const { token, removeToken, setToken } = useToken();
   return (
     <>
       <Router>
-        <Navbar validToken={validToken} removeToken={removeToken}/>
+        <Navbar token={token}/>
         <Routes>
           <Route path='/' exact element={<Home/>}/>
           <Route path='/problems' element={<PrivateRoute validToken={validToken}><Problems token={token}/></PrivateRoute>}/>
