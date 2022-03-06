@@ -22,17 +22,90 @@ function CourseContent() {
                         {"ActivityName": "S2 A2", "Description": "Perro"}
                     ]
                 },
+                {
+                    "SectionName": "Section 3",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
+                {
+                    "SectionName": "Section 4",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
+                {
+                    "SectionName": "Section 5",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
+                {
+                    "SectionName": "Section 6",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
+                {
+                    "SectionName": "Section 7",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
+                {
+                    "SectionName": "Section 8",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
+                {
+                    "SectionName": "Section 9",
+                    "Activities": [
+                        {"ActivityName": "S2 A1", "Description": "Perro"},
+                        {"ActivityName": "S2 A2", "Description": "Perro"}
+                    ]
+                },
             ]
         }
     );
-    const [clicked, setClicked] = useState(false);
+    const [clicked, setClicked] = useState(-1);
     const toggle = index => {
         if (clicked === index) {
-        //if clicked question is already active, then close it
-        return setClicked(null);
+            //if clicked question is already active, then close it
+            return setClicked(-1);
         }   
         setClicked(index);
     };
+    const addNewActivity = (index) => {
+        var current = data;
+        current.Sections[index].Activities = [...current.Sections[index].Activities,
+            {"ActivityName": "New Activity", "Description": "Perro"}
+        ]
+        setData(prevState => ({
+            ...prevState,
+            current
+        }))
+    }
+    const AddNewSection = () => {
+        var current = data;
+        current.Sections = [...current.Sections,
+            {
+                "SectionName": "New Section",
+                "Activities": []
+            },
+        ]
+        console.log("Aqui")
+        setData(prevState => ({
+            ...prevState,
+            current
+        }))
+    }
     return (
         <>
             <div className='course-content-container'>
@@ -57,16 +130,31 @@ function CourseContent() {
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
                                                                     <p>{activity.ActivityName}</p>
-                                                                </div>
+                                                                </div>                                                                
                                                             </>
                                                         )
                                                     })
                                                 ) 
                                                 : null
                                         }
+                                        {
+                                            clicked == indexSection
+                                            ?
+                                            (
+                                                <div className='AddNewActivity' onClick={() => addNewActivity(indexSection)}>
+                                                    <input type='text'></input>
+                                                    <span>{<FiPlus />}</span>
+                                                </div>
+                                            )
+                                            :null
+                                        }
                                     </>
                                     );
                                 })}
+                                <div className='AddNewSection' onClick={() => AddNewSection()}>
+                                    <input type='text'></input>
+                                    <span>{<FiPlus />}</span>
+                                </div>
                             </div>
                         </div>
                     </IconContext.Provider>
