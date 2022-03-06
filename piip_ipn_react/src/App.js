@@ -23,15 +23,15 @@ function App() {
         <Navbar token={token}/>
         <Routes>
           <Route path='/' exact element={<Home/>}/>
-          <Route path='/problems' element={<Problems/>}/>
-          <Route path='/topics' exact element={<Topics/>}/>
-          <Route path='/mock-interviews' element={<MockInterviews/>}/>
-          <Route path='/soft-skills' exact element={<SoftSkills/>}/>
-          <Route path='/company-tracking' exact element={<CompanyTracking/>}/>
-          <Route path='/log-in' element={<LogIn setToken={setToken}/>}/>
-          <Route path='/topic' element={<Topic/>} />
-          <Route path='/problem' element={<Problem/>} />
-          <Route path='/my-course' element={<CourseContent/>} />
+          <Route path='/problems' element={<PrivateRoute validToken={validToken}><Problems token={token}/></PrivateRoute>}/>
+          <Route path='/topics' exact element={<PrivateRoute validToken={validToken}><Topics/></PrivateRoute>}/>
+          <Route path='/mock-interviews' element={<PrivateRoute validToken={validToken}><MockInterviews/></PrivateRoute>}/>
+          <Route path='/soft-skills' exact element={<PrivateRoute validToken={validToken}><SoftSkills/></PrivateRoute>}/>
+          <Route path='/company-tracking' exact element={<PrivateRoute validToken={validToken}><CompanyTracking/></PrivateRoute>}/>
+          <Route path='/log-in' element={<LogIn validToken={validToken} setToken={setToken}/>}/>
+          <Route path='/topic' element={<PrivateRoute validToken={validToken}><Topic/></PrivateRoute>} />
+          <Route path='/problem' element={<PrivateRoute validToken={validToken}><Problem/></PrivateRoute>} />
+          <Route path='/my-course' element={<PrivateRoute validToken={validToken}><CourseContent/></PrivateRoute>} />
           <Route path='*' element={<NotFound/>} />
         </Routes>
       </Router>
