@@ -1,18 +1,12 @@
 import React from 'react'
 import { Form } from '../Form'
 import './Login.css'
-import { Navigate } from 'react-router-dom';
 
-function LogIn({validToken, setToken}) {
-    if(validToken()){
-        return(
-           <Navigate to="/my-course"/>
-        )
-    }
+function LogIn({setToken}) {
     return (
         <>
             <div className='login-container'>
-                <Form validToken={validToken} setToken={setToken}/>
+                <Form setToken={setToken}/>
             </div>
         </>
     )
