@@ -4,7 +4,7 @@ function useToken() {
 
   function getToken() {
     const userToken = localStorage.getItem('token');
-    return userToken && userToken
+    return userToken
   }
 
   const [token, setToken] = useState(getToken());
@@ -19,10 +19,19 @@ function useToken() {
     setToken(null);
   }
 
+  function validToken(){
+    console.log("Valid Token", token)
+    if(!token || token === undefined){
+      return false;
+    }
+    return true;
+  }
+
   return {
-    setToken: saveToken,
     token,
-    removeToken
+    setToken: saveToken,
+    removeToken,
+    validToken
   }
 
 }

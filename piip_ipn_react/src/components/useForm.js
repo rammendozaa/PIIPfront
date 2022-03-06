@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const useForm = (callback,validate) => {
+const useForm = (submitForm, validate, setToken, validToken) => {
     const [values,setValues] = useState({
         username: '',
         email: '',
@@ -18,6 +18,21 @@ const useForm = (callback,validate) => {
         })
     }
 
+    const SubmitToServer = () => {
+        let formData = new FormData();
+        formData.append('email', values.email);
+        formData.append('password', values.password);
+        fetch('/token', {
+            method: "POST",
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("Token assigned: ",data.access_token)
+            setToken(data.access_token)
+        });
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
         setErrors(validate(values));
@@ -27,10 +42,13 @@ const useForm = (callback,validate) => {
     useEffect(
         () => {
             if(Object.keys(errors).length === 0 && isSubmitting){
-                callback()
+                SubmitToServer();
+                if(validToken()){
+                    console.log("Hola");
+                    submitForm()
+                }
             }
-        },
-        [errors]
+        }
     )
     return {handleChange, values, handleSubmit, errors};
 }

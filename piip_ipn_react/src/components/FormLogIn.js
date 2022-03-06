@@ -3,28 +3,12 @@ import useForm from './useForm';
 import validate from './validateInfo'
 import './Form.css'
 
-const FormLogin = ({ submitForm, setToken }) => {
-    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate)
+const FormLogin = ({ submitForm, setToken, validToken }) => {
+    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate, setToken, validToken)
 
-    const handleClick = () => {
-        console.log("Aqui")
-        fetch('/token', {
-            method: "POST",
-            body: JSON.stringify({
-                email: "hugo",
-                password: "hugo",
-            }),
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data.access_token);
-            setToken(data.access_token)
-        });
-    }
-
-    /*return (
+    return (
         <div className='form-content-right'>
-            <form className='form' onSubmit={handleClick} noValidate>
+            <form className='form' onSubmit={handleSubmit} noValidate>
                 <h1>Get Started with us today</h1>
                 <div className='form-inputs'>
                     <label htmlFor='email' className='form-label'>                        
@@ -46,10 +30,10 @@ const FormLogin = ({ submitForm, setToken }) => {
                 </span>
             </form>
         </div>
-    );*/
-    return (
-        <button onClick={handleClick()}>Aqui</button>
     );
+    /*return (
+        <button onClick={handleClick}>Aqui</button>
+    );*/
 };
 
 export default FormLogin;
