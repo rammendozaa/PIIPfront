@@ -1,5 +1,8 @@
+import { useState, useRef } from "react";
 import MarkdownRender from "../MarkdownRender";
 import './Topic.css'
+import draftToHtml from 'draftjs-to-html';
+import ReactHTMLParser from 'react-html-parser';
 
 function Topic() {
   const markdown = `
@@ -27,12 +30,29 @@ $\\int_0^\\infty x^2 dx$
 \\
 $\\leq$
 `
-  return (
+  /*return (
     <>
       <div className="topic-container">
         <div className="topic">
           <MarkdownRender children={markdown} />
+        </div>
+      </div>
+    </>
+  );*/
+  const node = useRef();
+  const [json, setJSON] = useState(
+    localStorage.getItem('editorData')
+  );
+  return (
+    <>
+      <div className="topic-container">
+        <div className="topic">
+          <div className="preview">
+            <div ref={node} key={Math.random()}>
+              {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
+            </div>
           </div>
+        </div>
       </div>
     </>
   );
