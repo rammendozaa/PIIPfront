@@ -45,8 +45,13 @@ function Navbar({validToken, removeToken, role}) {
                     <>
                         <ul className={click ? "nav-menu active" : "nav-menu"}>
                             <li className='nav-item'>
-                                <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
+                                <Link to="/my-students" className="nav-links" onClick={closeMobileMenu}>
                                     My Students
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/add-topic" className="nav-links" onClick={closeMobileMenu}>
+                                    Add Topic
                                 </Link>
                             </li>
                         </ul>

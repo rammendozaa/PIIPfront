@@ -7,26 +7,38 @@ function useToken() {
     return userToken
   }
 
-  const [token, setToken] = useState(getToken());
-  const [role, setRole] = useState(getToken());
-
-  function saveRole(userRole){
-    localStorage.setItem('role', userRole)
-    setRole(userRole)
+  function getRole() {
+    const userRole = localStorage.getItem('role');
+    return userRole
   }
+
+  const [token, setToken] = useState(getToken());
+  const [role, setRole] = useState(getRole());
 
   function saveToken(userToken) {
     localStorage.setItem('token', userToken);
     setToken(userToken);
   };
 
+  function saveRole(userRole){
+    localStorage.setItem('role', userRole)
+    setRole(userRole)
+  }
+
   function removeToken() {
     localStorage.removeItem("token");
     setToken(null);
+    removeRole();
+  }
+
+  function removeRole() {
+    localStorage.removeItem("role");
+    setRole(null);
   }
 
   function validToken(){
-    console.log("Valid Token", token)
+    console.log("Valid Token:", token)
+    console.log("Role: ", role)
     if(!token || token === undefined){
       return false;
     }
@@ -39,7 +51,7 @@ function useToken() {
     removeToken,
     validToken,
     role,
-    setRole, saveRole
+    setRole: saveRole
   }
 
 }
