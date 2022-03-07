@@ -46,7 +46,8 @@ function AddTopic() {
             alert("Please chose a file name");
             return;
         }
-        localStorage.setItem('editorData:'+filename, JSON.stringify(rawDraftContentState));
+        console.log(json)
+        localStorage.setItem('editorData', json);
     }
 
     return (

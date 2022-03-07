@@ -39,6 +39,7 @@ $\\leq$
       </div>
     </>
   );*/
+  console.log(localStorage.getItem('editorData'));
   const node = useRef();
   const [json, setJSON] = useState(
     localStorage.getItem('editorData')
