@@ -23,6 +23,8 @@ function AddTopic() {
     const [rawDraftContentState, setRawDraftContentState] = useState(null);
     const [json, setJSON] = useState('');
 
+    const [filename, setFilename] = useState("")
+
     useEffect(() => {
         // Some async task (ie. getting editor data from DB)
         setTimeout(() => {
@@ -38,6 +40,16 @@ function AddTopic() {
     const onContentStateChange = (rawDraftContentState) => {
         setJSON(JSON.stringify(rawDraftContentState));
     }
+
+    const saveFile = () => {
+        if(filename.length === 0){
+            alert("Please chose a file name");
+            return;
+        }
+        console.log(json)
+        localStorage.setItem('editorData', json);
+    }
+
     return (
         <>
             <div className="add-topic-container">
@@ -50,6 +62,10 @@ function AddTopic() {
                             {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
                         </div>
                     </div>
+                </div>
+                <div className="save">
+                    <input type="text" placeholder="filename" value={filename} onChange={(e) => setFilename(e.target.value)}/>
+                    <button onClick={saveFile}>Save</button>
                 </div>
             </div>
         </>
