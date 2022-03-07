@@ -30,15 +30,15 @@ function App() {
           <Route path='*' element={<NotFound/>} />
           <Route path='/log-in' element={<LogIn validToken={validToken} setToken={setToken} setRole={setRole}/>}/>
           {/*Mentor, User*/}
-          <Route path='/topic' element={<PrivateRoute validToken={validToken} validRoles={["usuario","mentor"]} role={role}><Topic/></PrivateRoute>} />
-          <Route path='/problem' element={<PrivateRoute validToken={validToken} validRoles={["usuario","mentor"]} role={role}><Problem/></PrivateRoute>} />
-          <Route path='/problems' element={<PrivateRoute validToken={validToken} validRoles={["usuario","mentor"]} role={role}><Problems token={token}/></PrivateRoute>}/>
-          <Route path='/topics' exact element={<PrivateRoute validToken={validToken} validRoles={["usuario","mentor"]} role={role}><Topics/></PrivateRoute>}/>
-          <Route path='/soft-skills' exact element={<PrivateRoute validToken={validToken} validRoles={["usuario","mentor"]} role={role}><SoftSkills/></PrivateRoute>}/>
+          <Route path='/topic' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Topic/></PrivateRoute>} />
+          <Route path='/problem' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Problem/></PrivateRoute>} />
+          <Route path='/problems' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Problems token={token}/></PrivateRoute>}/>
+          <Route path='/topics' exact element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Topics/></PrivateRoute>}/>
+          <Route path='/soft-skills' exact element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><SoftSkills/></PrivateRoute>}/>
           {/*User*/}
-          <Route path='/mock-interviews' element={<PrivateRoute validToken={validToken} validRoles={["usuario"]} role={role}><MockInterviews/></PrivateRoute>}/>
-          <Route path='/company-tracking' exact element={<PrivateRoute validToken={validToken} validRoles={["usuario"]} role={role}><CompanyTracking/></PrivateRoute>}/>
-          <Route path='/my-course' element={<PrivateRoute validToken={validToken} validRoles={["usuario"]} role={role}><CourseContent/></PrivateRoute>} />
+          <Route path='/mock-interviews' element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><MockInterviews/></PrivateRoute>}/>
+          <Route path='/company-tracking' exact element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><CompanyTracking/></PrivateRoute>}/>
+          <Route path='/my-course' element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><CourseContent/></PrivateRoute>} />
           {/*Mentor*/}          
           <Route path='/add-topic' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><AddTopic/></PrivateRoute>} />
           <Route path='/my-students' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><MyStudents/></PrivateRoute>} />          
