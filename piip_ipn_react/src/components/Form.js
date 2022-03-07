@@ -4,8 +4,6 @@ import FormSuccess from './FormSuccess';
 
 import './Form.css';
 
-
-// vale verga
 export const Form = ({validToken, setToken, setRole}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
