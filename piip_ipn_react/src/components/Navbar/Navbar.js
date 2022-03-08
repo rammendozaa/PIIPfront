@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import './Navbar.css'
 
 
-function Navbar({validToken, removeToken, role}) {
+function Navbar({validToken, removeToken, role, token}) {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
     const handleClick = () => setClick(!click);
@@ -24,8 +24,11 @@ function Navbar({validToken, removeToken, role}) {
     window.addEventListener('resize',showButton);
 
     const logMeOut = () => {
-        fetch('/logout', {
+        fetch('/logout',{
             method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + token
+            },
         })
         .then(res => res.json())
         .then(data => {
