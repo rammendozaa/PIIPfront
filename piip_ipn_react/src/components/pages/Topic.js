@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import MarkdownRender from "../MarkdownRender";
 import './Topic.css'
 import draftToHtml from 'draftjs-to-html';
@@ -44,6 +44,9 @@ $\\leq$
   const [json, setJSON] = useState(
     localStorage.getItem('editorData')
   );
+  useEffect(() => {
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current]);
+  });
   return (
     <>
       <div className="topic-container">
