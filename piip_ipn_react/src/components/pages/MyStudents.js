@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import DatatablePendingStudents from '../DatatablePendingStudents'
 import Datatable from '../Datatable'
 import './MyStudents.css'
@@ -6,7 +6,6 @@ import './MyStudents.css'
 function MyStudents({token}) {
     const [myStudents, setMyStudents] = useState([]);
     const [pendingStudents, setPendingStudents] = useState([]);
-
     useEffect(() => {
         fetch('/myStudents',{
             method: "GET",
@@ -16,9 +15,9 @@ function MyStudents({token}) {
         })
         .then(res => res.json())
         .then(data => {
-            setMyStudents(data)
+            setPendingStudents(data)
         });
-    });
+    },[]) 
     useEffect(() => {
         fetch('/pendingStudents',{
             method: "GET",
@@ -30,7 +29,7 @@ function MyStudents({token}) {
         .then(data => {
             setPendingStudents(data)
         });
-    },[]);
+    },[])
 
     const assignStudent = (row) => {
         const user_id = pendingStudents[row].id;
