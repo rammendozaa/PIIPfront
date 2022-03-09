@@ -44,7 +44,7 @@ function App() {
           <Route path='/my-course' element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><MyCourseContent token={token}/></PrivateRoute>} />
           {/*Mentor*/}          
           <Route path='/add-topic' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><AddTopic/></PrivateRoute>} />
-          <Route path='/my-students' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><MyStudents/></PrivateRoute>} />          
+          <Route path='/my-students' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><MyStudents token={token}/></PrivateRoute>} />          
         </Routes>
       </Router>
     </>
