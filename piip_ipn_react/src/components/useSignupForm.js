@@ -1,9 +1,11 @@
 import {useState,useEffect} from 'react'
 
-const useForm = (submitForm, validate, setToken, validToken, setRole) => {
+const useSignupForm = (submitForm, validate, setToken, validToken, setRole) => {
     const [values,setValues] = useState({
-        username: '',
+        firstname: '',
+        lastname: '',
         email: '',
+        school_id: 1,
         password: '',
         password2: ''
     })
@@ -20,9 +22,13 @@ const useForm = (submitForm, validate, setToken, validToken, setRole) => {
 
     const SubmitToServer = () => {
         let formData = new FormData();
+        formData.append('firstname', values.firstname);
+        formData.append('lastname', values.lastname);
         formData.append('email', values.email);
+        formData.append('school_id', values.school_id);
         formData.append('password', values.password);
-        fetch('/token', {
+        
+        fetch('/sign-up', {
             method: "POST",
             body: formData
         })
@@ -45,7 +51,6 @@ const useForm = (submitForm, validate, setToken, validToken, setRole) => {
             if(Object.keys(errors).length === 0 && isSubmitting){
                 SubmitToServer();
                 if(validToken()){
-                    console.log("Hola");
                     submitForm()
                 }
             }
@@ -54,4 +59,4 @@ const useForm = (submitForm, validate, setToken, validToken, setRole) => {
     return {handleChange, values, handleSubmit, errors};
 }
 
-export default useForm;
+export default useSignupForm;

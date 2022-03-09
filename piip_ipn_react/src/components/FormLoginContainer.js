@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import FormLogin from './FormLogIn';
 import FormSuccess from './FormSuccess';
+import FormLogin from './FormLogIn'
+import './FormLoginContainer.css';
 
-import './Form.css';
-
-export const Form = ({validToken, setToken, setRole}) => {
+export const FormLoginContainer = ({validToken, setToken, setRole}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     function submitForm() {
@@ -23,4 +22,4 @@ export const Form = ({validToken, setToken, setRole}) => {
     );
 };
 
-export default Form;
+export default FormLoginContainer;

@@ -58,6 +58,7 @@
     border-radius: 0 10px 10px 0;
     position: relative;
     background: linear-gradient(90deg, rgb(40, 40, 40) 0%, rgb(17, 17, 17) 100%);
+    overflow: auto;
   }
   
   .form {
@@ -79,6 +80,8 @@
     width: 80%;
     margin-bottom: 1rem;
     color: #fff;
+    min-width: 0;
+    min-height: 0;
   }
   
   .form-inputs {
@@ -100,6 +103,16 @@
   }
   
   .form-input {
+    display: block;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 2px;
+    height: 40px;
+    width: 100%;
+    border: none;
+  }
+
+  .select-school {
     display: block;
     padding-left: 10px;
     outline: none;
