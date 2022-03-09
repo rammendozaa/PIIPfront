@@ -1,21 +1,40 @@
-import React from 'react';
-import useForm from './useForm';
-import validate from './validateInfo'
-import './Form.css'
+import React, { useState, useEffect } from 'react';
+import useSignupForm from './useSignupForm';
+import validate from './validateSignupInfo'
+import {Link} from 'react-router-dom'
 
-const FormSignUp = ({ submitForm }) => {
-    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate)
+const FormSignUp = ({ submitForm, setToken, validToken, setRole}) => {
+    const { handleChange, values, handleSubmit, errors } = useSignupForm(submitForm, validate, setToken, validToken, setRole)
+    const [schools,setSchools] = useState([])
+
+    useEffect(() => {
+        fetch('/schools',{
+            method: "GET"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setSchools(data)
+        });
+    },[]);
 
     return (
         <div className='form-content-right'>
             <form className='form' onSubmit={handleSubmit} noValidate>
                 <h1>Get Started with us today</h1>
                 <div className='form-inputs'>
-                    <label htmlFor='username' className='form-label'>
-                        Username
+                    <label htmlFor='firstname' className='form-label'>
+                        Firt Name
                     </label>
-                    <input id='username' type='text' name='username' className='form-input' placeholder='Enter your username' value = {values.username} onChange={handleChange}/>
-                    {errors.username && <p>{errors.username}</p>}
+                    <input id='firstname' type='text' name='firstname' className='form-input' placeholder='Enter your first name' value = {values.firstname} onChange={handleChange}/>
+                    {errors.firstname && <p>{errors.firstname}</p>}
+                </div>
+                <div className='form-inputs'>
+                    <label htmlFor='lastname' className='form-label'>
+                        Last Name
+                    </label>
+                    <input id='lastname' type='text' name='lastname' className='form-input' placeholder='Enter your last name' value = {values.lastname} onChange={handleChange}/>
+                    {errors.lastname && <p>{errors.lastname}</p>}
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='email' className='form-label'>                        
@@ -23,6 +42,22 @@ const FormSignUp = ({ submitForm }) => {
                     </label>
                     <input id='email' type='email' name='email' className='form-input' placeholder='Enter your email' value = {values.email} onChange={handleChange}/>
                     {errors.email && <p>{errors.email}</p>}
+                </div>
+                <div className='form-inputs'>
+                    <label htmlFor='school' className='form-label'>                        
+                        School
+                    </label>
+                    <select
+                        id="school_id"
+                        className='select-school'
+                        onChange={handleChange}
+                        value={values.school_id}
+                    >
+                        {
+                            schools && schools.map(opt => <option value={opt.id} key={opt.id}>{opt.name}</option>)
+                        }
+                    </select>
+                    {errors.school && <p>{errors.school}</p>}
                 </div>
                 <div className='form-inputs'>
                     <label htmlFor='password' className='form-label'>                        
@@ -40,7 +75,7 @@ const FormSignUp = ({ submitForm }) => {
                 </div>
                 <button className='form-input-btn' type='submit'>Sign Up</button>
                 <span className='form-input-login'>
-                    Already have an account? Login <a href='/'>here</a>
+                    Already have an account? Login {<Link to='/log-in'>here</Link>}
                 </span>
             </form>
         </div>

@@ -1,10 +1,10 @@
 import React from 'react';
-import useForm from './useForm';
-import validate from './validateInfo'
-import './Form.css'
+import useLoginForm from './useLoginForm';
+import validate from './validateLoginInfo'
+import {Link} from 'react-router-dom'
 
 const FormLogin = ({ submitForm, setToken, validToken, setRole}) => {
-    const { handleChange, values, handleSubmit, errors } = useForm(submitForm, validate, setToken, validToken, setRole)
+    const { handleChange, values, handleSubmit, errors } = useLoginForm(submitForm, validate, setToken, validToken, setRole)
 
     return (
         <div className='form-content-right'>
@@ -26,14 +26,11 @@ const FormLogin = ({ submitForm, setToken, validToken, setRole}) => {
                 </div>
                 <button className='form-input-btn' type='submit'>Log In</button>
                 <span className='form-input-login'>
-                    Don't have an account? Sign up <a href='/'>here</a>
+                    Don't have an account? Sign up {<Link to='/sign-up'>here</Link>}
                 </span>
             </form>
         </div>
     );
-    /*return (
-        <button onClick={handleClick}>Aqui</button>
-    );*/
 };
 
 export default FormLogin;

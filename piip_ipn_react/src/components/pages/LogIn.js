@@ -1,6 +1,6 @@
 import React from 'react'
-import { Form } from '../Form'
-import './Login.css'
+import { FormLoginContainer } from '../FormLoginContainer'
+import './LogIn.css'
 import { Navigate } from 'react-router-dom';
 
 function LogIn({validToken, setToken, setRole}) {
@@ -12,7 +12,7 @@ function LogIn({validToken, setToken, setRole}) {
     return (
         <>
             <div className='login-container'>
-                <Form validToken={validToken} setToken={setToken} setRole={setRole}/>
+                <FormLoginContainer validToken={validToken} setToken={setToken} setRole={setRole}/>
             </div>
         </>
     )
