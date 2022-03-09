@@ -13,6 +13,7 @@ import SignUp from './components/pages/SignUp.js'
 import Topic from './components/pages/Topic.js'
 import Problem from './components/pages/Problem.js'
 import CourseContent from './components/pages/CourseContent';
+import MyCourseContent from './components/pages/MyCourseContent'
 import NotFound from './components/pages/NotFound';
 import useToken from './components/useToken';
 import PrivateRoute from './components/PrivateRoute';
@@ -40,7 +41,7 @@ function App() {
           {/*User*/}
           <Route path='/mock-interviews' element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><MockInterviews/></PrivateRoute>}/>
           <Route path='/company-tracking' exact element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><CompanyTracking/></PrivateRoute>}/>
-          <Route path='/my-course' element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><CourseContent/></PrivateRoute>} />
+          <Route path='/my-course' element={<PrivateRoute validToken={validToken} validRoles={["user"]} role={role}><MyCourseContent token={token}/></PrivateRoute>} />
           {/*Mentor*/}          
           <Route path='/add-topic' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><AddTopic/></PrivateRoute>} />
           <Route path='/my-students' element={<PrivateRoute validToken={validToken} validRoles={["mentor"]} role={role}><MyStudents/></PrivateRoute>} />          
