@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import FormSuccess from './FormSuccess';
 import FormSignUp from './FormSignUp'
-import './FormLoginContainer.css';
+import './FormSignupContainer.css';
 
 export const FormSignupContainer = ({validToken, setToken, setRole}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)

@@ -90,7 +90,7 @@ export const Compiler2 = () => {
     }
     useEffect(() => {
         const url = '/submission/?submissionUrl='+submissionUrl
-        if("".localeCompare(submissionUrl) != 0){
+        if("".localeCompare(submissionUrl) !== 0){
             fetch(url).then(res => res.json()).then(data => {
                 setSubmissionStatus(data.status.verdict)
                 console.log("Veredicto: "+data.status.verdict)

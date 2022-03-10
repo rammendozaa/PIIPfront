@@ -3,8 +3,8 @@ import { Component, createRef } from 'react';
 import { EditorState, Modifier } from 'draft-js';
 
 // Import Miscs
-import { MathJaxSymbols } from '../configs';
-import MathJaxIcon from '../images/math_jax.png';
+import { MathJaxSymbols } from '../../../../configs';
+import MathJaxIcon from '../../../../images/math_jax.png';
 
 // Referenced from example :- https://jpuri.github.io/react-draft-wysiwyg/#/docs (Adding new option to the toolbar)
 class MathJaxOption extends Component {

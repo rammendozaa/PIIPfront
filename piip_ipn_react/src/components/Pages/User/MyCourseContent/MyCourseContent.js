@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import "./CourseContent.css"
+import "./MyCourseContent.css"
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 
@@ -78,7 +78,7 @@ function CourseContent({token}) {
     .then(data => {
         setAdministratorId(data.administrator_id)
     });
-    if(administratorId == -1){
+    if(administratorId === -1){
         return (
             <div className='course-content-container'>
                 <h1 className='sorry'>Sorry, you do not yet have a mentor or a course assigned to you. :(</h1>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Datatable from '../Datatable'
+import Datatable from '../../Datatable/Datatable'
 import './Problems.css'
 
 function Problems({token}) {
@@ -23,7 +23,7 @@ function Problems({token}) {
         .then(data => {
             setData(data)
         });
-    });
+    },[]);
     return (
         <>
             <div className='problems-container'>

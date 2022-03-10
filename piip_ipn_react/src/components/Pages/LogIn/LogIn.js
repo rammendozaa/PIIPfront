@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormLoginContainer } from '../FormLoginContainer'
+import { FormLoginContainer } from './FormLoginContainer'
 import './LogIn.css'
 import { Navigate } from 'react-router-dom';
 

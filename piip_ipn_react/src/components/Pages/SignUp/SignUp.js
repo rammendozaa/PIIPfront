@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormSignupContainer } from '../FormSignupContainer'
+import { FormSignupContainer } from './FormSignupContainer'
 import './SignUp.css'
 import { Navigate } from 'react-router-dom';
 
