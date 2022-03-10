@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Datatable from '../Datatable'
+import Datatable from '../../../Datatable/Datatable'
 import './CompanyTracking.css'
 
 function CompanyTracking() {

@@ -3,8 +3,8 @@ import draftToHtml from 'draftjs-to-html';
 import ReactHTMLParser from 'react-html-parser';
 
 // Import Components
-import RDWMathJax from '../rdw-mathjax';
-import { content } from '../../configs';
+import RDWMathJax from './rdw-mathjax';
+import { content } from '../../../../configs';
 
 import './AddTopic.css'
 

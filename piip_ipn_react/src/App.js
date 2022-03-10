@@ -2,23 +2,22 @@ import Navbar from './components/Navbar/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import Home from './components/pages/Home.js'
-import Problems from './components/pages/Problems.js'
-import Topics from './components/pages/Topics.js'
-import MockInterviews from './components/pages/MockInterviews.js'
-import SoftSkills from './components/pages/SoftSkills.js'
-import CompanyTracking from './components/pages/CompanyTracking.js'
-import LogIn from './components/pages/LogIn.js'
-import SignUp from './components/pages/SignUp.js'
-import Topic from './components/pages/Topic.js'
-import Problem from './components/pages/Problem.js'
-import CourseContent from './components/pages/CourseContent';
-import MyCourseContent from './components/pages/MyCourseContent'
-import NotFound from './components/pages/NotFound';
+import Home from './components/Pages/Home/Home'
+import Problems from './components/Pages/Problems/Problems'
+import Topics from './components/Pages/Topics/Topics'
+import MockInterviews from './components/Pages/User/MockInterviews/MockInterviews'
+import SoftSkills from './components/Pages/SoftSkills/SoftSkills'
+import CompanyTracking from './components/Pages/User/CompanyTracking/CompanyTracking'
+import LogIn from './components/Pages/LogIn/LogIn'
+import SignUp from './components/Pages/SignUp/SignUp'
+import Topic from './components/Pages/Topic/Topic'
+import Problem from './components/Pages/Problem/Problem'
+import MyCourseContent from './components/Pages/User/MyCourseContent/MyCourseContent'
+import NotFound from './components/Pages/NotFound';
 import useToken from './components/useToken';
 import PrivateRoute from './components/PrivateRoute';
-import AddTopic from './components/pages/AddTopic'
-import MyStudents from './components/pages/MyStudents';
+import AddTopic from './components/Pages/Admin/AddTopic/AddTopic'
+import MyStudents from './components/Pages/Admin/MyStudents/MyStudents';
 
 function App() {
   const { token, setToken, removeToken, validToken, role, setRole } = useToken();

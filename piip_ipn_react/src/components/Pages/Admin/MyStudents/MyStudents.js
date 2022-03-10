@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import DatatablePendingStudents from '../DatatablePendingStudents'
-import Datatable from '../Datatable'
+import DatatablePendingStudents from '../../../Datatable/DatatablePendingStudents'
+import Datatable from '../../../Datatable/Datatable'
 import './MyStudents.css'
 
 function MyStudents({token}) {
@@ -15,7 +15,7 @@ function MyStudents({token}) {
         })
         .then(res => res.json())
         .then(data => {
-            setPendingStudents(data)
+            setMyStudents(data)
         });
     },[]) 
     useEffect(() => {

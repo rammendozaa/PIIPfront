@@ -1,7 +1,7 @@
-import MarkdownRender from "../MarkdownRender";
+import MarkdownRender from "../../MarkDownRender/MarkdownRender";
 import './Problem.css'
 //import Compiler from "../Compiler.js";
-import Compiler2 from "../Compiler2";
+import Compiler2 from "./Compiler2";
 
 function Problem() {
 const html = `
