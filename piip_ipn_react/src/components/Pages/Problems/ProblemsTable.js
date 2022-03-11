@@ -1,18 +1,26 @@
 import './ProblemsTable.css' 
 
 function ProblemsTable({data, goToProblem}) {
-    const colums = data[0] && Object.keys(data[0])
   return (
+    data && 
     <div className='div-table'>
       <table className='content-table'>
           <thead>
-            <tr>{data[0] && colums.map(heading => <th>{heading}</th>)}</tr>
+            <tr>
+              <th>Title</th>
+              <th>Difficulty</th>
+            </tr>
           </thead>
           <tbody>
             {
                 data.map(row => 
                     <tr>
-                        {colums.map(colum => <td onClick={() => goToProblem(row)}>{row[colum]}</td>)}
+                        <td onClick={() => goToProblem(row)}>
+                          {row['title']}
+                        </td>
+                        <td onClick={() => goToProblem(row)}>
+                          {row['difficulty']}
+                        </td>
                     </tr>
                 )
             }
