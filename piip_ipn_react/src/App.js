@@ -33,7 +33,7 @@ function App() {
           <Route path='/sign-up' element={<SignUp validToken={validToken} setToken={setToken} setRole={setRole}/>}/>
           {/*Mentor, User*/}
           <Route path='/topic' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Topic/></PrivateRoute>} />
-          <Route path='/problem' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Problem/></PrivateRoute>} />
+          <Route path='/problem/:problem_id' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Problem token={token}/></PrivateRoute>} />
           <Route path='/problems' element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Problems token={token}/></PrivateRoute>}/>
           <Route path='/topics' exact element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><Topics/></PrivateRoute>}/>
           <Route path='/soft-skills' exact element={<PrivateRoute validToken={validToken} validRoles={["user","mentor"]} role={role}><SoftSkills/></PrivateRoute>}/>

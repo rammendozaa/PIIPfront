@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Datatable from '../../Datatable/Datatable'
+import Datatable from './ProblemsTable'
 import './Problems.css'
+import { Navigate } from 'react-router-dom';
 
 function Problems({token}) {
     const [data, setData] = useState([]);
     const [query, setQuery] = useState("");
+    const [problemId, setProblemId] = useState(-1);
 
     function search(rows){
         return rows.filter(
@@ -24,6 +26,18 @@ function Problems({token}) {
             setData(data)
         });
     },[]);
+
+    const goToProblem = (problem) => {
+        setProblemId(problem.id)
+    }
+
+    if(problemId !== -1){
+        let url = '/problem/'+problemId
+        return (
+            <Navigate to={url}/>
+        )
+    }
+
     return (
         <>
             <div className='problems-container'>
@@ -35,7 +49,7 @@ function Problems({token}) {
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
                 </div>
-                <Datatable data={search(data)}/>
+                <Datatable data={search(data)} goToProblem={goToProblem}/>
             </div>
         </>
     )
