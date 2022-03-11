@@ -17,6 +17,22 @@
     /*align-items: center;
     justify-content: center;*/
 }
+.course-content-container > h1 {
+    color: #fff;
+    font-size: 70px;
+    flex-shrink: 1;
+    min-width: 0;
+    min-height: 0;
+    width: 90%;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+.course-content-container > img {
+    flex-shrink: 4;
+    min-width: 0;
+    min-height: 0;
+    margin-top: 10px;
+  }
 
 .course-content-container .course .course-title{
     text-align: left;

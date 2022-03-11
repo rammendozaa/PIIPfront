@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Datatable from './ProblemsTable'
 import './Problems.css'
 import { Navigate } from 'react-router-dom';
+import ProblemsTable from './ProblemsTable';
 
 function Problems({token}) {
     const [data, setData] = useState([]);
@@ -49,7 +50,7 @@ function Problems({token}) {
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
                 </div>
-                <Datatable data={search(data)} goToProblem={goToProblem}/>
+                <ProblemsTable data={search(data)} goToProblem={goToProblem}/>
             </div>
         </>
     )

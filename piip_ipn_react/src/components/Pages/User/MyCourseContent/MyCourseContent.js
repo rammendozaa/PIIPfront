@@ -81,7 +81,8 @@ function CourseContent({token}) {
     if(administratorId === -1){
         return (
             <div className='course-content-container'>
-                <h1 className='sorry'>Sorry, you do not yet have a mentor or a course assigned to you. :(</h1>
+                <h1 className='sorry'>Sorry, you do not yet have a mentor or a course assigned to you.</h1>
+                <img src='/images/sorry-removebg-preview.png'></img>
             </div>
         )
     }
