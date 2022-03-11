@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './Compiler.css'
 
-export const Compiler2 = () => {
+export const Compiler2 = ({token,url}) => {
     /*fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
         {
             method: "POST",
@@ -21,7 +21,7 @@ export const Compiler2 = () => {
     const [code, setCode] = useState("");
     const [language_id, setLanguageId] = useState(52);
     const [input, setInput] = useState("");
-    const [submissionStatus, setSubmissionStatus] = useState("hola")
+    const [submissionStatus, setSubmissionStatus] = useState("")
     const [submissionUrl, setSubmissionUrl] = useState("");
     
     const handleClick = () => {
@@ -81,14 +81,24 @@ export const Compiler2 = () => {
     }
     const submitCode = () => {
         setSubmissionStatus("Submitting ...")
-        fetch('/problem/submit')
-        .then((response) => response.json())
-        .then((data) => {
+        let formData = new FormData();
+        formData.append('problem_url', url);
+        formData.append('code', code);
+        fetch('/problem/submit',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + token
+            },
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
             setSubmissionUrl(data.submissionUrl)
             console.log(data.submissionUrl)
-        })
+        });
+
     }
-    useEffect(() => {
+    /*useEffect(() => {
         const url = '/submission/?submissionUrl='+submissionUrl
         if("".localeCompare(submissionUrl) !== 0){
             fetch(url).then(res => res.json()).then(data => {
@@ -96,7 +106,7 @@ export const Compiler2 = () => {
                 console.log("Veredicto: "+data.status.verdict)
             });
         }
-    });
+    });*/
     /*return (
         <>
             <div className="row container-fluid">
@@ -164,20 +174,25 @@ export const Compiler2 = () => {
     return (
         <div className="compiler">
             <div className="compiler-toolbar">
-                <label htmlFor="tags">
-                    <b className="heading">Language:</b>
-                </label>
-                <select
-                    id="tags"
-                    className="language"
-                    value={language_id}
-                    onChange={(e) => setLanguageId(e.target.value)}
-                >
-                    <option value="54">C++</option>
-                    <option value="50">C</option>
-                    <option value="62">Java</option>
-                    <option value="71">Python</option>
-                </select>
+                <div className="languageDiv">
+                    <label htmlFor="tags">
+                        <b className="heading">Language:</b>
+                    </label>
+                    <select
+                        id="tags"
+                        className="language"
+                        value={language_id}
+                        onChange={(e) => setLanguageId(e.target.value)}
+                    >
+                        <option value="54">C++</option>
+                        <option value="50">C</option>
+                        <option value="62">Java</option>
+                        <option value="71">Python</option>
+                    </select>
+                </div>
+                <div className="statusDiv">
+                    <p className="status">Status: <a href={submissionUrl}>{submissionStatus}</a></p>
+                </div>
             </div>
             <div className="editor">
                 <textarea
@@ -198,8 +213,6 @@ export const Compiler2 = () => {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}>
                     </textarea>
-                    <a href={submissionUrl}>See submision</a>
-                    <p>{submissionStatus}</p>
                 </div>
                 <div className="right">
                     <button
