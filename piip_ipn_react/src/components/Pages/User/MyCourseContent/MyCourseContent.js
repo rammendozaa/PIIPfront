@@ -67,7 +67,8 @@ function CourseContent({token}) {
             ]
         }
     );
-    const [clicked, setClicked] = useState(-1);    const [administratorId, setAdministratorId] = useState(-1);
+    const [clicked, setClicked] = useState(-1);
+    const [administratorId, setAdministratorId] = useState(-1);
     fetch('/get-admin',{
         method: "GET",
         headers: {

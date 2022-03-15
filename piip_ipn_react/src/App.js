@@ -24,7 +24,7 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar validToken={validToken} removeToken={removeToken} role={role} />
+        <Navbar validToken={validToken} removeToken={removeToken} role={role} token={token} />
         <Routes>
           {/*No role*/}
           <Route path='/' exact element={<Home/>}/>

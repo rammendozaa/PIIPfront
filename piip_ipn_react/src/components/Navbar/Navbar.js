@@ -4,9 +4,10 @@ import { Button } from '../Button/Button';
 import './Navbar.css'
 
 
-function Navbar({validToken, removeToken, role}) {
+function Navbar({validToken, removeToken, role, token}) {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [administratorId, setAdministratorId] = useState(-1);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false)
 
@@ -59,6 +60,30 @@ function Navbar({validToken, removeToken, role}) {
                     </>
                 )
             }else{
+                fetch('/get-admin',{
+                    method: "GET",
+                    headers: {
+                        "Authorization": 'Bearer ' + token
+                    },
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setAdministratorId(data.administrator_id)
+                });
+                if(administratorId === -1){
+                    return (
+                        <>
+                        <ul className={click ? "nav-menu active" : "nav-menu"}>
+                            <li className='nav-item'>
+                                <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
+                                    My Course
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
+                        </>
+                    )
+                }
                 return (
                     <>
                         <ul className={click ? "nav-menu active" : "nav-menu"}>
