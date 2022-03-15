@@ -3,8 +3,8 @@ import { FormSignupContainer } from './FormSignupContainer'
 import './SignUp.css'
 import { Navigate } from 'react-router-dom';
 
-function SignUp({validToken, setToken, setRole}) {
-    if(validToken()){
+function SignUp({validUserData, setUserData}) {
+    if(validUserData()){
         return(
            <Navigate to="/my-course"/>
         )
@@ -12,7 +12,7 @@ function SignUp({validToken, setToken, setRole}) {
     return (
         <>
             <div className='signup-container'>
-                <FormSignupContainer validToken={validToken} setToken={setToken} setRole={setRole}/>
+                <FormSignupContainer validUserData={validUserData} setUserData={setUserData}/>
             </div>
         </>
     )

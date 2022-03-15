@@ -3,12 +3,7 @@ import FormSuccess from './FormSuccess';
 import FormLogin from './FormLogIn'
 import './FormLoginContainer.css';
 
-export const FormLoginContainer = ({validToken, setToken, setRole}) => {
-    const [isSubmitted, setIsSubmitted] = useState(false)
-
-    function submitForm() {
-        setIsSubmitted(true);
-    }
+export const FormLoginContainer = ({validUserData, setUserData}) => {
     return (
         <>
             <div className='form-container'>
@@ -16,7 +11,7 @@ export const FormLoginContainer = ({validToken, setToken, setRole}) => {
                 <div className='form-content-left'>
                     <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormLogin submitForm={submitForm} setToken={setToken} validToken={validToken} setRole={setRole} />) : (<FormSuccess />)}
+                <FormLogin validUserData={validUserData} setUserData={setUserData}/>
             </div>
         </>
     );

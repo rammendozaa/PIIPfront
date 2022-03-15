@@ -4,9 +4,10 @@ import { Button } from '../Button/Button';
 import './Navbar.css'
 
 
-function Navbar({validToken, removeToken, role}) {
+function Navbar({userData, validUserData, removeUserData}) {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [administratorId, setAdministratorId] = useState(-1);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false)
 
@@ -29,18 +30,18 @@ function Navbar({validToken, removeToken, role}) {
         })
         .then(res => res.json())
         .then(data => {
-            removeToken();
+            removeUserData();
         });
     }
     const getNavbarElements = () => {
-        if(!validToken()){
+        if(!validUserData()){
             return (
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     {button && <Button buttonStyle="btn--outline" link="/log-in">Log In</Button>}
                 </ul>
             )
         }else{
-            if(role === "mentor"){
+            if(userData.role === "mentor"){
                 return (
                     <>
                         <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -58,7 +59,31 @@ function Navbar({validToken, removeToken, role}) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
                     </>
                 )
-            }else{
+            }else if(userData.role === "user"){
+                fetch('/get-admin',{
+                    method: "GET",
+                    headers: {
+                        "Authorization": 'Bearer ' + userData.token
+                    },
+                })
+                .then(res => res.json())
+                .then(data => {
+                    setAdministratorId(data.administrator_id)
+                });
+                if(administratorId === -1){
+                    return (
+                        <>
+                        <ul className={click ? "nav-menu active" : "nav-menu"}>
+                            <li className='nav-item'>
+                                <Link to="/my-course" className="nav-links" onClick={closeMobileMenu}>
+                                    My Course
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
+                        </>
+                    )
+                }
                 return (
                     <>
                         <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -96,6 +121,14 @@ function Navbar({validToken, removeToken, role}) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
                     </>
                 )   
+            }else{
+                return (
+                    <>
+                    <ul className={click ? "nav-menu active" : "nav-menu"}>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>} 
+                    </ul>
+                    </>
+                )
             }
         }
     }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './Compiler.css'
 
-export const Compiler2 = ({token,url}) => {
+export const Compiler2 = ({userData,url}) => {
     /*fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
         {
             method: "POST",
@@ -87,7 +87,7 @@ export const Compiler2 = ({token,url}) => {
         fetch('/problem/submit',{
             method: "POST",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
             body: formData
         })

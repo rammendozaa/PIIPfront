@@ -3,8 +3,8 @@ import { FormLoginContainer } from './FormLoginContainer'
 import './LogIn.css'
 import { Navigate } from 'react-router-dom';
 
-function LogIn({validToken, setToken, setRole}) {
-    if(validToken()){
+function LogIn({validUserData, setUserData}) {
+    if(validUserData()){
         return(
            <Navigate to="/my-course"/>
         )
@@ -12,7 +12,7 @@ function LogIn({validToken, setToken, setRole}) {
     return (
         <>
             <div className='login-container'>
-                <FormLoginContainer validToken={validToken} setToken={setToken} setRole={setRole}/>
+                <FormLoginContainer validUserData={validUserData} setUserData={setUserData}/>
             </div>
         </>
     )

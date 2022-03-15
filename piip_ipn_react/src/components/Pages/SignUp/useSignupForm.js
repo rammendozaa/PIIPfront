@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const useSignupForm = (submitForm, validate, setToken, validToken, setRole) => {
+const useSignupForm = (validate, setUserData, validUserData) => {
     const [values,setValues] = useState({
         firstname: '',
         lastname: '',
@@ -20,7 +20,7 @@ const useSignupForm = (submitForm, validate, setToken, validToken, setRole) => {
         })
     }
 
-    const SubmitToServer = () => {
+    const SubmitToServer = async () => {
         let formData = new FormData();
         formData.append('firstname', values.firstname);
         formData.append('lastname', values.lastname);
@@ -28,16 +28,12 @@ const useSignupForm = (submitForm, validate, setToken, validToken, setRole) => {
         formData.append('school_id', values.school_id);
         formData.append('password', values.password);
         
-        fetch('/sign-up', {
+        const response = await fetch('/sign-up', {
             method: "POST",
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Token assigned: ",data.access_token)
-            setToken(data.access_token)
-            setRole(data.role)
-        });
+        const data = await response.json()
+        return data
     }
 
     const handleSubmit = e => {
@@ -48,11 +44,16 @@ const useSignupForm = (submitForm, validate, setToken, validToken, setRole) => {
 
     useEffect(
         () => {
-            if(Object.keys(errors).length === 0 && isSubmitting){
-                SubmitToServer();
-                if(validToken()){
-                    submitForm()
-                }
+            if(Object.keys(errors).length === 0 && isSubmitting === true){
+                SubmitToServer()
+                .then(data => {
+                    if(data.error === undefined){
+                        setUserData(data.access_token, data.role)
+                    }else{
+                        alert("User already exists")
+                        setIsSubmitting(false)
+                    }
+                });
             }
         }
     )

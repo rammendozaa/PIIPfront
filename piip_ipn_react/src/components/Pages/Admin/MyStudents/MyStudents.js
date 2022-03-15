@@ -3,33 +3,44 @@ import DatatablePendingStudents from '../../../Datatable/DatatablePendingStudent
 import Datatable from '../../../Datatable/Datatable'
 import './MyStudents.css'
 
-function MyStudents({token}) {
+function MyStudents({userData}) {
     const [myStudents, setMyStudents] = useState([]);
     const [pendingStudents, setPendingStudents] = useState([]);
-    useEffect(() => {
-        fetch('/myStudents',{
+
+    const getMyStudents = async() => {
+        const response = await fetch('/myStudents',{
             method: "GET",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            setMyStudents(data)
-        });
-    },[]) 
-    useEffect(() => {
-        fetch('/pendingStudents',{
+        const data = await response.json()
+        setMyStudents(data)
+    }
+    const getPendingStudents = async() => {
+        const response = await fetch('/pendingStudents',{
             method: "GET",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            setPendingStudents(data)
-        });
-    },[])
+        const data = await response.json()
+        setPendingStudents(data)
+    }
+    useEffect(() => {
+        getMyStudents()
+    }, []);
+    useEffect(() => {
+        getPendingStudents()
+    }, []);
+    useEffect(() => {
+        const timer = setInterval(getMyStudents, 2000);
+        return () => clearInterval(timer);
+    }, []);
+    useEffect(() => {
+        const timer = setInterval(getPendingStudents, 2000);
+        return () => clearInterval(timer);
+    }, []);
 
     const assignStudent = (row) => {
         const user_id = pendingStudents[row].id;
@@ -38,7 +49,7 @@ function MyStudents({token}) {
         fetch('/assign-student',{
             method: "POST",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
             body: formData
         })
@@ -47,7 +58,6 @@ function MyStudents({token}) {
             console.log(data);
         });
     }
-
     return (
         <>
             <div className="my-students-container">

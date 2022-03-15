@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Datatable from './ProblemsTable'
 import './Problems.css'
 import { Navigate } from 'react-router-dom';
 import ProblemsTable from './ProblemsTable';
 
-function Problems({token}) {
+function Problems({userData}) {
     const [data, setData] = useState([]);
     const [query, setQuery] = useState("");
     const [problemId, setProblemId] = useState(-1);
@@ -19,7 +18,7 @@ function Problems({token}) {
         fetch('/problems',{
             method: "GET",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
         })
         .then(res => res.json())

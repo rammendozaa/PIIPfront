@@ -1,11 +1,9 @@
 import {useState,useEffect} from 'react'
 
-const useLoginForm = (submitForm, validate, setToken, validToken, setRole) => {
+const useLoginForm = (validate, validUserData, setUserData) => {
     const [values,setValues] = useState({
-        username: '',
         email: '',
         password: '',
-        password2: ''
     })
     const [errors,setErrors] = useState({})
     const [isSubmitting,setIsSubmitting] = useState(false)
@@ -18,36 +16,36 @@ const useLoginForm = (submitForm, validate, setToken, validToken, setRole) => {
         })
     }
 
-    const SubmitToServer = () => {
+    const SubmitToServer = async () => {
         let formData = new FormData();
         formData.append('email', values.email);
         formData.append('password', values.password);
-        fetch('/token', {
+        const response = await fetch('/token', {
             method: "POST",
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Token assigned: ",data.access_token)
-            setToken(data.access_token)
-            setRole(data.role)
-        });
+        const data = await response.json()
+        return data;
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors(validate(values));
+        setErrors(validate(values));    
         setIsSubmitting(true);
     }
 
     useEffect(
         () => {
-            if(Object.keys(errors).length === 0 && isSubmitting){
-                SubmitToServer();
-                if(validToken()){
-                    console.log("Hola");
-                    submitForm()
-                }
+            if(Object.keys(errors).length === 0 && isSubmitting === true){
+                SubmitToServer()
+                .then(data => {
+                    if(data.error === undefined){
+                        setUserData(data.access_token, data.role)
+                    }else{
+                        alert("Wrong email or password")
+                        setIsSubmitting(false)
+                    }
+                });
             }
         }
     )
