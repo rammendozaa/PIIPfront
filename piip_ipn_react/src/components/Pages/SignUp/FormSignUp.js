@@ -3,8 +3,8 @@ import useSignupForm from './useSignupForm';
 import validate from './validateSignupInfo'
 import {Link} from 'react-router-dom'
 
-const FormSignUp = ({ submitForm, setToken, validToken, setRole}) => {
-    const { handleChange, values, handleSubmit, errors } = useSignupForm(submitForm, validate, setToken, validToken, setRole)
+const FormSignUp = ({submitForm, validUserData, setUserData}) => {
+    const { handleChange, values, handleSubmit, errors } = useSignupForm(submitForm, validate, setUserData, validUserData)
     const [schools,setSchools] = useState([])
 
     useEffect(() => {

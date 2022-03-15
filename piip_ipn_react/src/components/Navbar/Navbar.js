@@ -4,7 +4,7 @@ import { Button } from '../Button/Button';
 import './Navbar.css'
 
 
-function Navbar({validToken, removeToken, role, token}) {
+function Navbar({userData, validUserData, removeUserData}) {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
     const [administratorId, setAdministratorId] = useState(-1);
@@ -30,18 +30,18 @@ function Navbar({validToken, removeToken, role, token}) {
         })
         .then(res => res.json())
         .then(data => {
-            removeToken();
+            removeUserData();
         });
     }
     const getNavbarElements = () => {
-        if(!validToken()){
+        if(!validUserData()){
             return (
                 <ul className={click ? "nav-menu active" : "nav-menu"}>
                     {button && <Button buttonStyle="btn--outline" link="/log-in">Log In</Button>}
                 </ul>
             )
         }else{
-            if(role === "mentor"){
+            if(userData.role === "mentor"){
                 return (
                     <>
                         <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -59,12 +59,11 @@ function Navbar({validToken, removeToken, role, token}) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
                     </>
                 )
-            }
-            if(role === "user"){
+            }else if(userData.role === "user"){
                 fetch('/get-admin',{
                     method: "GET",
                     headers: {
-                        "Authorization": 'Bearer ' + token
+                        "Authorization": 'Bearer ' + userData.token
                     },
                 })
                 .then(res => res.json())
@@ -122,6 +121,14 @@ function Navbar({validToken, removeToken, role, token}) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
                     </>
                 )   
+            }else{
+                return (
+                    <>
+                    <ul className={click ? "nav-menu active" : "nav-menu"}>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>} 
+                    </ul>
+                    </>
+                )
             }
         }
     }

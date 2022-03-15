@@ -3,7 +3,7 @@ import DatatablePendingStudents from '../../../Datatable/DatatablePendingStudent
 import Datatable from '../../../Datatable/Datatable'
 import './MyStudents.css'
 
-function MyStudents({token}) {
+function MyStudents({userData}) {
     const [myStudents, setMyStudents] = useState([]);
     const [pendingStudents, setPendingStudents] = useState([]);
 
@@ -11,7 +11,7 @@ function MyStudents({token}) {
         const response = await fetch('/myStudents',{
             method: "GET",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
         })
         const data = await response.json()
@@ -21,7 +21,7 @@ function MyStudents({token}) {
         const response = await fetch('/pendingStudents',{
             method: "GET",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
         })
         const data = await response.json()
@@ -49,7 +49,7 @@ function MyStudents({token}) {
         fetch('/assign-student',{
             method: "POST",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
             body: formData
         })

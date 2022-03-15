@@ -1,11 +1,10 @@
 import {useState,useEffect} from 'react'
 
-const useLoginForm = (submitForm, validate, setToken, validToken, setRole) => {
+const useLoginForm = (validate, validUserData, setUserData) => {
     const [values,setValues] = useState({
         username: '',
         email: '',
         password: '',
-        password2: ''
     })
     const [errors,setErrors] = useState({})
     const [isSubmitting,setIsSubmitting] = useState(false)
@@ -29,8 +28,7 @@ const useLoginForm = (submitForm, validate, setToken, validToken, setRole) => {
         const data = await response.json()
         console.log("Token assigned: ",data.access_token)
         console.log("Role: ",data.role)
-        setToken(data.access_token)
-        setRole(data.role)
+        setUserData(data.access_token, data.role)
     }
 
     const handleSubmit = e => {
@@ -43,10 +41,6 @@ const useLoginForm = (submitForm, validate, setToken, validToken, setRole) => {
         () => {
             if(Object.keys(errors).length === 0 && isSubmitting){
                 SubmitToServer();
-                if(validToken()){
-                    console.log("Hola");
-                    submitForm()
-                }
             }
         }
     )

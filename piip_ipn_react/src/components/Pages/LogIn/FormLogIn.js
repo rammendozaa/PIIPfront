@@ -3,8 +3,8 @@ import useLoginForm from './useLoginForm';
 import validate from './validateLoginInfo'
 import {Link} from 'react-router-dom'
 
-const FormLogin = ({ submitForm, setToken, validToken, setRole}) => {
-    const { handleChange, values, handleSubmit, errors } = useLoginForm(submitForm, validate, setToken, validToken, setRole)
+const FormLogin = ({ validUserData, setUserData}) => {
+    const { handleChange, values, handleSubmit, errors } = useLoginForm(validate, validUserData, setUserData)
 
     return (
         <div className='form-content-right'>

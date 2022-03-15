@@ -3,7 +3,7 @@ import FormSuccess from './FormSuccess';
 import FormSignUp from './FormSignUp'
 import './FormSignupContainer.css';
 
-export const FormSignupContainer = ({validToken, setToken, setRole}) => {
+export const FormSignupContainer = ({validUserData, setUserData}) => {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     function submitForm() {
@@ -16,7 +16,7 @@ export const FormSignupContainer = ({validToken, setToken, setRole}) => {
                 <div className='form-content-left'>
                     <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormSignUp submitForm={submitForm} setToken={setToken} validToken={validToken} setRole={setRole} />) : (<FormSuccess />)}
+                {!isSubmitted ? (<FormSignUp submitForm={submitForm} validUserData={validUserData} setUserData={setUserData} />) : (<FormSuccess />)}
             </div>
         </>
     );
