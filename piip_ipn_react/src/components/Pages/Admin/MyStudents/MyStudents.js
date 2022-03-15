@@ -6,30 +6,41 @@ import './MyStudents.css'
 function MyStudents({token}) {
     const [myStudents, setMyStudents] = useState([]);
     const [pendingStudents, setPendingStudents] = useState([]);
-    useEffect(() => {
-        fetch('/myStudents',{
+
+    const getMyStudents = async() => {
+        const response = await fetch('/myStudents',{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + token
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            setMyStudents(data)
-        });
-    },[]) 
-    useEffect(() => {
-        fetch('/pendingStudents',{
+        const data = await response.json()
+        setMyStudents(data)
+    }
+    const getPendingStudents = async() => {
+        const response = await fetch('/pendingStudents',{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + token
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            setPendingStudents(data)
-        });
-    },[])
+        const data = await response.json()
+        setPendingStudents(data)
+    }
+    useEffect(() => {
+        getMyStudents()
+    }, []);
+    useEffect(() => {
+        getPendingStudents()
+    }, []);
+    useEffect(() => {
+        const timer = setInterval(getMyStudents, 2000);
+        return () => clearInterval(timer);
+    }, []);
+    useEffect(() => {
+        const timer = setInterval(getPendingStudents, 2000);
+        return () => clearInterval(timer);
+    }, []);
 
     const assignStudent = (row) => {
         const user_id = pendingStudents[row].id;
@@ -47,7 +58,6 @@ function MyStudents({token}) {
             console.log(data);
         });
     }
-
     return (
         <>
             <div className="my-students-container">

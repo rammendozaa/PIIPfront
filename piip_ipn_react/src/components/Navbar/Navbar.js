@@ -41,6 +41,7 @@ function Navbar({validToken, removeToken, role, token}) {
                 </ul>
             )
         }else{
+            alert("Role:"+role)
             if(role === "mentor"){
                 return (
                     <>
@@ -59,7 +60,8 @@ function Navbar({validToken, removeToken, role, token}) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
                     </>
                 )
-            }else{
+            }
+            if(role === "user"){
                 fetch('/get-admin',{
                     method: "GET",
                     headers: {

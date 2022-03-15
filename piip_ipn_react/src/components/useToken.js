@@ -37,9 +37,9 @@ function useToken() {
   }
 
   function validToken(){
-    console.log("Valid Token:", token)
-    console.log("Role: ", role)
-    if(!token || token === undefined){
+    console.log("Valid Token:2", token)
+    console.log("Role2: ", role)
+    if(!token || token === undefined || !role || role === undefined) {
       return false;
     }
     return true;
@@ -51,7 +51,7 @@ function useToken() {
     removeToken,
     validToken,
     role,
-    setRole: saveRole
+    setRole: saveRole,
   }
 
 }

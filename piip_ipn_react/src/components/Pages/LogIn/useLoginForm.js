@@ -18,20 +18,19 @@ const useLoginForm = (submitForm, validate, setToken, validToken, setRole) => {
         })
     }
 
-    const SubmitToServer = () => {
+    const SubmitToServer = async () => {
         let formData = new FormData();
         formData.append('email', values.email);
         formData.append('password', values.password);
-        fetch('/token', {
+        const response = await fetch('/token', {
             method: "POST",
             body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Token assigned: ",data.access_token)
-            setToken(data.access_token)
-            setRole(data.role)
-        });
+        const data = await response.json()
+        console.log("Token assigned: ",data.access_token)
+        console.log("Role: ",data.role)
+        setToken(data.access_token)
+        setRole(data.role)
     }
 
     const handleSubmit = e => {
