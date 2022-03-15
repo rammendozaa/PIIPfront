@@ -41,7 +41,6 @@ function Navbar({validToken, removeToken, role, token}) {
                 </ul>
             )
         }else{
-            alert("Role:"+role)
             if(role === "mentor"){
                 return (
                     <>
