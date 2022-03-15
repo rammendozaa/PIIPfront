@@ -18,8 +18,8 @@ function useUserData() {
   })
 
   function saveUserData(token, role) {
-    localStorage.setItem('token', userData.token);
-    localStorage.setItem('role', userData.role)
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', role);
     setData({
       "token": token,
       "role": role

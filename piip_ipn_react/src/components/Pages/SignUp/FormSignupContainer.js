@@ -4,11 +4,6 @@ import FormSignUp from './FormSignUp'
 import './FormSignupContainer.css';
 
 export const FormSignupContainer = ({validUserData, setUserData}) => {
-    const [isSubmitted, setIsSubmitted] = useState(false)
-
-    function submitForm() {
-        setIsSubmitted(true);
-    }
     return (
         <>
             <div className='form-container'>
@@ -16,7 +11,7 @@ export const FormSignupContainer = ({validUserData, setUserData}) => {
                 <div className='form-content-left'>
                     <img src='images/home.png' alt='happy' className='form-img'/>
                 </div>
-                {!isSubmitted ? (<FormSignUp submitForm={submitForm} validUserData={validUserData} setUserData={setUserData} />) : (<FormSuccess />)}
+                <FormSignUp validUserData={validUserData} setUserData={setUserData}/>
             </div>
         </>
     );

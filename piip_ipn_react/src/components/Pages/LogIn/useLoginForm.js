@@ -2,7 +2,6 @@ import {useState,useEffect} from 'react'
 
 const useLoginForm = (validate, validUserData, setUserData) => {
     const [values,setValues] = useState({
-        username: '',
         email: '',
         password: '',
     })
@@ -26,21 +25,27 @@ const useLoginForm = (validate, validUserData, setUserData) => {
             body: formData
         })
         const data = await response.json()
-        console.log("Token assigned: ",data.access_token)
-        console.log("Role: ",data.role)
-        setUserData(data.access_token, data.role)
+        return data;
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors(validate(values));
+        setErrors(validate(values));    
         setIsSubmitting(true);
     }
 
     useEffect(
         () => {
-            if(Object.keys(errors).length === 0 && isSubmitting){
-                SubmitToServer();
+            if(Object.keys(errors).length === 0 && isSubmitting === true){
+                SubmitToServer()
+                .then(data => {
+                    if(data.error === undefined){
+                        setUserData(data.access_token, data.role)
+                    }else{
+                        alert("Wrong email or password")
+                        setIsSubmitting(false)
+                    }
+                });
             }
         }
     )

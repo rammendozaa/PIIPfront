@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import ReactHTMLParser from 'react-html-parser';
 
-function Problem({token}) {
+function Problem({userData}) {
     const {problem_id} = useParams();
     const [data, setData] = useState();
 
@@ -16,7 +16,7 @@ function Problem({token}) {
         fetch('/problem',{
             method: "POST",
             headers: {
-                "Authorization": 'Bearer ' + token
+                "Authorization": 'Bearer ' + userData.token
             },
             body: formData
         })
@@ -82,7 +82,7 @@ function Problem({token}) {
                     </div>
                 </div>
                 <div className="problem-execution">
-                    <Compiler2 token={token} url={data.output}/>
+                    <Compiler2 userData={userData} url={data.output}/>
                 </div>
             </div>
         }

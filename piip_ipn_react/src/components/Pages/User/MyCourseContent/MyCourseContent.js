@@ -3,7 +3,7 @@ import "./MyCourseContent.css"
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 
-function CourseContent({token}) {
+function CourseContent({userData}) {
     const [data, setData] = useState(
         {
             "CourseName": "Basic Course",
@@ -69,10 +69,11 @@ function CourseContent({token}) {
     );
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
+
     fetch('/get-admin',{
         method: "GET",
         headers: {
-            "Authorization": 'Bearer ' + token
+            "Authorization": 'Bearer ' + userData.token
         },
     })
     .then(res => res.json())

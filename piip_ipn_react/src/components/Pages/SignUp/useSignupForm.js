@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const useSignupForm = (submitForm, validate, validUserData, setUserData) => {
+const useSignupForm = (validate, setUserData, validUserData) => {
     const [values,setValues] = useState({
         firstname: '',
         lastname: '',
@@ -33,9 +33,7 @@ const useSignupForm = (submitForm, validate, validUserData, setUserData) => {
             body: formData
         })
         const data = await response.json()
-        console.log("Token assigned: ",data.access_token)
-        console.log("Role assigned: ",data.role)
-        setUserData(data.access_token, data.role)
+        return data
     }
 
     const handleSubmit = e => {
@@ -46,11 +44,16 @@ const useSignupForm = (submitForm, validate, validUserData, setUserData) => {
 
     useEffect(
         () => {
-            if(Object.keys(errors).length === 0 && isSubmitting){
-                SubmitToServer();
-                if(validUserData()){
-                    submitForm()
-                }
+            if(Object.keys(errors).length === 0 && isSubmitting === true){
+                SubmitToServer()
+                .then(data => {
+                    if(data.error === undefined){
+                        setUserData(data.access_token, data.role)
+                    }else{
+                        alert("User already exists")
+                        setIsSubmitting(false)
+                    }
+                });
             }
         }
     )
