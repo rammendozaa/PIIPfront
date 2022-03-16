@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import "./MyCourseContent.css"
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
@@ -69,17 +69,20 @@ function CourseContent({userData}) {
     );
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
-
-    fetch('/get-admin',{
-        method: "GET",
-        headers: {
-            "Authorization": 'Bearer ' + userData.token
-        },
-    })
-    .then(res => res.json())
-    .then(data => {
-        setAdministratorId(data.administrator_id)
-    });
+    
+    useEffect(() => {
+        fetch('/get-admin',{
+            method: "GET",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            setAdministratorId(data.administrator_id)
+        });
+    },[]);
+    
     if(administratorId === -1){
         return (
             <div className='course-content-container'>
