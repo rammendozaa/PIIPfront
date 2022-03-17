@@ -7,7 +7,10 @@ function DatatablePendingStudents({data, assignStudent}) {
       <table className='content-table'>
           <thead>
             <tr>
-                {data[0] && colums.map(heading => <th>{heading}</th>)}
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>School</th>
+                <th>Email</th>
                 <th>Assign</th>
             </tr>
           </thead>
@@ -15,9 +18,10 @@ function DatatablePendingStudents({data, assignStudent}) {
             {
                 data.map((row,idx) => 
                     <tr>
-                        {
-                            colums.map(colum => <td>{row[colum]}</td>)
-                        }
+                        <td>{row['first_name']}</td>
+                        <td>{row['last_name']}</td>
+                        <td>{row['school_id']}</td>
+                        <td>{row['email']}</td>
                         <td>
                             <button onClick={() => assignStudent(idx)}>Add</button>
                         </td>
