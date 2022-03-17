@@ -21,7 +21,7 @@ export const Compiler2 = ({userData,url}) => {
     .then((response) => response.json())
     .then((data) => console.log('This is your data', data.token));*/
     const [code, setCode] = useState("");
-    const [language_id, setLanguageId] = useState(52);
+    const [language_id, setLanguageId] = useState(54);
     const [input, setInput] = useState("");
     const [submissionStatus, setSubmissionStatus] = useState("")
     const [submissionUrl, setSubmissionUrl] = useState("");
@@ -80,6 +80,17 @@ export const Compiler2 = ({userData,url}) => {
                 })              
             //}
         }); 
+    }
+    const getLanguague = () => {
+        if(language_id == 54){
+            return "cpp"    
+        }else if(language_id == 50){
+            return "c"
+        }else if(language_id == 62){
+            return "java"
+        }else if(language_id == 71){
+            return "py"
+        }
     }
     const submitCode = () => {
         setSubmissionStatus("Submitting ...")
@@ -224,8 +235,8 @@ export const Compiler2 = ({userData,url}) => {
                 </textarea>*/}
                 <CodeEditor
                     value={code}
-                    language="cpp"
-                    placeholder="Please enter C++ code."
+                    language= {getLanguague()}
+                    placeholder={"Please enter "+getLanguague()+" code."}
                     onChange={(evn) => setCode(evn.target.value)}
                     padding={15}
                     className="source"

@@ -56,9 +56,13 @@
 }
 .compiler .editor .source{
   width: 75%;
+  height: 100%;
+  border:1px solid black;
+  font-size: 15px;
 }
 .compiler .editor .output{
   width: 25%;
+  height: 100%;
   margin-left: 20px;
 }
 .compiler .compiler-footbar{
