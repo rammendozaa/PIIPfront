@@ -12,6 +12,7 @@ import LogIn from './components/Pages/LogIn/LogIn'
 import SignUp from './components/Pages/SignUp/SignUp'
 import Topic from './components/Pages/Topic/Topic'
 import Problem from './components/Pages/Problem/Problem'
+import Prueba from './components/Pages/Problem/Prueba'
 import MyCourseContent from './components/Pages/User/MyCourseContent/MyCourseContent'
 import NotFound from './components/Pages/NotFound';
 import useUserData from './components/useUserData';
@@ -27,6 +28,7 @@ function App() {
         <Navbar userData={userData} validUserData={validUserData} removeUserData={removeUserData}/>
         <Routes>
           {/*No role*/}
+          <Route path='/prueba' exact element={<Prueba/>}/>
           <Route path='/' exact element={<Home/>}/>
           <Route path='*' element={<NotFound/>} />
           <Route path='/log-in' element={<LogIn validUserData={validUserData} setUserData={setUserData}/>}/>

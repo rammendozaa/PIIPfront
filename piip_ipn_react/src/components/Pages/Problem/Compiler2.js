@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import './Compiler.css'
+import CodeEditor from '@uiw/react-textarea-code-editor';
+
 
 export const Compiler2 = ({userData,url}) => {
     /*fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
@@ -93,20 +95,36 @@ export const Compiler2 = ({userData,url}) => {
         })
         .then(res => res.json())
         .then(data => {
-            setSubmissionUrl(data.submissionUrl)
-            console.log(data.submissionUrl)
+            if(data.error !== undefined){
+                setSubmissionStatus(data.error)
+            }else{
+                setSubmissionUrl(data.submissionUrl)
+                console.log(data.submissionUrl)
+            }
         });
 
     }
-    /*useEffect(() => {
-        const url = '/submission/?submissionUrl='+submissionUrl
+    useEffect(() => {
         if("".localeCompare(submissionUrl) !== 0){
-            fetch(url).then(res => res.json()).then(data => {
+            let formData = new FormData();
+            formData.append('submissionUrl', submissionUrl);
+            console.log("ES la misma:"+submissionUrl)
+            console.log(userData.token)
+            
+            fetch('/submission',{
+                method: "POST",
+                headers: {
+                    "Authorization": 'Bearer ' + userData.token
+                },
+                body: formData,
+            })
+            .then(res => res.json())
+            .then(data => {
                 setSubmissionStatus(data.status.verdict)
                 console.log("Veredicto: "+data.status.verdict)
             });
         }
-    });*/
+    });
     /*return (
         <>
             <div className="row container-fluid">
@@ -191,19 +209,27 @@ export const Compiler2 = ({userData,url}) => {
                     </select>
                 </div>
                 <div className="statusDiv">
-                    <p className="status">Status: <a href={submissionUrl}>{submissionStatus}</a></p>
+                    <p className="status">Status: <a href={submissionUrl} target="_blank">{submissionStatus}</a></p>
                 </div>
             </div>
             <div className="editor">
-                <textarea
+                {/*<textarea
                     required
                     name="solution"
                     id="source"
-                    className=" source"
+                    className="source"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                 >
-                </textarea>
+                </textarea>*/}
+                <CodeEditor
+                    value={code}
+                    language="cpp"
+                    placeholder="Please enter C++ code."
+                    onChange={(evn) => setCode(evn.target.value)}
+                    padding={15}
+                    className="source"
+                />
                 <textarea id="output" className="output"></textarea>
             </div>
             <div className="compiler-footbar">
