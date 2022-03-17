@@ -3,8 +3,9 @@ import "./CourseContent.css"
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
+import Popup from './Popup';
 
-function CourseContent() {
+function CourseContent({userData}) {
     const [data, setData] = useState(
         {
             "CourseName": "Basic Course",
@@ -68,8 +69,10 @@ function CourseContent() {
             ]
         }
     );
+    console.log("Token: ",userData.token)
     const [clicked, setClicked] = useState(-1);
     const [newSectionName, setNewSectionName] = useState("");
+    const [buttonPopup, setButtonPopup] = useState(false);
     const toggle = index => {
         if (clicked === index) {
             //if clicked question is already active, then close it
@@ -86,6 +89,16 @@ function CourseContent() {
             ...prevState,
             current
         }))
+    }
+    const deleteActivity = (indexSection, indexActivity) => {
+        if(window.confirm('Are you sure you want to delete this activity?')){
+            var current = data;
+            current.Sections[indexSection].Activities = current.Sections[indexSection].Activities.filter((item,idx) => idx != indexActivity)
+            setData(prevState => ({
+                ...prevState,
+                current
+            }))
+        }
     }
     const AddNewSection = () => {
         if(!newSectionName){
@@ -119,7 +132,7 @@ function CourseContent() {
             <div className='course-content-container'>
                 <div className='course'> 
                     <h1 className='course-title'> {data.CourseName} </h1>
-                    <IconContext.Provider value={{ color: '#00FFB9', size: '25px' }}>
+                    <IconContext.Provider value={{ color: 'red', size: '25px' }}>
                         <div className='AccordionSection'>
                             <div className='Container'>
                                 {data.Sections.map((section, indexSection) => {
@@ -139,6 +152,7 @@ function CourseContent() {
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
                                                                     <p>{activity.ActivityName}</p>
+                                                                    <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity)}/></span>
                                                                 </div>                                                                
                                                             </>
                                                         )
@@ -151,8 +165,7 @@ function CourseContent() {
                                             ?
                                             (
                                                 <div className='AddNewActivity' onClick={() => addNewActivity(indexSection)}>
-                                                    <input type='text'></input>
-                                                    <span>{<FiPlus />}</span>
+                                                    <span>{<FiPlus onClick={() => setButtonPopup(true) }/>}</span>
                                                 </div>
                                             )
                                             :null
@@ -170,6 +183,7 @@ function CourseContent() {
                     </IconContext.Provider>
                 </div>
             </div>
+            <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData}/>
         </>
     )
 }

@@ -45,7 +45,7 @@ function App() {
           <Route path='/company-tracking' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><CompanyTracking/></PrivateRoute>}/>
           <Route path='/my-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyCourseContent userData={userData}/></PrivateRoute>} />
           {/*Mentor*/}
-          <Route path='/update-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><CourseContent/></PrivateRoute>} />   
+          <Route path='/update-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><CourseContent userData={userData}/></PrivateRoute>} />   
           <Route path='/add-topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><AddTopic/></PrivateRoute>} />
           <Route path='/my-students' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><MyStudents userData={userData}/></PrivateRoute>} />          
         </Routes>

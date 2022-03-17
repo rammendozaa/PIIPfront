@@ -80,26 +80,26 @@
     align-items: flex-end;
 }
 .course-content-container .course .AccordionSection .Container .Dropdown {
-    margin-top: 5px;
     background: #fff;
     border-radius: 10px;
 
     color: #1c1c1c;
     width: 98%;
-    height: 50px;
+    height: 60px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /*border-bottom: 1px solid #00ffb9;
-    border-top: 1px solid #00ffb9;*/
+    flex-direction: row;
+    justify-content: space-between;
 }
 .course-content-container .course .AccordionSection .Container .Dropdown p{
     font-size: 2rem;
 }
+.course-content-container .course .AccordionSection .Container .Dropdown span{
+    margin-right: 1rem;
+    color: red;
+}
 
 .course-content-container .course .AccordionSection .Container .AddNewActivity {
     background: #fff;
-    color: #00ffb9;
     width: 98%;
     height: 50px;
     display: flex;
