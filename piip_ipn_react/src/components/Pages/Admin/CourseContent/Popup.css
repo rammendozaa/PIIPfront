@@ -8,6 +8,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 0;
+    min-width: 0;
+    margin-top: 80px;
 }
 
 .popup-inner {
@@ -15,8 +18,11 @@
     padding: 32px;
     width: 100%;
     max-width: 640px;
+    min-height: 0;
+    min-width: 0;
     background-color: #FFF;
     border-radius: 10px;
+    overflow: auto;
 }
 
 .popup-inner .close-btn {
@@ -25,11 +31,25 @@
     right: 16px;
 }
 
+.popup-inner .options-container{
+    height: 100%;
+    width: 100%;
+    min-height: 0;
+    min-width: 0;
+}
+
+.popup-inner .options-container p{
+    min-height: 0;
+    min-width: 0;
+}
+
 .popup-inner .options-container .options{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 20px;
+    min-height: 0;
+    min-width: 0;
 }
 .popup-inner .create-activity{
     overflow: auto;

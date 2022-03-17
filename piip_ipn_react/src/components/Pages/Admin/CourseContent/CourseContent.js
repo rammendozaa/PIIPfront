@@ -182,8 +182,8 @@ function CourseContent({userData}) {
                         </div>
                     </IconContext.Provider>
                 </div>
+                <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData}/>
             </div>
-            <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData}/>
         </>
     )
 }
