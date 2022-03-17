@@ -4,8 +4,12 @@ import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
 import Popup from './Popup';
+import { useParams } from "react-router-dom";
+
 
 function CourseContent({userData}) {
+    const {user_id} = useParams();
+    console.log(user_id)
     const [data, setData] = useState(
         {
             "CourseName": "Basic Course",
