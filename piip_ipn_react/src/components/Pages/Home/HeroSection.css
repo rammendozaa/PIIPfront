@@ -94,5 +94,6 @@
 @media screen and (max-height: 855px){
   .hero-container > img {
     height: 200px;
+    display: none;
   }
 }
