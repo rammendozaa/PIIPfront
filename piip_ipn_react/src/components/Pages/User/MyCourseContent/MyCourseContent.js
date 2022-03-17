@@ -69,7 +69,13 @@ function CourseContent({userData}) {
     );
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
-    
+    const toggle = index => {
+        if (clicked === index) {
+            //if clicked question is already active, then close it
+            return setClicked(-1);
+        }   
+        setClicked(index);
+    };
     useEffect(() => {
         fetch('/get-admin',{
             method: "GET",
@@ -91,13 +97,6 @@ function CourseContent({userData}) {
             </div>
         )
     }
-    const toggle = index => {
-        if (clicked === index) {
-            //if clicked question is already active, then close it
-            return setClicked(-1);
-        }   
-        setClicked(index);
-    };
     return (
         <>
             <div className='course-content-container'>

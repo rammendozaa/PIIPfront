@@ -82,7 +82,7 @@ function Problem({userData}) {
                     </div>
                 </div>
                 <div className="problem-execution">
-                    <Compiler2 userData={userData} url={data.output}/>
+                    <Compiler2 userData={userData} url={data.url}/>
                 </div>
             </div>
         }
