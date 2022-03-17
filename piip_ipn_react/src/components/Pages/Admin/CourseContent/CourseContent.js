@@ -5,7 +5,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
 import Popup from './Popup';
 
-function CourseContent() {
+function CourseContent({userData}) {
     const [data, setData] = useState(
         {
             "CourseName": "Basic Course",
@@ -69,6 +69,7 @@ function CourseContent() {
             ]
         }
     );
+    console.log("Token: ",userData.token)
     const [clicked, setClicked] = useState(-1);
     const [newSectionName, setNewSectionName] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -182,9 +183,7 @@ function CourseContent() {
                     </IconContext.Provider>
                 </div>
             </div>
-            <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup}>
-                <h1>hola</h1>
-            </Popup>
+            <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData}/>
         </>
     )
 }

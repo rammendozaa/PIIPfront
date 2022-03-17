@@ -16,10 +16,23 @@
     width: 100%;
     max-width: 640px;
     background-color: #FFF;
+    border-radius: 10px;
 }
 
 .popup-inner .close-btn {
     position: absolute;
     top: 16px;
     right: 16px;
+}
+
+.popup-inner .options-container .options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.popup-inner .create-activity{
+    overflow: auto;
+    width: 100%;
+    height: 500px;
 }
