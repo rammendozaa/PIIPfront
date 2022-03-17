@@ -2,6 +2,7 @@ import {useState} from 'react'
 import "./CourseContent.css"
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
+import { TiDelete } from 'react-icons/ti'
 
 function CourseContent() {
     const [data, setData] = useState(
@@ -68,6 +69,7 @@ function CourseContent() {
         }
     );
     const [clicked, setClicked] = useState(-1);
+    const [newSectionName, setNewSectionName] = useState("");
     const toggle = index => {
         if (clicked === index) {
             //if clicked question is already active, then close it
@@ -86,18 +88,31 @@ function CourseContent() {
         }))
     }
     const AddNewSection = () => {
+        if(!newSectionName){
+            alert("Section name can't be empty")
+            return;
+        }
         var current = data;
         current.Sections = [...current.Sections,
             {
-                "SectionName": "New Section",
+                "SectionName": newSectionName,
                 "Activities": []
             },
         ]
-        console.log("Aqui")
         setData(prevState => ({
             ...prevState,
             current
         }))
+    }
+    const deleteSection = (index) => {
+        if(window.confirm('Are you sure you want to delete this section?')){
+            var current = data;
+            current.Sections = current.Sections.filter((item,idx) => idx != index)
+            setData(prevState => ({
+                ...prevState,
+                current
+            }))
+        }
     }
     return (
         <>
@@ -110,9 +125,9 @@ function CourseContent() {
                                 {data.Sections.map((section, indexSection) => {
                                     return (
                                     <>
-                                        <div className='Wrap' onClick={() => toggle(indexSection)} key={indexSection}>
-                                            <h1>{section.SectionName}</h1>
-                                            <span>{clicked === indexSection ? <FiMinus /> : <FiPlus />}</span>
+                                        <div className='Wrap' key={indexSection}>
+                                            <h1 onClick={() => toggle(indexSection)}>{section.SectionName}</h1>
+                                            <span><TiDelete onClick={() => deleteSection(indexSection)}/></span>
                                         </div>
                                         <div className='activities-container'>
                                         {
@@ -146,9 +161,9 @@ function CourseContent() {
                                     </>
                                     );
                                 })}
-                                <div className='AddNewSection' onClick={() => AddNewSection()}>
-                                    <input type='text'></input>
-                                    <span>{<FiPlus />}</span>
+                                <div className='AddNewSection'>
+                                    <input type='text' placeholder='Section Name' className='input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
+                                    <span>{<FiPlus onClick={() => AddNewSection()}/>}</span>
                                 </div>
                             </div>
                         </div>
