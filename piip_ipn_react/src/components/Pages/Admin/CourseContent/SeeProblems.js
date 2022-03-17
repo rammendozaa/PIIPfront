@@ -19,7 +19,6 @@ function SeeProblems({userData}) {
         )  
     }
     const removeProblem = (problem) => {
-        alert(problem['title'])
         var current = addedProblems.filter(item => item != problem)
         setAddedProblems(current)
     }

@@ -2,6 +2,7 @@ import {useState} from 'react'
 import AddTopic from '../AddTopic/AddTopic'
 import './Popup.css'
 import SeeProblems from './SeeProblems'
+import SeeTopics from './SeeTopics.js'
 
 function Popup(props) {
   const [option,setOption] = useState("")
@@ -12,9 +13,7 @@ function Popup(props) {
       )
     }else if(option === "topic"){
       return (
-        <>
-        <AddTopic/>
-        </>
+        <SeeTopics/>
       )
     }else if(option === "softskill"){
       return (
@@ -27,6 +26,10 @@ function Popup(props) {
     }else if(option === "interview"){
       return (
         <h1>Interview</h1>
+      )
+    }else if(option === "note"){
+      return (
+        <AddTopic/>
       )
     }
   }
@@ -51,6 +54,9 @@ function Popup(props) {
 
           <input type="radio" id="interview" name="activityType" value="interview" onChange={(e) => setOption(e.target.value)}/>
           <label for="interview">Interview</label>
+
+          <input type="radio" id="note" name="activityType" value="note" onChange={(e) => setOption(e.target.value)}/>
+          <label for="note">Note</label>
         </div>
       </div>
       <div className='create-activity'>
