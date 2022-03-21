@@ -1,0 +1,161 @@
+.my-profile-container {
+  background-color: #202731;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  object-fit: contain;
+}
+.my-profile-container .profile-left{
+  width: 15%;
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s linear;
+  border-radius: 15px;
+  background-color: #fff;
+
+}
+.my-profile-container .profile-left .user-profile{
+  width: 100%;
+  height: 60%;
+}
+.my-profile-container .profile-left .user-profile .user-photo{
+  position: relative;
+  width: 100%;
+  height: 50%;
+  padding-top: 67%;
+  overflow: hidden;
+}
+.my-profile-container .profile-left .user-profile .user-photo .profile-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  transition: all 0.2s linear;
+}
+.my-profile-container .profile-left .user-profile .user-info{
+  margin-top: 30px;
+  text-align: center;
+}
+
+.my-profile-container .profile-right{
+  width: 70%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  transition: all 0.2s linear;
+  border-radius: 15px;
+  background-color: #fff;
+  margin-left: 20px;
+}
+.profile-navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.profile-navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+}
+.profile-nav-menu {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 60vw;
+  justify-content: center;
+  margin-right: 2rem;
+}
+.profile-nav-item {
+  height: 80px;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.my-profile-container .profile-right .profile-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-form{
+  width: 80%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile-form-inputs {
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+.profile-form-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+.profile-form-input {
+  display: block;
+  padding-left: 10px;
+  outline: none;
+  /*border-radius: 2px;*/
+  height: 40px;
+  width: 100%;
+  /*border: none;*/
+}
+.profile-form-input::placeholder {
+  color: #595959;
+  font-size: 12px;
+}
+
+.profile-form-input-btn {
+  width: 10%;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 176, 255) 0%,
+    rgb(0, 232, 236) 100%
+  );
+  outline: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.profile-form-input-btn:hover {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgb(39, 143, 255) 0%,
+    rgb(12, 99, 250) 100%
+  );
+  transition: all 0.4s ease-out;
+}
