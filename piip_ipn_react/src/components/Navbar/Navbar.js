@@ -117,6 +117,11 @@ function Navbar({userData, validUserData, removeUserData}) {
                                     Company Tracking
                                 </Link>
                             </li>
+                            <li className='nav-item'>
+                                <Link to="/my-profile" className="nav-links" onClick={closeMobileMenu}>
+                                    My Profile
+                                </Link>
+                            </li>
                         </ul>
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
                     </>
