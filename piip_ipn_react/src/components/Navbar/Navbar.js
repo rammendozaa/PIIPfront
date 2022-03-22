@@ -103,16 +103,6 @@ function Navbar({userData, validUserData, removeUserData}) {
                                 </Link>
                             </li>
                             <li className='nav-item'>
-                                <Link to="/mock-interviews" className="nav-links" onClick={closeMobileMenu}>
-                                    Mock Interview
-                                </Link>
-                            </li>
-                            <li className='nav-item'>
-                                <Link to="/soft-skills" className="nav-links" onClick={closeMobileMenu}>
-                                    Soft Skills
-                                </Link>
-                            </li>
-                            <li className='nav-item'>
                                 <Link to="/company-tracking" className="nav-links" onClick={closeMobileMenu}>
                                     Company Tracking
                                 </Link>
