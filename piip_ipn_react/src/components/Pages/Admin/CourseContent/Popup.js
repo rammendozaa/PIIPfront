@@ -3,6 +3,7 @@ import AddTopic from '../AddTopic/AddTopic'
 import './Popup.css'
 import SeeProblems from './SeeProblems'
 import SeeTopics from './SeeTopics.js'
+import CreateQuiz from './CreateQuiz'
 
 function Popup(props) {
   const [option,setOption] = useState("")
@@ -21,7 +22,7 @@ function Popup(props) {
       )
     }else if(option === "quest"){
       return (
-        <h1>Questionnaire</h1>
+        <CreateQuiz/>
       )
     }else if(option === "interview"){
       return (

@@ -49,6 +49,7 @@ const FormSignUp = ({validUserData, setUserData}) => {
                     </label>
                     <select
                         id="school_id"
+                        name  = "school_id"
                         className='select-school'
                         onChange={handleChange}
                         value={values.school_id}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import DatatablePendingStudents from '../../../Datatable/DatatablePendingStudents'
-import Datatable from '../../../Datatable/Datatable'
+import DatatableMyStudents from '../../../Datatable/DatatableMyStudents'
 import { Navigate } from 'react-router-dom';
 import './MyStudents.css'
 
@@ -8,6 +8,19 @@ function MyStudents({userData}) {
     const [myStudents, setMyStudents] = useState([]);
     const [pendingStudents, setPendingStudents] = useState([]);
     const [userId, setUserId] = useState(-1);
+    const [schools,setSchools] = useState([])
+
+    useEffect(() => {
+        fetch('/schools',{
+            method: "GET"
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setSchools(data)
+        });
+    },[]);
+
     const getMyStudents = async() => {
         const response = await fetch('/myStudents',{
             method: "GET",
@@ -73,9 +86,9 @@ function MyStudents({userData}) {
         <>
             <div className="my-students-container">
                 <h2>My students</h2>
-                <Datatable data={myStudents} goToUpdateCourse={goToUpdateCourse}/>
+                <DatatableMyStudents data={myStudents} goToUpdateCourse={goToUpdateCourse} schools={schools}/>
                 <h2>Pending students</h2>
-                <DatatablePendingStudents data={pendingStudents} assignStudent={assignStudent}/>
+                <DatatablePendingStudents data={pendingStudents} assignStudent={assignStudent} schools={schools}/>
             </div>
         </>
     );
