@@ -1,17 +1,21 @@
-import {useState} from 'react'
+import axios from "axios";
+import React, {useEffect, useState} from 'react'
 import "./CourseContent.css"
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
 import Popup from './Popup';
 import { useParams } from "react-router-dom";
+const baseURL = "http://127.0.0.1:5000"
 
 
 function CourseContent({userData}) {
+    const [templates, setTemplates] = useState([]);
     const {user_id} = useParams();
     console.log(user_id)
-    const [data, setData] = useState(
-        {
+    const [data, setData] = useState([]);
+/*
+    {
             "CourseName": "Basic Course",
             "Sections": [
                 {
@@ -73,17 +77,26 @@ function CourseContent({userData}) {
             ]
         }
     );
+    */
     console.log("Token: ",userData.token)
     const [clicked, setClicked] = useState(-1);
+    const [templateClicked, setTemplateClicked] = useState(-1);
     const [newSectionName, setNewSectionName] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
     const toggle = index => {
         if (clicked === index) {
-            //if clicked question is already active, then close it
             return setClicked(-1);
         }   
         setClicked(index);
     };
+    const toggleTemplate = templateIndex => {
+        console.log("clicked" + templateIndex)
+        if (templateClicked === templateIndex) {
+            return setTemplateClicked(-1);
+        }
+        setTemplateClicked(templateIndex);
+    };
+
     const addNewActivity = (index) => {
         var current = data;
         current.Sections[index].Activities = [...current.Sections[index].Activities,
@@ -131,6 +144,83 @@ function CourseContent({userData}) {
             }))
         }
     }
+    function getTemplates() {
+        axios.get(baseURL + `/user/${user_id}/template`).then((response) => {
+            setData(response.data)
+            console.log("from the templates", response.data)
+        });
+    }
+    
+
+    useEffect(() => {
+        getTemplates();
+    }, []);
+
+    //getTemplates();
+    return (
+        <>
+            <div className='course-content-container'>
+                <div className='course'>
+                    <div className='AccordionSection'>
+                        <div className='Container'>
+                    {data.map((template, indexTemplate) => {
+                            console.log(`index here ${template.template.name}`)
+                            return (
+                                <>
+                                    <div className='Wrap' key={indexTemplate}>
+                                        <h1 onClick={() => toggleTemplate(indexTemplate)}>{template.template.name}</h1>
+                                    </div>
+                                    <div className='activities-container'>
+                                    {
+                                        templateClicked === indexTemplate
+                                        ?
+                                        (
+                                            <div className='Container'>
+                                            {template.user_sections.map((section, indexSection) => {
+                                                console.log(`index section here ${indexSection}`)
+                                                return (
+                                                    <>
+                                                    <div className='Wrap' key={indexSection}>
+                                                        <h1 onClick={() => toggle(indexSection)}>{section.template_section.name}</h1>
+                                                    </div>
+                                                    <div className='activities-container'>
+                                                    {
+                                                    clicked === indexSection
+                                                    ? 
+                                                    (
+                                                    section.user_activities.map((activity,indexActivity) => {
+                                                        return (
+                                                            <>
+                                                                <div className='Wrap' key={indexActivity}>
+                                                                    <p>{activity.template_activity.name}</p>
+                                                                </div>                                                                
+                                                            </>
+                                                        )
+                                                    })
+                                                    ) 
+                                                    : null
+                                                    }
+                                                    </div>
+                                                    </>
+                                                )
+                                            })}
+                                            </div>
+                                        ):null
+                                    }
+                                    </div>
+                                </>
+                            )
+                        })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+
+
+
+    /*
     return (
         <>
             <div className='course-content-container'>
@@ -143,7 +233,7 @@ function CourseContent({userData}) {
                                     return (
                                     <>
                                         <div className='Wrap' key={indexSection}>
-                                            <h1 onClick={() => toggle(indexSection)}>{section.SectionName}</h1>
+                                            <h1 onClick={() => getTemplates()}>{section.SectionName}</h1>
                                             <span><TiDelete onClick={() => deleteSection(indexSection)}/></span>
                                         </div>
                                         <div className='activities-container'>
@@ -190,6 +280,7 @@ function CourseContent({userData}) {
             </div>
         </>
     )
+    */
 }
 
 export default CourseContent
