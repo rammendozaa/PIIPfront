@@ -1,8 +1,8 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Cards from './Cards'
 import './Topics.css'
 
-function Topics() {
+function Topics({userData}) {
     const [data, setData] = useState([
         {
             "src" : "images/img-1.svg",
@@ -24,7 +24,21 @@ function Topics() {
         },
     ]);
 
+    useEffect(() => {
+        fetch('/algorithmTopics',{
+            method: "GET",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        });
+    },[]);
+
     const [query, setQuery] = useState("");
+    const [option,setOption] = useState("")
 
     function search(rows){
         return rows.filter(
@@ -42,6 +56,12 @@ function Topics() {
                         </div>
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
+                </div>
+                <div className='options'>
+                    <input type="radio" id="algorithms" name="activityType" value="algorithms" onChange={(e) => setOption(e.target.value)} checked/>
+                    <label for="algorithms">Algorithms</label>
+                    <input type="radio" id="soft" name="activityType" value="soft" onChange={(e) => setOption(e.target.value)}/>
+                    <label for="soft">Soft Skills</label>
                 </div>
                 <Cards data={search(data)}/>
             </div>
