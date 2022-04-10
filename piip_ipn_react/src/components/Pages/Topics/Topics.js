@@ -3,46 +3,41 @@ import Cards from './Cards'
 import './Topics.css'
 
 function Topics({userData}) {
-    const [data, setData] = useState([
-        {
-            "src" : "images/img-1.svg",
-            "text" : "Greedy is an algorithmic paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. So the problems where choosing locally optimal also leads to global solution are best fit for Greedy.",
-            "label" : "Greedy",
-            "path" : "/greedy"
-        },
-        {
-            "src" : "images/img-2.svg",
-            "text" : "Dynamic programming is both a mathematical optimization method and a computer programming method. The method was developed by Richard Bellman in the 1950s and has found applications in numerous fields, from aerospace engineering to economics.",
-            "label" : "DP",
-            "path" : "/dp"
-        },
-        {
-            "src" : "images/img-4.svg",
-            "text" : "Graphs",
-            "label" : "Graphs",
-            "path" : "/topic"
-        },
-    ]);
+    const [data, setData] = useState([]);
 
-    useEffect(() => {
-        fetch('/algorithmTopics',{
+    const getProgrammingTopics = async() => {
+        const response = await fetch('/algorithmTopics',{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-        });
+        const data = await response.json()
+        console.log("Vale kk")
+        console.log(data)
+        setData(data)
+    }
+    const getSoftSkillsTopics = async() => {
+        const response = await fetch('/softSkillsTopics',{
+            method: "GET",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+        })
+        const data = await response.json()
+        setData(data)
+    }
+
+    useEffect(() => {
+        getProgrammingTopics()
     },[]);
 
     const [query, setQuery] = useState("");
-    const [option,setOption] = useState("")
 
     function search(rows){
+        console.log(rows);
         return rows.filter(
-            row => row.label.toLowerCase().indexOf(query.toLowerCase()) > -1
+            row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
         )
     }
 
@@ -58,9 +53,9 @@ function Topics({userData}) {
                     </div>
                 </div>
                 <div className='options'>
-                    <input type="radio" id="algorithms" name="activityType" value="algorithms" onChange={(e) => setOption(e.target.value)} checked/>
+                    <input type="radio" id="algorithms" name="activityType" value="algorithms" onChange={(e) => getProgrammingTopics()}/>
                     <label for="algorithms">Algorithms</label>
-                    <input type="radio" id="soft" name="activityType" value="soft" onChange={(e) => setOption(e.target.value)}/>
+                    <input type="radio" id="soft" name="activityType" value="soft" onChange={(e) => getSoftSkillsTopics()}/>
                     <label for="soft">Soft Skills</label>
                 </div>
                 <Cards data={search(data)}/>

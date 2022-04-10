@@ -10,10 +10,10 @@ function Cards({data}) {
                         {
                             data.map(current => 
                                 <CardItem 
-                                src={current.src}
-                                text = {current.text}
-                                label= {current.label}
-                                path= {current.path}
+                                src='images/img-1.svg'
+                                text = {current.description}
+                                label= {current.title}
+                                path= '/algo'
                                 />
                             )
                         }
