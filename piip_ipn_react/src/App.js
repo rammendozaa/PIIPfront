@@ -40,7 +40,7 @@ function App() {
           <Route path='/topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><Topic/></PrivateRoute>} />
           <Route path='/problem/:problem_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><Problem userData={userData}/></PrivateRoute>} />
           <Route path='/problems' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><Problems userData={userData}/></PrivateRoute>}/>
-          <Route path='/topics' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><Topics/></PrivateRoute>}/>
+          <Route path='/topics' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><Topics userData={userData}/></PrivateRoute>}/>
           <Route path='/soft-skills' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><SoftSkills/></PrivateRoute>}/>
           {/*User*/}
           <Route path='/mock-interviews' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MockInterviews/></PrivateRoute>}/>
