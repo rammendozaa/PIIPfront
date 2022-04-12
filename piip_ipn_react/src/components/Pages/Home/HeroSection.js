@@ -5,7 +5,7 @@ import './HeroSection.css';
 function HeroSection() {
   return (
     <div className='hero-container'>
-      <h1>Prepare yourself for the intership of your dreams</h1>
+      <h1>Prepare yourself for the internship of your dreams</h1>
       <p>PIIP IPN Helps you find the right tools to improve your personal and technical abilities</p>
       <div className='hero-btns'>
         <Button
