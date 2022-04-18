@@ -10,7 +10,12 @@ function Popup(props) {
   const renderOption = () => {
     if(option === "problem"){
       return (
-        <SeeProblems userData={props.userData}/>
+        <SeeProblems 
+        userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
+        />
       )
     }else if(option === "topic"){
       return (
