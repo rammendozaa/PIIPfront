@@ -28,19 +28,24 @@ function CourseContent({userData}) {
     };
     const addNewActivity = async (index, templateSectionId) => {
         var current = data;
-        setButtonPopup(true)
-        /*
+        //setButtonPopup(true)
         const response = await fetch(baseURL + `/user/${user_id}/activity/${templateSectionId}`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                
+                "name": "this is a new activity",
+                "description": "this is a new activity",
+                "position": (current.user_sections[index].user_activities.length) + 1,
+                "activityType": 1,
+                "externalReference": 1,
             }),
         })
-        current.user_sections[index].user_activities = [...current.user_sections[index].user_activities,
-            response
+        const newActivityResponse = await response.json()
+        console.log(newActivityResponse)
+        current.user_sections[index].user_activities = [
+            ...current.user_sections[index].user_activities,
+            newActivityResponse
         ]
-        */
         setData(prevState => ({
             ...prevState,
             current
