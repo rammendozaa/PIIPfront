@@ -16,6 +16,9 @@ function CourseContent({userData}) {
 
 
     console.log("Token: ",userData.token)
+    const [activityToAdd, setActivityToAdd] = useState(null)
+    const [newActivityIndex, setNewActivityIndex] = useState(-1)
+    const [newActivitySectionId, setNewActivitySectionId] = useState(-1)
     const [clicked, setClicked] = useState(-1);
     const [newSectionName, setNewSectionName] = useState("");
     const [buttonPopup, setButtonPopup] = useState(false);
@@ -26,18 +29,22 @@ function CourseContent({userData}) {
         }   
         setClicked(index);
     };
-    const addNewActivity = async (index, templateSectionId) => {
+
+
+    const addNewActivity = async (activity, index, templateSectionId) => {
+
         var current = data;
-        //setButtonPopup(true)
+        console.log(" actstsa " + activity.name + " " + activity.description + " " + activity.id + " " + activity.reference);
+
         const response = await fetch(baseURL + `/user/${user_id}/activity/${templateSectionId}`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "name": "this is a new activity",
-                "description": "this is a new activity",
+                "name": activity.name,
+                "description": activity.description,
                 "position": (current.user_sections[index].user_activities.length) + 1,
-                "activityType": 1,
-                "externalReference": 1,
+                "activityType": activity.id,
+                "externalReference": activity.reference,
             }),
         })
         const newActivityResponse = await response.json()
@@ -72,7 +79,6 @@ function CourseContent({userData}) {
             return;
         }
         var current = data;
-
         const response = await fetch(baseURL + `/user/${user_id}/section/${user_template_id}`,{
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -92,6 +98,7 @@ function CourseContent({userData}) {
             ...prevState,
             current
         }))
+        setNewSectionName("")
     };
 
     const deleteSection = async (index, sectionId) => {
@@ -106,6 +113,12 @@ function CourseContent({userData}) {
                 current
             }))
         }
+    }
+
+    const prepareNewSection = (index, templateSectionId) => {
+        setNewActivityIndex(index)
+        setNewActivitySectionId(templateSectionId)
+        setButtonPopup(true)
     }
 
     useEffect(() => {
@@ -156,7 +169,7 @@ function CourseContent({userData}) {
                                             ?
                                             (
                                                 <div className='AddNewActivity'>
-                                                    <span>{<FiPlus onClick={() => addNewActivity(indexSection, section.id) }/>}</span>
+                                                    <span>{<FiPlus onClick={() => prepareNewSection(indexSection, section.id) }/>}</span>
                                                 </div>
                                             )
                                             :null
@@ -173,10 +186,20 @@ function CourseContent({userData}) {
                         </div>
                     </IconContext.Provider>
                 </div>
-                <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData}/>
+                <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
             </div>
         </>
     )
 }
 
 export default CourseContent
+
+
+export const NewActivity = (name, description, id, reference) => {
+    return {
+        name: name,
+        description: description,
+        id: id,
+        reference: reference,
+    }
+}
