@@ -134,7 +134,12 @@ function CourseContent({userData}) {
     return (
         <>
             <div className='course-content-container'>
-                <div className='course'> 
+                {(data.template === undefined || data.template === null) && (
+                    <div className='course'>
+                        <h1 className='course-title'>Once this user finishes his questionnaire he'll be assigned a questionnaire. Wait!</h1>
+                    </div>
+                )}
+                {data.template !== undefined && (<div className='course'> 
                     <h1 className='course-title'>{data.template.name}</h1>
                     <IconContext.Provider value={{ color: 'red', size: '25px' }}>
                         <div className='AccordionSection'>
@@ -185,7 +190,7 @@ function CourseContent({userData}) {
                             </div>
                         </div>
                     </IconContext.Provider>
-                </div>
+                </div>)}
                 <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
             </div>
         </>

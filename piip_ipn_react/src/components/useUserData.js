@@ -17,12 +17,13 @@ function useUserData() {
     "role": getRole()
   })
 
-  function saveUserData(token, role) {
+  function saveUserData(token, role, user_id) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
     setData({
       "token": token,
-      "role": role
+      "role": role,
+      "user_id": user_id
     })
   }
 

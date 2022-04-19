@@ -1,72 +1,13 @@
 import {useEffect, useState} from 'react'
 import "./MyCourseContent.css"
+import { useParams } from "react-router-dom";
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
+const baseURL = "http://127.0.0.1:5000"
 
 function CourseContent({userData}) {
-    const [data, setData] = useState(
-        {
-            "CourseName": "Basic Course",
-            "Sections": [
-                {
-                    "SectionName": "Section 1",
-                    "Activities": [
-                        {"ActivityName": "S1 A1", "Description": "Perro"},
-                        {"ActivityName": "S1 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 2",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 3",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 4",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 5",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 6",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 7",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-                {
-                    "SectionName": "Section 8",
-                    "Activities": [
-                        {"ActivityName": "S2 A1", "Description": "Perro"},
-                        {"ActivityName": "S2 A2", "Description": "Perro"}
-                    ]
-                },
-            ]
-        }
-    );
+    const user_id = userData.user_id
+    const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
     const toggle = index => {
@@ -88,6 +29,15 @@ function CourseContent({userData}) {
             setAdministratorId(data.administrator_id)
         });
     },[]);
+    useEffect(() => {
+        fetch(baseURL + `/user/${user_id}/template`,{
+            method:"GET",
+        })
+        .then(res => res.json())
+        .then(data => {
+            setData(data)
+        });
+    }, [user_id]);
     
     if(administratorId === -1){
         return (
@@ -97,19 +47,20 @@ function CourseContent({userData}) {
             </div>
         )
     }
+
     return (
         <>
             <div className='course-content-container'>
                 <div className='course'> 
-                    <h1 className='course-title'> {data.CourseName} </h1>
+                    <h1 className='course-title'> {data.template.name} </h1>
                     <IconContext.Provider value={{ color: '#00FFB9', size: '25px' }}>
                         <div className='AccordionSection'>
                             <div className='Container'>
-                                {data.Sections.map((section, indexSection) => {
+                                {data.user_sections.map((section, indexSection) => {
                                     return (
                                     <>
                                         <div className='Wrap' onClick={() => toggle(indexSection)} key={indexSection}>
-                                            <h1>{section.SectionName}</h1>
+                                            <h1>{section.template_section.name}</h1>
                                             <span>{clicked === indexSection ? <FiMinus /> : <FiPlus />}</span>
                                         </div>
                                         <div className='activities-container'>
@@ -117,11 +68,11 @@ function CourseContent({userData}) {
                                             clicked === indexSection 
                                                 ? 
                                                 (
-                                                    section.Activities.map((activity,indexActivity) => {
+                                                    section.user_activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
-                                                                    <p>{activity.ActivityName}</p>
+                                                                    <p>{activity.template_activity.name}</p>
                                                                 </div>                                                                
                                                             </>
                                                         )

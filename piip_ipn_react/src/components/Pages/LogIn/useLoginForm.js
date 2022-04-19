@@ -40,7 +40,7 @@ const useLoginForm = (validate, validUserData, setUserData) => {
                 SubmitToServer()
                 .then(data => {
                     if(data.error === undefined){
-                        setUserData(data.access_token, data.role)
+                        setUserData(data.access_token, data.role, data.user_id)
                     }else{
                         alert("Wrong email or password")
                         setIsSubmitting(false)
