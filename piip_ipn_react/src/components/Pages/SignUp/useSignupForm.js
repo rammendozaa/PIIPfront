@@ -49,7 +49,7 @@ const useSignupForm = (validate, setUserData, validUserData) => {
                 SubmitToServer()
                 .then(data => {
                     if(data.error === undefined){
-                        setUserData(data.access_token, data.role)
+                        setUserData(data.access_token, data.role, data.user_id)
                     }else{
                         alert("User already exists")
                         setIsSubmitting(false)
