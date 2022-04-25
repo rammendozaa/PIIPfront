@@ -16,7 +16,6 @@ function CourseContent({userData}) {
 
 
     console.log("Token: ",userData.token)
-    const [activityToAdd, setActivityToAdd] = useState(null)
     const [newActivityIndex, setNewActivityIndex] = useState(-1)
     const [newActivitySectionId, setNewActivitySectionId] = useState(-1)
     const [clicked, setClicked] = useState(-1);
@@ -34,19 +33,33 @@ function CourseContent({userData}) {
     const addNewActivity = async (activity, index, templateSectionId) => {
 
         var current = data;
-        console.log(" actstsa " + activity.name + " " + activity.description + " " + activity.id + " " + activity.reference);
-
-        const response = await fetch(baseURL + `/user/${user_id}/activity/${templateSectionId}`, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                "name": activity.name,
-                "description": activity.description,
-                "position": (current.user_sections[index].user_activities.length) + 1,
-                "activityType": activity.id,
-                "externalReference": activity.reference,
-            }),
-        })
+        let response = null;
+        if (activity.typeId == 5) {
+            const admin_id = userData.user_id
+            response = await fetch(baseURL + `/user/${user_id}/interview/${templateSectionId}`, {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    "name": activity.name,
+                    "description": activity.description,
+                    "position": (current.user_sections[index].user_activities.length) + 1,
+                    "activityType": activity.typeId,
+                    "userAdminId": admin_id,
+                }),
+            })
+        } else {
+            response = await fetch(baseURL + `/user/${user_id}/activity/${templateSectionId}`, {
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    "name": activity.name,
+                    "description": activity.description,
+                    "position": (current.user_sections[index].user_activities.length) + 1,
+                    "activityType": activity.typeId,
+                    "externalReference": activity.reference,
+                }),
+            })
+        }
         const newActivityResponse = await response.json()
         console.log(newActivityResponse)
         current.user_sections[index].user_activities = [
@@ -200,11 +213,11 @@ function CourseContent({userData}) {
 export default CourseContent
 
 
-export const NewActivity = (name, description, id, reference) => {
+export const NewActivity = (name, description, typeId, reference) => {
     return {
         name: name,
         description: description,
-        id: id,
+        typeId: typeId,
         reference: reference,
     }
 }
