@@ -43,7 +43,6 @@ function SeeProblems({userData, addActivity, activityIndex, sectionId}) {
         console.log("add new activity")
         for (var i = 0 ; i < addedProblems.length ; i++) {
             const newAct = NewActivity(addedProblems[i].title, addedProblems[i].description, 1, addedProblems[i].id);
-            console.log("inside add new activit " + activityIndex + " sect " + sectionId)
             addActivity(newAct, activityIndex, sectionId);
         }
         setAddedProblems([])

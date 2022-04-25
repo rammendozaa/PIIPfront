@@ -2,6 +2,7 @@
   "dependencies": {
     "@uiw/react-textarea-code-editor": "^1.6.0",
     "assert": "^2.0.0",
+    "bootstrap": "^3.4.1",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "draftjs-to-html": "^0.9.1",

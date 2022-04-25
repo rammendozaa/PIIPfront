@@ -12,14 +12,20 @@ function useUserData() {
     return userRole
   }
 
+  function getSignedInUser() {
+    const signedInUser = localStorage.getItem('user_id');
+    return signedInUser
+  }
   const [userData, setData] = useState({
     "token": getToken(),
-    "role": getRole()
+    "role": getRole(),
+    "user_id": getSignedInUser(),
   })
 
   function saveUserData(token, role, user_id) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
+    localStorage.setItem('user_id', user_id);
     setData({
       "token": token,
       "role": role,
@@ -30,9 +36,11 @@ function useUserData() {
   function removeUserData() {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("user_id")
     setData({
       "token": "",
-      "role": ""
+      "role": "",
+      "user_id": ""
     })
   }
 
