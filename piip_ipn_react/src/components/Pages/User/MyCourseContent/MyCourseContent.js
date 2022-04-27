@@ -6,7 +6,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 const baseURL = "http://127.0.0.1:5000"
 
 function CourseContent({userData}) {
-    const user_id = userData.user_id
+    const user_id = userData.user_id;
     const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
@@ -38,7 +38,7 @@ function CourseContent({userData}) {
             setData(data)
         });
     }, [user_id]);
-    
+
     if(administratorId === -1){
         return (
             <div className='course-content-container'>
@@ -72,7 +72,7 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
-                                                                    <p>{activity.template_activity.name}</p>
+                                                                    <p><b>{activity.template_activity.name}</b>: {activity.template_activity.description}</p>
                                                                 </div>                                                                
                                                             </>
                                                         )
