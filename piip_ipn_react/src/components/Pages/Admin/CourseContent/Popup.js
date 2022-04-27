@@ -5,6 +5,7 @@ import SeeProblems from './SeeProblems'
 import SeeTopics from './SeeTopics.js'
 import CreateQuiz from './CreateQuiz'
 import CreateInterview from './Interview'
+import AssignQuiz from './AssignQuiz'
 
 function Popup(props) {
   const [option,setOption] = useState("")
@@ -28,7 +29,12 @@ function Popup(props) {
       )
     }else if(option === "quest"){
       return (
-        <CreateQuiz/>
+        <CreateQuiz
+          userData={props.userData}
+          addActivity={props.functionToAddActivity}
+          activityIndex={props.activityIndex}
+          sectionId={props.sectionId}
+        />
       )
     }else if(option === "interview"){
       return (

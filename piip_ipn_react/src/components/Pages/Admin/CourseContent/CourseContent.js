@@ -173,7 +173,7 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
-                                                                    <p>{activity.template_activity.name}</p>
+                                                                    <p><b>{activity.template_activity.name}</b>: {activity.template_activity.description}</p>
                                                                     <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
                                                                 </div>                                                                
                                                             </>

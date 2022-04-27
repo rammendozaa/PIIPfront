@@ -1,15 +1,33 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import './CreateQuiz.css'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import {FaSave} from 'react-icons/fa'
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
+import { NewActivity } from './CourseContent';
 const baseURL = "http://127.0.0.1:5000"
 
 
-function CreateQuiz(props) {
+function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
     const [addedQuiz, setAddedQuiz] = useState()
+    const [quizzes, setQuizzes] = useState([])
+
+    const fetchQuestionnaires = async () => {
+        fetch(baseURL + `/questionnaire`,{
+            method: "GET",
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setQuizzes(data)
+        })
+    }
+    useEffect(() => {
+        fetchQuestionnaires()
+    }, []);
+
+
     const [questions, setQuestions] = useState([
         {
             questionText: 'Question',
@@ -56,6 +74,11 @@ function CreateQuiz(props) {
         setCurrentQuestion(currentQuestion+1);
     }
 
+    const addQuestionnaire = (quiz, index) => {
+        const newAct = NewActivity(quiz.title, quiz.description, 6, quiz.id);
+        addActivity(newAct, activityIndex, sectionId);
+    }
+
     const removeQuestion = () => {
         questions.splice(currentQuestion, 1);
         setQuestions(questions)
@@ -67,12 +90,13 @@ function CreateQuiz(props) {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "title": "questionnaire from web",
-                "description": "another descript",
+                "title": "test questionnaire",
+                "description": "teast descript",
                 "questions": questions
             }),
         })
         const newQuestionnaire = await response.json()
+        fetchQuestionnaires()
         console.log(newQuestionnaire)
     }
     
@@ -86,6 +110,31 @@ function CreateQuiz(props) {
     }
     return (
         <div className='create-quiz-container'>
+            <div className='div-table'>
+            <table className='content-table'>
+                <thead>
+                    <tr>
+                    <th>Available questionnaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        quizzes.map((quiz, index) => 
+                            <tr>
+                                <td className='tdd'>
+                                {quiz['title']}
+                                <IconContext.Provider value={{ color: "#009879", size: '25px' }}>
+                                    {
+                                    <FiPlus onClick={() => addQuestionnaire(quiz, index)}/>
+                                    }
+                                </IconContext.Provider>
+                                </td>
+                            </tr>
+                        )
+                    }
+                </tbody>
+            </table>
+            </div>
             <div className='create-quiz'>
                 <div className='create-question-section'>
                     <div className='create-question-count'>
