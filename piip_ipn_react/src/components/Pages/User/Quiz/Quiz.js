@@ -1,65 +1,56 @@
 import {useState} from 'react'
 import './Quiz.css'
+const baseURL = "http://127.0.0.1:5000"
 
-function Quiz() {
-    const questions = [
-		{
-			questionText: 'What is the capital of France?',
-			answerOptions: [
-				{ answerText: 'New York', isCorrect: false },
-				{ answerText: 'London', isCorrect: false },
-				{ answerText: 'Paris', isCorrect: true },
-				{ answerText: 'Dublin', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'Who is CEO of Tesla?',
-			answerOptions: [
-				{ answerText: 'Jeff Bezos', isCorrect: false },
-				{ answerText: 'Elon Musk', isCorrect: true },
-				{ answerText: 'Bill Gates', isCorrect: false },
-				{ answerText: 'Tony Stark', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'The iPhone was created by which company?',
-			answerOptions: [
-				{ answerText: 'Apple', isCorrect: true },
-				{ answerText: 'Intel', isCorrect: false },
-				{ answerText: 'Amazon', isCorrect: false },
-				{ answerText: 'Microsoft', isCorrect: false },
-			],
-		},
-		{
-			questionText: 'How many Harry Potter books are there?',
-			answerOptions: [
-				{ answerText: '1', isCorrect: false },
-				{ answerText: '4', isCorrect: false },
-				{ answerText: '6', isCorrect: false },
-				{ answerText: '7', isCorrect: true },
-			],
-		},
-	];
+
+function Quiz({userData, questionnaire, description, descriptionText, setDescriptionText}) {
+    const userId = userData.user_id
+	const questions = questionnaire["questions"];
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
+
+	const submitScore = async (actual_score) => {
+		if (description) {
+			setDescriptionText(descriptionText)
+		}
+		console.log("scoreood " + actual_score)
+		const response = await fetch(
+			baseURL + `/user/${userId}/questionnaire/${questionnaire["id"]}`, {
+			method: "POST",
+			mode: "cors",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				"correctAnswers": actual_score,
+			}),
+		})
+		const response_json = await response.json();
+		console.log(response_json)
+	}
 	const handleAnswerOptionClick = (isCorrect) => {
         if (isCorrect) {
 		    setScore(score + 1);
 		}
+		if (currentQuestion + 1 === questions.length) {
+			if (isCorrect) {
+				submitScore(score + 1);
+			} else {
+				submitScore(score);
+			}
+			setShowScore(true)
+		}
 	    const nextQuestion = currentQuestion + 1;
 		if (nextQuestion < questions.length) {
 			setCurrentQuestion(nextQuestion);
-		} else {
-			setShowScore(true);
 		}
 	};
+
     return (
         <div className='quiz-container'>
             <div className='quiz'>
                 {showScore ? (
                     <div className='score-section'>
-                        You scored {score} out of {questions.length}
+                        You answered {score} questions correctly out of {questions.length}!
                     </div>
                 ) : (
                     <>
@@ -67,11 +58,11 @@ function Quiz() {
                             <div className='question-count'>
                                 <span>Question {currentQuestion + 1}</span>/{questions.length}
                             </div>
-                            <div className='question-text'>{questions[currentQuestion].questionText}</div>
+                            <div className='question-text'>{questions[currentQuestion]["questionText"]}</div>
                         </div>
                         <div className='answer-section'>
-                            {questions[currentQuestion].answerOptions.map((answerOption) => (
-                                <button className='answer-section-button' onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+                            {questions[currentQuestion]["answerOptions"].map((answerOption) => (
+                                <button className='answer-section-button' onClick={() => handleAnswerOptionClick(answerOption["isCorrect"])}>{answerOption.answerText}</button>
                             ))}
                         </div>
                     </>

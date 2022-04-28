@@ -90,7 +90,7 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "title": "test questionnaire",
+                "title": "prueba Hugo",
                 "description": "teast descript",
                 "questions": questions
             }),
