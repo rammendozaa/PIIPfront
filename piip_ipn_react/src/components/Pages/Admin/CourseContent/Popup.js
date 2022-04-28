@@ -5,7 +5,7 @@ import SeeProblems from './SeeProblems'
 import SeeTopics from './SeeTopics.js'
 import CreateQuiz from './CreateQuiz'
 import CreateInterview from './Interview'
-import AssignQuiz from './AssignQuiz'
+
 
 function Popup(props) {
   const [option,setOption] = useState("")
