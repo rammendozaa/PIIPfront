@@ -211,13 +211,3 @@ function CourseContent({userData}) {
 }
 
 export default CourseContent
-
-
-export const NewActivity = (name, description, typeId, reference) => {
-    return {
-        name: name,
-        description: description,
-        typeId: typeId,
-        reference: reference,
-    }
-}

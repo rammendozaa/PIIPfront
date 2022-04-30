@@ -1,21 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-
 const slice = createSlice({
-    name: "template",
+    name: "activity",
     initialState: {
-        template: null,
+        activity: null,
     },
     reducers: {
-        setUserTemplate: (state, action) => {
-            console.log("payload")
+        setUserActivityInfo: (state, action) => {
+            console.log("activiyPayl")
             console.log(action.payload)
-            state.template = action.payload;
+            state.activity = action.payload;
         }
     },
 });
 
 export const {
-    setUserTemplate,
+    setUserActivityInfo,
 } = slice.actions;
 export default slice.reducer;

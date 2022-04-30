@@ -5,7 +5,7 @@ import {FaSave} from 'react-icons/fa'
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
-import { NewActivity } from './CourseContent';
+import { NewActivity } from '../../../../../src/externalClasses'
 const baseURL = "http://127.0.0.1:5000"
 
 

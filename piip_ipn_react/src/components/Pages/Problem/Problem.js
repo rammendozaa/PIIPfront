@@ -9,7 +9,10 @@ import { useSelector, useDispatch } from "react-redux"
 
 
 function Problem({userData}) {
-    const template = useSelector(state => state.userTemplate);
+    const {template} = useSelector(state => state.userTemplate);
+    const {activity} = useSelector(state => state.userActivity);
+    console.log("activiy")
+    console.log("" + activity.userActivityId + "_" + activity.activityType + "_" + activity.externalId)
     console.log("in problem")
     console.log(template);
     const {problem_id} = useParams();
