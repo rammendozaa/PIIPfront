@@ -3,16 +3,52 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    /*justify-content: center;*/
-    /*align-items: center;*/
+    justify-content: center;
+    align-items: center;
     /*background-color:red;*/
 }
-.metrics-container .topics-problems{
-    width: 100%;
+.metrics-container .categories{
+    width: 80%;
     height: 25%;
 }
-.metrics-container .charts{
+
+
+.metrics-container .categories .categories-container{
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metrics-container .categories .categories-container .category{
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    border-radius: 15px;
+    height: 100px;
+    width: 200px;
+}
+
+.metrics-container .categories .categories-container .category .title{
+    height: 40%;
+    background-color: #202731;
+    border-radius: 15px 15px 0 0;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.metrics-container .categories .categories-container .category .content{
+    height: 60%;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.metrics-container .charts{
+    width: 80%;
     height: 75%;
     display: flex;
     flex-direction: column;
@@ -25,7 +61,7 @@
     align-items: center;
 }
 .metrics-container .charts .top .metrics-barchart{
-    width: 80%;
+    width: 100%;
     height: 100%;
 }
 .metrics-container .charts .bottom{
@@ -36,7 +72,7 @@
     align-items: center;
 }
 .metrics-container .charts .bottom .bottom-container{
-    width: 80%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
