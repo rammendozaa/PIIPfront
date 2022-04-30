@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Metrics from './Metrics'
 import './MyProfile.css'
 import Settings from './Settings'
 
@@ -50,7 +51,7 @@ function MyProfile({userData}) {
                 </nav>
                 <div className='profile-content'>
                     {
-                        option === "settings" ? <Settings user={user}/> : ""
+                        option === "settings" ? <Settings user={user}/> : <Metrics user={user}/> 
                     }
                 </div>
             </div>
