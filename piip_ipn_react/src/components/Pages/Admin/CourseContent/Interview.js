@@ -1,5 +1,4 @@
-import {useState} from 'react'
-import { NewActivity } from './CourseContent'
+import { NewActivity } from '../../../../../src/externalClasses'
 import './Interview.css'
 
 function CreateInterview({addActivity, activityIndex, sectionId}) {

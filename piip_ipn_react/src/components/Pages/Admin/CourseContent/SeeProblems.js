@@ -2,7 +2,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi';
 import React, { useEffect, useState } from 'react'
 import './SeeProblem.css'
 import ProblemsTable from './ProblemsTable';
-import { NewActivity } from './CourseContent'
+import { NewActivity } from '../../../../../src/externalClasses'
 
 
 function SeeProblems({userData, addActivity, activityIndex, sectionId}) {
@@ -42,7 +42,12 @@ function SeeProblems({userData, addActivity, activityIndex, sectionId}) {
     const addNewActivities = () => {
         console.log("add new activity")
         for (var i = 0 ; i < addedProblems.length ; i++) {
-            const newAct = NewActivity(addedProblems[i].title, addedProblems[i].description, 1, addedProblems[i].id);
+            const newAct = NewActivity(
+                addedProblems[i].title,
+                addedProblems[i].description,
+                1,
+                addedProblems[i].id
+            );
             addActivity(newAct, activityIndex, sectionId);
         }
         setAddedProblems([])

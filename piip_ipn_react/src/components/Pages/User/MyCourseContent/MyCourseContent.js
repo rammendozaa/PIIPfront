@@ -7,6 +7,8 @@ import Quiz from '../Quiz/Quiz';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import { setUserTemplate } from "../../../../state/reducers/template"
+import { setUserActivityInfo } from "../../../../state/reducers/activity"
+import { ActivityInfo } from "../../../../../src/externalClasses"
 
 
 const baseURL = "http://127.0.0.1:5000"
@@ -80,14 +82,24 @@ function CourseContent({userData}) {
         setClicked(index);
     };
 
-    const redirectToActivity = (problem_id) => {
-        console.log(problem_id);
-        problem_id = 7;
-        console.log("problem_id");
-        const thisRoute = `http://localhost:3000/problem/${problem_id}`;
-        console.log("no navigate o su");
-        navigate("/problem/7");
-        console.log("nfadsfsdafsfsdsd");
+    const redirectToActivity = (userActivityId, activityType, externalId) => {
+        const activityInfo = ActivityInfo(userActivityId, activityType, externalId);
+        dispatch(setUserActivityInfo(activityInfo));
+        navigate(`/problem/9`);
+        /*
+        if (activityType == 1) {
+        } else if (activityType == 2) {
+
+        } else if (activityType == 3) {
+
+        } else if (activityType == 4) {
+
+        } else if (activityType == 5) {
+
+        } else if (activityType == 6) {
+
+        }
+        */
     }
 
     if (data.template === undefined) { // hasn't solved initial quiz
@@ -131,8 +143,11 @@ function CourseContent({userData}) {
                                                     section.user_activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
-                                                                <div className='Dropdown' onClick={() => redirectToActivity(activity.template_activity.externalReference)} key={indexActivity}>
-                                                                    <p><b>{activity.template_activity.name}</b>: {activity.template_activity.description}</p>
+                                                                <div className='Dropdown' onClick={() => redirectToActivity(
+                                                                    activity.id,
+                                                                    activity.template_activity.activityType,
+                                                                    activity.template_activity.externalReference)} key={indexActivity}>
+                                                                    <p><b>{activity.template_activity.name}</b></p>
                                                                 </div>                                                                
                                                             </>
                                                         )
