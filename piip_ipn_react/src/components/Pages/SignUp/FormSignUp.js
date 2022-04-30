@@ -24,7 +24,7 @@ const FormSignUp = ({validUserData, setUserData}) => {
                 <h1>Get Started with us today</h1>
                 <div className='form-inputs'>
                     <label htmlFor='firstname' className='form-label'>
-                        Firt Name
+                        First Name
                     </label>
                     <input id='firstname' type='text' name='firstname' className='form-input' placeholder='Enter your first name' value = {values.firstname} onChange={handleChange}/>
                     {errors.firstname && <p>{errors.firstname}</p>}

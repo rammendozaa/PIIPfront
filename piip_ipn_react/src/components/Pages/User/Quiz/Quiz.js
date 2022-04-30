@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import './Quiz.css'
 const baseURL = "http://127.0.0.1:5000"
 
 
 function Quiz({userData, questionnaire, description, descriptionText, setDescriptionText}) {
+    const navigate = useNavigate();
     const userId = userData.user_id
 	const questions = questionnaire["questions"];
     const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -26,6 +28,7 @@ function Quiz({userData, questionnaire, description, descriptionText, setDescrip
 		})
 		const response_json = await response.json();
 		console.log(response_json)
+		setTimeout(() => {  window.location.reload(); }, 2000);
 	}
 	const handleAnswerOptionClick = (isCorrect) => {
         if (isCorrect) {

@@ -4,11 +4,17 @@ import { useParams } from "react-router-dom";
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import Quiz from '../Quiz/Quiz';
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
+import { setUserTemplate } from "../../../../state/reducers/template"
+
 
 const baseURL = "http://127.0.0.1:5000"
 
 function CourseContent({userData}) {
+    const dispatch = useDispatch();
     const user_id = userData.user_id;
+    const navigate = useNavigate();
     const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
@@ -37,6 +43,7 @@ function CourseContent({userData}) {
             }
        ]
     });
+    // TODO - CHANGE QUESTIONNAIREID HERE
     useEffect(() => {
         fetch(baseURL + `/questionnaire?questionnaireId=7`,{
             method: "GET",
@@ -60,7 +67,8 @@ function CourseContent({userData}) {
         })
         .then(res => res.json())
         .then(data => {
-            setData(data)
+            setData(data);
+            dispatch(setUserTemplate(data));
         });
     },[user_id]);
 
@@ -71,7 +79,17 @@ function CourseContent({userData}) {
         }   
         setClicked(index);
     };
-    console.log(administratorId)
+
+    const redirectToActivity = (problem_id) => {
+        console.log(problem_id);
+        problem_id = 7;
+        console.log("problem_id");
+        const thisRoute = `http://localhost:3000/problem/${problem_id}`;
+        console.log("no navigate o su");
+        navigate("/problem/7");
+        console.log("nfadsfsdafsfsdsd");
+    }
+
     if (data.template === undefined) { // hasn't solved initial quiz
         return (
             <div className='course-content-container'>
@@ -113,7 +131,7 @@ function CourseContent({userData}) {
                                                     section.user_activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
-                                                                <div className='Dropdown' key={indexActivity}>
+                                                                <div className='Dropdown' onClick={() => redirectToActivity(activity.template_activity.externalReference)} key={indexActivity}>
                                                                     <p><b>{activity.template_activity.name}</b>: {activity.template_activity.description}</p>
                                                                 </div>                                                                
                                                             </>
