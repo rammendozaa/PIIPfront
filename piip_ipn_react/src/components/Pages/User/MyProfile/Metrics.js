@@ -1,6 +1,7 @@
 import BarChart from "./BarChart"
 import {useState} from "react"
 import PieChart from "./PieChart"
+import "./Metrics.css"
 
 function Metrics({user}) {
     /*
@@ -16,11 +17,29 @@ function Metrics({user}) {
         }]
     })
     return (
-        <>
-            <h1>Metricas</h1>
-            <BarChart data={userData}/>
-            <PieChart data={userData}/>
-        </>
+        <div className="metrics-container">
+            <div className="topics-problems">
+                <h1>Here</h1>
+            </div>
+            <div className="charts">
+                <div className="top">
+                    <div className="metrics-barchart">
+                        <BarChart data={userData}/>
+                    </div>
+                </div>
+                <div className="bottom">
+                    <div className="bottom-container">
+                        <div className="metrics-piechart">
+                            <PieChart data={userData}/>
+                        </div>
+                        <div className="metrics-piechart">
+                            <PieChart data={userData}/>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
     )
 }
 

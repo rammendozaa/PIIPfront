@@ -1,0 +1,48 @@
+.metrics-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    /*background-color:red;*/
+}
+.metrics-container .topics-problems{
+    width: 100%;
+    height: 25%;
+}
+.metrics-container .charts{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+}
+.metrics-container .charts .top{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.metrics-container .charts .top .metrics-barchart{
+    width: 80%;
+    height: 100%;
+}
+.metrics-container .charts .bottom{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.metrics-container .charts .bottom .bottom-container{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.metrics-container .charts .bottom .bottom-container .metrics-piechart{
+    width: 30%;
+}
