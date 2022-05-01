@@ -1,6 +1,6 @@
 import BarChart from "./BarChart"
 import {useState, useEffect} from "react"
-import PieChart from "./PieChart"
+import PieChart from "../../../PieChart"
 import "./Metrics.css"
 
 function Metrics({userData}) {
