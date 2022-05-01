@@ -24,21 +24,30 @@ function DatatablePendingStudents({data, assignStudent, schools}) {
           </thead>
           <tbody>
             {
-                data.map((row,idx) => 
-                    <tr>
-                        <td>{row['first_name']}</td>
-                        <td>{row['last_name']}</td>
-                        <td>
-                            {
-                                getSchoolName(row['school_id'])
-                            }
-                        </td>
-                        <td>{row['email']}</td>
-                        <td>
-                            <button onClick={() => assignStudent(idx)}>Add</button>
-                        </td>
-                    </tr>
-                )
+                data.length > 0 ? 
+                    data.map((row,idx) => 
+                        <tr>
+                            <td>{row['first_name']}</td>
+                            <td>{row['last_name']}</td>
+                            <td>
+                                {
+                                    getSchoolName(row['school_id'])
+                                }
+                            </td>
+                            <td>{row['email']}</td>
+                            <td>
+                                <button onClick={() => assignStudent(idx)}>Add</button>
+                            </td>
+                        </tr>
+                    )
+                :
+                <tr>
+                    <td>There is no pending students</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
             }
           </tbody>
       </table>
