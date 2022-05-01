@@ -51,7 +51,7 @@ function MyProfile({userData}) {
                 </nav>
                 <div className='profile-content'>
                     {
-                        option === "settings" ? <Settings user={user}/> : <Metrics user={user}/> 
+                        option === "settings" ? <Settings user={user}/> : <Metrics userData={userData}/> 
                     }
                 </div>
             </div>

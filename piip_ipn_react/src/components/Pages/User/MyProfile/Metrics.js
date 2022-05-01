@@ -1,9 +1,27 @@
 import BarChart from "./BarChart"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import PieChart from "./PieChart"
 import "./Metrics.css"
 
-function Metrics({user}) {
+function Metrics({userData}) {
+    const [numberOfProblems,setNumberOfProblems] = useState(0)
+    const getNumberOfProblemsSolved = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getNumberOfProblemsSolvedByUser',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        setNumberOfProblems(data.numberOfProblems)
+    }
+    useEffect(() => {
+        getNumberOfProblemsSolved()
+    }, []);
+
     /*
         UserData.map((data) => data.field)
     */
@@ -43,7 +61,7 @@ function Metrics({user}) {
                             <h2>Problems</h2>
                         </div>
                         <div className="content">
-                            <p>83 problems solved</p>
+                            <p> {numberOfProblems} problems solved</p>
                         </div>                        
                     </div>
                     <div className="category">
