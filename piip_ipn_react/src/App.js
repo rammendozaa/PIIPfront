@@ -22,6 +22,8 @@ import AddTopic from './components/Pages/Admin/AddTopic/AddTopic'
 import MyStudents from './components/Pages/Admin/MyStudents/MyStudents';
 import MyProfile from './components/Pages/User/MyProfile/MyProfile'
 import Quiz from './components/Pages/User/Quiz/Quiz';
+import Interviews from './components/Pages/Admin/MyInterviews/Interviews'
+
 
 function App() {
   const { userData, setUserData, removeUserData, validUserData } = useUserData();
@@ -47,9 +49,10 @@ function App() {
           <Route path='/company-tracking' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><CompanyTracking/></PrivateRoute>}/>
           <Route path='/my-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyCourseContent userData={userData}/></PrivateRoute>} />
           <Route path='/my-profile' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyProfile userData={userData}/></PrivateRoute>} />
-          <Route path='/solve-quiz' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><Quiz userData={userData}/></PrivateRoute>} />          
+          <Route path='/my-questionnaire' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><Questionnaire userData={userData}/></PrivateRoute>} />
           {/*Mentor*/}
           <Route path='/update-course/:user_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><CourseContent userData={userData}/></PrivateRoute>} />   
+          <Route path='/my-interviews' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><Interviews userData={userData}/></PrivateRoute>} />   
           <Route path='/add-topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><AddTopic/></PrivateRoute>} />
           <Route path='/my-students' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><MyStudents userData={userData}/></PrivateRoute>} />          
         </Routes>
