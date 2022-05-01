@@ -43,6 +43,9 @@ function MyProfile({userData}) {
                             <li className='profile-nav-item' onClick={() => setOption("settings")}>
                                 Settings
                             </li>
+                            <li className='profile-nav-item'>
+                                |
+                            </li>
                             <li className='profile-nav-item' onClick={() => setOption("statistics")}>
                                 Statistics
                             </li>

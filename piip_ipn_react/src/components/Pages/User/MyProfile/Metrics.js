@@ -31,7 +31,14 @@ function Metrics({userData}) {
             label: "Problems solved in last month",
             data: [1,2,3,4,5],
             borderColor: "black",
-            borderWidth: 2
+            borderWidth: 2,
+            backgroundColor: [
+                "rgba(75,192,192,1)",
+                "#ecf0f1",
+                "#50AF95",
+                "#f3ba2f",
+                "#2a71d0",
+            ]
         }]
     })
     const [cntByCategory, setCntByCategory] = useState({
@@ -40,13 +47,20 @@ function Metrics({userData}) {
             label: "Problems solved in last month",
             data: [1,2,3,4,5],
             borderColor: "black",
-            borderWidth: 2
+            borderWidth: 2,
+            backgroundColor: [
+                "rgba(75,192,192,1)",
+                "#ecf0f1",
+                "#50AF95",
+                "#f3ba2f",
+                "#2a71d0",
+            ]
         }]
     })
     return (
         <div className="metrics-container">
             <div className="categories">
-                <h3>Vista General</h3>
+                <h3 className="title">General View</h3>
                 <div className="categories-container">    
                     <div className="category">
                         <div className="title">
@@ -77,15 +91,47 @@ function Metrics({userData}) {
             <div className="charts">
                 <div className="top">
                     <div className="metrics-barchart">
+                        <h3 className="title">Problems solved in last 10 days.</h3>
                         <BarChart data={problemsSolved}/>
                     </div>
                 </div>
                 <div className="bottom">
                     <div className="bottom-container">
-                        <div className="metrics-piechart">
-                            <PieChart data={cntByCategory}/>
+                        <div className="keep-practicing">
+                            <div className="title">
+                                <h3>Keep practicing</h3>
+                            </div>
+                            <div className="recommendations">
+                                <div className="recommendations-container">
+                                    <div className="recommendation">
+                                        <p>Problem Name</p>
+                                        <h2>Greedy</h2>
+                                    </div>
+                                    <div className="recommendation">
+                                        <p>Problem Name</p>
+                                        <h2>Graphs</h2>
+                                    </div>
+                                    <div className="recommendation">
+                                        <p>Problem Name</p>
+                                        <h2>Graphs</h2>
+                                    </div>
+                                    <div className="recommendation">
+                                        <p>Problem Name</p>
+                                        <h2>Graphs</h2>
+                                    </div>
+                                    <div className="recommendation">
+                                        <p>Problem Name</p>
+                                        <h2>Graphs</h2>
+                                    </div>
+                                    <div className="recommendation">
+                                        <p>Problem Name</p>
+                                        <h2>Graphs</h2>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="metrics-piechart">
+                            <h3 className="title">Problems solved by topic.</h3>
                             <PieChart data={cntByCategory}/>
                         </div>
                     </div>
