@@ -82,22 +82,21 @@ function CourseContent({userData}) {
         setClicked(index);
     };
 
-    const redirectToActivity = (userActivityId, activityType, externalId) => {
-        const activityInfo = ActivityInfo(userActivityId, activityType, externalId);
-        dispatch(setUserActivityInfo(activityInfo));
+    const redirectToActivity = (activity) => {
+        const activityType = activity.template_activity.activityType;
+        dispatch(setUserActivityInfo(activity));
         navigate(`/problem/9`);
         /*
         if (activityType == 1) {
-        } else if (activityType == 2) {
-
+            navigate(`/problem/${activity.template_activity.externalReference}`)
+        } else if (activityType == 2 || activityType == 4) {
+            navigate("/topic")
         } else if (activityType == 3) {
-
-        } else if (activityType == 4) {
-
+            navigate("/soft-skills")
         } else if (activityType == 5) {
-
+            navigate("/mock-interviews")
         } else if (activityType == 6) {
-
+            navigate("/my-questionnaire")
         }
         */
     }
@@ -144,9 +143,8 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' onClick={() => redirectToActivity(
-                                                                    activity.id,
-                                                                    activity.template_activity.activityType,
-                                                                    activity.template_activity.externalReference)} key={indexActivity}>
+                                                                        activity
+                                                                    )} key={indexActivity}>
                                                                     <p><b>{activity.template_activity.name}</b></p>
                                                                 </div>                                                                
                                                             </>

@@ -51,6 +51,11 @@ function Navbar({userData, validUserData, removeUserData}) {
                                 </Link>
                             </li>
                             <li className='nav-item'>
+                                <Link to="/my-interviews" className="nav-links" onClick={closeMobileMenu}>
+                                    My interviews
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
                                 <Link to="/add-topic" className="nav-links" onClick={closeMobileMenu}>
                                     Add Topic
                                 </Link>
