@@ -3,7 +3,10 @@ import AddTopic from '../AddTopic/AddTopic'
 import './Popup.css'
 import SeeProblems from './SeeProblems'
 import SeeTopics from './SeeTopics.js'
-import CreateQuiz from './CreateQuiz'
+import AddQuiz from './AddQuiz'
+import SeeAlgorithmTopics from "./SeeAlgorithmTopics"
+import SeeSoftSkillTopics from "./SeeSoftSkillTopics"
+import SeeSoftSkillQuestions from './SeeSoftSkillQuestions'
 import CreateInterview from './Interview'
 
 
@@ -23,13 +26,36 @@ function Popup(props) {
       return (
         <SeeTopics/>
       )
-    }else if(option === "softskill"){
+    }else if(option === "algotopic"){
       return (
-        <h1>Soft Skill</h1>
+        <SeeAlgorithmTopics
+        userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
+        />
+      )
+    }else if(option === "softskilltopic"){
+      return (
+        <SeeSoftSkillTopics
+        userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
+        />
+      )
+    }else if(option === "softskillquestion"){
+      return (
+        <SeeSoftSkillQuestions
+        userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
+        />
       )
     }else if(option === "quest"){
       return (
-        <CreateQuiz
+        <AddQuiz
           userData={props.userData}
           addActivity={props.functionToAddActivity}
           activityIndex={props.activityIndex}
@@ -63,8 +89,14 @@ function Popup(props) {
           <input type="radio" id="topic" name="activityType" value="topic" onChange={(e) => setOption(e.target.value)}/>
           <label for="topic">Topic</label>
 
-          <input type="radio" id="softskill" name="activityType" value="softskill" onChange={(e) => setOption(e.target.value)}/>
-          <label for="softskill">Soft Skill</label>
+          <input type="radio" id="algotopic" name="activityType" value="algotopic" onChange={(e) => setOption(e.target.value)}/>
+          <label for="algotopic">Algorithm Topic</label>
+
+          <input type="radio" id="softskilltopic" name="activityType" value="softskilltopic" onChange={(e) => setOption(e.target.value)}/>
+          <label for="softskilltopic">Soft Skill Topic</label>
+
+          <input type="radio" id="softskillquestion" name="activityType" value="softskillquestion" onChange={(e) => setOption(e.target.value)}/>
+          <label for="softskillquestion">Soft Skill Question</label>
 
           <input type="radio" id="quest" name="activityType" value="quest" onChange={(e) => setOption(e.target.value)}/>
           <label for="quest">Questionnaire</label>

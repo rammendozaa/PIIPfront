@@ -75,11 +75,11 @@ function AddTopic() {
                 <div className='options-container'>
                     <p>Please select topic type:</p>
                     <div className='options'>
-                    <input type="radio" id="problem" name="topicType" value="SoftSkill" onChange={(e) => setOption(e.target.value)}/>
-                    <label for="problem">Soft Skill</label>
+                    <input type="radio" id="SoftSkill" name="topicType" value="SoftSkill" onChange={(e) => setOption(e.target.value)}/>
+                    <label for="SoftSkill">Soft Skill</label>
 
-                    <input type="radio" id="topic" name="topicType" value="AlgorithmTopic" onChange={(e) => setOption(e.target.value)}/>
-                    <label for="topic">Algorithm Topic</label>
+                    <input type="radio" id="AlgorithmTopic" name="topicType" value="AlgorithmTopic" onChange={(e) => setOption(e.target.value)}/>
+                    <label for="AlgorithmTopic">Algorithm Topic</label>
 
                     </div>
                 </div>

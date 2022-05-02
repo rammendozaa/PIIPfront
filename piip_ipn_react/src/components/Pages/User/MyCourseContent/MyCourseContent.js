@@ -3,7 +3,7 @@ import "./MyCourseContent.css"
 import { useParams } from "react-router-dom";
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
-import Quiz from '../Quiz/Quiz';
+import StartingQuiz from '../StartingQuiz/StartingQuiz';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import { setUserTemplate } from "../../../../state/reducers/template"
@@ -82,31 +82,37 @@ function CourseContent({userData}) {
         setClicked(index);
     };
 
-    const redirectToActivity = (userActivityId, activityType, externalId) => {
-        const activityInfo = ActivityInfo(userActivityId, activityType, externalId);
+    const redirectToActivity = (activity) => {
+        const activity_id = activity.template_activity.activity.id
+        const activityInfo = ActivityInfo(
+            activity.id,
+            activity.template_activity,
+            activity.template_activity.activity,
+        );
+        const activityType = activity.template_activity.activityType;
+        console.log("this is the actvity")
+        console.log(activity_id)
         dispatch(setUserActivityInfo(activityInfo));
-        navigate(`/problem/9`);
-        /*
         if (activityType == 1) {
+            navigate(`/problem/${activity_id}`)
         } else if (activityType == 2) {
-
+            navigate(`/topic/algorithm/${activity_id}`);
         } else if (activityType == 3) {
-
+            navigate(`/soft-skill-question/${activity_id}`)
         } else if (activityType == 4) {
-
+            navigate(`/topic/softskill/${activity_id}`);
         } else if (activityType == 5) {
-
+            navigate(`/mock-interviews`)
         } else if (activityType == 6) {
-
+            navigate(`/solve-quiz/${activity_id}`)
         }
-        */
     }
 
     if (data.template === undefined) { // hasn't solved initial quiz
         return (
             <div className='course-content-container'>
                 <h1>{descriptionText}</h1>
-                <Quiz userData={userData} questionnaire={baseQuestionnaire} description={true} descriptionText={"Thanks! We'll get back to you soon!"} setDescriptionText={setDescriptionText}/>
+                <StartingQuiz userData={userData} questionnaire={baseQuestionnaire} description={true} descriptionText={"Thanks! We'll get back to you soon!"} setDescriptionText={setDescriptionText}/>
             </div>
         )
     }
@@ -144,9 +150,7 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' onClick={() => redirectToActivity(
-                                                                    activity.id,
-                                                                    activity.template_activity.activityType,
-                                                                    activity.template_activity.externalReference)} key={indexActivity}>
+                                                                    activity)} key={indexActivity}>
                                                                     <p><b>{activity.template_activity.name}</b></p>
                                                                 </div>                                                                
                                                             </>
