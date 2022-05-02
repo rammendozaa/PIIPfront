@@ -1,34 +1,89 @@
+import { IconContext } from 'react-icons';
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import './Quiz.css'
+import { useEffect } from "react/cjs/react.development";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux"
+
 const baseURL = "http://127.0.0.1:5000"
 
-
-function Quiz({userData, questionnaire, description, descriptionText, setDescriptionText}) {
+function Quiz({userData}) {
     const navigate = useNavigate();
+	const {activity} = useSelector(state => state.userActivity);
+	const {quiz_id} = useParams()
     const userId = userData.user_id
-	const questions = questionnaire["questions"];
+	const [questions, setQuestions] = useState([
+            {
+                "questionText": "Question 1",
+                "answerOptions": [
+                    {
+                        "answerText": "this is not answer 1",
+                        "isCorrect": false
+                    },{
+                        "answerText": "this is answer",
+                        "isCorrect": true
+                    },{
+                        "answerText": "this is not answer 2",
+                        "isCorrect": false
+                    },{
+                        "answerText": "this is not answer 3",
+                        "isCorrect": false
+                    }
+                ]
+            }
+       ]
+    );
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 
-	const submitScore = async (actual_score) => {
-		if (description) {
-			setDescriptionText(descriptionText)
+	useEffect(() => {
+		if ((activity !== undefined && activity !== null) && activity["questions"]) {
+			setQuestions(activity["questions"]);
+		} else {
+			fetch(`/questionnaire?questionnaireId=${quiz_id}`,{
+				method: "GET",
+			})
+			.then(res => res.json())
+			.then(data => {
+				setQuestions(data["questions"])
+			});
 		}
-		console.log("scoreood " + actual_score)
-		const response = await fetch(
-			baseURL + `/user/${userId}/questionnaire/${questionnaire["id"]}/assign`, {
-			method: "PUT",
-			mode: "cors",
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				"correctAnswers": actual_score,
-			}),
-		})
-		const response_json = await response.json();
-		console.log(response_json)
-		setTimeout(() => {  window.location.reload(); }, 2000);
+	}, []);
+
+    const moveNext = (add) => {
+        if(currentQuestion+add < 0){
+            setCurrentQuestion(0);
+        }else if(currentQuestion+add < questions.length){
+            setCurrentQuestion(currentQuestion+add)
+        }
+    }
+
+
+	const submitScore = async (actual_score) => {
+		if (userData.role === "user") {
+			await fetch(
+				baseURL + `/user/${userId}/questionnaire/${quiz_id}`, {
+				method: "PUT",
+				mode: "cors",
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					"correctAnswers": actual_score,
+				}),
+			})
+			if ((activity !== undefined && activity !== null) && activity.user_activity_id) {
+				await fetch(
+					baseURL + `/user/activity/${activity.user_activity_id}`, {
+						method: "PUT",
+						headers: {'Content-Type': 'application/json'},
+						body: JSON.stringify({
+							"statusId": 4,
+					}),
+				})
+			}
+		}
 	}
 	const handleAnswerOptionClick = (isCorrect) => {
         if (isCorrect) {
@@ -50,10 +105,13 @@ function Quiz({userData, questionnaire, description, descriptionText, setDescrip
 
     return (
         <div className='quiz-container'>
+				{userData.role === "user" && 
+				<h2>Remember that once you choose an option you can't go back to the previous question!</h2>}
             <div className='quiz'>
                 {showScore ? (
                     <div className='score-section'>
                         You answered {score} questions correctly out of {questions.length}!
+						<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>
                     </div>
                 ) : (
                     <>
@@ -71,6 +129,13 @@ function Quiz({userData, questionnaire, description, descriptionText, setDescrip
                     </>
                 )}
 		    </div>
+            {userData.role !== "user" && 
+			<div className='create-options'>
+                <IconContext.Provider value={{ color: '#7690da', size: '25px' }}>
+                    <span><BsFillArrowLeftCircleFill onClick={() => moveNext(-1)}/></span>
+                    <span><BsFillArrowRightCircleFill onClick={() => moveNext(1)}/></span>
+                </IconContext.Provider>  
+            </div>}
         </div>
 	);
 }

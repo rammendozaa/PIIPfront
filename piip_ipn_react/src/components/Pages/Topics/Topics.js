@@ -4,7 +4,7 @@ import './Topics.css'
 
 function Topics({userData}) {
     const [data, setData] = useState([]);
-
+    const [option, setOption] = useState("");
     const getProgrammingTopics = async() => {
         const response = await fetch('/algorithmTopics',{
             method: "GET",
@@ -16,6 +16,7 @@ function Topics({userData}) {
         console.log("Vale kk")
         console.log(data)
         setData(data)
+        setOption("algorithm")
     }
     const getSoftSkillsTopics = async() => {
         const response = await fetch('/softSkillsTopics',{
@@ -26,6 +27,7 @@ function Topics({userData}) {
         })
         const data = await response.json()
         setData(data)
+        setOption("soft-skill")
     }
 
     useEffect(() => {
@@ -62,7 +64,7 @@ function Topics({userData}) {
                         </div>
                     </div>
                 </div>
-                <Cards data={search(data)}/>
+                <Cards data={search(data)} route={option}/>
             </div>
         </>
     )

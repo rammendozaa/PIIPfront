@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react'
+import { NewActivity } from '../../../../externalClasses';
 import Cards from './Cards'
 import './SeeTopics.css'
 
-function SeeTopics({userData}) {
+function SeeTopics({userData, addActivity, activityIndex, sectionId}) {
     const [data, setData] = useState([]);
 
     const getProgrammingTopics = async() => {
@@ -31,6 +32,11 @@ function SeeTopics({userData}) {
         )
     }
 
+    const addProgrammingTopic = (topic) => {
+        const newAct = NewActivity(topic.title, topic.description, 2, topic.id);
+        addActivity(newAct, activityIndex, sectionId);
+    }
+
     return (
         <>
             <div className='see-topics-container'>
@@ -42,7 +48,7 @@ function SeeTopics({userData}) {
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
                 </div>
-                <Cards data={search(data)}/>
+                <Cards data={search(data)} execute={addProgrammingTopic}/>
             </div>
         </>
     )

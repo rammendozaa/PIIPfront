@@ -7,7 +7,14 @@ import Popup from './Popup';
 import { useParams } from "react-router-dom";
 import React, {useEffect} from 'react'
 const baseURL = "http://127.0.0.1:5000"
-
+const activityIdToName = {
+    1:"Problem",
+    2:"Algorithmic Topic",
+    3:"Soft Skill Question",
+    4:"Soft Skill Topic",
+    5:"Interview",
+    6:"Questionnaire",
+}
 
 function CourseContent({userData}) {
     const {user_id} = useParams();
@@ -173,7 +180,7 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
-                                                                    <p><b>{activity.template_activity.name}</b>: {activity.template_activity.description}</p>
+                                                                    <p><b>{activityIdToName[activity.template_activity.activityType]}</b>: {activity.template_activity.name}</p>
                                                                     <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
                                                                 </div>                                                                
                                                             </>
@@ -204,7 +211,14 @@ function CourseContent({userData}) {
                         </div>
                     </IconContext.Provider>
                 </div>)}
-                <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
+                <Popup
+                    trigger={buttonPopup}
+                    setButtonPopup={setButtonPopup}
+                    userData={userData}
+                    functionToAddActivity={addNewActivity}
+                    activityIndex={newActivityIndex}
+                    sectionId={newActivitySectionId}
+                />
             </div>
         </>
     )

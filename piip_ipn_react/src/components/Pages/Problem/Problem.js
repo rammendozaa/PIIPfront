@@ -5,16 +5,12 @@ import Compiler2 from "./Compiler2";
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import ReactHTMLParser from 'react-html-parser';
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 
 
 function Problem({userData}) {
     const {template} = useSelector(state => state.userTemplate);
     const {activity} = useSelector(state => state.userActivity);
-    console.log("activiy")
-    console.log("" + activity.userActivityId + "_" + activity.activityType + "_" + activity.externalId)
-    console.log("in problem")
-    console.log(template);
     const {problem_id} = useParams();
     const [data, setData] = useState();
 

@@ -3,7 +3,7 @@ import "./MyCourseContent.css"
 import { useParams } from "react-router-dom";
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
-import Quiz from '../Quiz/Quiz';
+import StartingQuiz from '../StartingQuiz/StartingQuiz';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import { setUserTemplate } from "../../../../state/reducers/template"
@@ -12,6 +12,16 @@ import { ActivityInfo } from "../../../../../src/externalClasses"
 
 
 const baseURL = "http://127.0.0.1:5000"
+const activityIdToName = {
+    1:"Problem",
+    2:"Algorithmic Topic",
+    3:"Soft Skill Question",
+    4:"Soft Skill Topic",
+    5:"Interview",
+    6:"Questionnaire",
+}
+
+
 
 function CourseContent({userData}) {
     const dispatch = useDispatch();
@@ -82,24 +92,30 @@ function CourseContent({userData}) {
         setClicked(index);
     };
 
-    const redirectToActivity = (userActivityId, activityType, externalId) => {
-        const activityInfo = ActivityInfo(userActivityId, activityType, externalId);
+    const redirectToActivity = (activity) => {
+        const activity_id = activity.template_activity.activity.id
+        const activityInfo = ActivityInfo(
+            activity.id,
+            activity.status_id,
+            activity.template_activity,
+            activity.template_activity.activity,
+            activity.activity_progress,
+        );
+        const activityType = activity.template_activity.activityType;
         dispatch(setUserActivityInfo(activityInfo));
-        navigate(`/problem/9`);
-        /*
         if (activityType == 1) {
+            navigate(`/problem/${activity_id}`)
         } else if (activityType == 2) {
-
+            navigate(`/topic/algorithm/${activity_id}`);
         } else if (activityType == 3) {
-
+            navigate(`/soft-skill-question/${activity_id}`)
         } else if (activityType == 4) {
-
+            navigate(`/topic/softskill/${activity_id}`);
         } else if (activityType == 5) {
-
+            navigate(`/mock-interviews/${activity_id}`)
         } else if (activityType == 6) {
-
+            navigate(`/solve-quiz/${activity_id}`)
         }
-        */
     }
 
     if (data.template === undefined) { // hasn't solved initial quiz
@@ -107,7 +123,13 @@ function CourseContent({userData}) {
             <div className='course-content-container'>
                 <div className='course-content-quiz'>
                     <h1 className='sorry'>{descriptionText}</h1>
-                    <Quiz userData={userData} questionnaire={baseQuestionnaire} description={true} descriptionText={"Thanks! We'll get back to you soon!"} setDescriptionText={setDescriptionText}/>
+                    <StartingQuiz
+                        userData={userData}
+                        questionnaire={baseQuestionnaire}
+                        description={true}
+                        descriptionText={"Thanks! We'll get back to you soon!"}
+                        setDescriptionText={setDescriptionText}
+                    />
                 </div>
             </div>
         )
@@ -146,10 +168,8 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' onClick={() => redirectToActivity(
-                                                                    activity.id,
-                                                                    activity.template_activity.activityType,
-                                                                    activity.template_activity.externalReference)} key={indexActivity}>
-                                                                    <p><b>{activity.template_activity.name}</b></p>
+                                                                    activity)} key={indexActivity}>
+                                                                    <p><b>{activityIdToName[activity.template_activity.activityType]}</b>: {activity.template_activity.name}</p>
                                                                 </div>                                                                
                                                             </>
                                                         )
