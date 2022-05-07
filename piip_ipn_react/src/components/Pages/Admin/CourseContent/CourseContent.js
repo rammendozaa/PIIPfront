@@ -148,8 +148,8 @@ function CourseContent({userData}) {
         <>
             <div className='course-content-container'>
                 {(data.template === undefined || data.template === null) && (
-                    <div className='course'>
-                        <h1 className='course-title'>Once this user finishes his questionnaire he'll be assigned a questionnaire. Wait!</h1>
+                    <div className='course2'>
+                        <h1 className='sorry'>Once this user finishes his questionnaire he'll be assigned a course. Wait!</h1>
                     </div>
                 )}
                 {data.template !== undefined && (<div className='course'> 

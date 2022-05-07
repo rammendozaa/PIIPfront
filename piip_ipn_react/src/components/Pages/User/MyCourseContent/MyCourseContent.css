@@ -140,3 +140,8 @@
 .course-content-container .course .AccordionSection .Container .AddNewSection span{
     margin-right: 1.5rem;
 }
+
+.course-content-container .course-content-quiz{
+    width: 80%;
+    height: 80%;
+}
