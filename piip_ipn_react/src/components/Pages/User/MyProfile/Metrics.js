@@ -5,6 +5,7 @@ import "./Metrics.css"
 
 function Metrics({userData}) {
     const [numberOfProblems,setNumberOfProblems] = useState(0)
+    const [numberOfProgrammingTopics,setNumberOfProgrammingTopics] = useState(0)
     const getNumberOfProblemsSolved = async() => {
         let formData = new FormData();
         formData.append('user_id', userData.user_id);
@@ -18,8 +19,22 @@ function Metrics({userData}) {
         const data = await response.json()
         setNumberOfProblems(data.numberOfProblems)
     }
+    const getNumberOfProgrammingTopicsSolved = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getNumberOfProgrammingTopicsSolvedByUser',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        setNumberOfProgrammingTopics(data.numberOfProgrammingTopics)
+    }
     useEffect(() => {
         getNumberOfProblemsSolved()
+        getNumberOfProgrammingTopicsSolved()
     }, []);
 
     /*
@@ -64,10 +79,10 @@ function Metrics({userData}) {
                 <div className="categories-container">    
                     <div className="category">
                         <div className="title">
-                            <h2>Topics</h2>
+                            <h2>Programming Topics</h2>
                         </div>
                         <div className="content">
-                            <p>5 topics studied</p>
+                            <p>{numberOfProgrammingTopics} topics studied</p>
                         </div>                        
                     </div>
                     <div className="category">
