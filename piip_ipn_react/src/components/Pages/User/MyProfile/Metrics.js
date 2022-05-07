@@ -6,6 +6,8 @@ import "./Metrics.css"
 function Metrics({userData}) {
     const [numberOfProblems,setNumberOfProblems] = useState(0)
     const [numberOfProgrammingTopics,setNumberOfProgrammingTopics] = useState(0)
+    const [numberOfSoftSkillTopics,setNumberOfSoftSkillTopics] = useState(0)
+
     const getNumberOfProblemsSolved = async() => {
         let formData = new FormData();
         formData.append('user_id', userData.user_id);
@@ -32,9 +34,23 @@ function Metrics({userData}) {
         const data = await response.json()
         setNumberOfProgrammingTopics(data.numberOfProgrammingTopics)
     }
+    const getNumberOfSoftSkillTopicsSolved = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getNumberOfSoftSkillTopicsSolvedByUser',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        setNumberOfSoftSkillTopics(data.numberOfSoftSkillsTopics)
+    }
     useEffect(() => {
         getNumberOfProblemsSolved()
         getNumberOfProgrammingTopicsSolved()
+        getNumberOfSoftSkillTopicsSolved()
     }, []);
 
     /*
@@ -83,6 +99,14 @@ function Metrics({userData}) {
                         </div>
                         <div className="content">
                             <p>{numberOfProgrammingTopics} topics studied</p>
+                        </div>                        
+                    </div>
+                    <div className="category">
+                        <div className="title">
+                            <h2>Soft Skill Topics</h2>
+                        </div>
+                        <div className="content">
+                            <p>{numberOfSoftSkillTopics} topics studied</p>
                         </div>                        
                     </div>
                     <div className="category">
