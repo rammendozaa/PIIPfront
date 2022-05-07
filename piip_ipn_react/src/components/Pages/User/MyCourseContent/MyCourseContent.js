@@ -105,8 +105,10 @@ function CourseContent({userData}) {
     if (data.template === undefined) { // hasn't solved initial quiz
         return (
             <div className='course-content-container'>
-                <h1>{descriptionText}</h1>
-                <Quiz userData={userData} questionnaire={baseQuestionnaire} description={true} descriptionText={"Thanks! We'll get back to you soon!"} setDescriptionText={setDescriptionText}/>
+                <div className='course-content-quiz'>
+                    <h1 className='sorry'>{descriptionText}</h1>
+                    <Quiz userData={userData} questionnaire={baseQuestionnaire} description={true} descriptionText={"Thanks! We'll get back to you soon!"} setDescriptionText={setDescriptionText}/>
+                </div>
             </div>
         )
     }
@@ -114,7 +116,7 @@ function CourseContent({userData}) {
     if(administratorId === -1){
         return (
             <div className='course-content-container'>
-                <h1 className='sorry'>Sorry, you do not yet have a mentor assigned to you. <p>We're contacting them so don't worry!</p></h1>
+                <h1>Sorry, you do not yet have a mentor assigned to you. <p>We're contacting them so don't worry!</p></h1>
                 <img src='/images/sorry-removebg-preview.png'></img>
             </div>
         )
