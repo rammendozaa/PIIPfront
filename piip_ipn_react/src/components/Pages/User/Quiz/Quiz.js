@@ -18,8 +18,8 @@ function Quiz({userData, questionnaire, description, descriptionText, setDescrip
 		}
 		console.log("scoreood " + actual_score)
 		const response = await fetch(
-			baseURL + `/user/${userId}/questionnaire/${questionnaire["id"]}`, {
-			method: "POST",
+			baseURL + `/user/${userId}/questionnaire/${questionnaire["id"]}/assign`, {
+			method: "PUT",
 			mode: "cors",
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
