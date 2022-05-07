@@ -51,12 +51,16 @@ function Topics({userData}) {
                         </div>
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
-                </div>
-                <div className='options'>
-                    <input type="radio" id="algorithms" name="activityType" value="algorithms" onChange={(e) => getProgrammingTopics()}/>
-                    <label for="algorithms">Algorithms</label>
-                    <input type="radio" id="soft" name="activityType" value="soft" onChange={(e) => getSoftSkillsTopics()}/>
-                    <label for="soft">Soft Skills</label>
+                    <div className='options'>
+                        <div className='option'>
+                            <input type="radio" id="algorithms" name="activityType" value="algorithms" onChange={(e) => getProgrammingTopics()}/>
+                            <label for="algorithms">Algorithms</label>
+                        </div>
+                        <div className='option'>
+                            <input type="radio" id="soft" name="activityType" value="soft" onChange={(e) => getSoftSkillsTopics()}/>
+                            <label for="soft">Soft Skills</label>
+                        </div>
+                    </div>
                 </div>
                 <Cards data={search(data)}/>
             </div>

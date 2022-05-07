@@ -18,14 +18,28 @@
 }
 
 .topics-container .search_wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 80%;
-    margin: 30px auto;
+    /*margin: 30px auto;*/
 }
 
 .topics-container .search_wrap .search_box{
     position: relative;
     width: 500px;
     height: 60px;
+}
+
+.topics-container .search_wrap .options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+.topics-container .search_wrap .options .option label{
+    margin-left: 10px;
 }
 
 .topics-container .search_wrap .search_box .input{
