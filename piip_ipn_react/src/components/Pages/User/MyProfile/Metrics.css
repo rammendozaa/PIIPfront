@@ -36,10 +36,14 @@
     height: 100px;
     width: 200px;
     background-color: #202731;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .metrics-container .categories .categories-container .category .title{
-    height: 40%;
+    height: 50%;
     color: #fff;
     text-align: center;
     display: flex;
@@ -49,7 +53,7 @@
 }
 
 .metrics-container .categories .categories-container .category .content{
-    height: 60%;
+    height: 30%;
     margin-top: 15px;
     text-align: center;
 }
