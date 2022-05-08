@@ -4,18 +4,22 @@ import './Cards.css'
 function Cards({data}) {
     return (
         <div className='cards2'>
-            <ul className='cards2__items'>
-                {
-                    data.map(current => 
-                        <CardItem 
-                        src={current.src}
-                        text = {current.text}
-                        label= {current.label}
-                        path= {current.path}
-                        />
-                    )
-                }
-            </ul>
+            <div className='cards2__container'>
+                <div className='cards2__wrapper'>
+                    <ul className='cards2__items'>
+                        {
+                            data.map(current => 
+                                <CardItem 
+                                src='/images/img-1.svg'
+                                text = {current.description}
+                                label= {current.title}
+                                path= '/algo'
+                                />
+                            )
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 }

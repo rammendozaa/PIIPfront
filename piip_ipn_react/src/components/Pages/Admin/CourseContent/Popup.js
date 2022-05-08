@@ -3,6 +3,7 @@ import AddTopic from '../AddTopic/AddTopic'
 import './Popup.css'
 import SeeProblems from './SeeProblems'
 import SeeTopics from './SeeTopics.js'
+import SeeSoftSkills from './SeeSoftSkills.js'
 import CreateQuiz from './CreateQuiz'
 import CreateInterview from './Interview'
 
@@ -21,11 +22,15 @@ function Popup(props) {
       )
     }else if(option === "topic"){
       return (
-        <SeeTopics/>
+        <SeeTopics
+        userData={props.userData}
+        />
       )
     }else if(option === "softskill"){
       return (
-        <h1>Soft Skill</h1>
+        <SeeSoftSkills
+        userData={props.userData}
+        />
       )
     }else if(option === "quest"){
       return (

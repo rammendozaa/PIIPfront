@@ -2,11 +2,11 @@ import {useState, useEffect} from 'react'
 import Cards from './Cards'
 import './SeeTopics.css'
 
-function SeeTopics({userData}) {
+function SeeSoftSkills({userData}) {
     const [data, setData] = useState([]);
 
     const getProgrammingTopics = async() => {
-        const response = await fetch('/algorithmTopics',{
+        const response = await fetch('/softSkillsTopics',{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token
@@ -48,4 +48,4 @@ function SeeTopics({userData}) {
     )
 }
 
-export default SeeTopics
+export default SeeSoftSkills
