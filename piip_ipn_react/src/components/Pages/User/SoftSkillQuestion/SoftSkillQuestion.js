@@ -1,6 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development';
+import {useState} from 'react'
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux"
+
 
 function SoftSkillQuestion({userData}) {
     const navigate = useNavigate();

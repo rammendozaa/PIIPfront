@@ -1,3 +1,5 @@
+import { IconContext } from 'react-icons';
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
 import {useState} from 'react'
 import './Quiz.css'
