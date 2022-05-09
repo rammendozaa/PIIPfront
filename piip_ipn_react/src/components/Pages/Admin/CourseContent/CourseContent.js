@@ -23,7 +23,7 @@ function CourseContent({userData}) {
     const [buttonPopup, setButtonPopup] = useState(false);
     const toggle = index => {
         if (clicked === index) {
-            //if clicked question is already active, then close it
+            //if clicked question is already active, then close it 2
             return setClicked(-1);
         }   
         setClicked(index);
