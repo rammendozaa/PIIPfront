@@ -1,6 +1,9 @@
 import './ProblemsTable.css' 
 
 function ProblemsTable({data, goToProblem}) {
+  const cleanTags = (tags) => {
+    return tags
+  }
   return (
     data && 
     <div className='div-table'>
@@ -8,6 +11,7 @@ function ProblemsTable({data, goToProblem}) {
           <thead>
             <tr>
               <th>Title</th>
+              <th>Tags</th>
               <th>Difficulty</th>
             </tr>
           </thead>
@@ -19,7 +23,10 @@ function ProblemsTable({data, goToProblem}) {
                           {row['title']}
                         </td>
                         <td onClick={() => goToProblem(row)}>
-                          {row['difficulty']}
+                          {cleanTags(row['tags'])}
+                        </td>
+                        <td onClick={() => goToProblem(row)}>
+                          {row['solution']}
                         </td>
                     </tr>
                 )
