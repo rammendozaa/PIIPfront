@@ -59,6 +59,29 @@ function Navbar({userData, validUserData, removeUserData}) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
                     </>
                 )
+            }if(userData.role === "super"){
+                return (
+                    <>
+                        <ul className={click ? "nav-menu active" : "nav-menu"}>
+                            <li className='nav-item'>
+                                <Link to="/my-students" className="nav-links" onClick={closeMobileMenu}>
+                                    My Students
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/add-topic" className="nav-links" onClick={closeMobileMenu}>
+                                    Add Topic
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/templates" className="nav-links" onClick={closeMobileMenu}>
+                                    Templates
+                                </Link>
+                            </li>
+                        </ul>
+                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
+                    </>
+                )
             }else if(userData.role === "user"){
                 fetch('/get-admin',{
                     method: "GET",

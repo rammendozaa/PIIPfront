@@ -22,6 +22,7 @@ import AddTopic from './components/Pages/Admin/AddTopic/AddTopic'
 import MyStudents from './components/Pages/Admin/MyStudents/MyStudents';
 import MyProfile from './components/Pages/User/MyProfile/MyProfile'
 import Quiz from './components/Pages/User/Quiz/Quiz';
+import Templates from './components/Pages/SuperAdmin/CourseContent/Templates'
 
 function App() {
   const { userData, setUserData, removeUserData, validUserData } = useUserData();
@@ -50,8 +51,10 @@ function App() {
           <Route path='/solve-quiz' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><Quiz userData={userData}/></PrivateRoute>} />          
           {/*Mentor*/}
           <Route path='/update-course/:user_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><CourseContent userData={userData}/></PrivateRoute>} />   
-          <Route path='/add-topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><AddTopic/></PrivateRoute>} />
-          <Route path='/my-students' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><MyStudents userData={userData}/></PrivateRoute>} />          
+          <Route path='/add-topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor","super"]}><AddTopic/></PrivateRoute>} />
+          <Route path='/my-students' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><MyStudents userData={userData}/></PrivateRoute>} />          
+          {/*SuperAdmin*/}
+          <Route path='/templates' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super"]}><Templates userData={userData}/></PrivateRoute>} />          
         </Routes>
       </Router>
     </>
