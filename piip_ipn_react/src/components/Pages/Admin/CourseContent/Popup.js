@@ -2,9 +2,12 @@ import {useState} from 'react'
 import AddTopic from '../AddTopic/AddTopic'
 import './Popup.css'
 import SeeProblems from './SeeProblems'
-import SeeTopics from './SeeTopics.js'
-import SeeSoftSkills from './SeeSoftSkills.js'
-import CreateQuiz from './CreateQuiz'
+import SeeTopics from './SeeTopics'
+import SeeSoftSkills from './SeeSoftSkills'
+import AddQuiz from './AddQuiz'
+import SeeAlgorithmTopics from "./SeeAlgorithmTopics"
+import SeeSoftSkillTopics from "./SeeSoftSkillTopics"
+import SeeSoftSkillQuestions from './SeeSoftSkillQuestions'
 import CreateInterview from './Interview'
 
 
@@ -21,20 +24,53 @@ function Popup(props) {
         />
       )
     }else if(option === "topic"){
+        return (
+          <SeeTopics
+          userData={props.userData}
+          addActivity={props.functionToAddActivity}
+          activityIndex={props.activityIndex}
+          sectionId={props.sectionId}
+          />
+        )
+      }else if(option === "softskill"){
+        return (
+          <SeeSoftSkills
+          userData={props.userData}
+          addActivity={props.functionToAddActivity}
+          activityIndex={props.activityIndex}
+          sectionId={props.sectionId}
+          />
+        )
+      }else if(option === "algotopic"){
       return (
-        <SeeTopics
+        <SeeAlgorithmTopics
         userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
         />
       )
-    }else if(option === "softskill"){
+    }else if(option === "softskilltopic"){
       return (
-        <SeeSoftSkills
+        <SeeSoftSkillTopics
         userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
+        />
+      )
+    }else if(option === "softskillquestion"){
+      return (
+        <SeeSoftSkillQuestions
+        userData={props.userData}
+        addActivity={props.functionToAddActivity}
+        activityIndex={props.activityIndex}
+        sectionId={props.sectionId}
         />
       )
     }else if(option === "quest"){
       return (
-        <CreateQuiz
+        <AddQuiz
           userData={props.userData}
           addActivity={props.functionToAddActivity}
           activityIndex={props.activityIndex}
@@ -48,10 +84,6 @@ function Popup(props) {
         activityIndex={props.activityIndex}
         sectionId={props.sectionId}
         />
-      )
-    }else if(option === "note"){
-      return (
-        <AddTopic/>
       )
     }
   }
@@ -71,14 +103,14 @@ function Popup(props) {
           <input type="radio" id="softskill" name="activityType" value="softskill" onChange={(e) => setOption(e.target.value)}/>
           <label for="softskill">Soft Skill</label>
 
+          <input type="radio" id="softskillquestion" name="activityType" value="softskillquestion" onChange={(e) => setOption(e.target.value)}/>
+          <label for="softskillquestion">Soft Skill Question</label>
+
           <input type="radio" id="quest" name="activityType" value="quest" onChange={(e) => setOption(e.target.value)}/>
           <label for="quest">Questionnaire</label>
 
           <input type="radio" id="interview" name="activityType" value="interview" onChange={(e) => setOption(e.target.value)}/>
           <label for="interview">Interview</label>
-
-          <input type="radio" id="note" name="activityType" value="note" onChange={(e) => setOption(e.target.value)}/>
-          <label for="note">Note</label>
         </div>
       </div>
       <div className='create-activity'>

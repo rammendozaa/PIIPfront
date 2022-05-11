@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react'
 import Cards from './Cards'
+import { NewActivity } from '../../../../externalClasses';
 import './SeeTopics.css'
 
-function SeeSoftSkills({userData}) {
+function SeeSoftSkills({userData, addActivity, activityIndex, sectionId}) {
     const [data, setData] = useState([]);
 
     const getProgrammingTopics = async() => {
@@ -30,6 +31,10 @@ function SeeSoftSkills({userData}) {
             row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
         )
     }
+    const addSoftSkillTopic = (topic) => {
+        const newAct = NewActivity(topic.title, topic.description, 4, topic.id);
+        addActivity(newAct, activityIndex, sectionId);
+    }
 
     return (
         <>
@@ -42,7 +47,7 @@ function SeeSoftSkills({userData}) {
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
                 </div>
-                <Cards data={search(data)}/>
+                <Cards data={search(data)} execute={addSoftSkillTopic}/>
             </div>
         </>
     )

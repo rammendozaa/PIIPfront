@@ -5,14 +5,14 @@ function CardItem(props) {
     return (
         <>
             <li className='cards2__item'>
-                <Link className='cards2__item__link' to={props.path}>
+                <div className='cards2__item__link' onClick={() => props.thisFunction(props.topic)}>
                     <figure className='cards2__item__pic-wrap' data-category={props.label}>
                         <img src={props.src} alt='travel' className='cards2__item__img'/>
                     </figure>
-                    {/*<div className='cards2__item__info'>
+                    <div className='cards2__item__info'>
                         <h5 className='cards2__item__text'>{props.text}</h5>
-                    </div>*/}
-                </Link>
+                    </div>
+                </div>
             </li>
         </>
     );

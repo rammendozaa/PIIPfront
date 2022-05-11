@@ -17,8 +17,9 @@
     position: relative;
     padding: 32px;
     width: 100%;
-    max-width: 640px;
+    max-width: 840px;
     min-height: 0;
+    max-height: 640px;
     min-width: 0;
     background-color: #FFF;
     border-radius: 10px;

@@ -1,7 +1,8 @@
 import CardItem from './CardItem'
 import './Cards.css'
 
-function Cards({data}) {
+function Cards({data, route}) {
+
     return (
         <div className='cards'>
             <div className='cards__container'>
@@ -13,7 +14,7 @@ function Cards({data}) {
                                 src='images/img-1.svg'
                                 text = {current.description}
                                 label= {current.title}
-                                path= '/algo'
+                                path={"/topic/" + route + "/" + current.id}
                                 />
                             )
                         }
