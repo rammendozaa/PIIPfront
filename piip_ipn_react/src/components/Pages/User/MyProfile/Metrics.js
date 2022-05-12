@@ -7,7 +7,21 @@ function Metrics({userData}) {
     const [numberOfProblems,setNumberOfProblems] = useState(0)
     const [numberOfProgrammingTopics,setNumberOfProgrammingTopics] = useState(0)
     const [numberOfSoftSkillTopics,setNumberOfSoftSkillTopics] = useState(0)
+    const [numberOfInterviews,setNumberOfInterviews] = useState(0)
 
+    const getNumberOfInterviews = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getNumberOfInterviews',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        setNumberOfInterviews(data.numberOfInterviews)
+    }
     const getNumberOfProblemsSolved = async() => {
         let formData = new FormData();
         formData.append('user_id', userData.user_id);
@@ -51,6 +65,7 @@ function Metrics({userData}) {
         getNumberOfProblemsSolved()
         getNumberOfProgrammingTopicsSolved()
         getNumberOfSoftSkillTopicsSolved()
+        getNumberOfInterviews()
     }, []);
 
     /*
@@ -122,7 +137,7 @@ function Metrics({userData}) {
                             <h2>Interviews</h2>
                         </div>
                         <div className="content">
-                            <p>5 interviews attended</p>
+                            <p> {numberOfInterviews} interviews attended</p>
                         </div>                        
                     </div>
                 </div>
