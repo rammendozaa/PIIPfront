@@ -86,7 +86,7 @@ function Problem({userData}) {
                     </div>
                 </div>
                 <div className="problem-execution">
-                    <Compiler2 userData={userData} url={data.url}/>
+                    <Compiler2 userData={userData} url={data.url} problem_id={problem_id}/>
                 </div>
             </div>
         }
