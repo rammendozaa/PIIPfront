@@ -3,7 +3,7 @@ import './Compiler.css'
 import CodeEditor from '@uiw/react-textarea-code-editor';
 
 
-export const Compiler2 = ({userData,url}) => {
+export const Compiler2 = ({userData,url, problem_id}) => {
     /*fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
         {
             method: "POST",
@@ -132,6 +132,22 @@ export const Compiler2 = ({userData,url}) => {
             .then(res => res.json())
             .then(data => {
                 setSubmissionStatus(data.status.verdict)
+                let formData = new FormData();
+                formData.append('problem_id', problem_id);
+                formData.append('user_id', userData.user_id);
+                formData.append('status', data.status.verdict);
+                fetch('/updateProblemStatus',{
+                    method: "POST",
+                    headers: {
+                        "Authorization": 'Bearer ' + userData.token
+                    },
+                    body: formData,
+                })
+                .then(res2 => res2.json())
+                .then(data2 => {
+                    console.log(data2)
+                });
+                
                 console.log("Veredicto: "+data.status.verdict)
             });
         }
