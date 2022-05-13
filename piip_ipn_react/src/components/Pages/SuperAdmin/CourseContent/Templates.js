@@ -136,7 +136,7 @@ function Templates({userData}) {
 
     useEffect(() => {
         fetch(baseURL + `/user/${user_id}/template`,{
-            method:"GET",
+            method: "GET",
         })
         .then(res => res.json())
         .then(data => {
