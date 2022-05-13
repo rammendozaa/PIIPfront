@@ -75,7 +75,7 @@ function CourseContent({userData}) {
             setAdministratorId(data.administrator_id)
         });
         fetch(baseURL + `/user/${user_id}/template`,{
-            method:"GET",
+            method: "GET",
         })
         .then(res => res.json())
         .then(data => {
