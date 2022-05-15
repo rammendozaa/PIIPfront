@@ -179,12 +179,12 @@ function Metrics({userData}) {
         setNumberOfSoftSkillTopics(data.numberOfSoftSkillsTopics)
     }
     useEffect(() => {
-        /*getNumberOfProblemsSolved()
+        getNumberOfProblemsSolved()
         getNumberOfProgrammingTopicsSolved()
         getNumberOfSoftSkillTopicsSolved()
         getNumberOfInterviews()
         getCntByTag()
-        getCntByDay()*/
+        getCntByDay()
         getRecommendations()
     }, []);
     if(problemId !== -1){
