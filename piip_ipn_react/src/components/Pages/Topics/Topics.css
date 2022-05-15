@@ -23,11 +23,12 @@
     justify-content: space-between;
     width: 80%;
     /*margin: 30px auto;*/
+    margin-bottom: 30px;
 }
 
 .topics-container .search_wrap .search_box{
     position: relative;
-    width: 500px;
+    width: 390px;
     height: 60px;
 }
 

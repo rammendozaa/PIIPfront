@@ -13,7 +13,6 @@ function Problem({userData}) {
     const {activity} = useSelector(state => state.userActivity);
     const {problem_id} = useParams();
     const [data, setData] = useState();
-
     useEffect(() => {
         let formData = new FormData();
         formData.append('problem_id', problem_id);
@@ -26,8 +25,8 @@ function Problem({userData}) {
         })
         .then(res => res.json())
         .then(data => {
-            setData(data)
             console.log(data)
+            setData(data)
         });
     },[]);
     const node = useRef();
@@ -57,12 +56,16 @@ function Problem({userData}) {
                                 <dd>{data.memory_limit}</dd>
                             </div>
                             <div className="problem-info-row">
-                                <dt><b>Source:</b></dt>
-                                <dd>{/*data.source*/}</dd>
-                            </div>
-                            <div className="problem-info-row">
-                                <dt><b>Status:</b></dt>
-                                <dd>{/*data.status*/}</dd>
+                                <dt><b>Tags:</b></dt>
+                                <dd>
+                                    <ul style={{"list-style-type": "none"}}>
+                                        {
+                                            data.tags.map((row) =>
+                                                <li>{row}</li>
+                                            )
+                                        }
+                                    </ul>
+                                </dd>
                             </div>
                         </dl>
                     </div>
