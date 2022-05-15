@@ -65,6 +65,7 @@ function Metrics({userData}) {
             body: formData
         })
         const data = await response.json()
+        console.log(data)
         setCntByDay(data)
         setProblemsSolved({
             labels: Object.keys(data),
