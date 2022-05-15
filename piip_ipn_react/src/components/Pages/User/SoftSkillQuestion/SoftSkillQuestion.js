@@ -84,9 +84,9 @@ function SoftSkillQuestion({userData}) {
                     <br/><br/>
                     <textarea
                         className='text-area-ss-question'
-                            id="input"
-                            value={answer}
-                            onChange={(e) => setAnswer(e.target.value)}>
+                        id="input"
+                        value={answer}
+                        onChange={(e) => setAnswer(e.target.value)}>
                     </textarea>
                 </>}
                 </div>
