@@ -42,7 +42,7 @@ function MyStudents({userData}) {
                     {
                         option === "mystudents" ? <MyStudentsPage userData={userData} setUserId={setUserId}/>
                         : option === "pendingstudents" ? <PendingStudentsPage userData={userData}/>
-                        : <Metrics/>
+                        : <Metrics userData={userData}/>
                     }
                 </div>
             </div>
