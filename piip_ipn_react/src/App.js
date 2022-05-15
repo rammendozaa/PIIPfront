@@ -54,7 +54,7 @@ function App() {
           <Route path='/my-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyCourseContent userData={userData}/></PrivateRoute>} />
           <Route path='/my-profile' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyProfile userData={userData}/></PrivateRoute>} />
           {/*Mentor*/}
-          <Route path='/update-course/:user_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><CourseContent userData={userData}/></PrivateRoute>} />   
+          <Route path='/update-course/:user_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><CourseContent userData={userData}/></PrivateRoute>} />   
           <Route path='/add-topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor","super"]}><AddTopic/></PrivateRoute>} />
           <Route path='/my-students' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><MyStudents userData={userData}/></PrivateRoute>} />          
           <Route path='/create-activity' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><CreateActivities userData={userData}/></PrivateRoute>} />
