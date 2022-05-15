@@ -2,13 +2,130 @@ import BarChart from "./BarChart"
 import {useState, useEffect} from "react"
 import PieChart from "../../../PieChart"
 import "./Metrics.css"
+import { Navigate } from 'react-router-dom';
+
 
 function Metrics({userData}) {
     const [numberOfProblems,setNumberOfProblems] = useState(0)
     const [numberOfProgrammingTopics,setNumberOfProgrammingTopics] = useState(0)
     const [numberOfSoftSkillTopics,setNumberOfSoftSkillTopics] = useState(0)
     const [numberOfInterviews,setNumberOfInterviews] = useState(0)
-
+    const [recommendations,setRecommendations] = useState([])
+    const [problemId, setProblemId] = useState(-1);
+    const [cntByTag, setCntByTag] = useState({
+        "Dp": 1,
+        "Greedy": 2,
+        "Graphs": 3
+    })
+    const [cntByDay, setCntByDay] = useState({
+        "14 May": 10,
+        "15 May": 15,
+        "16 May": 5
+    })
+    const [problemsSolved, setProblemsSolved] = useState({
+        labels: Object.keys(cntByDay),
+        datasets: [{
+            label: "Problems solved in last month",
+            data: Object.keys(cntByDay),
+            borderColor: "black",
+            borderWidth: 2,
+            backgroundColor: [
+                "rgba(75,192,192,1)",
+                "#ecf0f1",
+                "#50AF95",
+                "#f3ba2f",
+                "#2a71d0",
+            ]
+        }]
+    })
+    const [cntByCategory, setCntByCategory] = useState({
+        labels: Object.keys(cntByTag),
+        datasets: [{
+            label: "Problems solved in last month",
+            data: Object.values(cntByTag),
+            borderColor: "black",
+            borderWidth: 2,
+            backgroundColor: [
+                "rgba(75,192,192,1)",
+                "#ecf0f1",
+                "#50AF95",
+                "#f3ba2f",
+                "#2a71d0",
+            ]
+        }]
+    })
+    const getCntByDay = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getNumberOfProblemsByDay',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        setCntByDay(data)
+        setProblemsSolved({
+            labels: Object.keys(data),
+            datasets: [{
+                label: "Problems solved in last month",
+                data: Object.values(data),
+                borderColor: "black",
+                borderWidth: 2,
+                backgroundColor: [
+                    "rgba(75,192,192,1)",
+                    "#ecf0f1",
+                    "#50AF95",
+                    "#f3ba2f",
+                    "#2a71d0",
+                ]
+            }]
+        })
+    }
+    const getCntByTag = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getNumberOfProblemsByTag',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        setCntByTag(data)
+        setCntByCategory({
+            labels: Object.keys(data),
+            datasets: [{
+                label: "Problems solved in last month",
+                data: Object.values(data),
+                borderColor: "black",
+                borderWidth: 2,
+                backgroundColor: [
+                    "rgba(75,192,192,1)",
+                    "#ecf0f1",
+                    "#50AF95",
+                    "#f3ba2f",
+                    "#2a71d0",
+                ]
+            }]
+        })
+    }
+    const getRecommendations = async() => {
+        let formData = new FormData();
+        formData.append('user_id', userData.user_id);
+        const response = await fetch('/getRecommendations',{
+            method: "POST",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+            body: formData
+        })
+        const data = await response.json()
+        console.log(data)
+        setRecommendations(data)
+    }
     const getNumberOfInterviews = async() => {
         let formData = new FormData();
         formData.append('user_id', userData.user_id);
@@ -62,47 +179,23 @@ function Metrics({userData}) {
         setNumberOfSoftSkillTopics(data.numberOfSoftSkillsTopics)
     }
     useEffect(() => {
-        getNumberOfProblemsSolved()
+        /*getNumberOfProblemsSolved()
         getNumberOfProgrammingTopicsSolved()
         getNumberOfSoftSkillTopicsSolved()
         getNumberOfInterviews()
+        getCntByTag()
+        getCntByDay()*/
+        getRecommendations()
     }, []);
-
+    if(problemId !== -1){
+        let url = '/problem/'+problemId
+        return (
+            <Navigate to={url}/>
+        )
+    }
     /*
         UserData.map((data) => data.field)
     */
-    const [problemsSolved, setProblemsSolved] = useState({
-        labels: ["April 20","April 21","April 22","April 23","April 24"],
-        datasets: [{
-            label: "Problems solved in last month",
-            data: [1,2,3,4,5],
-            borderColor: "black",
-            borderWidth: 2,
-            backgroundColor: [
-                "rgba(75,192,192,1)",
-                "#ecf0f1",
-                "#50AF95",
-                "#f3ba2f",
-                "#2a71d0",
-            ]
-        }]
-    })
-    const [cntByCategory, setCntByCategory] = useState({
-        labels: ["Dp","Greedy","Brute Force","Graphs","Ad-Hoc"],
-        datasets: [{
-            label: "Problems solved in last month",
-            data: [1,2,3,4,5],
-            borderColor: "black",
-            borderWidth: 2,
-            backgroundColor: [
-                "rgba(75,192,192,1)",
-                "#ecf0f1",
-                "#50AF95",
-                "#f3ba2f",
-                "#2a71d0",
-            ]
-        }]
-    })
     return (
         <div className="metrics-container">
             <div className="categories">
@@ -157,30 +250,14 @@ function Metrics({userData}) {
                             </div>
                             <div className="recommendations">
                                 <div className="recommendations-container">
-                                    <div className="recommendation">
-                                        <p>Problem Name</p>
-                                        <h2>Greedy</h2>
-                                    </div>
-                                    <div className="recommendation">
-                                        <p>Problem Name</p>
-                                        <h2>Graphs</h2>
-                                    </div>
-                                    <div className="recommendation">
-                                        <p>Problem Name</p>
-                                        <h2>Graphs</h2>
-                                    </div>
-                                    <div className="recommendation">
-                                        <p>Problem Name</p>
-                                        <h2>Graphs</h2>
-                                    </div>
-                                    <div className="recommendation">
-                                        <p>Problem Name</p>
-                                        <h2>Graphs</h2>
-                                    </div>
-                                    <div className="recommendation">
-                                        <p>Problem Name</p>
-                                        <h2>Graphs</h2>
-                                    </div>
+                                    {
+                                        recommendations.map((row) =>
+                                            <div className="recommendation" onClick={() => setProblemId(row.id)}>
+                                                <p>{row.title}</p>
+                                                <h2>{row.tags}</h2>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
