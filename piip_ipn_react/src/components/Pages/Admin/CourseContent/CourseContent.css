@@ -61,6 +61,7 @@
     width: 100%;
     margin-top: 10px;
     position: absolute;
+    padding-bottom:10%;
     top: 30%;
 }
 .course-content-container .course .AccordionSection .Container .Wrap {
