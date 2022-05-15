@@ -167,8 +167,8 @@ function CourseContent({userData}) {
                                 {data.user_sections.map((section, indexSection) => {
                                     return (
                                     <>
-                                        <div className='Wrap' key={indexSection}>
-                                            <h1 onClick={() => toggle(indexSection)}>{section.template_section.name}</h1>
+                                        <div className='Wrap' onClick={() => toggle(indexSection)} key={indexSection}>
+                                            <h1>{section.template_section.name}</h1>
                                             <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
                                         </div>
                                         <div className='activities-container'>

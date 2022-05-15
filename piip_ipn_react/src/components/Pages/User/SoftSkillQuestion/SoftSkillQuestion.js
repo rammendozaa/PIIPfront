@@ -9,12 +9,13 @@ const baseURL = "http://127.0.0.1:5000"
 
 
 function SoftSkillQuestion({userData}) {
+    const {activity} = useSelector(state => state.userActivity);
+    const activity_progress = (activity !== undefined && activity !== null) ? activity.activity_progress : null;
     const navigate = useNavigate()
     const userId = userData.user_id;
-    const {activity, activity_progress} = useSelector(state => state.userActivity);
     const {question_id} = useParams();
     const [question, setQuestion] = useState("Is this a question?");
-    const [answer, setAnswer] = useState("")
+    const [answer, setAnswer] = useState((activity_progress !== undefined && activity_progress !== null) ? activity_progress["answer"] : "")
 
     const updateUserTemplateActivity = async (user_activity_id, status_id) => {
         await fetch(
@@ -38,13 +39,14 @@ function SoftSkillQuestion({userData}) {
                 "answer":answer,
             }),
         })
+        alert("Question progress saved succesfully.")
     }
     const handleQuestionUpdate = async(status_id) => {
         if (userData.role === "user") {
             saveQuestionProgress(status_id);
             if ((activity !== undefined && activity !== null) && activity.user_activity_id) {
                 updateUserTemplateActivity(activity.user_activity_id,status_id);
-              }
+            }
         }
     }
 
@@ -52,7 +54,7 @@ function SoftSkillQuestion({userData}) {
         if ((activity !== undefined && activity !== null) && activity["question"]) {
             setQuestion(activity["question"])
             setAnswer(activity_progress["answer"])
-        } else {
+            } else {
             fetch(`/soft-skill-question?questionId=${question_id}`, {
                 method: "GET",
             })
@@ -61,28 +63,43 @@ function SoftSkillQuestion({userData}) {
                 setQuestion(data["question"])
             })
         }
-        handleQuestionUpdate(2);
     }, []);
 
     return (
         <>
-            <div className='main-container'>
+            <div className='ss-question-container'>
+                <div className='ss-question'>
                 {(userData.role !== "user") && 
-                    <div><h2>This is the question</h2><h1>{question}</h1></div>
+                    <div><h2 className="ss-question-title">This is the question</h2>
+                    <hr className="hr-style"/>
+                    <h1>{question}</h1></div>
                 }
                 {(userData.role === "user") && 
-                <div>
-                    <h2>Please respond to the following statement to the best of your abilities. Remember that you can save and come back later.</h2>
+                <>
+                    <div className="ss-question-title">
+                        <h2>Please respond to the following statement to the best of your abilities.</h2>
+                        <h3><p>Remember that you can save and come back later.</p></h3></div>
+                    <hr className="hr-style"/>
                     <h1>{question}</h1>
+                    <br/><br/>
                     <textarea
+                        className='text-area-ss-question'
                             id="input"
                             value={answer}
                             onChange={(e) => setAnswer(e.target.value)}>
                     </textarea>
-                    <button buttonStyle="btn--outline" onClick={() => saveQuestionProgress(2)}>Save</button>
-                    <button buttonStyle="btn--outline" onClick={() => handleQuestionUpdate(4)}>I'm done!</button>
-                    <button buttonStyle="btn--outline" onClick={() => navigate(`/my-course`)}>Go back to my course</button>
-                </div>}
+                </>}
+                </div>
+                {(userData.role === "user") && 
+                <>
+                              <div className="d-flex-ss-question justify-content-center-ss-question">
+
+                    <button className="btn-ss-question btn-light-ss-question" onClick={() => saveQuestionProgress(2)}>Save progress</button>
+                    <button className="btn-ss-question btn-primary-ss-question"  onClick={() => handleQuestionUpdate(4)}>I'm done!</button>
+                    <button className="btn-ss-question btn-light-ss-question"  onClick={() => navigate(`/my-course`)}>Go back to my course</button>
+                    </div>
+                </>}
+
             </div>
         </>
     )
