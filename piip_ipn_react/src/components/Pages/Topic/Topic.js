@@ -18,6 +18,12 @@ function Topic({userData}) {
   const [json, setJSON] = useState(
     localStorage.getItem('editorData')
   );
+  const [topicData, setTopicData] = useState({
+    "id": 2,
+    "topic_information": "{\"blocks\":[{\"key\":\"637gr\",\"text\":\"111111111111111111111111111111111111111111111\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":45,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":45,\"style\":\"fontsize-medium\"},{\"offset\":0,\"length\":45,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{}},{\"key\":\"307ac\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}},{\"key\":\"44a2k\",\"text\":\"22222222\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":8,\"style\":\"fontsize-medium\"},{\"offset\":0,\"length\":8,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"5rkjl\",\"text\":\"2222222222222222222222222222222222222\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":37,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":37,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"left\"}},{\"key\":\"9r2vk\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"4a3bh\",\"text\":\"33333333\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":8,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"4luqe\",\"text\":\"2222222222222222222222222222222222222\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":37,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":37,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"left\"}},{\"key\":\"1demf\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"f07ud\",\"text\":\"33333333\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":8,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"7mv0p\",\"text\":\"2222222222222222222222222222222222222\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":37,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":37,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"left\"}},{\"key\":\"fu1ae\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"f2ens\",\"text\":\"33333333\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":8,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"cfocm\",\"text\":\"2222222222222222222222222222222222222\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":37,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":37,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"left\"}},{\"key\":\"eau76\",\"text\":\"\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{\"text-align\":\"start\"}},{\"key\":\"bngm5\",\"text\":\"33333333\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[{\"offset\":0,\"length\":8,\"style\":\"color-rgb(0,0,0)\"},{\"offset\":0,\"length\":8,\"style\":\"fontfamily-PT Sans\\\", sans-serif\"}],\"entityRanges\":[],\"data\":{\"text-align\":\"left\"}}],\"entityMap\":{}}",
+    "description": "this is a descritpion",
+    "title": "aaaa"
+});
 
   const updateUserTemplateActivity = async (user_activity_id, status_id) => {
     await fetch(
@@ -44,13 +50,15 @@ function Topic({userData}) {
   useEffect(() => {
     if ((activity !== undefined && activity !== null) && activity["topic_information"]) {
       setJSON(activity["topic_information"])
+      setTopicData(activity);
     } else {
       fetch(`/${topic_route}?topicId=${topic_id}`, {
         method: "GET",
       })
       .then(res => res.json())
       .then(data => {
-        setJSON(data["topic_information"])
+        setJSON(data["topic_information"]);
+        setTopicData(data);
       });
     }
     if (userData.role === "user") {
@@ -111,19 +119,26 @@ $\\leq$
     <>
       <div className="topic-container">
         <div className="topic">
-          <div className="preview">
-            <div ref={node} key={Math.random()}>
+        <h1 className="topic-title">
+              {topicData.title}: {topicData.description}
+        </h1>
+        <hr className="hr-style"/>
+            <div className="parser" ref={node} key={Math.random()}>
               {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
             </div>
-						{(userData.role === "user") && <div><button className="btn-primary" 
-            onClick={() => {navigate(`/my-course`)}}>
-              Click here to go back to your course!
-            </button><button className="btn-primary" 
-            onClick={() => {handleButtonClick()}}>
-              Click here to mark activity as read!
-            </button></div>}
-          </div>
-        </div>
+            </div>
+            {(userData.role === "user") &&
+              <div className="d-flex-topic justify-content-center-topic">
+                <button button type="button" className="btn-topic btn-light-topic" 
+                  onClick={() => {navigate(`/my-course`)}}>
+                    Click here to go to your course!
+                </button>
+                <button type="button" className="btn-topic btn-primary-topic" 
+                  onClick={() => {handleButtonClick()}}>
+                    Click here to mark this topic as read!
+                </button>
+              </div>
+            }
       </div>
     </>
   );
