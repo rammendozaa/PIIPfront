@@ -52,6 +52,7 @@ function CourseContent({userData}) {
                     "position": (current.user_sections[index].user_activities.length) + 1,
                     "activityType": activity.typeId,
                     "userAdminId": admin_id,
+                    "interviewType": activity.reference,
                 }),
             })
         } else {
