@@ -1,5 +1,5 @@
 .create-quiz-container {
-    height: 100%;
+    height: 80%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -10,12 +10,13 @@
 .create-quiz {
     background-color: #fff;
     width: 450px;
-    min-height: 200px;
+    min-height: 300px;
     height: min-content;
     border-radius: 15px;
     padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-
     display: flex;
     justify-content: space-evenly;
 }
@@ -26,8 +27,7 @@
     display: flex;
     justify-content: space-evenly;
 }
-  
-.create-score-section {
+.score-section {
     display: flex;
     font-size: 24px;
     align-items: center;
@@ -39,7 +39,7 @@
     position: relative;
 }
   
-.create-question-count {
+.create-question-count{
     margin-bottom: 20px;
 }
   
@@ -90,87 +90,24 @@
     background-color: #ff3333;
     border: 5px solid #ff3333;
 }
+.answer-input {
+    background-color: transparent;
+    border: transparent;
+    color: #fff;
+}
+.answer-input:active {
+    background-color: transparent;
+    border: transparent;
+    color: #fff;
+}
+.answer-section-button:hover {
+    background-color: #859cdb;
+}
   
-/*.create-answer-section-button:hover {
-    background-color: #184be4;
-}*/
-  
-.create-answer-section-button:focus {
+.answer-section-button:focus {
     outline: none;
 }
   
-.create-answer-section-button svg {
+.answer-section-button svg {
     margin-right: 5px;
 }
-
-
-.div-table{
-    width: 80%;
-    height: 80%;
-    overflow: auto;
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    margin-top: 25px;
-}
-
-/*.content-table {
-    border-collapse: collapse;
-    font-size: 0.9em;
-    width: 100%;
-    height: 100%;
-}
-
-.content-table thead th{
-    position: sticky;
-    top: 0;
-    background-color: #009879;
-}
-
-.content-table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-    font-weight: bold;
-}
-.content-table th,
-.content-table td{
-    padding: 12px 15px;
-}
-
-.content-table .tdd {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.content-table tbody tr{
-    border-bottom: 1px solid #dddddd;
-    background-color: #dddddd;
-
-}
-.content-table tbody tr:nth-of-type(even){
-    background-color: #f3f3f3;    
-}
-
-.content-table tbody tr:last-of-type{
-    border-bottom: 2px solid #009879;
-}
-
-.content-table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
-
-::-webkit-scrollbar{
-    width: 6px;
-    background-color: #ddd;
-    border-radius: 0px 10px 0 0;
-}
-
-::-webkit-scrollbar-track{
-    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3)
-}
-
-::-webkit-scrollbar-thumb{
-    -webkit-box-shadow:inset 0 0 6px rgba(0,0,0,0.3)
-}*/

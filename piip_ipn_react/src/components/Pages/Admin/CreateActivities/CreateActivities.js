@@ -19,13 +19,13 @@ function CreateActivities({userData}) {
                      <li className='create-activities-nav-item'>
                         |
                      </li>
-                     <li className='create-activities-nav-item' onClick={() => setOption("softskillquestion")}>
+                     <li className='create-activities-nav-item' onClick={() => setOption("topic")}>
                         Add a new topic
                      </li>
                      <li className='create-activities-nav-item'>
                         |
                      </li>
-                     <li className='create-activities-nav-item' onClick={() => setOption("metrics")}>
+                     <li className='create-activities-nav-item' onClick={() => setOption("softskillquestion")}>
                         Add a new question
                      </li>
                      <li className='create-activities-nav-item'>
