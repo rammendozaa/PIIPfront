@@ -1,4 +1,4 @@
-.course-content-container{
+.template-view-container{
     width: 100%;
     height: 100%;
     display: flex;
@@ -9,7 +9,7 @@
     background-color: #202731;
     /*overflow: auto;*/
 }
-.course-content-container .sorry {
+.template-view-container .sorry {
     color: #fff;
     font-size: 70px;
     flex-shrink: 1;
@@ -19,7 +19,7 @@
     text-align: center;
     text-overflow: ellipsis;
   }
-.course-content-container .course{
+.template-view-container .course{
     width: 80%;
     height: 100%;
     display: flex;
@@ -28,7 +28,7 @@
     /*align-items: center;
     justify-content: center;*/
 }
-.course-content-container .course2{
+.template-view-container .course2{
     width: 100%;
     height: 100%;
     display: flex;
@@ -38,14 +38,14 @@
     justify-content: center;
 }
 
-.course-content-container .course .course-title{
+.template-view-title{
     text-align: left;
     width: 100%;
     min-width: 0;
     min-height: 0;
     color: #fff;
 }
-.course-content-container .course .AccordionSection{
+.template-view-container .course .AccordionSection{
     display: flex;
     flex-direction: column;
     /*align-items: center;
@@ -57,7 +57,7 @@
     margin-top: 10px;
     position: relative;
 }
-.course-content-container .course .AccordionSection .Container{
+.template-view-container .course .AccordionSection .Container{
     /*box-shadow: 2px 10px 35px 1px rgba(153, 153, 153, 0.3);*/
     width: 100%;
     margin-top: 10px;
@@ -65,7 +65,7 @@
     padding-bottom:10%;
     top: 30%;
 }
-.course-content-container .course .AccordionSection .Container .Wrap {
+.template-view-container .course .AccordionSection .Container .Wrap {
     background: #fff;
     color: #272727;
     display: flex;
@@ -77,20 +77,20 @@
     border-radius: 10px;
     margin: 5px;
 }
-.course-content-container .course .AccordionSection .Container .Wrap h1{
+.template-view-container .course .AccordionSection .Container .Wrap h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .Wrap span{
+.template-view-container .course .AccordionSection .Container .Wrap span{
     margin-right: 1.5rem;
 }
-.course-content-container .course .AccordionSection .Container .activities-container{
+.template-view-container .course .AccordionSection .Container .activities-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown {
+.template-view-container .course .AccordionSection .Container .Dropdown {
     background: #fff;
     border-radius: 10px;
 
@@ -101,15 +101,15 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown p{
+.template-view-container .course .AccordionSection .Container .Dropdown p{
     font-size: 1rem;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown span{
+.template-view-container .course .AccordionSection .Container .Dropdown span{
     margin-right: 1rem;
     color: red;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewActivity {
+.template-view-container .course .AccordionSection .Container .AddNewActivity {
     background: #fff;
     width: 98%;
     height: 50px;
@@ -122,11 +122,11 @@
     margin-top: 5px;
     border-radius: 10px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewActivity p{
+.template-view-container .course .AccordionSection .Container .AddNewActivity p{
     font-size: 2rem;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewSection {
+.template-view-container .course .AccordionSection .Container .AddNewSection {
     background: #fff;
     color: #272727;
     display: flex;
@@ -139,14 +139,28 @@
     margin: 5px;
     min-height: 60px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection .input{
+.template-view-container .course .AccordionSection .Container .AddNewSection .input{
     border: 0;
     outline: none;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection h1{
+.template-view-container .course .AccordionSection .Container .AddNewSection h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection span{
+.template-view-container .course .AccordionSection .Container .AddNewSection span{
     margin-right: 1.5rem;
+}
+
+.add-new-template {
+    background: #fff;
+    color: #272727;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
 }

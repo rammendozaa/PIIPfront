@@ -1,21 +1,36 @@
-import {useState} from 'react'
+import { useSelector } from "react-redux"
+import { useState } from 'react'
 import "./Templates.css"
 import { IconContext } from 'react-icons';
-import { FiPlus, FiMinus } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
 import Popup from '../../Admin/CourseContent/Popup';
 import { useParams } from "react-router-dom";
 import React, {useEffect} from 'react'
+
 const baseURL = "http://127.0.0.1:5000"
+const activityIdToName = {
+    1:"Problem",
+    2:"Algorithmic Topic",
+    3:"Soft Skill Question",
+    4:"Soft Skill Topic",
+    5:"Interview",
+    6:"Questionnaire",
+}
 
 
 function Templates({userData}) {
-    const {user_id} = useParams();
-    console.log(user_id)
-    const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
-
-
-    console.log("Token: ",userData.token)
+    const {activity} = useSelector(state => state.userActivity);
+    const {template_id} = useParams();
+    const [data, setData] = useState({
+            "id": 11,
+            "description": "o section",
+            "name": "no section",
+            "sections": [],
+            "position": null
+        });
+    
+    
     const [newActivityIndex, setNewActivityIndex] = useState(-1)
     const [newActivitySectionId, setNewActivitySectionId] = useState(-1)
     const [clicked, setClicked] = useState(-1);
@@ -34,36 +49,21 @@ function Templates({userData}) {
 
         var current = data;
         let response = null;
-        if (activity.typeId == 5) {
-            const admin_id = userData.user_id
-            response = await fetch(baseURL + `/user/${user_id}/interview/${templateSectionId}`, {
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    "name": activity.name,
-                    "description": activity.description,
-                    "position": (current.user_sections[index].user_activities.length) + 1,
-                    "activityType": activity.typeId,
-                    "userAdminId": admin_id,
-                }),
-            })
-        } else {
-            response = await fetch(baseURL + `/user/${user_id}/activity/${templateSectionId}`, {
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    "name": activity.name,
-                    "description": activity.description,
-                    "position": (current.user_sections[index].user_activities.length) + 1,
-                    "activityType": activity.typeId,
-                    "externalReference": activity.reference,
-                }),
-            })
-        }
+        response = await fetch(baseURL + `/activity/section/${templateSectionId}/activity/add`, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                "name": activity.name,
+                "description": activity.description,
+                "position": (current.sections[index].activities.length) + 1,
+                "activityType": activity.typeId,
+                "externalReference": activity.reference,
+            }),
+        })
         const newActivityResponse = await response.json()
         console.log(newActivityResponse)
-        current.user_sections[index].user_activities = [
-            ...current.user_sections[index].user_activities,
+        current.sections[index].activities = [
+            ...current.sections[index].activities,
             newActivityResponse
         ]
         setData(prevState => ({
@@ -75,10 +75,10 @@ function Templates({userData}) {
     const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
         if(window.confirm('Are you sure you want to delete this activity?')){
             var current = data;
-            await fetch(baseURL + `/user/activity/${sectionActivityId}/delete`, {
+            await fetch(baseURL + `/template/section/activity/${sectionActivityId}`, {
                 method: "DELETE"
             })
-            current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item,idx) => idx != indexActivity)
+            current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item,idx) => idx != indexActivity)
             setData(prevState => ({
                 ...prevState,
                 current
@@ -86,25 +86,25 @@ function Templates({userData}) {
         }
     }
 
-    const AddNewSection = async (user_template_id) => {
+    const AddNewSection = async () => {
         if(!newSectionName){
             alert("Section name can't be empty")
             return;
         }
         var current = data;
-        const response = await fetch(baseURL + `/user/${user_id}/section/${user_template_id}`,{
+        const response = await fetch(baseURL + `/template/${template_id}/section/add`,{
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 "name": newSectionName,
                 "description": newSectionName,
-                "position": (current.user_sections.length) + 1
+                "position": (current.sections.length) + 1
             }),
         })
         const newSectionResponse = await response.json()
         console.log(newSectionResponse)
-        current.user_sections = [
-            ...current.user_sections,
+        current.sections = [
+            ...current.sections,
             newSectionResponse,
         ]
         setData(prevState => ({
@@ -117,10 +117,10 @@ function Templates({userData}) {
     const deleteSection = async (index, sectionId) => {
         if(window.confirm('Are you sure you want to delete this section?')){
             var current = data;
-            await fetch(baseURL + `/user/section/${sectionId}/delete`, {
+            await fetch(baseURL + `/template/section/${sectionId}`, {
                 method: "DELETE"
             })
-            current.user_sections = current.user_sections.filter((item,idx) => idx != index)
+            current.sections = current.sections.filter((item,idx) => idx != index)
             setData(prevState => ({
                 ...prevState,
                 current
@@ -133,35 +133,32 @@ function Templates({userData}) {
         setNewActivitySectionId(templateSectionId)
         setButtonPopup(true)
     }
-
     useEffect(() => {
-        fetch(baseURL + `/user/${user_id}/template`,{
-            method: "GET",
-        })
-        .then(res => res.json())
-        .then(data => {
-            setData(data)
-        });
+        if ((activity !== undefined && activity !== null)) {
+            setData(activity.activity);
+        } else {
+            fetch(baseURL + `/template?template_id=${template_id}`,{
+                method: "GET",
+            })
+            .then(res => res.json())
+            .then(data => {
+                setData(data)
+            });
+        }
     }, []);
-
     return (
         <>
             <div className='course-content-container'>
-                {(data.template === undefined || data.template === null) && (
-                    <div className='course2'>
-                        <h1 className='sorry'>Once this user finishes his questionnaire he'll be assigned a course. Wait!</h1>
-                    </div>
-                )}
-                {data.template !== undefined && (<div className='course'> 
-                    <h1 className='course-title'>{data.template.name}</h1>
+                {data !== undefined && (<div className='course'> 
+                    <h1 className='course-title'>{data.name}</h1>
                     <IconContext.Provider value={{ color: 'red', size: '25px' }}>
                         <div className='AccordionSection'>
                             <div className='Container'>
-                                {data.user_sections.map((section, indexSection) => {
+                                {data.sections.map((section, indexSection) => {
                                     return (
                                     <>
                                         <div className='Wrap' key={indexSection}>
-                                            <h1 onClick={() => toggle(indexSection)}>{section.template_section.name}</h1>
+                                            <h1 onClick={() => toggle(indexSection)}>{section.name}</h1>
                                             <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
                                         </div>
                                         <div className='activities-container'>
@@ -169,11 +166,11 @@ function Templates({userData}) {
                                             clicked === indexSection 
                                                 ? 
                                                 (
-                                                    section.user_activities.map((activity,indexActivity) => {
+                                                    section.activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
-                                                                    <p><b>{activity.template_activity.name}</b>: {activity.template_activity.description}</p>
+                                                                    <p><b>{activityIdToName[activity.activityType]}</b>: {activity.name}</p>
                                                                     <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
                                                                 </div>                                                                
                                                             </>
@@ -198,13 +195,13 @@ function Templates({userData}) {
                                 })}
                                 <div className='AddNewSection'>
                                     <input type='text' placeholder='Section Name' className='input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
-                                    <span>{<FiPlus onClick={() => AddNewSection(data.id)}/>}</span>
+                                    <span>{<FiPlus onClick={() => AddNewSection()}/>}</span>
                                 </div>
                             </div>
                         </div>
                     </IconContext.Provider>
                 </div>)}
-                <Popup trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
+                <Popup showInterview={false} trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
             </div>
         </>
     )

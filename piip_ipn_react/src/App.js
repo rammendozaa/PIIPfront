@@ -24,7 +24,8 @@ import MyInterviews from './components/Pages/Admin/MyInterviews/MyInterviews';
 import CreateActivities from './components/Pages/Admin/CreateActivities/CreateActivities';
 import MyProfile from './components/Pages/User/MyProfile/MyProfile'
 import Quiz from './components/Pages/User/Quiz/Quiz';
-import Templates from './components/Pages/SuperAdmin/CourseContent/Templates'
+import Templates from './components/Pages/SuperAdmin/CourseContent/Templates';
+import TemplatesView from './components/Pages/SuperAdmin/CourseContent/TemplatesView';
 import SoftSkillQuestion from './components/Pages/User/SoftSkillQuestion/SoftSkillQuestion';
 
 function App() {
@@ -60,7 +61,8 @@ function App() {
           <Route path='/create-activity' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><CreateActivities userData={userData}/></PrivateRoute>} />
           <Route path='/my-interviews' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><MyInterviews userData={userData}/></PrivateRoute>} />          
           {/*SuperAdmin*/}
-          <Route path='/templates' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super"]}><Templates userData={userData}/></PrivateRoute>} />          
+          <Route path='/templates-view' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super"]}><TemplatesView userData={userData}/></PrivateRoute>} />          
+          <Route path='/templates/:template_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super"]}><Templates userData={userData}/></PrivateRoute>} />          
         </Routes>
       </Router>
     </>
