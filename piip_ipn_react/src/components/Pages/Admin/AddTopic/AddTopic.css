@@ -11,7 +11,30 @@
     border: 1px solid #ccc;
 }*/
 .add-topic-container {
-  margin: 25px 100px;
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.add-topic-container .options-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.add-topic-container .options-container .optionx{
+  margin: 10px;
+}
+.add-topic-container .options-container .optionx label{
+  margin: 10px;
+}
+.add-topic-container .save {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .rdw-editor-main {
@@ -119,4 +142,33 @@
 > .rdw-dropdown-optionwrapper
 .symbol {
   padding: 4px 8px;
+}
+
+.btn-create-activities {
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    margin: 0 5px;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    color: #fff;
+    background-color: #202731;
+    border-color: #202731;
+}
+
+.btn-create-activities:hover {
+  color: #fff;
+  background-color: #202731;
+  border-color: #202731;
 }

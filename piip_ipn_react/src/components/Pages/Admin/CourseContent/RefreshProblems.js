@@ -15,9 +15,7 @@ function RefreshProblems() {
     return (
         <>
             <h1>{waitingMessage}</h1>
-            <div className="d-flex-refresh-problems">
-                <button className="btn-refresh-problems" onClick={insertProblemsToDatabase}>Click to refresh</button>
-            </div>
+            <button className="btn-refresh-problems" onClick={insertProblemsToDatabase}>Refresh Problems</button>
         </>
     )
 }

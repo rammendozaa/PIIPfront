@@ -1,7 +1,8 @@
 import {useState} from 'react'
 import React, {useEffect} from 'react'
-const baseURL = "http://127.0.0.1:5000"
+import "./AddSoftSkillQuestion.css"
 
+const baseURL = "http://127.0.0.1:5000"
 
 function AddSoftSkillQuestion({userData}) {
     const [title, setTitle] = useState("")
@@ -33,17 +34,25 @@ function AddSoftSkillQuestion({userData}) {
             }),
         })
     }
-
-
     return (
         <>
-        <div>
-            <h1>Add a question related to one of the topics available</h1>
-            <h2>Title</h2>
-            <textarea id="title" value={title} onChange={(e) => setTitle(e.target.value)}></textarea>
-            <h2>Question</h2>
-            <textarea id="question" value={question} onChange={(e) => setQuestion(e.target.value)}></textarea>
-            <button buttonStyle="btn--outline" onClick={() => createSoftSkillQuestion()}>Add to soft skill questions</button>
+        <div className='softkillq-container'>
+            <div className='softskill'>
+                <div className='softskill-l'>
+                    <div className='ssTop'>
+                        <h2 className='ssTitle'>Title</h2>
+                        <textarea className='ssTitleTA' id="title" value={title} onChange={(e) => setTitle(e.target.value)}></textarea>
+                    </div>
+                    <div className='ssBottom'>
+                        <h2 className='ssTitle'>Question</h2>
+                        <textarea className='ssQuestionTA' id="question" value={question} onChange={(e) => setQuestion(e.target.value)}></textarea>
+                        <button className='btn-create-activities2' buttonStyle="btn--outline" onClick={() => createSoftSkillQuestion()}>Add to soft skill questions</button>
+                    </div>
+                </div>
+                <div className='softskill-r'>
+                    <img src='/images/soft-skills.png'/>
+                </div>
+            </div>
         </div>
         </>
     );

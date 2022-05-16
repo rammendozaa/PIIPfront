@@ -73,15 +73,14 @@ function AddTopic() {
         <>
             <div className="add-topic-container">
                 <div className='options-container'>
-                    <p>Please select topic type:</p>
-                    <div className='options'>
-                    <input type="radio" id="SoftSkill" name="topicType" value="SoftSkill" onChange={(e) => setOption(e.target.value)}/>
-                    <label for="SoftSkill">Soft Skill</label>
-
-                    <input type="radio" id="AlgorithmTopic" name="topicType" value="AlgorithmTopic" onChange={(e) => setOption(e.target.value)}/>
-                    <label for="AlgorithmTopic">Algorithm Topic</label>
-
+                    <div className='optionx'>
+                        <input type="radio" id="SoftSkill" name="topicType" value="SoftSkill" onChange={(e) => setOption(e.target.value)}/>
+                        <label for="SoftSkill">Soft Skill</label>
                     </div>
+                    <div className='optionx'>
+                        <input type="radio" id="AlgorithmTopic" name="topicType" value="AlgorithmTopic" onChange={(e) => setOption(e.target.value)}/>
+                        <label for="AlgorithmTopic">Algorithm Topic</label>
+                    </div>                            
                 </div>
                 <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
                 <div className="preview-container">
@@ -95,7 +94,7 @@ function AddTopic() {
                 </div>
                 <div className="save">
                     <input type="text" placeholder="filename" value={filename} onChange={(e) => setFilename(e.target.value)}/>
-                    <button onClick={saveFile}>Save</button>
+                    <button onClick={saveFile} className="btn-create-activities">Save</button>
                 </div>
             </div>
         </>
