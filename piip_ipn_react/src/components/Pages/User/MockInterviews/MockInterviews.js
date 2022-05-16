@@ -32,7 +32,6 @@ function MockInterviews({userData}) {
         if ((activity !== undefined && activity !== null)) {
             setInterviewInfo(activity["activity"])
         } else {
-            console.log("fjdaskfjsdk")
             fetch(`/interview?interview_id=${interview_id}`, {
                 method: "GET"
             })

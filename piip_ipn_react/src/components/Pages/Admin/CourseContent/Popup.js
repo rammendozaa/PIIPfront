@@ -109,8 +109,8 @@ function Popup(props) {
           <input type="radio" id="quest" name="activityType" value="quest" onChange={(e) => setOption(e.target.value)}/>
           <label for="quest">Questionnaire</label>
 
-          <input type="radio" id="interview" name="activityType" value="interview" onChange={(e) => setOption(e.target.value)}/>
-          <label for="interview">Interview</label>
+          {props.showInterview === null && <><input type="radio" id="interview" name="activityType" value="interview" onChange={(e) => setOption(e.target.value)}/>
+          <label for="interview">Interview</label></>}
         </div>
       </div>
       <div className='create-activity'>
