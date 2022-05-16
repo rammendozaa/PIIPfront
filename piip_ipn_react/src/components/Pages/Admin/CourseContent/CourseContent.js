@@ -217,6 +217,7 @@ function CourseContent({userData}) {
                     setButtonPopup={setButtonPopup}
                     userData={userData}
                     functionToAddActivity={addNewActivity}
+                    showInterview={true}
                     activityIndex={newActivityIndex}
                     sectionId={newActivitySectionId}
                 />
