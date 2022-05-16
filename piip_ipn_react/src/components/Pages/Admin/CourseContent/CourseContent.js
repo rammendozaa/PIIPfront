@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import "./CourseContent.css"
 import { IconContext } from 'react-icons';
-import { FiPlus, FiMinus } from 'react-icons/fi';
+import { FiCheck, FiPlus, FiSlash, FiEdit3 } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
 import Popup from './Popup';
 import { useParams } from "react-router-dom";
@@ -181,7 +181,23 @@ function CourseContent({userData}) {
                                                         return (
                                                             <>
                                                                 <div className='Dropdown' key={indexActivity}>
-                                                                    <p><b>{activityIdToName[activity.template_activity.activityType]}</b>: {activity.template_activity.name}</p>
+                                                                    <p><b>
+                                                                        {activity.status_id === 4 && <span>
+                                                                            <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
+                                                                                <FiCheck/>
+                                                                            </IconContext.Provider>
+                                                                        </span>}
+                                                                        {activity.status_id === 1 && <span>
+                                                                            <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
+                                                                                <FiSlash/>
+                                                                            </IconContext.Provider>
+                                                                        </span>}
+                                                                        {activity.status_id !== 1 && activity.status_id !== 4 && <span>
+                                                                            <IconContext.Provider value={{ color: "black", className: "global-class-name" }}>
+                                                                                <FiEdit3/>
+                                                                            </IconContext.Provider>
+                                                                        </span>}
+                                                                        {activityIdToName[activity.template_activity.activityType]}</b>: {activity.template_activity.name}</p>
                                                                     <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
                                                                 </div>                                                                
                                                             </>

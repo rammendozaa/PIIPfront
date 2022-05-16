@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import AddTopic from '../AddTopic/AddTopic'
 import './Popup.css'
 import SeeProblems from './SeeProblems'
 import SeeTopics from './SeeTopics'

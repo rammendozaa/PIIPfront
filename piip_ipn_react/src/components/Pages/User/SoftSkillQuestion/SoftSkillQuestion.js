@@ -45,8 +45,11 @@ function SoftSkillQuestion({userData}) {
         if (userData.role === "user") {
             saveQuestionProgress(status_id);
             if ((activity !== undefined && activity !== null) && activity.user_activity_id) {
-                updateUserTemplateActivity(activity.user_activity_id,status_id);
+                if (activity.user_activity_status_id !== 4) {
+                    updateUserTemplateActivity(activity.user_activity_id,status_id);
+                }
             }
+            navigate(`/my-course`);
         }
     }
 
@@ -94,8 +97,8 @@ function SoftSkillQuestion({userData}) {
                 <>
                               <div className="d-flex-ss-question justify-content-center-ss-question">
 
-                    <button className="btn-ss-question btn-light-ss-question" onClick={() => saveQuestionProgress(2)}>Save progress</button>
-                    <button className="btn-ss-question btn-primary-ss-question"  onClick={() => handleQuestionUpdate(4)}>I'm done!</button>
+                    <button className="btn-ss-question btn-light-ss-question" onClick={() => handleQuestionUpdate(2)}>Save progress</button>
+                    {((activity !== undefined && activity !== null) && activity.user_activity_status_id !== 4) && <button className="btn-ss-question btn-primary-ss-question"  onClick={() => handleQuestionUpdate(4)}>I'm done!</button>}
                     <button className="btn-ss-question btn-light-ss-question"  onClick={() => navigate(`/my-course`)}>Go back to my course</button>
                     </div>
                 </>}
