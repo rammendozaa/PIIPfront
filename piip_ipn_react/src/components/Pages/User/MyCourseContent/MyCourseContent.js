@@ -1,3 +1,4 @@
+import { FiCheck, FiSlash, FiEdit3 } from 'react-icons/fi';
 import {useEffect, useState} from 'react'
 import "./MyCourseContent.css"
 import { useParams } from "react-router-dom";
@@ -169,7 +170,23 @@ function CourseContent({userData}) {
                                                             <>
                                                                 <div className='Dropdown' onClick={() => redirectToActivity(
                                                                     activity)} key={indexActivity}>
-                                                                    <p><b>{activityIdToName[activity.template_activity.activityType]}</b>: {activity.template_activity.name}</p>
+                                                                    <p><b>
+                                                                    {activity.status_id === 4 && <span>
+                                                                            <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
+                                                                                <FiCheck/>
+                                                                            </IconContext.Provider>
+                                                                        </span>}
+                                                                        {activity.status_id === 1 && <span>
+                                                                            <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
+                                                                                <FiSlash/>
+                                                                            </IconContext.Provider>
+                                                                        </span>}
+                                                                        {activity.status_id !== 1 && activity.status_id !== 4 && <span>
+                                                                            <IconContext.Provider value={{ color: "black", className: "global-class-name" }}>
+                                                                                <FiEdit3/>
+                                                                            </IconContext.Provider>
+                                                                        </span>}
+                                                                        {activityIdToName[activity.template_activity.activityType]}</b>: {activity.template_activity.name}</p>
                                                                 </div>                                                                
                                                             </>
                                                         )

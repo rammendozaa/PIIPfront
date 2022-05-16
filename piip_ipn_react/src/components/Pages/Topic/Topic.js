@@ -45,6 +45,9 @@ function Topic({userData}) {
           "statusId": status_id,
       }),
     })
+    if (status_id === 4) {
+      alert("Topic progress saved succesfully.")
+    }
   }
 
   useEffect(() => {
@@ -70,47 +73,15 @@ function Topic({userData}) {
   }, []);
 
   const handleButtonClick = async () => {
-    updateUserTopic(4);
-		if ((activity !== undefined && activity !== null) && activity.user_activity_id) {
-			updateUserTemplateActivity(activity.user_activity_id,4);
-		}
+    if (userData.role === "user") {
+      updateUserTopic(4);
+  		if ((activity !== undefined && activity !== null) && activity.user_activity_id) {
+	  		updateUserTemplateActivity(activity.user_activity_id,4);
+		  }
+      navigate(`/my-course`);
+    }
   }
-  /*
-  const markdown = `
-# Graphs
-You are given a tree with $N$ and a number $K$. Each node has a weight associated with it. The tree is rooted in node 1.
-You have to choose $K$ disjoint subtrees such that the sum of all chosen subtrees is maximum.
-See test cases for a better understanding.
-Given a **formula** below
-$$
-s = ut + \\frac{1}{2}at^{2}
-$$
-x &lt; 3
-\\
-Some of the \textbf{greatest}
 
-Here is a [Link](https://example.com/ "Optional link title").
-\\
-Calculate the value of $s$ when $u = 10\\frac{m}{s}$ and $a = 2\\frac{m}{s^{2}}$ at $t = 1s$
-\\
-![image info](https://www.himgs.com/imagenes/hola/comunes/hola-2017.gif)
-\\
-$\\sigma_U \\sim \\mathrm{Normal}(0, \\Theta_U^2)$
-\\
-$\\int_0^\\infty x^2 dx$
-\\
-$\\leq$
-`
-*/
-  /*return (
-    <>
-      <div className="topic-container">
-        <div className="topic">
-          <MarkdownRender children={markdown} />
-        </div>
-      </div>
-    </>
-  );*/
   const node = useRef();
   useEffect(() => {
     window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current]);
@@ -133,10 +104,11 @@ $\\leq$
                   onClick={() => {navigate(`/my-course`)}}>
                     Click here to go to your course!
                 </button>
+                {((activity.activity_progress !== undefined && activity.activity_progress !== null) && activity.activity_progress.status_id !== 4) && 
                 <button type="button" className="btn-topic btn-primary-topic" 
                   onClick={() => {handleButtonClick()}}>
                     Click here to mark this topic as read!
-                </button>
+                </button>}
               </div>
             }
       </div>
