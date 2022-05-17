@@ -83,6 +83,11 @@ function Navbar({userData, validUserData, removeUserData}) {
                                     Templates
                                 </Link>
                             </li>
+                            <li className='nav-item'>
+                                <Link to="/my-interviews" className="nav-links" onClick={closeMobileMenu}>
+                                    My interviews
+                                </Link>
+                            </li>
                         </ul>
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}                
                     </>

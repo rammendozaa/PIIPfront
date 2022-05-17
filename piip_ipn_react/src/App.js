@@ -49,7 +49,7 @@ function App() {
           <Route path='/soft-skill/:soft_topic_id' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user","mentor"]}><SoftSkills userData={userData}/></PrivateRoute>}/>
           <Route path='/solve-quiz/:quiz_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user", "mentor"]}><Quiz userData={userData}/></PrivateRoute>} />          
           <Route path='/soft-skill-question/:question_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user", "mentor"]}><SoftSkillQuestion userData={userData}/></PrivateRoute>} />          
-          <Route path='/mock-interviews/:interview_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user", "mentor"]}><MockInterviews userData={userData}/></PrivateRoute>}/>
+          <Route path='/mock-interviews/:interview_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user", "mentor","super"]}><MockInterviews userData={userData}/></PrivateRoute>}/>
           {/*User*/}
           <Route path='/company-tracking' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><CompanyTracking userData={userData}/></PrivateRoute>}/>
           <Route path='/my-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyCourseContent userData={userData}/></PrivateRoute>} />
@@ -59,7 +59,7 @@ function App() {
           <Route path='/add-topic' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor","super"]}><AddTopic/></PrivateRoute>} />
           <Route path='/my-students' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><MyStudents userData={userData}/></PrivateRoute>} />          
           <Route path='/create-activity' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><CreateActivities userData={userData}/></PrivateRoute>} />
-          <Route path='/my-interviews' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor"]}><MyInterviews userData={userData}/></PrivateRoute>} />          
+          <Route path='/my-interviews' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor","super"]}><MyInterviews userData={userData}/></PrivateRoute>} />          
           {/*SuperAdmin*/}
           <Route path='/templates-view' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super"]}><TemplatesView userData={userData}/></PrivateRoute>} />          
           <Route path='/templates/:template_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super"]}><Templates userData={userData}/></PrivateRoute>} />          
