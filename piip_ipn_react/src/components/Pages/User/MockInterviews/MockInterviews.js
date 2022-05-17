@@ -1,12 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import DateTimePicker from 'react-datetime-picker';
 import { useSelector } from "react-redux"
-
+import './MockInterviews.css'
+import { IconContext } from 'react-icons';
+import { BiArrowBack } from 'react-icons/bi';
 const baseURL = "http://127.0.0.1:5000"
 
 function MockInterviews({userData}) {
+    const [goBack,setGoBack] = useState(false)
     const {activity} = useSelector(state => state.userActivity);
     const [interviewInfo, setInterviewInfo] = useState({"feedback": null,
     "interviewCode": null,
@@ -96,87 +99,104 @@ function MockInterviews({userData}) {
                 interview_code:interviewCode,
             });
         }
-//        return <></>
         return (
             <>
                 {isConfirmed === true &&
-                    <div>
-                    <h1>Date for interview: {chosenCalendarDate}</h1>
+                    <div className='mock-interview-message'>
+                    <h1 className='message-h1'>Date for interview: {chosenCalendarDate}</h1>
                     </div>
                 }
                 {isConfirmed === false &&
-                    <div>
-                        <h1>Choose a date for your interview:</h1>
-                        <div><DateTimePicker onChange={setChosenDate} value={chosenCalendarDate}/></div>
+                    <div className='mock-interview-message choose-interview'>
+                        <h1 className='message-h1'>Choose a date for your interview:</h1>
+                        <DateTimePicker onChange={setChosenDate} value={chosenCalendarDate}/>
                     </div>}
                 {interviewURL === null &&
                 <>
-                    <h1>Add a link for your upcoming interview:</h1>
-                    <textarea
-                        id="comment"
-                        value={interviewURL}
-                        onChange={(e) => setInterviewURL(e.target.value)}>
-                    </textarea>
+                    <div className='mock-interview-message comments'>
+                        <h1 className='message-h1'>Add a link for your upcoming interview:</h1>
+                        <textarea
+                            className='ta'
+                            id="comment"
+                            value={interviewURL}
+                            onChange={(e) => setInterviewURL(e.target.value)}>
+                        </textarea>
+                    </div>
                 </>
                 }
                 {url !== null &&
                 <>
-                <h1>Upcoming interview link: {url}</h1>
+                <div className='mock-interview-message'>
+                    <h1 className='message-h1'>Upcoming interview link: {url}</h1>
+                </div>
                 </>
                 }
                 {comm !== null &&
-                <div><h1>Last interaction:</h1><h2>{comm}</h2></div>
+                <div className='mock-interview-message'>
+                    <h1 className='message-h1'>Last interaction:</h1>
+                    <h2 className='message-h2'>{comm}</h2>
+                </div>
                 }
                 {interviewFeedback === null &&
                 <>
-                    <h1>Add some feedback for this user based on your interview:</h1>
-                    <textarea
-                        id="comment"
-                        value={interviewFeedback}
-                        onChange={(e) => setInterviewFeedback(e.target.value)}>
-                    </textarea>
+                    <div className='mock-interview-message comments'>
+                        <h1 className='message-h1'>Feedback:</h1>
+                        <textarea
+                            className='ta'
+                            id="comment"
+                            value={interviewFeedback}
+                            onChange={(e) => setInterviewFeedback(e.target.value)}>
+                        </textarea>
+                    </div>
                 </>
                 }
                 {interviewFeedback !== null &&
                     <>
-                    <h1>This is the feedback you submitted: <p>{url}</p></h1>
+                    <div className='mock-interview-message'>
+                        <h1 className='message-h1'>This is the feedback you submitted: <p>{url}</p></h1>
+                    </div>
                     </>
                 }
                 {interviewCode === null &&
                 <>
-                    <h1>Add the code written here:</h1>
+                    <div className='mock-interview-message comments'>
+                    <h1 className='message-h1'>Add the code written here:</h1>
                     <textarea
+                        className='ta'
                         id="comment"
                         value={interviewCode}
                         onChange={(e) => setInterviewCode(e.target.value)}>
                     </textarea>
+                    </div>
                 </>
                 }
                 {isConfirmed === false &&
-                <label>
-                    <input
-                        type="checkbox"
-                        onChange={() => {setChecked(!isChecked)}}
-                        />
-                    Confirm interview?
-                </label>
+                <div className='mock-interview-message'>
+                    <label>
+                        <input
+                            type="checkbox"
+                            onChange={() => {setChecked(!isChecked)}}
+                            />
+                        Confirm interview?
+                    </label>
+                </div>
                 }
-                <div>
-                    <h2>Comments or questions?</h2>
+                <div className='mock-interview-message comments'>
+                    <h2 className='message-h2'>Comments or questions?</h2>
                     <textarea
+                        className='ta'
                         id="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}>
                     </textarea>
+                    <button className='bt3' onClick={() => saveChanges()}>Save interview info</button>
                 </div>
-                <button onClick={() => saveChanges()}>Save interview info</button>
-                <button onClick={() => saveChanges()}>Go back to my pending interviews</button>
+                {/*<button onClick={() => saveChanges()}>Go back to my pending interviews</button>*/}
             </>
         )
     }
 
     function UserInterview({interviewInfo}) {
-        const navigate = useNavigate()
         const isConfirmed = interviewInfo["isConfirmed"]
         const feedback = interviewInfo["feedback"]
         const comm = interviewInfo["comment"]
@@ -196,9 +216,9 @@ function MockInterviews({userData}) {
         return (
             <>
                 {isConfirmed === true && feedback === null &&
-                <div>
-                    <h1>The interview will be held here: {interviewInfo["interview_url"]}</h1>
-                    <h1>At this date: {chosenCalendarDate}</h1>
+                <div className='mock-interview-message'>
+                    <h1 className='message-h1'>The interview will be held here: {interviewInfo["interview_url"]}</h1>
+                    <h1 className='message-h1'>At this date: {chosenCalendarDate}</h1>
                 </div>}
                 {feedback !== null &&
                     <div>
@@ -206,46 +226,68 @@ function MockInterviews({userData}) {
                     </div>
                 }
                 {comm !== null &&
-                <div><h1>Last interaction:</h1><h2>{comm}</h2></div>
+                <div className='mock-interview-message'>
+                        <h1 className='message-h1'>Last interaction:</h1>
+                        <h2 className='message-h2'> {comm}</h2>
+                        <a class="close">&times;</a>
+                </div>
                 }
                 {isConfirmed === false &&
-                <div>
-                    <h1>Choose a date for your interview:</h1>
-                    <div><DateTimePicker onChange={setChosenDate} value={chosenCalendarDate}/></div>
-                </div>}
-                <div>
-                    <h2>Comments or questions?</h2>
+                <div className='mock-interview-message choose-interview'>
+                    <h1 className='message-h1'>Choose the interview day:</h1>
+                    <DateTimePicker onChange={setChosenDate} value={chosenCalendarDate}/>
+                </div>
+                }
+                <div className='mock-interview-message comments'>
+                    <h2 className='message-h2'>Comments or questions?</h2>
                     <textarea
+                        className='ta'
                         id="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}>
                     </textarea>
+                    <button className="btn3" onClick={() => saveChanges()}>Save interview info</button>
                 </div>
-                <button onClick={() => saveChanges()}>Save interview info</button>
-                <button onClick={() => navigate(`/my-course`)}>Go back to my course</button>
             </>
         )
     }
-
-
+    if(goBack === true){
+        let url = '/my-course'
+        return (
+            <Navigate to={url}/>
+        )
+    }
     return (
         <>
-            <div className='mock-interviews-container'>
-
-            </div>
-            <div className='Container'>
-                {userData.role === "user" &&
-                    <>
-                        <h1>View the details of your upcoming interview</h1>
-                        <UserInterview interviewInfo={interviewInfo}/>
-                    </>
-                }
-                {userData.role !== "user" &&
-                    <>
-                        <h1>View the details of this interview:</h1>
-                        <AdminInterview interviewInfo={interviewInfo}/>
-                    </>
-                }
+            <div className='mock-interview-container'>
+                <div className='mock-interview'>
+                    {userData.role === "user" &&
+                        <>
+                            <div className='mock-bar'>
+                                <IconContext.Provider value={{ color: '#202731', size: '25px' }}>
+                                    <BiArrowBack onClick={() => setGoBack(true)}/>
+                                </IconContext.Provider>
+                                <h1 className='view-details'>View the details of your upcoming interview</h1>
+                            </div>
+                            <div className='mi'>
+                                <UserInterview interviewInfo={interviewInfo}/>
+                            </div>
+                        </>
+                    }
+                    {userData.role !== "user" &&
+                        <>
+                            <div className='mock-bar'>
+                                <IconContext.Provider value={{ color: '#202731', size: '25px' }}>
+                                    <BiArrowBack/>
+                                </IconContext.Provider>
+                                <h1 className='view-details'>Interview's details:</h1>
+                            </div>                                
+                            <div className='mi'>
+                                <AdminInterview interviewInfo={interviewInfo}/>
+                            </div>
+                        </>
+                    }
+                </div>
             </div>
         </>
     )
