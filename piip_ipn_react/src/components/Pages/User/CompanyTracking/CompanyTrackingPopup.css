@@ -1,0 +1,59 @@
+.company {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0,0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 0;
+    min-width: 0;
+    margin-top: 80px;
+}
+
+.company-inner {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width: 840px;
+    min-height: 0;
+    max-height: 640px;
+    min-width: 0;
+    background-color: #FFF;
+    border-radius: 10px;
+    overflow: auto;
+}
+
+.company-inner .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.company-inner .options-container{
+    height: 100%;
+    width: 100%;
+    min-height: 0;
+    min-width: 0;
+}
+
+.company-inner .options-container p{
+    min-height: 0;
+    min-width: 0;
+}
+
+.company-inner .options-container .options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    min-height: 0;
+    min-width: 0;
+}
+.company-inner .create-activity{
+    overflow: auto;
+    width: 100%;
+    height: 500px;
+}

@@ -14,15 +14,6 @@ function TemplatesView({userData}) {
     const dispatch = useDispatch();
     const [newTemplateTitle, setNewTemplateTitle] = useState("")
     const [newTemplateDescription, setNewTemplateDescription] = useState("")
-    useEffect(() => {
-        fetch(baseURL + `/template`, {
-            method: "GET",
-        })
-        .then(res => res.json())
-        .then(data => {
-            setTemplates(data);
-        })
-    }, []);
 
     const handleClick = (template) => {
         const activityInfo = ActivityInfo(
@@ -58,10 +49,22 @@ function TemplatesView({userData}) {
             ...current,
             newTemplateResponse,
         ]
-        setTemplates(current);
+        setTemplates(prevState => ({
+            ...prevState,
+            current
+        }))
         setNewTemplateTitle("");
         setNewTemplateDescription("");
     }
+        useEffect(() => {
+            fetch(baseURL + `/template`, {
+                method: "GET",
+            })
+            .then(res => res.json())
+            .then(data => {
+                setTemplates(data);
+            })
+        }, []);
     return (
         <>
             <div className='template-view-container'>
