@@ -10,6 +10,7 @@ const baseURL = "http://127.0.0.1:5000"
 
 function MockInterviews({userData}) {
     const [goBack,setGoBack] = useState(false)
+    const [goBackAdmin,setGoBackAdmin] = useState(false)
     const {activity} = useSelector(state => state.userActivity);
     const [interviewInfo, setInterviewInfo] = useState({"feedback": null,
     "interviewCode": null,
@@ -189,7 +190,7 @@ function MockInterviews({userData}) {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}>
                     </textarea>
-                    <button className='bt3' onClick={() => saveChanges()}>Save interview info</button>
+                    <button className="btn10" onClick={() => saveChanges()}>Save interview info</button>
                 </div>
                 {/*<button onClick={() => saveChanges()}>Go back to my pending interviews</button>*/}
             </>
@@ -246,13 +247,19 @@ function MockInterviews({userData}) {
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}>
                     </textarea>
-                    <button className="btn3" onClick={() => saveChanges()}>Save interview info</button>
+                    <button className="btn10" onClick={() => saveChanges()}>Save interview info</button>
                 </div>
             </>
         )
     }
     if(goBack === true){
         let url = '/my-course'
+        return (
+            <Navigate to={url}/>
+        )
+    }
+    if(goBackAdmin === true){
+        let url = '/my-interviews'
         return (
             <Navigate to={url}/>
         )
@@ -278,7 +285,7 @@ function MockInterviews({userData}) {
                         <>
                             <div className='mock-bar'>
                                 <IconContext.Provider value={{ color: '#202731', size: '25px' }}>
-                                    <BiArrowBack/>
+                                    <BiArrowBack onClick={() => setGoBackAdmin(true)}/>
                                 </IconContext.Provider>
                                 <h1 className='view-details'>Interview's details:</h1>
                             </div>                                

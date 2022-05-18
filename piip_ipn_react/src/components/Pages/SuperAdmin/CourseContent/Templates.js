@@ -150,59 +150,61 @@ function Templates({userData}) {
     return (
         <>
             <div className='course-content-container'>
-                {data !== undefined && (<div className='course'> 
-                    <h1 className='course-title'>{data.name}</h1>
-                    <IconContext.Provider value={{ color: 'red', size: '25px' }}>
-                        <div className='AccordionSection'>
-                            <div className='Container'>
-                                {data.sections.map((section, indexSection) => {
-                                    return (
-                                    <>
-                                        <div className='Wrap' key={indexSection}>
-                                            <h1 onClick={() => toggle(indexSection)}>{section.name}</h1>
-                                            <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
-                                        </div>
-                                        <div className='activities-container'>
-                                        {
-                                            clicked === indexSection 
-                                                ? 
+                <div className="course-content">
+                    {data !== undefined && (<div className='course'> 
+                        <h1 className='course-title'>{data.name}</h1>
+                        <IconContext.Provider value={{ color: 'red', size: '25px' }}>
+                            <div className='AccordionSection'>
+                                <div className='Container'>
+                                    {data.sections.map((section, indexSection) => {
+                                        return (
+                                        <>
+                                            <div className='Wrap' key={indexSection}>
+                                                <h1 onClick={() => toggle(indexSection)}>{section.name}</h1>
+                                                <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
+                                            </div>
+                                            <div className='activities-container'>
+                                            {
+                                                clicked === indexSection 
+                                                    ? 
+                                                    (
+                                                        section.activities.map((activity,indexActivity) => {
+                                                            return (
+                                                                <>
+                                                                    <div className='Dropdown' key={indexActivity}>
+                                                                        <p><b>{activityIdToName[activity.activityType]}</b>: {activity.name}</p>
+                                                                        <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
+                                                                    </div>                                                                
+                                                                </>
+                                                            )
+                                                        })
+                                                    ) 
+                                                    : null
+                                            }
+                                            {
+                                                clicked === indexSection
+                                                ?
                                                 (
-                                                    section.activities.map((activity,indexActivity) => {
-                                                        return (
-                                                            <>
-                                                                <div className='Dropdown' key={indexActivity}>
-                                                                    <p><b>{activityIdToName[activity.activityType]}</b>: {activity.name}</p>
-                                                                    <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
-                                                                </div>                                                                
-                                                            </>
-                                                        )
-                                                    })
-                                                ) 
-                                                : null
-                                        }
-                                        {
-                                            clicked === indexSection
-                                            ?
-                                            (
-                                                <div className='AddNewActivity'>
-                                                    <span>{<FiPlus onClick={() => prepareNewSection(indexSection, section.id) }/>}</span>
-                                                </div>
-                                            )
-                                            :null
-                                        }
-                                        </div>
-                                    </>
-                                    );
-                                })}
-                                <div className='AddNewSection'>
-                                    <input type='text' placeholder='Section Name' className='input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
-                                    <span>{<FiPlus onClick={() => AddNewSection()}/>}</span>
+                                                    <div className='AddNewActivity'>
+                                                        <span>{<FiPlus onClick={() => prepareNewSection(indexSection, section.id) }/>}</span>
+                                                    </div>
+                                                )
+                                                :null
+                                            }
+                                            </div>
+                                        </>
+                                        );
+                                    })}
+                                    <div className='AddNewSection'>
+                                        <input type='text' placeholder='Section Name' className='input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
+                                        <span>{<FiPlus onClick={() => AddNewSection()}/>}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </IconContext.Provider>
-                </div>)}
-                <Popup showInterview={false} trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
+                        </IconContext.Provider>
+                    </div>)}
+                    <Popup showInterview={false} trigger={buttonPopup} setButtonPopup={setButtonPopup} userData={userData} functionToAddActivity={addNewActivity} activityIndex={newActivityIndex} sectionId={newActivitySectionId}/>
+                </div>
             </div>
         </>
     )

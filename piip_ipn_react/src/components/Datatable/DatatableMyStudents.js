@@ -30,7 +30,7 @@ function DatatableMyStudents({data, goToUpdateCourse, schools}) {
                             <td>{row['last_name']}</td>
                             <td>{getSchoolName(row['school_id'])}</td>
                             <td>{row['email']}</td>
-                            <td><button onClick={() => goToUpdateCourse(row)}>Go</button></td>
+                            <td><button className='btn-create-activities3' onClick={() => goToUpdateCourse(row)}>Go</button></td>
                         </tr>
                     )
                 }

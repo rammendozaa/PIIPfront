@@ -8,6 +8,10 @@
     background-color: #202731;
     /*overflow: auto;*/
 }
+.my-interviews-container .my-interviews {
+    width: 80%;
+    height: 80%;
+}
 .my-interviews-container .sorry {
     color: #fff;
     font-size: 70px;

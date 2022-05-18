@@ -98,7 +98,7 @@
     text-align: center;
 }
 
-.btn3 {
+.btn10 {
     cursor: pointer;
     display: inline-block;
     font-weight: 300;
@@ -120,7 +120,7 @@
     border-color: #202731;
 }
 
-.btn3:hover {
+.btn10:hover {
   color: #fff;
   background-color: #202731;
   border-color: #202731;

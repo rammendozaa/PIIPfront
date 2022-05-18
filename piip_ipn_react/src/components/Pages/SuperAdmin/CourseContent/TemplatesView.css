@@ -9,6 +9,14 @@
     background-color: #202731;
     /*overflow: auto;*/
 }
+.template-view-container .template-view{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .template-view-container .sorry {
     color: #fff;
     font-size: 70px;
@@ -20,7 +28,7 @@
     text-overflow: ellipsis;
   }
 .template-view-container .course{
-    width: 80%;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
