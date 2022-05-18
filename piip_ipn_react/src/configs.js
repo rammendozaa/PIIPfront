@@ -1,4 +1,4 @@
-export const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
+export const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Add topic information here.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
 export const MathJaxSymbols = [
   [
