@@ -8,6 +8,10 @@
     background-color: #202731;
     /*overflow: auto;*/
 }
+.course-content-container .course-content{
+    width: 85%;
+    height: 85%;
+}
 .course-content-container .sorry {
     color: #fff;
     font-size: 70px;

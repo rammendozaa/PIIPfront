@@ -36,7 +36,7 @@ function DatatablePendingStudents({data, assignStudent, schools}) {
                             </td>
                             <td>{row['email']}</td>
                             <td>
-                                <button onClick={() => assignStudent(idx)}>Add</button>
+                                <button className='btn-create-activities3' onClick={() => assignStudent(idx)}>Add</button>
                             </td>
                         </tr>
                     )

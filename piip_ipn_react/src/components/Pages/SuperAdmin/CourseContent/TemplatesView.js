@@ -65,6 +65,7 @@ function TemplatesView({userData}) {
     return (
         <>
             <div className='template-view-container'>
+                <div className="template-view">
                         {templates.length > 0 && (<>
                             <div className='course'>
                             <h1 className='template-view-title'>These are the current templates. Click on one to edit.</h1>
@@ -103,6 +104,7 @@ function TemplatesView({userData}) {
                             </div>
                             </>        
                         }
+                        </div>
                 </div>
         </>
     )

@@ -38,24 +38,26 @@ function MyInterviews({userData}) {
     return (
         <>
             <div className='my-interviews-container'>
-                {interviews.length > 0 && (<>
-                    <h1 className='interview-title'>Here are you're pending interviews.</h1>
-                        {interviews.map((interview, indexInterview) => {
-                        return (
-                                <>
-                    <div className='Container'>
-                                <div>
-                                    <h1 onClick={() => handleClick(interview)}>{interview.user.first_name}</h1>
-                                </div>
-                    </div>
-                                </>
-                            )
-                        })}
-                    </>)
-                }
-                {interviews.length == 0 &&
-                    <h1 className='interview-title'>You don't have any pending interviews!</h1>
-                }
+                <div className="my-interviews">
+                    {interviews.length > 0 && (<>
+                        <h1 className='interview-title'>Here are you're pending interviews.</h1>
+                            {interviews.map((interview, indexInterview) => {
+                            return (
+                                    <>
+                        <div className='Container'>
+                                    <div>
+                                        <h1 onClick={() => handleClick(interview)}>{interview.user.first_name}</h1>
+                                    </div>
+                        </div>
+                                    </>
+                                )
+                            })}
+                        </>)
+                    }
+                    {interviews.length == 0 &&
+                        <h1 className='interview-title'>You don't have any pending interviews!</h1>
+                    }
+                </div>
             </div>
         </>
     )
