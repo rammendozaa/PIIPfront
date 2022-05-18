@@ -72,27 +72,14 @@ function Templates({userData}) {
         }))
     }
 
-    const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
-        if(window.confirm('Are you sure you want to delete this activity?')){
-            var current = data;
-            await fetch(baseURL + `/template/section/activity/${sectionActivityId}`, {
-                method: "DELETE"
-            })
-            current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item,idx) => idx != indexActivity)
-            setData(prevState => ({
-                ...prevState,
-                current
-            }))
-        }
-    }
-
     const AddNewSection = async () => {
         if(!newSectionName){
             alert("Section name can't be empty")
             return;
         }
         var current = data;
-        const response = await fetch(baseURL + `/template/${template_id}/section/add`,{
+        let response = null;
+        response = await fetch(baseURL + `/template/${template_id}/section/add`,{
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -121,6 +108,20 @@ function Templates({userData}) {
                 method: "DELETE"
             })
             current.sections = current.sections.filter((item,idx) => idx != index)
+            setData(prevState => ({
+                ...prevState,
+                current
+            }))
+        }
+    }
+
+    const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
+        if(window.confirm('Are you sure you want to delete this activity?')){
+            var current = data;
+            await fetch(baseURL + `/template/section/activity/${sectionActivityId}`, {
+                method: "DELETE"
+            })
+            current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item,idx) => idx != indexActivity)
             setData(prevState => ({
                 ...prevState,
                 current

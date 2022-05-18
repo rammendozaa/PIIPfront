@@ -58,8 +58,8 @@ function AddTopic() {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 "topicType": option,
-                "title": "this is a title",
-                "description": "this is a descritpion",
+                "title": filename,
+                "description": filename,
                 "topic_information": json,
             }),
         });
