@@ -22,6 +22,8 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
 			],
         }
     ])
+    const [questionnaireName, setQuestionnaireName] = useState("");
+    const [description, setDescription] = useState("")
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const changeCorrectAnswer = (idx) => {
@@ -45,7 +47,7 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
     const addNewQuestion = () => {
         setQuestions([...questions,
             {
-                questionText: 'Question ',
+                questionText: 'Question',
                 answerOptions: [
                     { answerText: 'Option 1', isCorrect: true },
                     { answerText: 'Option 2', isCorrect: false },
@@ -58,6 +60,10 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
     }
 
     const removeQuestion = () => {
+        if (questions.length === 1) {
+            alert("Can't have a questionnaire without questions. Right?");
+            return;
+        }
         questions.splice(currentQuestion, 1);
         setQuestions(questions)
         setCurrentQuestion(Math.min(currentQuestion + 1, questions.length - 1))
@@ -68,14 +74,29 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "title": "prueba Hugo",
-                "description": "teast descript",
+                "title": questionnaireName || "Surprise quiz",
+                "description": description || "Questionnaire to test your learnings",
                 "questions": questions,
                 "createdBy": userData.user_id,
             }),
         })
         const newQuestionnaire = await response.json()
-        console.log(newQuestionnaire)
+        console.log(newQuestionnaire);
+        alert("Questionnaire saved successfully!");
+        setQuestionnaireName("");
+        setDescription("");
+        setCurrentQuestion(0);
+        setQuestions([
+            {
+                questionText: 'Question',
+                answerOptions: [
+                    { answerText: 'Option 1', isCorrect: true },
+                    { answerText: 'Option 2', isCorrect: false },
+                    { answerText: 'Option 3', isCorrect: false },
+                    { answerText: 'Option 4', isCorrect: false },
+                ],
+            }
+        ]);
     }
     
     const moveNext = (add) => {
@@ -88,6 +109,14 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
     }
     return (
         <div className='create-quiz-container'>
+            <div className="d-flex-create-quiz justify-content-center-create-quiz">
+                <div className="input-create-quiz-header">Questionaire name:</div>
+                <div className="input-create-quiz-header">Description:</div>
+            </div>
+            <div className="d-flex-create-quiz justify-content-center-create-quiz">
+                <input type="text" placeholder="Questionnaire name" value={questionnaireName} onChange={(e) => setQuestionnaireName(e.target.value)} className="input-create-quiz"/>
+                <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-create-quiz"/>
+            </div>
             <div className='create-quiz'>
                 <div className='create-question-section'>
                     <div className='create-question-count'>
