@@ -7,7 +7,6 @@ const baseURL = "http://127.0.0.1:5000"
 function AddSoftSkillQuestion({userData}) {
     const [title, setTitle] = useState("")
     const [question, setQuestion] = useState("")
-    const [topicId, setTopicId] = useState(1)
     const [softSkillTopics, setSoftSkillTopics] = useState([])
     /*
     useEffect(() => {
@@ -29,8 +28,7 @@ function AddSoftSkillQuestion({userData}) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 "title": title,
-                "question": question,
-                "soft_skill_topic_id": topicId,
+                "question": question
             }),
         })
     }
