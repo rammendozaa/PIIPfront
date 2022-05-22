@@ -3,11 +3,11 @@ import Cards from './Cards'
 import { NewActivity } from '../../../../externalClasses';
 import './SeeTopics.css'
 
-function SeeSoftSkills({userData, addActivity, activityIndex, sectionId}) {
+function SeeSoftSkills({userData, addActivity, activityIndex, sectionId, userId}) {
     const [data, setData] = useState([]);
 
-    const getProgrammingTopics = async() => {
-        const response = await fetch('/softSkillsTopics',{
+    const getSoftSkillsTopics = async() => {
+        const response = await fetch(`/softSkillsTopics?user_id=${userId}`,{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token
@@ -20,7 +20,7 @@ function SeeSoftSkills({userData, addActivity, activityIndex, sectionId}) {
     }
 
     useEffect(() => {
-        getProgrammingTopics()
+        getSoftSkillsTopics();
     },[]);
 
     const [query, setQuery] = useState("");

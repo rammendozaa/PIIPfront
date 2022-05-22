@@ -10,7 +10,7 @@ function ProblemsTable({data, addProblem, removeProblem, add}) {
       <table className='content-table'>
           <thead>
             <tr>
-              <th>Title</th>
+              <th>Problem Title</th>
             </tr>
           </thead>
           <tbody>

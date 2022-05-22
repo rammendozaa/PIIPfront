@@ -5,11 +5,11 @@ import Cards from './Cards'
 const baseURL = "http://127.0.0.1:5000"
 
 
-function AddQuiz({userData, addActivity, activityIndex, sectionId}) {
+function AddQuiz({userData, addActivity, activityIndex, sectionId, userId}) {
     const [quizzes, setQuizzes] = useState([])
 
     const fetchQuestionnaires = async () => {
-        fetch(baseURL + `/questionnaire`,{
+        fetch(baseURL + `/questionnaire?user_id=${userId}`,{
             method: "GET",
         })
         .then(res => res.json())

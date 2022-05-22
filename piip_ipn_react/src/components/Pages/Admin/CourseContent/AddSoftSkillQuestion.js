@@ -32,6 +32,9 @@ function AddSoftSkillQuestion({userData}) {
                 "createdBy": userData.user_id,
             }),
         })
+        alert("Question saved correctly!");
+        setTitle("");
+        setQuestion("");
     }
     return (
         <>
