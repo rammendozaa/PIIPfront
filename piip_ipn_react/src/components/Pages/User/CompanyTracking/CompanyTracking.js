@@ -229,7 +229,7 @@ function CompanyTracking({ userData }) {
 
   return (
     <>
-      <div className="course-content-container">
+      <div className="company-container">
         {companies !== undefined && (
           <div className="course">
             <h1 className="course-title">
@@ -299,12 +299,12 @@ function CompanyTracking({ userData }) {
                           </IconContext.Provider>
                         </span>
                       </div>
-                      <div className="activities-container">
+                      <div className="company-container-activities-container">
                         {clicked === indexCompany
                           ? company.trackingLinks.map((link, indexLink) => {
                               return (
                                 <>
-                                  <div className="Dropdown" key={indexLink}>
+                                  <div className="company-container-Dropdown" key={indexLink}>
                                     <p>
                                       {link.description}: <b>{link.url}</b>
                                     </p>
@@ -414,7 +414,7 @@ function CompanyTracking({ userData }) {
                     </>
                   );
                 })}
-                <div className="AddNewSection">
+                <div className="company-container-AddNewSection">
                   <h2>Add a new company to track: </h2>
                   <select
                     className="dropdown-menu-company"

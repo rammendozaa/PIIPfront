@@ -4,8 +4,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow-y:auto;
     align-items: center;
-    background-color: #202731;
+    background-color: var(--secondary-color);
     /*overflow: auto;*/
 }
 .company-container .course{
@@ -55,7 +56,7 @@
     width: 100%;
     min-width: 0;
     min-height: 0;
-    color: #fff;
+    color: #000;
 }
 .company-container .course .AccordionSection{
     display: flex;
@@ -95,19 +96,20 @@
 .company-container .course .AccordionSection .Container .Wrap span{
     margin-right: 1.5rem;
 }
-.company-container .course .AccordionSection .Container .activities-container{
+.company-container-activities-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    padding: 0.2%;
 }
-.company-container .course .AccordionSection .Container .Dropdown {
+.company-container-Dropdown {
     background: #fff;
-    border-radius: 10px;
-
+    border-radius: 8px;
     color: #1c1c1c;
-    width: 98%;
-    height: 60px;
+    width: 99%;
+    height: 100%;
+    margin: 0.25%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -138,7 +140,7 @@
     font-size: 2rem;
 }
 
-.company-container .course .AccordionSection .Container .AddNewSection {
+.company-container-AddNewSection {
     background: #fff;
     color: #272727;
     display: flex;
@@ -151,15 +153,15 @@
     margin: 5px;
     min-height: 60px;
 }
-.company-container .course .AccordionSection .Container .AddNewSection .input{
+.company-container-AddNewSection .input{
     border: 0;
     outline: none;
 }
-.company-container .course .AccordionSection .Container .AddNewSection h1{
+.company-container-AddNewSection h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.company-container .course .AccordionSection .Container .AddNewSection span{
+.company-container-AddNewSection span{
     margin-right: 1.5rem;
 }
 
@@ -167,7 +169,6 @@
     top: 100%;
     left: 0;
     z-index: 0;
-    padding: 10%;
     float: left;
     min-width: 10rem;
     margin: 1.5%;
@@ -177,7 +178,6 @@
     list-style: none;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
   }
 

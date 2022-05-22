@@ -267,7 +267,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                         onChange={(e) => setInput(e.target.value)}>
                     </textarea>
                 </div>
-                <div className="right">
+                {userData.role === "user" && <div className="right">
                     <button
                         type="run"
                         className="btn runCode"
@@ -282,7 +282,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                     >
                     Submit
                     </button>
-                </div>
+                </div>}
             </div> 
         </div>
     )
