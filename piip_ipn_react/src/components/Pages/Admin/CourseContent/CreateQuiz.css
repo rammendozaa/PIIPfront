@@ -111,3 +111,27 @@
 .answer-section-button svg {
     margin-right: 5px;
 }
+
+.input-create-quiz {
+    width: 250px;
+    padding:1%;
+    margin: 1%;
+  }
+  .input-create-quiz-header{
+    width: 250px;
+  }
+
+  .justify-content-center-create-quiz {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+    display: flex;
+    padding-top: 1%;
+    border: 0;
+  }
+
+  .d-flex-create-quiz {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}

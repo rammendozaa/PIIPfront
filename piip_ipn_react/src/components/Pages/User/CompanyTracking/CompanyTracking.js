@@ -266,20 +266,25 @@ function CompanyTracking({ userData }) {
                           </h2>
                         </span>
                         <span>
-                          {company.interviewDate === null && (
+                          {company.statusId === 5 ? (
                             <div>
-                              <h3>You don't have any upcoming interviews
-                                </h3>
+                              <h3>Congratulations! We are so excited for you!</h3>
                             </div>
-                          )}
-                          {company.interviewDate !== null && (
+                            ) : company.statusId === 6 ? (
                             <div>
-                              <h3>
-                                You have an upcoming interview on:{" "}
-                                {newDate.toString()}
-                                </h3>
+                              <h3>Don't worry! Keep on practicing and you'll be ready next time!</h3>
                             </div>
-                          )}
+                            ) : company.interviewDate === null ? (
+                            <div>
+                              <h3>You don't have any upcoming interviews</h3>
+                            </div>
+                            ) : company.interviewDate !== null ? (
+                              <div>
+                                <h3>
+                                  You have an upcoming interview on: {company.interviewDate}
+                                </h3>
+                              </div>
+                            ) : <></>}
                         </span>
                         <span></span>
                         <span>
@@ -368,6 +373,7 @@ function CompanyTracking({ userData }) {
                                   className="dropdown-menu-company"
                                   value={dropDownStatusOption}
                                   onChange={handleStatusSubmit}
+                                  disabled={company.statusId===5||company.statusId===6}
                                 >
                                   <option value="Not applied">
                                     Not applied

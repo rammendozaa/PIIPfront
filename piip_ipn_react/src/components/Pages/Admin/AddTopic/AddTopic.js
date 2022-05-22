@@ -25,7 +25,7 @@ function AddTopic({userData}) {
     const [json, setJSON] = useState('');
 
     const [filename, setFilename] = useState("")
-
+    const [description, setDescription] = useState("")
     useEffect(() => {
         // Some async task (ie. getting editor data from DB)
         setTimeout(() => {
@@ -43,8 +43,8 @@ function AddTopic({userData}) {
     }
 
     const saveFile = async() => {
-        if(filename.length === 0){
-            alert("Please choose a file name");
+        if(filename.length === 0 || description.length === 0){
+            alert("Topic name and description can't be empty");
             return;
         }
         if (option == "") {
@@ -59,7 +59,7 @@ function AddTopic({userData}) {
             body: JSON.stringify({
                 "topicType": option,
                 "title": filename,
-                "description": filename,
+                "description": description,
                 "topicInformation": json,
                 "createdBy": userData.user_id,
             }),
@@ -68,6 +68,7 @@ function AddTopic({userData}) {
         setOption("");
         setJSON('');
         setFilename("");
+        setDescription("");
     }
 
     return (
@@ -94,7 +95,8 @@ function AddTopic({userData}) {
                     </div>
                 </div>
                 <div className="save">
-                    <input type="text" placeholder="filename" value={filename} onChange={(e) => setFilename(e.target.value)}/>
+                    <input type="text" placeholder="Topic name" value={filename} onChange={(e) => setFilename(e.target.value)} className="input-topic"/>
+                    <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-topic"/>
                     <button onClick={saveFile} className="btn-create-activities">Save</button>
                 </div>
             </div>

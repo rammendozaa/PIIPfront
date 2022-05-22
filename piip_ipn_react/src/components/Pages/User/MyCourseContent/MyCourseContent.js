@@ -157,7 +157,26 @@ function CourseContent({userData}) {
                                     return (
                                     <>
                                         <div className='Wrap' onClick={() => toggle(indexSection)} key={indexSection}>
-                                            <h1>{section.template_section.name}</h1>
+                                            <h1>
+                                            {section.status_id === 4 &&
+                                            <span>
+                                                <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
+                                                    <FiCheck/>
+                                                </IconContext.Provider>
+                                            </span>}
+                                            {section.status_id === 1 &&
+                                            <span>
+                                                <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
+                                                    <FiSlash/>
+                                                </IconContext.Provider>
+                                            </span>}
+                                            {section.status_id !== 1 && section.status_id !== 4 &&
+                                            <span>
+                                                <IconContext.Provider value={{ color: "black", className: "global-class-name" }}>
+                                                    <FiEdit3/>
+                                                </IconContext.Provider>
+                                            </span>}
+                                                {section.template_section.name}</h1>
                                             <span>{clicked === indexSection ? <FiMinus /> : <FiPlus />}</span>
                                         </div>
                                         <div className='activities-container'>
@@ -171,7 +190,7 @@ function CourseContent({userData}) {
                                                                 <div className='Dropdown' onClick={() => redirectToActivity(
                                                                     activity)} key={indexActivity}>
                                                                     <p><b>
-                                                                    {activity.status_id === 4 && <span>
+                                                                        {activity.status_id === 4 && <span>
                                                                             <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
                                                                                 <FiCheck/>
                                                                             </IconContext.Provider>
