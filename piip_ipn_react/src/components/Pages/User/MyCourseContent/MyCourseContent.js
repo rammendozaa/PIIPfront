@@ -150,7 +150,7 @@ function CourseContent({userData}) {
             <div className='course-content-container'>
                 <div className='course'> 
                     <h1 className='course-title'> {data.template.name} </h1>
-                    <IconContext.Provider value={{ color: '#00FFB9', size: '25px' }}>
+                    <IconContext.Provider value={{ color: 'var(--primary-color)', size: '25px' }}>
                         <div className='AccordionSection'>
                             <div className='Container'>
                                 {data.user_sections.map((section, indexSection) => {
@@ -190,17 +190,17 @@ function CourseContent({userData}) {
                                                                 <div className='Dropdown' onClick={() => redirectToActivity(
                                                                     activity)} key={indexActivity}>
                                                                     <p><b>
-                                                                        {activity.status_id === 4 && <span>
+                                                                        {activity.status_id === 4 && <span className='activity-status'>
                                                                             <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
                                                                                 <FiCheck/>
                                                                             </IconContext.Provider>
                                                                         </span>}
-                                                                        {activity.status_id === 1 && <span>
+                                                                        {activity.status_id === 1 && <span className='activity-status'>
                                                                             <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
                                                                                 <FiSlash/>
                                                                             </IconContext.Provider>
                                                                         </span>}
-                                                                        {activity.status_id !== 1 && activity.status_id !== 4 && <span>
+                                                                        {activity.status_id !== 1 && activity.status_id !== 4 && <span className='activity-status'>
                                                                             <IconContext.Provider value={{ color: "black", className: "global-class-name" }}>
                                                                                 <FiEdit3/>
                                                                             </IconContext.Provider>
