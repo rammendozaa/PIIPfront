@@ -70,7 +70,8 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
             body: JSON.stringify({
                 "title": "prueba Hugo",
                 "description": "teast descript",
-                "questions": questions
+                "questions": questions,
+                "createdBy": userData.user_id,
             }),
         })
         const newQuestionnaire = await response.json()
