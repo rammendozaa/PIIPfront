@@ -15,11 +15,12 @@ function Popup(props) {
   const renderOption = () => {
     if(option === "problem"){
       return (
-        <SeeProblems 
+        <SeeProblems
         userData={props.userData}
         addActivity={props.functionToAddActivity}
         activityIndex={props.activityIndex}
         sectionId={props.sectionId}
+        userId={props.userId}
         />
       )
     }else if(option === "topic"){
@@ -29,6 +30,7 @@ function Popup(props) {
           addActivity={props.functionToAddActivity}
           activityIndex={props.activityIndex}
           sectionId={props.sectionId}
+          userId={props.userId}
           />
         )
       }else if(option === "softskill"){
@@ -38,26 +40,9 @@ function Popup(props) {
           addActivity={props.functionToAddActivity}
           activityIndex={props.activityIndex}
           sectionId={props.sectionId}
+          userId={props.userId}
           />
         )
-      }else if(option === "algotopic"){
-      return (
-        <SeeAlgorithmTopics
-        userData={props.userData}
-        addActivity={props.functionToAddActivity}
-        activityIndex={props.activityIndex}
-        sectionId={props.sectionId}
-        />
-      )
-    }else if(option === "softskilltopic"){
-      return (
-        <SeeSoftSkillTopics
-        userData={props.userData}
-        addActivity={props.functionToAddActivity}
-        activityIndex={props.activityIndex}
-        sectionId={props.sectionId}
-        />
-      )
     }else if(option === "softskillquestion"){
       return (
         <SeeSoftSkillQuestions
@@ -65,6 +50,7 @@ function Popup(props) {
         addActivity={props.functionToAddActivity}
         activityIndex={props.activityIndex}
         sectionId={props.sectionId}
+        userId={props.userId}
         />
       )
     }else if(option === "quest"){
@@ -74,7 +60,8 @@ function Popup(props) {
           addActivity={props.functionToAddActivity}
           activityIndex={props.activityIndex}
           sectionId={props.sectionId}
-        />
+          userId={props.userId}
+          />
       )
     }else if(option === "interview"){
       return (
@@ -97,7 +84,7 @@ function Popup(props) {
           <label for="problem">Problem</label>
 
           <input type="radio" id="topic" name="activityType" value="topic" onChange={(e) => setOption(e.target.value)}/>
-          <label for="topic">Topic</label>
+          <label for="topic">Programming Topic</label>
 
           <input type="radio" id="softskill" name="activityType" value="softskill" onChange={(e) => setOption(e.target.value)}/>
           <label for="softskill">Soft Skill</label>

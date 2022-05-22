@@ -69,6 +69,7 @@ function AddTopic({userData}) {
         setJSON('');
         setFilename("");
         setDescription("");
+        setRawDraftContentState(null);
     }
 
     return (

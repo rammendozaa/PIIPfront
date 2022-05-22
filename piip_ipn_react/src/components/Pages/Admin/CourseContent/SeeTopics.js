@@ -3,19 +3,17 @@ import { NewActivity } from '../../../../externalClasses';
 import Cards from './Cards'
 import './SeeTopics.css'
 
-function SeeTopics({userData, addActivity, activityIndex, sectionId}) {
+function SeeTopics({userData, addActivity, activityIndex, sectionId, userId}) {
     const [data, setData] = useState([]);
 
     const getProgrammingTopics = async() => {
-        const response = await fetch('/algorithmTopics',{
+        const response = await fetch(`/algorithmTopics?user_id=${userId}`,{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token
             },
         })
         const data = await response.json()
-        console.log("Vale kk")
-        console.log(data)
         setData(data)
     }
 

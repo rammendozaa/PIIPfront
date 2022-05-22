@@ -18,7 +18,6 @@ const activityIdToName = {
 
 function CourseContent({userData}) {
     const {user_id} = useParams();
-    console.log(user_id)
     const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
 
 
@@ -78,6 +77,8 @@ function CourseContent({userData}) {
             ...prevState,
             current
         }))
+        alert("Activity added correctly!");
+        setButtonPopup(false);
     }
 
     const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
@@ -255,6 +256,7 @@ function CourseContent({userData}) {
                     showInterview={true}
                     activityIndex={newActivityIndex}
                     sectionId={newActivitySectionId}
+                    userId={user_id}
                 />
             </div>
         </>

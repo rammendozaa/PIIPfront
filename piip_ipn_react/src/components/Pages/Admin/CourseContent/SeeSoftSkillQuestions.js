@@ -4,11 +4,11 @@ import {useState, useEffect} from 'react'
 import Cards from './Cards'
 const baseURL = "http://127.0.0.1:5000"
 
-function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId}) {
+function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId, userId}) {
     const [questions, setQuestions] = useState([])
 
     const fetchSoftSkillQuestions = async() => {
-        fetch(baseURL + `/soft-skill-question`,{
+        fetch(baseURL + `/soft-skill-question?user_id=${userId}`,{
             method: "GET",
         })
         .then(res => res.json())
@@ -18,7 +18,7 @@ function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId}
         })
     }
     useEffect(() => {
-        fetchSoftSkillQuestions()
+        fetchSoftSkillQuestions();
     }, []);
 
     function search(rows){
