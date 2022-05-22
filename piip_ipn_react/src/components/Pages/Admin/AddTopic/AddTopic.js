@@ -8,7 +8,7 @@ import './AddTopic.css'
 
 const baseURL = "http://127.0.0.1:5000"
 
-function AddTopic() {
+function AddTopic({userData}) {
     /*return (
         <>
             <div className="add-topic-container">
@@ -60,7 +60,8 @@ function AddTopic() {
                 "topicType": option,
                 "title": filename,
                 "description": filename,
-                "topic_information": json,
+                "topicInformation": json,
+                "createdBy": userData.user_id,
             }),
         });
         alert("Topic saved succesfully!");

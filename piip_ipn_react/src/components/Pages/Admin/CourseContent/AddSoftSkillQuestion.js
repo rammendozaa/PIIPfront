@@ -28,7 +28,8 @@ function AddSoftSkillQuestion({userData}) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 "title": title,
-                "question": question
+                "question": question,
+                "createdBy": userData.user_id,
             }),
         })
     }
