@@ -104,7 +104,7 @@ function Topic({userData}) {
                   onClick={() => {navigate(`/my-course`)}}>
                     Click here to go to your course!
                 </button>
-                {((activity.activity_progress !== undefined && activity.activity_progress !== null) && activity.activity_progress.status_id !== 4) && 
+                {(activity !== undefined && activity !== null && activity.activity_progress !== undefined && activity.activity_progress !== null && activity.activity_progress.status_id !== 4) && 
                 <button type="button" className="btn-topic btn-primary-topic" 
                   onClick={() => {handleButtonClick()}}>
                     Click here to mark this topic as read!
