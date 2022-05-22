@@ -63,7 +63,7 @@ function Quiz({userData}) {
 
 
 	const submitScore = async (actual_score) => {
-		if (userData.role === "user") {
+		if (userData.role === "user" && (activity.user_activity_status_id !== undefined && activity.user_activity_status_id !== 4)) {
 			await fetch(
 				baseURL + `/user/${userId}/questionnaire/${quiz_id}`, {
 				method: "PUT",
@@ -110,8 +110,18 @@ function Quiz({userData}) {
             <div className='quiz'>
                 {showScore ? (
                     <div className='score-section'>
-                        You answered {score} questions correctly out of {questions.length}!
-						<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>
+						{activity.user_activity_status_id === 4 &&
+						<>
+							This your score of {score} out of {questions.length} will not be recorded as you have already solved this quiz ):
+							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>
+						</>
+						}
+						{activity.user_activity_status_id !== 4 &&
+                        <>
+							You answered {score} questions correctly out of {questions.length}!
+							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>)
+						</>
+						}
                     </div>
                 ) : (
                     <>
