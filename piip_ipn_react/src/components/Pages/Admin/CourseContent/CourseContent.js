@@ -83,7 +83,7 @@ function CourseContent({userData}) {
     const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
         if(window.confirm('Are you sure you want to delete this activity?')){
             var current = data;
-            await fetch(baseURL + `/user/activity/${sectionActivityId}/delete`, {
+            await fetch(baseURL + `/user/activity/${sectionActivityId}`, {
                 method: "DELETE"
             })
             current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item,idx) => idx != indexActivity)
@@ -125,7 +125,7 @@ function CourseContent({userData}) {
     const deleteSection = async (index, sectionId) => {
         if(window.confirm('Are you sure you want to delete this section?')){
             var current = data;
-            await fetch(baseURL + `/user/section/${sectionId}/delete`, {
+            await fetch(baseURL + `/user/section/${sectionId}`, {
                 method: "DELETE"
             })
             current.user_sections = current.user_sections.filter((item,idx) => idx != index)
