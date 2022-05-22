@@ -5,7 +5,7 @@ import ProblemsTable from './ProblemsTable';
 import { NewActivity } from '../../../../../src/externalClasses'
 
 
-function SeeProblems({userData, addActivity, activityIndex, sectionId}) {
+function SeeProblems({userData, addActivity, activityIndex, sectionId, userId}) {
     const [data, setData] = useState([]);
     const [query, setQuery] = useState("");
     const [addedProblems, setAddedProblems] = useState([])
@@ -25,22 +25,23 @@ function SeeProblems({userData, addActivity, activityIndex, sectionId}) {
         var current = addedProblems.filter(item => item != problem)
         setAddedProblems(current)
     }
-    useEffect(() => {
-        console.log(userData.token)
-        fetch('/problems',{
+
+    const getProblems = async() => {
+        const response = await fetch(`/problems?user_id=${userId}`,{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token
             },
         })
-        .then(res => res.json())
-        .then(data => {
-            setData(data)
-        });
-    },[]);
+        const data = await response.json()
+        setData(data);
+    }
+
+    useEffect(() => {
+        getProblems();
+    }, []);
 
     const addNewActivities = () => {
-        console.log("add new activity")
         for (var i = 0 ; i < addedProblems.length ; i++) {
             const newAct = NewActivity(
                 addedProblems[i].title,
@@ -50,7 +51,7 @@ function SeeProblems({userData, addActivity, activityIndex, sectionId}) {
             );
             addActivity(newAct, activityIndex, sectionId);
         }
-        setAddedProblems([])
+        setAddedProblems([]);
     }
     return (
         <>
