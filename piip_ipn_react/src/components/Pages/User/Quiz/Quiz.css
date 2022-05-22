@@ -1,5 +1,5 @@
 .quiz-container {
-    background-color: #202731;
+    background-color: var(--secondary-color);
     height: 80%;
     width: 100%;
     display: flex;
@@ -15,7 +15,7 @@
     height: min-content;
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 5px 8px 0 rgb(0 0 0 / 20%), 0 7px 20px 0 rgb(0 0 0 / 20%);
     display: flex;
     justify-content: space-evenly;
 }
