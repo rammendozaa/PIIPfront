@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '../Button/Button';
 import './Navbar.css'
 
@@ -10,6 +10,7 @@ function Navbar({userData, validUserData, removeUserData}) {
     const [administratorId, setAdministratorId] = useState(-1);
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false)
+    const location = useLocation();
 
     const showButton = () => {
         if(window.innerWidth <= 960){
@@ -18,7 +19,12 @@ function Navbar({userData, validUserData, removeUserData}) {
             setButton(true)
         }
     };
-
+    const getColor = () => {
+        if(location.pathname === "/"){
+            return "#300c14";
+        }
+        return "#731F35";
+    }
     useEffect(() => {
         showButton()
     },[])
@@ -162,7 +168,7 @@ function Navbar({userData, validUserData, removeUserData}) {
     }
     return (
         <>
-            <nav className="navbar">
+            <nav className="navbar" style={{"background-color":getColor()}}>
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                         PIIP IPN
