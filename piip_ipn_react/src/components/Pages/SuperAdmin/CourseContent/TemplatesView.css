@@ -1,4 +1,4 @@
-.template-view-container{
+.templateview-container{
     width: 100%;
     height: 100%;
     display: flex;
@@ -6,10 +6,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202731;
-    /*overflow: auto;*/
+    background-color: var(--secondary-color);
 }
-.template-view-container .template-view{
+.templateview{
     width: 80%;
     height: 80%;
     display: flex;
@@ -17,47 +16,23 @@
     justify-content: center;
     align-items: center;
 }
-.template-view-container .sorry {
-    color: #fff;
-    font-size: 70px;
-    flex-shrink: 1;
-    min-width: 0;
-    min-height: 0;
-    width: 90%;
-    text-align: center;
-    text-overflow: ellipsis;
-  }
-.template-view-container .course{
+.templateview-course{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 3vh;
-    /*align-items: center;
-    justify-content: center;*/
-}
-.template-view-container .course2{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    /*margin-top: 3vh;*/
-    align-items: center;
-    justify-content: center;
 }
 
-.template-view-title{
-    text-align: left;
+.templateview-title{
+    text-align: center;
     width: 100%;
     min-width: 0;
     min-height: 0;
-    color: #fff;
 }
-.template-view-container .course .AccordionSection{
+.templateview-accordionSection{
     display: flex;
     flex-direction: column;
-    /*align-items: center;
-    justify-content: center;*/
     background: #fff;
     width: 100%;
     min-width: 0;
@@ -65,17 +40,15 @@
     margin-top: 10px;
     position: relative;
 }
-.template-view-container .course .AccordionSection .Container{
-    /*box-shadow: 2px 10px 35px 1px rgba(153, 153, 153, 0.3);*/
+.templateview-Container{
     width: 100%;
     margin-top: 10px;
     position: absolute;
     padding-bottom:10%;
     top: 30%;
 }
-.template-view-container .course .AccordionSection .Container .Wrap {
+.templateview-wrap {
     background: #fff;
-    color: #272727;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -85,83 +58,16 @@
     border-radius: 10px;
     margin: 5px;
 }
-.template-view-container .course .AccordionSection .Container .Wrap h1{
+.templateview-wrap h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.template-view-container .course .AccordionSection .Container .Wrap span{
-    margin-right: 1.5rem;
-}
-.template-view-container .course .AccordionSection .Container .activities-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-}
-.template-view-container .course .AccordionSection .Container .Dropdown {
-    background: #fff;
-    border-radius: 10px;
-
-    color: #1c1c1c;
-    width: 98%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.template-view-container .course .AccordionSection .Container .Dropdown p{
-    font-size: 1rem;
-}
-.template-view-container .course .AccordionSection .Container .Dropdown span{
-    margin-right: 1rem;
-    color: red;
-}
-
-.template-view-container .course .AccordionSection .Container .AddNewActivity {
-    background: #fff;
-    width: 98%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /*border-bottom: 1px solid #00ffb9;
-    border-top: 1px solid #00ffb9;*/
-    margin-top: 5px;
-    border-radius: 10px;
-}
-.template-view-container .course .AccordionSection .Container .AddNewActivity p{
-    font-size: 2rem;
-}
-
-.template-view-container .course .AccordionSection .Container .AddNewSection {
-    background: #fff;
-    color: #272727;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 10px;
-    margin: 5px;
-    min-height: 60px;
-}
-.template-view-container .course .AccordionSection .Container .AddNewSection .input{
-    border: 0;
-    outline: none;
-}
-.template-view-container .course .AccordionSection .Container .AddNewSection h1{
-    padding: 2rem;
-    font-size: 2rem;
-}
-.template-view-container .course .AccordionSection .Container .AddNewSection span{
+.templateview-wrap span{
     margin-right: 1.5rem;
 }
 
-.add-new-template {
+.templateview-add-new-template {
     background: #fff;
-    color: #272727;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,4 +77,12 @@
     margin: auto;
     width: 50%;
     padding: 10px;
+}
+.templateview-add-new-template span{
+    margin-left: 10px;
+    color: red;
+}
+.templateview-input{
+    outline: none;
+    margin-left: 15px;
 }

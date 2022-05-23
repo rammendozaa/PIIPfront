@@ -72,3 +72,11 @@
         width: 100%;
     }
 }
+
+.AddNewActivity{
+    margin-top: 20px;
+}
+.addBotonProblems{
+    font-size: 25px;
+    color: red;
+}

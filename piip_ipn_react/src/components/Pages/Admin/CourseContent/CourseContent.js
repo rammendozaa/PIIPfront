@@ -157,19 +157,19 @@ function CourseContent({userData}) {
         <>
             <div className='course-content-container'>
                 {(data.template === undefined || data.template === null) && (
-                    <div className='course2'>
-                        <h1 className='sorry'>Once this user finishes his questionnaire he'll be assigned a course. Wait!</h1>
+                    <div className='course-description'>
+                        <h1 className='course-description-title'>Once this user finishes his questionnaire he'll be assigned a course. Wait!</h1>
                     </div>
                 )}
                 {data.template !== undefined && (<div className='course'> 
                     <h1 className='course-title'>{data.template.name}</h1>
                     <IconContext.Provider value={{ color: 'red', size: '25px' }}>
-                        <div className='AccordionSection'>
-                            <div className='Container'>
+                        <div className='course-accordionSection'>
+                            <div className='course-container'>
                                 {data.user_sections.map((section, indexSection) => {
                                     return (
                                     <>
-                                        <div className='Wrap' onClick={() => toggle(indexSection)} key={indexSection}>
+                                        <div className='course-wrap' onClick={() => toggle(indexSection)} key={indexSection}>
                                             <h1>
                                             {section.status_id === 4 &&
                                             <span>
@@ -192,7 +192,7 @@ function CourseContent({userData}) {
                                                 {section.template_section.name}</h1>
                                             <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
                                         </div>
-                                        <div className='activities-container'>
+                                        <div className='course-activities-container'>
                                         {
                                             clicked === indexSection 
                                                 ? 
@@ -200,7 +200,7 @@ function CourseContent({userData}) {
                                                     section.user_activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
-                                                                <div className='Dropdown' key={indexActivity}>
+                                                                <div className='course-dropdown' key={indexActivity}>
                                                                     <p><b>
                                                                         {activity.status_id === 4 && <span>
                                                                             <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
@@ -230,7 +230,7 @@ function CourseContent({userData}) {
                                             clicked === indexSection
                                             ?
                                             (
-                                                <div className='AddNewActivity'>
+                                                <div className='course-addNewActivity'>
                                                     <span>{<FiPlus onClick={() => prepareNewSection(indexSection, section.id) }/>}</span>
                                                 </div>
                                             )
@@ -240,8 +240,8 @@ function CourseContent({userData}) {
                                     </>
                                     );
                                 })}
-                                <div className='AddNewSection'>
-                                    <input type='text' placeholder='Section Name' className='input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
+                                <div className='course-addNewSection'>
+                                    <input type='text' placeholder='Section Name' className='course-input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
                                     <span>{<FiPlus onClick={() => AddNewSection(data.id)}/>}</span>
                                 </div>
                             </div>

@@ -67,7 +67,7 @@ function SeeProblems({userData, addActivity, activityIndex, sectionId, userId}) 
                 <ProblemsTable data={search(data)} addProblem={addProblem} add={true}/>
                 <ProblemsTable data={addedProblems} removeProblem={removeProblem} add={false}/>
                 <div className='AddNewActivity'>
-                    <span>{<FiPlus onClick={() => addNewActivities() }/>}</span>
+                    <span className='addBotonProblems'>{<FiPlus onClick={() => addNewActivities() }/>}</span>
                 </div>
             </div>
         </>

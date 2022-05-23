@@ -1,50 +1,30 @@
-/*.course-content-container{
+.template-content-container{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202731;
+    background-color: var(--secondary-color);
 }
-.course-content-container .course-content{
+.template-content{
     width: 85%;
     height: 85%;
 }
-.course-content-container .sorry {
-    color: #fff;
-    font-size: 70px;
-    flex-shrink: 1;
-    min-width: 0;
-    min-height: 0;
-    width: 90%;
-    text-align: center;
-    text-overflow: ellipsis;
-  }
-.course-content-container .course{
-    width: 80%;
+.template{
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 3vh;
 }
-.course-content-container .course2{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.course-content-container .course .course-title{
-    text-align: left;
+.template-title{
+    text-align: center;
     width: 100%;
     min-width: 0;
     min-height: 0;
-    color: #fff;
 }
-.course-content-container .course .AccordionSection{
+.template-accordionSection{
     display: flex;
     flex-direction: column;
     background: #fff;
@@ -54,13 +34,13 @@
     margin-top: 10px;
     position: relative;
 }
-.course-content-container .course .AccordionSection .Container{
+.template-container{
     width: 100%;
     margin-top: 10px;
     position: absolute;
     top: 30%;
 }
-.course-content-container .course .AccordionSection .Container .Wrap {
+.template-wrap {
     background: #fff;
     color: #272727;
     display: flex;
@@ -72,20 +52,20 @@
     border-radius: 10px;
     margin: 5px;
 }
-.course-content-container .course .AccordionSection .Container .Wrap h1{
+.template-wrap h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .Wrap span{
+.template-wrap span{
     margin-right: 1.5rem;
 }
-.course-content-container .course .AccordionSection .Container .activities-container{
+.template-activities-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown {
+.template-dropdown {
     background: #fff;
     border-radius: 10px;
 
@@ -96,15 +76,15 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown p{
+.template-dropdown p{
     font-size: 1rem;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown span{
+.template-dropdown span{
     margin-right: 1rem;
     color: red;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewActivity {
+.template-addNewActivity {
     background: #fff;
     width: 98%;
     height: 50px;
@@ -115,11 +95,11 @@
     margin-top: 5px;
     border-radius: 10px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewActivity p{
+.template-addNewActivity p{
     font-size: 2rem;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewSection {
+.template-addNewSection {
     background: #fff;
     color: #272727;
     display: flex;
@@ -132,14 +112,14 @@
     margin: 5px;
     min-height: 60px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection .input{
+.template-input{
     border: 0;
     outline: none;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection h1{
+.template-addNewSection h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection span{
+.template-addNewSection span{
     margin-right: 1.5rem;
-}*/
+}

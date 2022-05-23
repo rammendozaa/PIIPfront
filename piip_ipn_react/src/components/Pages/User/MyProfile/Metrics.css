@@ -5,7 +5,6 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /*background-color:red;*/
 }
 .metrics-container .categories{
     width: 80%;
@@ -13,13 +12,12 @@
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
 }
 .metrics-container .categories .title{
-    background-color: #202731;
-    color: #fff;
     text-align: left;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 .metrics-container .categories .categories-container{
     width: 100%;
@@ -31,18 +29,35 @@
 }
 
 .metrics-container .categories .categories-container .category{
-    /*box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);*/
-    /*border-radius: 15px;*/
     height: 100px;
     width: 200px;
-    background-color: #202731;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.metrics-container .categories .categories-container .category .title{
+.metrics-container .categories .categories-container .blue{
+    background-color:#00ABBD;
+    border-left:5px solid #047380;
+}
+
+.metrics-container .categories .categories-container .yellow{
+    background-color: #FFCC00;
+    border-left:5px solid #9e7e1c;
+}
+
+.metrics-container .categories .categories-container .purple{
+    background-color: #7A577A;
+    border-left:5px solid #553755;
+}
+
+.metrics-container .categories .categories-container .green{
+    background-color: #8BC441;
+    border-left:5px solid #5f8330;
+}
+
+.metrics-container .categories .categories-container .category .category-title{
     height: 50%;
     color: #fff;
     text-align: center;
@@ -52,7 +67,7 @@
     align-items: center;
 }
 
-.metrics-container .categories .categories-container .category .content{
+.metrics-container .categories .categories-container .category .category-content{
     height: 30%;
     margin-top: 15px;
     text-align: center;
@@ -82,7 +97,6 @@
 }
 .metrics-container .charts .top .metrics-barchart .title{
     height: 10%;
-    background-color: #202731;
     color: #fff;
     text-align: center;
     display: flex;
@@ -109,14 +123,10 @@
     height: 60%;
     width: 70%;
     box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
-    /*border-radius: 15px;*/
     display: flex;
     flex-direction: column;
 }
 .metrics-container .charts .bottom .bottom-container .keep-practicing .title{
-    background-color: #202731;
-    /*border-radius: 15px 15px 0 0;*/
-    color: #fff;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -149,7 +159,6 @@
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
-    background-color: #202731;
     color: #fff;
 }
 .metrics-container .charts .bottom .bottom-container .metrics-piechart{
@@ -158,8 +167,6 @@
 }
 .metrics-container .charts .bottom .bottom-container .metrics-piechart .title{
     height: 10%;
-    background-color: #202731;
-    color: #fff;
     text-align: center;
     display: flex;
     flex-direction: row;

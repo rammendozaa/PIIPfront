@@ -1,13 +1,13 @@
 .my-students-container{
     width: 100%;
     height: 100%;
-    background-color: #202731;
+    background-color: var(--secondary-color);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
-.my-students-container .my-students{
+.my-students{
     width: 85%;
     height: 85%;
     display: flex;
@@ -19,7 +19,7 @@
     border-radius: 15px;
 }
 
-.my-students-container .my-students .my-students-navbar {
+.my-students-navbar {
     height: 80px;
     width: 100%;
     display: flex;
@@ -30,14 +30,14 @@
     top: 0;
     z-index: 999;
 }
-.my-students-container .my-students .my-students-navbar .my-students-navbar-container {
+.my-students-navbar-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
     width: 100%;
 }
-.my-students-container .my-students .my-students-navbar .my-students-navbar-container .my-students-nav-menu {
+.my-students-nav-menu {
     display: grid;
     grid-template-columns: repeat(5, auto);
     grid-gap: 10px;
@@ -47,12 +47,12 @@
     justify-content: center;
     margin-right: 2rem;
 }
-.my-students-container .my-students .my-students-navbar .my-students-navbar-container .my-students-nav-menu .my-students-nav-item {
+.my-students-nav-item {
     height: 80px;
     text-align: center;
     padding: 2rem 1rem;
 }
-.my-students-container .my-students .my-students-content{
+.my-students-content{
     width: 100%;
     height: 100%;
     display: flex;
@@ -61,75 +61,3 @@
     align-items: center;
     overflow: hidden;
   }
-/*
-.my-students-container h2{
-    color: #fff;
-    text-align: left;
-
-}
-.my-students-container .input{
-    border: 0;
-    outline: none;
-    color: #8b7d77;
-}
-
-.my-students-container  .search_wrap{
-    width: 80%;
-    margin: 30px auto;
-}
-
-.my-students-container .search_wrap .search_box{
-    position: relative;
-    width: 390px;
-    height: 60px;
-}
-
-.my-students-container .search_wrap .search_box .input{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 10px 20px;
-    border-radius: 3px;
-    font-size: 18px;
-}
-
-.my-students-container .search_wrap .search_box .btn{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60px;
-    height: 100%;
-    background: #7690da;
-    z-index: 1;
-    cursor: pointer;
-}
-
-.my-students-container .search_wrap .search_box .btn:hover{
-    background: #708bd2;
-}
-
-.my-students-container .search_wrap .search_box .btn.btn-common .fas{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: #fff;
-    font-size: 20px;
-}
-
-.my-students-container .search_wrap .search_box .btn{
-    right: 0;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-.my-students-container .search_wrap .search_box .input{
-    padding-right: 80px;
-}
-
-@media screen and (max-width: 500px){
-    .my-students-container .search_wrap .search_box{
-        width: 100%;
-    }
-}*/

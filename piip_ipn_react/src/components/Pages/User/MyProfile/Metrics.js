@@ -12,6 +12,10 @@ function Metrics({userData}) {
     const [numberOfInterviews,setNumberOfInterviews] = useState(0)
     const [recommendations,setRecommendations] = useState([])
     const [problemId, setProblemId] = useState(-1);
+
+    var colors = ["#CC4948","#FFCC00","#7A577A","#8BC441"]
+    var leftColor = ["#912c2c","#9e7e1c","#553755","#5f8330"]
+
     const [cntByTag, setCntByTag] = useState({
         "Dp": 1,
         "Greedy": 2,
@@ -202,35 +206,35 @@ function Metrics({userData}) {
             <div className="categories">
                 <h3 className="title">General View</h3>
                 <div className="categories-container">    
-                    <div className="category">
-                        <div className="title">
+                    <div className="category blue">
+                        <div className="category-title">
                             <h2>Programming Topics</h2>
                         </div>
-                        <div className="content">
+                        <div className="category-content">
                             <p>{numberOfProgrammingTopics} topics studied</p>
                         </div>                        
                     </div>
-                    <div className="category">
-                        <div className="title">
+                    <div className="category yellow">
+                        <div className="category-title">
                             <h2>Soft Skill Topics</h2>
                         </div>
-                        <div className="content">
+                        <div className="category-content">
                             <p>{numberOfSoftSkillTopics} topics studied</p>
                         </div>                        
                     </div>
-                    <div className="category">
-                        <div className="title">
+                    <div className="category green">
+                        <div className="category-title">
                             <h2>Problems</h2>
                         </div>
-                        <div className="content">
+                        <div className="category-content">
                             <p> {numberOfProblems} problems solved</p>
                         </div>                        
                     </div>
-                    <div className="category">
-                        <div className="title">
+                    <div className="category purple">
+                        <div className="category-title">
                             <h2>Interviews</h2>
                         </div>
-                        <div className="content">
+                        <div className="category-content">
                             <p> {numberOfInterviews} interviews attended</p>
                         </div>                        
                     </div>
@@ -252,10 +256,10 @@ function Metrics({userData}) {
                             <div className="recommendations">
                                 <div className="recommendations-container">
                                     {
-                                        recommendations.map((row) =>
-                                            <div className="recommendation" onClick={() => setProblemId(row.id)}>
+                                        recommendations.map((row,idx) =>
+                                            <div className="recommendation" style={{"background-color": colors[idx], "border-left": "5px solid"+leftColor[idx]}} onClick={() => setProblemId(row.id)}>
                                                 <p>{row.title}</p>
-                                                <h2>{row.tags}</h2>
+                                                <h2>{row.tags[0]}</h2>
                                             </div>
                                         )
                                     }

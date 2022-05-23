@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .softkillq-container .softskill .softskill-l .ssTop{
@@ -29,6 +30,7 @@
 
 .softkillq-container .softskill .softskill-l .ssTop .ssTitleTA{
     width: 100%;
+    resize: none;
 }
 
 .softkillq-container .softskill .softskill-l .ssBottom{
@@ -52,6 +54,7 @@
     height: 80%;
     display: flex;
     flex-direction: column;
+    resize: none;
 }
 
 .softkillq-container .softskill .softskill-r{
@@ -59,6 +62,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     overflow: auto;
 }
 
@@ -86,12 +90,12 @@
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     color: #fff;
-    background-color: #202731;
-    border-color: #202731;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-create-activities2:hover {
   color: #fff;
-  background-color: #202731;
-  border-color: #202731;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }

@@ -40,7 +40,7 @@ function MyInterviews({userData}) {
             <div className='my-interviews-container'>
                 <div className="my-interviews">
                     {interviews.length > 0 && (<>
-                        <h1 className='interview-title'>Here are you're pending interviews.</h1>
+                        <h1 className='interview-title'>Here are you're pending interviews:</h1>
                             {interviews.map((interview, indexInterview) => {
                             return (
                                     <>
