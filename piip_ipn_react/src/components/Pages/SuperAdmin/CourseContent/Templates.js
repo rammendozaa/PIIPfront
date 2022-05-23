@@ -149,21 +149,21 @@ function Templates({userData}) {
     }, []);
     return (
         <>
-            <div className='course-content-container'>
-                <div className="course-content">
-                    {data !== undefined && (<div className='course'> 
-                        <h1 className='course-title'>{data.name}</h1>
+            <div className='template-content-container'>
+                <div className="template-content">
+                    {data !== undefined && (<div className='template'> 
+                        <h1 className='template-title'>{data.name}</h1>
                         <IconContext.Provider value={{ color: 'red', size: '25px' }}>
-                            <div className='AccordionSection'>
-                                <div className='Container'>
+                            <div className='template-accordionSection'>
+                                <div className='template-container'>
                                     {data.sections.map((section, indexSection) => {
                                         return (
                                         <>
-                                            <div className='Wrap' key={indexSection}>
+                                            <div className='template-wrap' key={indexSection}>
                                                 <h1 onClick={() => toggle(indexSection)}>{section.name}</h1>
                                                 <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
                                             </div>
-                                            <div className='activities-container'>
+                                            <div className='template-activities-container'>
                                             {
                                                 clicked === indexSection 
                                                     ? 
@@ -171,7 +171,7 @@ function Templates({userData}) {
                                                         section.activities.map((activity,indexActivity) => {
                                                             return (
                                                                 <>
-                                                                    <div className='Dropdown' key={indexActivity}>
+                                                                    <div className='template-dropdown' key={indexActivity}>
                                                                         <p><b>{activityIdToName[activity.activityType]}</b>: {activity.name}</p>
                                                                         <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
                                                                     </div>                                                                
@@ -185,7 +185,7 @@ function Templates({userData}) {
                                                 clicked === indexSection
                                                 ?
                                                 (
-                                                    <div className='AddNewActivity'>
+                                                    <div className='template-addNewActivity'>
                                                         <span>{<FiPlus onClick={() => prepareNewSection(indexSection, section.id) }/>}</span>
                                                     </div>
                                                 )
@@ -195,8 +195,8 @@ function Templates({userData}) {
                                         </>
                                         );
                                     })}
-                                    <div className='AddNewSection'>
-                                        <input type='text' placeholder='Section Name' className='input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
+                                    <div className='template-addNewSection'>
+                                        <input type='text' placeholder='Section Name' className='template-input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
                                         <span>{<FiPlus onClick={() => AddNewSection()}/>}</span>
                                     </div>
                                 </div>

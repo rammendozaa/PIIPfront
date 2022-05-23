@@ -1,5 +1,5 @@
 .hero-container {
-  background-color: #202731;
+  background-color:#F0F2F2;
   height: 100%;
   width: 100%;
   display: flex;
@@ -9,7 +9,7 @@
   object-fit: contain;
 }
 .hero-container > h1 {
-  color: #fff;
+  color: #731F35;
   font-size: 70px;
   flex-shrink: 1;
   min-width: 0;
@@ -20,7 +20,7 @@
 }
 .hero-container > p {
   margin-top: 30px;
-  color: #fff;
+  color: #731F35;
   font-size: 32px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
   'Lucida Sans', Arial, sans-serif;

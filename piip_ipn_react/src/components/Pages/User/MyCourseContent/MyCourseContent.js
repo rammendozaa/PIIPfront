@@ -1,7 +1,6 @@
 import { FiCheck, FiSlash, FiEdit3 } from 'react-icons/fi';
 import {useEffect, useState} from 'react'
 import "./MyCourseContent.css"
-import { useParams } from "react-router-dom";
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import StartingQuiz from '../StartingQuiz/StartingQuiz';
@@ -121,9 +120,9 @@ function CourseContent({userData}) {
 
     if (data.template === undefined) { // hasn't solved initial quiz
         return (
-            <div className='course-content-container'>
-                <div className='course-content-quiz'>
-                    <h1 className='sorry'>{descriptionText}</h1>
+            <div className='mycourse-content-container'>
+                <div className='mycourse-content-quiz'>
+                    <h1 className='mycourse-description'>{descriptionText}</h1>
                     <StartingQuiz
                         userData={userData}
                         questionnaire={baseQuestionnaire}
@@ -138,25 +137,25 @@ function CourseContent({userData}) {
 
     if(administratorId === -1){
         return (
-            <div className='course-content-container'>
+            <div className='mycourse-content-container'>
                 <h1>Sorry, you do not yet have a mentor assigned to you. <p>We're contacting them so don't worry!</p></h1>
-                <img src='/images/sorry-removebg-preview.png'></img>
+                <img className='mycourse-sorryimg' src='/images/sorry-removebg-preview.png'></img>
             </div>
         )
     }
 
     return (
         <>
-            <div className='course-content-container'>
-                <div className='course'> 
-                    <h1 className='course-title'> {data.template.name} </h1>
-                    <IconContext.Provider value={{ color: '#00FFB9', size: '25px' }}>
-                        <div className='AccordionSection'>
-                            <div className='Container'>
+            <div className='mycourse-content-container'>
+                <div className='mycourse'> 
+                    <h1 className='mycourse-title'> {data.template.name} </h1>
+                    <IconContext.Provider value={{ color: 'var(--primary-color)', size: '25px' }}>
+                        <div className='mycourse-accordionSection'>
+                            <div className='mycourse-container'>
                                 {data.user_sections.map((section, indexSection) => {
                                     return (
                                     <>
-                                        <div className='Wrap' onClick={() => toggle(indexSection)} key={indexSection}>
+                                        <div className='mycourse-wrap' onClick={() => toggle(indexSection)} key={indexSection}>
                                             <h1>
                                             {section.status_id === 4 &&
                                             <span>
@@ -179,7 +178,7 @@ function CourseContent({userData}) {
                                                 {section.template_section.name}</h1>
                                             <span>{clicked === indexSection ? <FiMinus /> : <FiPlus />}</span>
                                         </div>
-                                        <div className='activities-container'>
+                                        <div className='mycourse-activities-container'>
                                         {
                                             clicked === indexSection 
                                                 ? 
@@ -187,20 +186,20 @@ function CourseContent({userData}) {
                                                     section.user_activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
-                                                                <div className='Dropdown' onClick={() => redirectToActivity(
+                                                                <div className='mycourse-dropdown' onClick={() => redirectToActivity(
                                                                     activity)} key={indexActivity}>
                                                                     <p><b>
-                                                                        {activity.status_id === 4 && <span>
+                                                                        {activity.status_id === 4 && <span className='mycourse-activity-status'>
                                                                             <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>
                                                                                 <FiCheck/>
                                                                             </IconContext.Provider>
                                                                         </span>}
-                                                                        {activity.status_id === 1 && <span>
+                                                                        {activity.status_id === 1 && <span className='mycourse-activity-status'>
                                                                             <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
                                                                                 <FiSlash/>
                                                                             </IconContext.Provider>
                                                                         </span>}
-                                                                        {activity.status_id !== 1 && activity.status_id !== 4 && <span>
+                                                                        {activity.status_id !== 1 && activity.status_id !== 4 && <span className='mycourse-activity-status'>
                                                                             <IconContext.Provider value={{ color: "black", className: "global-class-name" }}>
                                                                                 <FiEdit3/>
                                                                             </IconContext.Provider>

@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202731;
+    background-color: var(--secondary-color);
     /*overflow: hidden*/
 }
 .mock-interview-container .mock-interview {
@@ -36,8 +36,8 @@
     flex-wrap: wrap;
 }
 .mock-interview-container .mock-interview .mi .mock-interview-message{
-    background-color:#00ABBD;
-    border-left:5px solid #047380;
+    background-color: #CC4948;
+    border-left:5px solid #912c2c;
     width:40%;
     height: 150px;
     /*margin:20px auto;*/
@@ -52,7 +52,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #F2C12E;
+    background-color: #FFCC00;
     border-left:5px solid #9e7e1c;
 }
 .mock-interview-container .mock-interview .mi .comments{
@@ -62,6 +62,36 @@
     background-color: #7A577A;
     border-left:5px solid #553755;
 }
+.mock-interview-container .mock-interview .mi .commentsBlue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #8BC441;
+    border-left:5px solid #5f8330;
+}
+.mock-interview-container .mock-interview .mi .commentsOther{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color:#00ABBD;
+    border-left:5px solid #047380;
+}
+.mock-interview-container .mock-interview .mi .commentsPink{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F29999;
+    border-left:5px solid #c99090;
+}
+
+.mock-interview-container .mock-interview .mi .commentsOrange{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #F27052;
+    border-left:5px solid #c0533b;
+}
+
 .mock-interview-container .mock-interview .mi .mock-interview-message .ta{
     width: 100%;
     margin-top: 10px;
@@ -69,10 +99,12 @@
 
 .mock-interview-container .mock-interview .mi .mock-interview-message .message-h1 {
     font-family:Quicksand;
+    color: #fff;
 }
 
 .mock-interview-container .mock-interview .mi .mock-interview-message .message-h2{
     font-family:Quicksand;
+    color: #fff;
 }
 
 .mock-interview-container .mock-interview .mi .mock-interview-message .close{

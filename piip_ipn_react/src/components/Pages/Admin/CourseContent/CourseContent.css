@@ -6,11 +6,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202731;
-    /*overflow: auto;*/
+    background-color: var(--secondary-color);
 }
-.course-content-container .sorry {
-    color: #fff;
+.course-description-title {
     font-size: 70px;
     flex-shrink: 1;
     min-width: 0;
@@ -18,38 +16,32 @@
     width: 90%;
     text-align: center;
     text-overflow: ellipsis;
-  }
-.course-content-container .course{
+}
+.course{
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 3vh;
-    /*align-items: center;
-    justify-content: center;*/
 }
-.course-content-container .course2{
+.course-description{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    /*margin-top: 3vh;*/
     align-items: center;
     justify-content: center;
 }
 
-.course-content-container .course .course-title{
-    text-align: left;
+.course-title{
+    text-align: center;
     width: 100%;
     min-width: 0;
     min-height: 0;
-    color: #fff;
 }
-.course-content-container .course .AccordionSection{
+.course-accordionSection{
     display: flex;
     flex-direction: column;
-    /*align-items: center;
-    justify-content: center;*/
     background: #fff;
     width: 100%;
     min-width: 0;
@@ -57,15 +49,14 @@
     margin-top: 10px;
     position: relative;
 }
-.course-content-container .course .AccordionSection .Container{
-    /*box-shadow: 2px 10px 35px 1px rgba(153, 153, 153, 0.3);*/
+.course-container{
     width: 100%;
     margin-top: 10px;
     position: absolute;
     padding-bottom:10%;
     top: 30%;
 }
-.course-content-container .course .AccordionSection .Container .Wrap {
+.course-wrap {
     background: #fff;
     color: #272727;
     display: flex;
@@ -77,20 +68,20 @@
     border-radius: 10px;
     margin: 5px;
 }
-.course-content-container .course .AccordionSection .Container .Wrap h1{
+.course-wrap h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .Wrap span{
+.course-wrap span{
     margin-right: 1.5rem;
 }
-.course-content-container .course .AccordionSection .Container .activities-container{
+.course-activities-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown {
+.course-dropdown {
     background: #fff;
     border-radius: 10px;
     padding: 0.5%;
@@ -101,15 +92,15 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown p{
+.course-dropdown p{
     font-size: 1rem;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown span{
+.course-dropdown span{
     margin-right: 1rem;
     color: red;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewActivity {
+.course-addNewActivity {
     background: #fff;
     width: 98%;
     height: 50px;
@@ -117,16 +108,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /*border-bottom: 1px solid #00ffb9;
-    border-top: 1px solid #00ffb9;*/
     margin-top: 5px;
     border-radius: 10px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewActivity p{
+.course-addNewActivity p{
     font-size: 2rem;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewSection {
+.course-addNewSection {
     background: #fff;
     color: #272727;
     display: flex;
@@ -139,14 +128,14 @@
     margin: 5px;
     min-height: 60px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection .input{
+.course-input{
     border: 0;
     outline: none;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection h1{
+.course-addNewSection h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection span{
+.course-addNewSection span{
     margin-right: 1.5rem;
 }

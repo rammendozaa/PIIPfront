@@ -85,7 +85,7 @@
   justify-content: flex-end;
 }
 .compiler .compiler-footbar .submitCode{
-  background-color: #202731;
+  background-color: var(--primary-color);
   color: #fff;
   margin-left: 10px;
   width: 50%;

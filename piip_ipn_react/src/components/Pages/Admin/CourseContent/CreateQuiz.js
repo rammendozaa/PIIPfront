@@ -5,7 +5,6 @@ import {FaSave} from 'react-icons/fa'
 import { IconContext } from 'react-icons';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { TiDelete } from 'react-icons/ti'
-import { NewActivity } from '../../../../../src/externalClasses'
 const baseURL = "http://127.0.0.1:5000"
 
 
@@ -121,7 +120,9 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
                 <div className='create-question-section'>
                     <div className='create-question-count'>
                         <span>Question {currentQuestion + 1}</span>/{questions.length}
-                        <span><TiDelete onClick={() => removeQuestion()}/></span>
+                        <IconContext.Provider value={{ color: 'var(--primary-color)', size: '25px' }}>
+                            <span className='removeQuestion'><TiDelete onClick={() => removeQuestion()}/></span>
+                        </IconContext.Provider>
                     </div>
                     <div className='question-text'>
                         <input className='question-text-input' value={questions[currentQuestion].questionText} onChange={(e) => handleChange(e.target)}/>
@@ -138,7 +139,7 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
                 </div>
 		    </div>
             <div className='create-options'>
-                <IconContext.Provider value={{ color: '#7690da', size: '25px' }}>
+                <IconContext.Provider value={{ color: 'var(--primary-color)', size: '25px' }}>
                     <span><BsFillArrowLeftCircleFill onClick={() => moveNext(-1)}/></span>
                     <span><FaSave onClick={() => saveNewQuestionnaire()}/></span>
                     <span><FiPlus onClick={() => addNewQuestion()}/></span>

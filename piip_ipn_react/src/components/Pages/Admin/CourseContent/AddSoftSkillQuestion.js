@@ -52,7 +52,7 @@ function AddSoftSkillQuestion({userData}) {
                     </div>
                 </div>
                 <div className='softskill-r'>
-                    <img src='/images/soft-skills.png'/>
+                    <img src='/images/soft-skills.avif'/>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 .my-profile-container {
-  background-color: #202731;
+  background-color: var(--secondary-color);
   height: 100%;
   width: 100%;
   display: flex;
@@ -140,11 +140,7 @@
   height: 50px;
   margin-top: 10px;
   border-radius: 2px;
-  background: linear-gradient(
-    90deg,
-    rgb(39, 176, 255) 0%,
-    rgb(0, 232, 236) 100%
-  );
+  background-color: var(--primary-color);
   outline: none;
   border: none;
   color: #fff;

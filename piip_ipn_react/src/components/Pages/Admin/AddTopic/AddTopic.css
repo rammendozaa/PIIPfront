@@ -163,16 +163,17 @@
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     color: #fff;
-    background-color: #202731;
-    border-color: #202731;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-create-activities:hover {
   color: #fff;
-  background-color: #202731;
-  border-color: #202731;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .input-topic {
+  margin-left: 10px;
   width: 30%;
 }

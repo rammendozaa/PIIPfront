@@ -5,71 +5,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #202731;
-    /*overflow: auto;*/
+    background-color: var(--secondary-color);
 }
 .my-interviews-container .my-interviews {
     width: 80%;
     height: 80%;
 }
-.my-interviews-container .sorry {
-    color: #fff;
-    font-size: 70px;
-    flex-shrink: 1;
-    min-width: 0;
-    min-height: 0;
-    width: 90%;
-    text-align: center;
-    text-overflow: ellipsis;
-  }
-.my-interviews-container .course{
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 3vh;
-    /*align-items: center;
-    justify-content: center;*/
-}
-.my-interviews-container .course2{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    /*margin-top: 3vh;*/
-    align-items: center;
-    justify-content: center;
-}
-
 .my-interviews-container .interview-title{
-    text-align: left;
+    text-align: center;
     width: 100%;
     min-width: 0;
     min-height: 0;
-    color: #fff;
 }
-.my-interviews-container .course .AccordionSection{
-    display: flex;
-    flex-direction: column;
-    /*align-items: center;
-    justify-content: center;*/
-    background: #fff;
-    width: 100%;
-    min-width: 0;
-    min-height: 0;
-    margin-top: 10px;
-    position: relative;
-}
-/*
 .my-interviews-container .Container{
-    width: 100%;
-    margin-top: 10px;
-    position: absolute;
-    top: 30%;
-}
-*/
-.my-interviews-container .Container{
-    background: #fff;
+    background-color: #fff;
     color: #272727;
     display: flex;
     justify-content: space-between;
@@ -78,78 +27,9 @@
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
-    margin: 5px;
+    margin-top: 50px;
 }
 .my-interviews-container .Container h1{
     padding: 2rem;
     font-size: 2rem;
-}
-.my-interviews-container .course .AccordionSection .Container .Wrap span{
-    margin-right: 1.5rem;
-}
-.my-interviews-container .course .AccordionSection .Container .activities-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-}
-.my-interviews-container .course .AccordionSection .Container .Dropdown {
-    background: #fff;
-    border-radius: 10px;
-
-    color: #1c1c1c;
-    width: 98%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.my-interviews-container .course .AccordionSection .Container .Dropdown p{
-    font-size: 2rem;
-}
-.my-interviews-container .course .AccordionSection .Container .Dropdown span{
-    margin-right: 1rem;
-    color: red;
-}
-
-.my-interviews-container .course .AccordionSection .Container .AddNewActivity {
-    background: #fff;
-    width: 98%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /*border-bottom: 1px solid #00ffb9;
-    border-top: 1px solid #00ffb9;*/
-    margin-top: 5px;
-    border-radius: 10px;
-}
-.my-interviews-container .course .AccordionSection .Container .AddNewActivity p{
-    font-size: 2rem;
-}
-
-.my-interviews-container .course .AccordionSection .Container .AddNewSection {
-    background: #fff;
-    color: #272727;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 10px;
-    margin: 5px;
-    min-height: 60px;
-}
-.my-interviews-container .course .AccordionSection .Container .AddNewSection .input{
-    border: 0;
-    outline: none;
-}
-.my-interviews-container .course .AccordionSection .Container .AddNewSection h1{
-    padding: 2rem;
-    font-size: 2rem;
-}
-.my-interviews-container .course .AccordionSection .Container .AddNewSection span{
-    margin-right: 1.5rem;
 }

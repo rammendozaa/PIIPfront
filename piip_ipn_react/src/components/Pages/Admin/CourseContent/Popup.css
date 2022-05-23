@@ -30,6 +30,8 @@
     position: absolute;
     top: 16px;
     right: 16px;
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 .popup-inner .options-container{

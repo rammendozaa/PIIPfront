@@ -5,6 +5,7 @@ import React, {useEffect} from 'react'
 import { ActivityInfo } from '../../../../externalClasses';
 import { setUserActivityInfo } from '../../../../state/reducers/activity';
 import { useNavigate } from "react-router-dom";
+import { IconContext } from 'react-icons';
 import "./TemplatesView.css"
 const baseURL = "http://127.0.0.1:5000"
 
@@ -67,27 +68,27 @@ function TemplatesView({userData}) {
         }, []);
     return (
         <>
-            <div className='template-view-container'>
-                <div className="template-view">
+            <div className='templateview-container'>
+                <div className="templateview">
                         {templates.length > 0 && (<>
-                            <div className='course'>
-                            <h1 className='template-view-title'>These are the current templates. Click on one to edit.</h1>
-                        <div className='AccordionSection'>
-                            <div className='Container'>
+                            <div className='templateview-course'>
+                            <h1 className='templateview-title'>These are the current templates. Click on one to edit.</h1>
+                        <div className='templateview-accordionSection'>
+                            <div className='templateview-Container'>
                                 {templates.map((template, indexTemplate) => {
                                 return (
-                                            <div className='Wrap'>
+                                            <div className='templateview-wrap'>
                                                     <h1 onClick={() => handleClick(template)}>{template.name}: {template.description}</h1>
                                             </div>
                                     )
                                 })}
-                    <div className='flex add-new-template'>
+                    <div className='flex templateview-add-new-template'>
                         <div>
                     <h3>Add a new template: </h3>
                     </div>
                     <div>
-                    <input type='text' placeholder='Title' className='input' value={newTemplateTitle} onChange={(e) => setNewTemplateTitle(e.target.value)}/>
-                    <input type='text' placeholder='Description' className='input' value={newTemplateDescription} onChange={(e) => setNewTemplateDescription(e.target.value)}/>
+                    <input type='text' placeholder='Title' className='templateview-input' value={newTemplateTitle} onChange={(e) => setNewTemplateTitle(e.target.value)}/>
+                    <input type='text' placeholder='Description' className='templateview-input' value={newTemplateDescription} onChange={(e) => setNewTemplateDescription(e.target.value)}/>
 <span>{<FiPlus onClick={() => addNewTemplate()}/>}</span>
 </div>
                     </div>
@@ -99,11 +100,15 @@ function TemplatesView({userData}) {
                         }
                         {templates.length == 0 &&
                             <>
-                            <h1 className='template-view-title'>There aren't any templates yet. Add one.</h1>
-                            <div className='add-new-template'>
-                                <input type='text' placeholder='Title' className='input' value={newTemplateTitle} onChange={(e) => setNewTemplateTitle(e.target.value)}/>
-                                <input type='text' placeholder='Description' className='input' value={newTemplateDescription} onChange={(e) => setNewTemplateDescription(e.target.value)}/>
-                                <span>{<FiPlus onClick={() => addNewTemplate()}/>}</span>
+                            <h1 className='templateview-title'>There aren't any templates yet. Add one.</h1>
+                            <div className='templateview-add-new-template'>
+                                <input type='text' placeholder='Title' className='templateview-input' value={newTemplateTitle} onChange={(e) => setNewTemplateTitle(e.target.value)}/>
+                                <input type='text' placeholder='Description' className='templateview-input' value={newTemplateDescription} onChange={(e) => setNewTemplateDescription(e.target.value)}/>
+                                <span>
+                                    <IconContext.Provider value={{ color: 'red', size: '25px' }}>
+                                        {<FiPlus onClick={() => addNewTemplate()}/>}
+                                    </IconContext.Provider>
+                                </span>
                             </div>
                             </>        
                         }

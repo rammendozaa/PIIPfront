@@ -43,13 +43,13 @@
     right: 0;
     width: 60px;
     height: 100%;
-    background: #7690da;
+    background: var(--primary-color);
     z-index: 1;
     cursor: pointer;
 }
 
 .see-topics-container .search_wrap .search_box .btn:hover{
-    background: #708bd2;
+    background: var(--primary-color);
 }
 
 .see-topics-container .search_wrap .search_box .btn.btn-common .fas{

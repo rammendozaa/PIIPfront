@@ -1,4 +1,4 @@
-.course-content-container{
+.mycourse-content-container{
     width: 100%;
     height: 100%;
     display: flex;
@@ -6,20 +6,16 @@
     justify-content: center;
     overflow-y:auto;
     align-items: center;
-    background-color: #202731;
-    /*overflow: hidden*/
+    background-color: var(--secondary-color);
 }
-.course-content-container .course{
+.mycourse{
     width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 3vh;
-    /*align-items: center;
-    justify-content: center;*/
 }
-.course-content-container > h1 {
-    color: #fff;
+.mycourse-content-container > h1 {
     font-size: 70px;
     flex-shrink: 1;
     min-width: 0;
@@ -28,25 +24,21 @@
     text-align: center;
     text-overflow: ellipsis;
 }
-.course-content-container > img {
+.mycourse-sorryimg {
     flex-shrink: 4;
     min-width: 0;
     min-height: 0;
     margin-top: 10px;
-  }
-
-.course-content-container .course .course-title{
-    text-align: left;
+}
+.mycourse-title{
+    text-align: center;
     width: 100%;
     min-width: 0;
     min-height: 0;
-    color: #fff;
 }
-.course-content-container .course .AccordionSection{
+.mycourse-accordionSection{
     display: flex;
     flex-direction: column;
-    /*align-items: center;
-    justify-content: center;*/
     background: #fff;
     width: 100%;
     min-width: 0;
@@ -54,15 +46,14 @@
     margin-top: 10px;
     position: relative;
 }
-.course-content-container .course .AccordionSection .Container{
-    /*box-shadow: 2px 10px 35px 1px rgba(153, 153, 153, 0.3);*/
+.mycourse-container{
     width: 100%;
     margin-top: 10px;
     position: absolute;
     top: 30%;
     position: absolute;
 }
-.course-content-container .course .AccordionSection .Container .Wrap {
+.mycourse-wrap {
     background: #fff;
     color: #272727;
     display: flex;
@@ -74,20 +65,20 @@
     border-radius: 10px;
     margin: 5px;
 }
-.course-content-container .course .AccordionSection .Container .Wrap h1{
+.mycourse-wrap h1{
     padding: 2rem;
     font-size: 2rem;
 }
-.course-content-container .course .AccordionSection .Container .Wrap span{
+.mycourse-wrap span{
     margin-right: 1.5rem;
 }
-.course-content-container .course .AccordionSection .Container .activities-container{
+.mycourse-activities-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
 }
-.course-content-container .course .AccordionSection .Container .Dropdown {
+.mycourse-dropdown {
     margin-top: 5px;
     background: #fff;
     border-radius: 10px;
@@ -98,15 +89,16 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /*border-bottom: 1px solid #00ffb9;
-    border-top: 1px solid #00ffb9;*/
 }
-.course-content-container .course .AccordionSection .Container .Dropdown p{
+.mycourse-activity-status{
+    margin-right: 10px;
+}
+.mycourse-dropdown p{
     font-size: 1rem;
     padding: 1rem;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewActivity {
+/*.mycourse-addNewActivity {
     background: #fff;
     color: red;
     width: 98%;
@@ -115,16 +107,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    /*border-bottom: 1px solid #00ffb9;
-    border-top: 1px solid #00ffb9;*/
     margin-top: 5px;
     border-radius: 10px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewActivity p{
+.mycourse-content-container .mycourse .mycourse-AccordionSection .mycourse-Container .mycourse-AddNewActivity p{
     font-size: 2rem;
 }
 
-.course-content-container .course .AccordionSection .Container .AddNewSection {
+.mycourse-content-container .mycourse .mycourse-AccordionSection .mycourse-Container .mycourse-AddNewSection {
     background: #fff;
     color: #272727;
     display: flex;
@@ -136,15 +126,23 @@
     border-radius: 10px;
     margin: 5px;
 }
-.course-content-container .course .AccordionSection .Container .AddNewSection h1{
+.mycourse-content-container .mycourse .AccordionSection .Container .AddNewSection h1{
     padding: 2rem;
     font-size: 2rem;
 }
 .course-content-container .course .AccordionSection .Container .AddNewSection span{
     margin-right: 1.5rem;
-}
-
-.course-content-container .course-content-quiz{
+}*/
+.mycourse-content-quiz{
     width: 80%;
     height: 80%;
+}
+.mycourse-description {
+    font-size: 70px;
+    flex-shrink: 1;
+    min-width: 0;
+    min-height: 0;
+    width: 90%;
+    text-align: center;
+    text-overflow: ellipsis;
 }

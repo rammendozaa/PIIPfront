@@ -114,7 +114,7 @@ function MockInterviews({userData}) {
                     </div>}
                 {interviewURL === null &&
                 <>
-                    <div className='mock-interview-message comments'>
+                    <div className='mock-interview-message commentsPink'>
                         <h1 className='message-h1'>Add a link for your upcoming interview:</h1>
                         <textarea
                             className='ta'
@@ -160,7 +160,7 @@ function MockInterviews({userData}) {
                 }
                 {interviewCode === null &&
                 <>
-                    <div className='mock-interview-message comments'>
+                    <div className='mock-interview-message commentsBlue'>
                     <h1 className='message-h1'>Add the code written here:</h1>
                     <textarea
                         className='ta'
@@ -172,17 +172,19 @@ function MockInterviews({userData}) {
                 </>
                 }
                 {isConfirmed === false &&
-                <div className='mock-interview-message'>
+                <div className='mock-interview-message commentsOther'>
                     <label>
                         <input
                             type="checkbox"
                             onChange={() => {setChecked(!isChecked)}}
                             />
+                        <h2 className='message-h2'>
                         Confirm interview?
+                        </h2>
                     </label>
                 </div>
                 }
-                <div className='mock-interview-message comments'>
+                <div className='mock-interview-message commentsOrange'>
                     <h2 className='message-h2'>Comments or questions?</h2>
                     <textarea
                         className='ta'
