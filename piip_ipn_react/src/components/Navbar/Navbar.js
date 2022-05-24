@@ -62,6 +62,16 @@ function Navbar({userData, validUserData, removeUserData}) {
                                 </Link>
                             </li>
                             <li className='nav-item'>
+                                <Link to="/problems" className="nav-links" onClick={closeMobileMenu}>
+                                    Problems
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/topics" className="nav-links" onClick={closeMobileMenu}>
+                                    Topics
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
                                 <Link to="/templates-view" className="nav-links" onClick={closeMobileMenu}>
                                     Templates
                                 </Link>
@@ -82,6 +92,16 @@ function Navbar({userData, validUserData, removeUserData}) {
                             <li className='nav-item'>
                                 <Link to="/my-students" className="nav-links" onClick={closeMobileMenu}>
                                     My Students
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/problems" className="nav-links" onClick={closeMobileMenu}>
+                                    Problems
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
+                                <Link to="/topics" className="nav-links" onClick={closeMobileMenu}>
+                                    Topics
                                 </Link>
                             </li>
                             <li className='nav-item'>
