@@ -82,6 +82,7 @@
     align-items: flex-end;
 }
 .course-dropdown {
+    margin-top: 5px;
     background: #fff;
     border-radius: 10px;
     padding: 0.5%;
@@ -94,6 +95,7 @@
 }
 .course-dropdown p{
     font-size: 1rem;
+    padding: 1rem;
 }
 .course-dropdown span{
     margin-right: 1rem;
