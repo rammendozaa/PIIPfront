@@ -6,6 +6,7 @@ import { TiDelete } from 'react-icons/ti'
 import Popup from './Popup';
 import { useParams } from "react-router-dom";
 import React, {useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
 const baseURL = "http://127.0.0.1:5000"
 const activityIdToName = {
     1:"Problem",
@@ -19,6 +20,7 @@ const activityIdToName = {
 function CourseContent({userData}) {
     const {user_id} = useParams();
     const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
+    const navigate = useNavigate();
 
 
     console.log("Token: ",userData.token)
@@ -153,6 +155,27 @@ function CourseContent({userData}) {
         });
     }, []);
 
+    const redirectToActivity = (activity) => {
+        const activityType = activity.template_activity.activityType;
+        const activity_id = activity.template_activity.activity.id;
+        console.log("here")
+        console.log(activityType)
+        console.log("here")
+        if (activityType == 1) {
+            navigate(`/problem/${activity_id}`)
+        } else if (activityType == 2) {
+            navigate(`/topic/algorithm/${activity_id}`);
+        } else if (activityType == 3) {
+            navigate(`/soft-skill-question/${activity_id}`)
+        } else if (activityType == 4) {
+            navigate(`/topic/softskill/${activity_id}`);
+        } else if (activityType == 5) {
+            navigate(`/mock-interviews/${activity_id}`)
+        } else if (activityType == 6) {
+            navigate(`/solve-quiz/${activity_id}`)
+        }
+    }
+
     return (
         <>
             <div className='course-content-container'>
@@ -200,7 +223,7 @@ function CourseContent({userData}) {
                                                     section.user_activities.map((activity,indexActivity) => {
                                                         return (
                                                             <>
-                                                                <div className='course-dropdown' key={indexActivity}>
+                                                                <div className='course-dropdown' onClick={() => redirectToActivity(activity)} key={indexActivity}>
                                                                     <p><b>
                                                                         {activity.status_id === 4 && <span>
                                                                             <IconContext.Provider value={{ color: "green", className: "global-class-name" }}>

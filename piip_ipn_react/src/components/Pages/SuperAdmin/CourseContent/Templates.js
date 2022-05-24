@@ -20,7 +20,6 @@ const activityIdToName = {
 
 
 function Templates({userData}) {
-    const {activity} = useSelector(state => state.userActivity);
     const {template_id} = useParams();
     const [data, setData] = useState({
             "id": 11,
@@ -135,17 +134,13 @@ function Templates({userData}) {
         setButtonPopup(true)
     }
     useEffect(() => {
-        if ((activity !== undefined && activity !== null)) {
-            setData(activity.activity);
-        } else {
-            fetch(baseURL + `/template?template_id=${template_id}`,{
-                method: "GET",
-            })
-            .then(res => res.json())
-            .then(data => {
-                setData(data)
-            });
-        }
+        fetch(baseURL + `/template?template_id=${template_id}`,{
+            method: "GET",
+        })
+        .then(res => res.json())
+        .then(data => {
+            setData(data)
+        });
     }, []);
     return (
         <>
@@ -161,7 +156,7 @@ function Templates({userData}) {
                                         <>
                                             <div className='template-wrap' key={indexSection}>
                                                 <h1 onClick={() => toggle(indexSection)}>{section.name}</h1>
-                                                <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>
+                                                {userData.role === "super" && <span><TiDelete onClick={() => deleteSection(indexSection, section.id)}/></span>}
                                             </div>
                                             <div className='template-activities-container'>
                                             {
@@ -173,7 +168,7 @@ function Templates({userData}) {
                                                                 <>
                                                                     <div className='template-dropdown' key={indexActivity}>
                                                                         <p><b>{activityIdToName[activity.activityType]}</b>: {activity.name}</p>
-                                                                        <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>
+                                                                        {userData.role === "super" && <span><TiDelete onClick={() => deleteActivity(indexSection, indexActivity, activity.id)}/></span>}
                                                                     </div>                                                                
                                                                 </>
                                                             )
@@ -182,7 +177,7 @@ function Templates({userData}) {
                                                     : null
                                             }
                                             {
-                                                clicked === indexSection
+                                                clicked === indexSection && userData.role === "super"
                                                 ?
                                                 (
                                                     <div className='template-addNewActivity'>
@@ -195,10 +190,10 @@ function Templates({userData}) {
                                         </>
                                         );
                                     })}
-                                    <div className='template-addNewSection'>
+                                    {userData.role === "super" && <div className='template-addNewSection'>
                                         <input type='text' placeholder='Section Name' className='template-input' value={newSectionName} onChange={(e) => setNewSectionName(e.target.value)}/>
                                         <span>{<FiPlus onClick={() => AddNewSection()}/>}</span>
-                                    </div>
+                                    </div>}
                                 </div>
                             </div>
                         </IconContext.Provider>

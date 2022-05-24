@@ -8,10 +8,9 @@
     align-items: center;
     background-color: var(--secondary-color);
 }
-.templateview{
+.templateview-container .templateview{
     width: 80%;
     height: 80%;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -49,6 +48,7 @@
 }
 .templateview-wrap {
     background: #fff;
+    padding: 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,7 +59,7 @@
     margin: 5px;
 }
 .templateview-wrap h1{
-    padding: 2rem;
+    padding: 2%;
     font-size: 2rem;
 }
 .templateview-wrap span{

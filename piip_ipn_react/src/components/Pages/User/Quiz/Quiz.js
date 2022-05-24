@@ -86,37 +86,43 @@ function Quiz({userData}) {
 		}
 	}
 	const handleAnswerOptionClick = (isCorrect) => {
-        if (isCorrect) {
-		    setScore(score + 1);
-		}
-		if (currentQuestion + 1 === questions.length) {
+		if (userData.role === "user") {
 			if (isCorrect) {
-				submitScore(score + 1);
-			} else {
-				submitScore(score);
+				setScore(score + 1);
 			}
-			setShowScore(true)
-		}
-	    const nextQuestion = currentQuestion + 1;
-		if (nextQuestion < questions.length) {
-			setCurrentQuestion(nextQuestion);
+			if (currentQuestion + 1 === questions.length) {
+				if (isCorrect) {
+					submitScore(score + 1);
+				} else {
+					submitScore(score);
+				}
+				setShowScore(true)
+			}
+			const nextQuestion = currentQuestion + 1;
+			if (nextQuestion < questions.length) {
+				setCurrentQuestion(nextQuestion);
+
+			}
 		}
 	};
 
     return (
         <div className='quiz-container'>
+			<div className="quiz-quiz">
 				{userData.role === "user" && 
 				<h2>Remember that once you choose an option you can't go back to the previous question!</h2>}
+				{userData.role !== "user" && 
+				<h2>These are the questions for this quiz:</h2>}
             <div className='quiz'>
                 {showScore ? (
                     <div className='score-section'>
-						{activity.user_activity_status_id === 4 &&
+						{userData.role === "user" && activity.user_activity_status_id === 4 &&
 						<>
-							This your score of {score} out of {questions.length} will not be recorded as you have already solved this quiz ):
+							Your score of {score} out of {questions.length} will not be recorded as you have already solved this quiz ):
 							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>
 						</>
 						}
-						{activity.user_activity_status_id !== 4 &&
+						{userData.role === "user" && activity.user_activity_status_id !== 4 &&
                         <>
 							You answered {score} questions correctly out of {questions.length}!
 							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>)
@@ -146,7 +152,8 @@ function Quiz({userData}) {
                     <span><BsFillArrowRightCircleFill onClick={() => moveNext(1)}/></span>
                 </IconContext.Provider>  
             </div>}
-        </div>
+			</div>
+		</div>
 	);
 }
 

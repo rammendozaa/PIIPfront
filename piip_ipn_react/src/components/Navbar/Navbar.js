@@ -62,6 +62,11 @@ function Navbar({userData, validUserData, removeUserData}) {
                                 </Link>
                             </li>
                             <li className='nav-item'>
+                                <Link to="/templates-view" className="nav-links" onClick={closeMobileMenu}>
+                                    Templates
+                                </Link>
+                            </li>
+                            <li className='nav-item'>
                                 <Link to="/my-interviews" className="nav-links" onClick={closeMobileMenu}>
                                     My interviews
                                 </Link>
