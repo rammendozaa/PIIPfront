@@ -9,7 +9,8 @@
 }
 .create-quiz {
     background-color: #fff;
-    width: 550px;
+    width: 70%;
+    height: 75%;
     min-height: 300px;
     height: min-content;
     border-radius: 15px;
@@ -113,6 +114,7 @@
 }
 .question-text-input{
     padding:1%;
+    width: 85%;
     margin: 1%;
     outline: none;
     border: 1;
