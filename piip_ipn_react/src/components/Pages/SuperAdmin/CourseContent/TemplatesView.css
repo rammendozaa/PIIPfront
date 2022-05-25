@@ -48,12 +48,10 @@
 }
 .templateview-wrap {
     background: #fff;
-    padding: 2%;
+    padding: 1px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
-    text-align: center;
     cursor: pointer;
     border-radius: 10px;
     margin: 5px;

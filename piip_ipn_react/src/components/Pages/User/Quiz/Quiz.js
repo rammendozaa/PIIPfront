@@ -110,7 +110,7 @@ function Quiz({userData}) {
         <div className='quiz-container'>
 			<div className="quiz-quiz">
 				{userData.role === "user" && 
-				<h2>Remember that once you choose an option you can't go back to the previous question!</h2>}
+				<h2>Solve ths quiz to the best of your abilities.<p>Remember that once you choose an option you can't go back to the previous question!</p></h2>}
 				{userData.role !== "user" && 
 				<h2>These are the questions for this quiz:</h2>}
             <div className='quiz'>
@@ -119,13 +119,19 @@ function Quiz({userData}) {
 						{userData.role === "user" && activity.user_activity_status_id === 4 &&
 						<>
 							Your score of {score} out of {questions.length} will not be recorded as you have already solved this quiz ):
+							<br/>
+							<br/>
+							<br/>
 							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>
 						</>
 						}
 						{userData.role === "user" && activity.user_activity_status_id !== 4 &&
                         <>
 							You answered {score} questions correctly out of {questions.length}!
-							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>)
+							<br/>
+							<br/>
+							<br/>
+							<button className="btn-primary" onClick={() => {navigate(`/my-course`)}}>Click here to go back to your course!</button>
 						</>
 						}
                     </div>

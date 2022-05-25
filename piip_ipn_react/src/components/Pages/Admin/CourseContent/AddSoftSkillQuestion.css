@@ -31,6 +31,7 @@
 .softkillq-container .softskill .softskill-l .ssTop .ssTitleTA{
     width: 100%;
     resize: none;
+    font-size: 15px;
 }
 
 .softkillq-container .softskill .softskill-l .ssBottom{
@@ -53,6 +54,7 @@
     width: 100%;
     height: 80%;
     display: flex;
+    font-size: 20px;
     flex-direction: column;
     resize: none;
 }
