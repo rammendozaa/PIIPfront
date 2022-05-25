@@ -342,7 +342,7 @@ function CompanyTracking({ userData }) {
                             <textarea
                               className="text-area-company-tracking"
                               id="url"
-                              placeholder="URL"
+                              placeholder="Comment"
                               value={newUrl}
                               onChange={(e) => setNewUrl(e.target.value)}
                             ></textarea>

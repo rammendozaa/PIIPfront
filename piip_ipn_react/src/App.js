@@ -37,7 +37,7 @@ function App() {
         <Routes>
           {/*No role*/}
           <Route path='/prueba' exact element={<Prueba/>}/>
-          <Route path='/' exact element={<Home/>}/>
+          <Route path='/' exact element={<Home userData={userData}/>}/>
           <Route path='*' element={<NotFound/>} />
           <Route path='/log-in' element={<LogIn validUserData={validUserData} setUserData={setUserData}/>}/>
           <Route path='/sign-up' element={<SignUp validUserData={validUserData} setUserData={setUserData}/>}/>

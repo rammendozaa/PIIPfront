@@ -1,10 +1,10 @@
 import React from 'react'
 import HeroSection from './HeroSection'
 
-function Home() {
+function Home({userData}) {
     return (
         <>
-            <HeroSection/>
+            <HeroSection userData={userData}/>
         </>
     )
 }
