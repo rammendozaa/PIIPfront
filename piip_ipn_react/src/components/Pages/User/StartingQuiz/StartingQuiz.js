@@ -48,23 +48,24 @@ function StartingQuiz({userData, questionnaire, description, descriptionText, se
 	};
 
     return (
-        <div className='quiz-container'>
-            <div className='quiz'>
+        <div className='starting-quiz-container'>
+            <div className='starting-quiz'>
                 {showScore ? (
-                    <div className='score-section'>
+                    <div className='starting-score-section'>
                         You answered {score} questions correctly out of {questions.length}!
                     </div>
                 ) : (
                     <>
-                        <div className='question-section'>
-                            <div className='question-count'>
-                                <span>Question {currentQuestion + 1}</span>/{questions.length}
+                        <div className='starting-quiz-question-section'>
+                            <div className='starting-quiz-question-count'>
+                                <span>Question {currentQuestion + 1}</span> out of {questions.length}
                             </div>
-                            <div className='question-text'>{questions[currentQuestion]["questionText"]}</div>
+							<br/><br/><br/>
+                            <div className='starting-quiz-question-text'>{questions[currentQuestion]["questionText"]}</div>
                         </div>
-                        <div className='answer-section'>
+                        <div className='starting-quiz-answer-section'>
                             {questions[currentQuestion]["answerOptions"].map((answerOption) => (
-                                <button className='answer-section-button' onClick={() => handleAnswerOptionClick(answerOption["isCorrect"])}>{answerOption.answerText}</button>
+                                <button className='starting-quiz-answer-section-button' onClick={() => handleAnswerOptionClick(answerOption["isCorrect"])}>{answerOption.answerText}</button>
                             ))}
                         </div>
                     </>

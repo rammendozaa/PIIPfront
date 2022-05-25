@@ -30,7 +30,7 @@ function CourseContent({userData}) {
     const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
-    const [descriptionText, setDescriptionText] = useState("Please answer this quiz so that we know what's the perfect study plan for you! ;)")
+    const [descriptionText, setDescriptionText] = useState("Please answer this quiz so that we know what's the perfect study plan for you!")
     const [baseQuestionnaire, setBaseQuestionnaire] = useState({
         "title": "first questionnaire",
         "description": "this is the first",
@@ -122,7 +122,7 @@ function CourseContent({userData}) {
         return (
             <div className='mycourse-content-container'>
                 <div className='mycourse-content-quiz'>
-                    <h1 className='mycourse-description'>{descriptionText}</h1>
+                    <h3 className='mycourse-description'>{descriptionText}</h3>
                     <StartingQuiz
                         userData={userData}
                         questionnaire={baseQuestionnaire}
