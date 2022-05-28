@@ -14,6 +14,7 @@ import Topic from './components/Pages/Topic/Topic'
 import Problem from './components/Pages/Problem/Problem'
 import Prueba from './components/Pages/Problem/Prueba'
 import MyCourseContent from './components/Pages/User/MyCourseContent/MyCourseContent'
+import VerifyMail from './components/Pages/User/MyCourseContent/VerifyMail'
 import CourseContent from './components/Pages/Admin/CourseContent/CourseContent';
 import NotFound from './components/Pages/NotFound';
 import useUserData from './components/useUserData';
@@ -52,7 +53,8 @@ function App() {
           <Route path='/mock-interviews/:interview_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["super", "user", "mentor"]}><MockInterviews userData={userData}/></PrivateRoute>}/>
           {/*User*/}
           <Route path='/company-tracking' exact element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><CompanyTracking userData={userData}/></PrivateRoute>}/>
-          <Route path='/my-course' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyCourseContent userData={userData}/></PrivateRoute>} />
+          <Route path='/my-course/' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyCourseContent userData={userData}/></PrivateRoute>} />
+          <Route path='/verify' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><VerifyMail userData={userData}/></PrivateRoute>} />
           <Route path='/my-profile' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["user"]}><MyProfile userData={userData}/></PrivateRoute>} />
           {/*Mentor*/}
           <Route path='/update-course/:user_id' element={<PrivateRoute userData={userData} validUserData={validUserData} validRoles={["mentor", "super"]}><CourseContent userData={userData}/></PrivateRoute>} />   
