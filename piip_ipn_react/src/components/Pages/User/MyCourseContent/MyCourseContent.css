@@ -23,6 +23,18 @@
     width: 90%;
     text-align: center;
     text-overflow: ellipsis;
+    color: rgb(59, 54, 54);
+}
+.mycourse-content-container .subtitle {
+    font-size: 35px;
+    flex-shrink: 1;
+    min-width: 0;
+    min-height: 0;
+    width: 80%;
+    text-align: center;
+    text-overflow: ellipsis;
+    color: rgb(133, 129, 129);
+    margin-top: 10px;
 }
 .mycourse-sorryimg {
     flex-shrink: 4;

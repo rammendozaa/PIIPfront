@@ -27,6 +27,7 @@ function CourseContent({userData}) {
     const dispatch = useDispatch();
     const user_id = userData.user_id;
     const navigate = useNavigate();
+    const [user, setUser] = useState(null)
     const [data, setData] = useState({"template":{"name":"Course Name"}, "user_sections":[]});
     const [clicked, setClicked] = useState(-1);
     const [administratorId, setAdministratorId] = useState(-1);
@@ -55,6 +56,17 @@ function CourseContent({userData}) {
             }
        ]
     });
+    const getUserData = async() => {
+        const response = await fetch('/user',{
+            method: "GET",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+        })
+        const data = await response.json()
+        console.log(data);
+        setUser(data)
+    }
     // TODO - CHANGE QUESTIONNAIREID HERE
     useEffect(() => {
         fetch(baseURL + `/questionnaire?questionnaireId=7`,{
@@ -82,6 +94,7 @@ function CourseContent({userData}) {
             setData(data);
             dispatch(setUserTemplate(data));
         });
+        getUserData()
     },[user_id]);
 
     const toggle = index => {
@@ -116,6 +129,15 @@ function CourseContent({userData}) {
         } else if (activityType == 6) {
             navigate(`/solve-quiz/${activity_id}`)
         }
+    }
+
+    if(user && user.is_active === 2){
+        return (
+            <div className='mycourse-content-container'>
+                <h1>Please verify your email.</h1><p className='subtitle'>We've sent an email to {user.email} to verify your email address and activate your account. The link in the mail will expire in 24 hours</p>
+                <img className='mycourse-sorryimg' src='/images/sorry-removebg-preview.png'></img>
+            </div>
+        )
     }
 
     if (data.template === undefined) { // hasn't solved initial quiz
