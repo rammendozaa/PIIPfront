@@ -15,13 +15,15 @@
   height: 85%;
   display: flex;
   flex-direction: row;
-  overflow: auto;
+  /*overflow: auto;*/
 }
 .add-topic-left {
   width: 50%;
+  height: 100%;
 }
 .add-topic-right {
   width: 50%;
+  height: 100%;
 }
 .options-container {
   width: 200px;
@@ -44,12 +46,17 @@
   margin-top: 10px;
 }
 
+.rdw-editor-wrapper{
+  height: 100%;
+}
 .rdw-editor-main {
   border: 1px solid #f1f1f1;
   padding: 5px;
   border-radius: 2px;
 }
-
+.preview-container {
+  height: 100%;
+}
 .preview-container > h2 {
   display: block;
   font-size: 1.5em;
@@ -72,6 +79,8 @@
   border-radius: 2px;
   margin-top: 5px;
   padding-top: 27px;
+  height: 100%;
+  overflow: auto;
 }
   
 .mathjax-icon {
