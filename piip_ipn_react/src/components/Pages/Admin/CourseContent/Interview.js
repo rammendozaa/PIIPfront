@@ -37,7 +37,7 @@ function CreateInterview({addActivity, activityIndex, sectionId}) {
                     </textarea>
         </div>
                     <div className="d-flex-add-interview justify-content-center-add-interview">
-            <button type="button" class="btn-add-interview" onClick={createUserInterview}>Agendar entrevista</button>
+            <button type="button" class="btn-add-interview" onClick={createUserInterview}>Create interview</button>
                 
             </div>
         </div>
