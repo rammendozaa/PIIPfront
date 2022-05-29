@@ -6,8 +6,7 @@ import ReactHTMLParser from 'react-html-parser';
 import { useNavigate, useParams } from "react-router-dom";
 import RDWMathJax from '../AddTopic/rdw-mathjax';
 import { content } from '../../../../configs';
-import '../AddTopic/AddTopic.css'
-
+import './EditTopic.css'
 const baseURL = "http://127.0.0.1:5000"
 
 function EditTopic({userData}) {
@@ -28,6 +27,9 @@ function EditTopic({userData}) {
         })
         .then(res => res.json())
         .then(data => {
+            console.log(data)
+            setFilename(data['title'])
+            setDescription(data['description']);
             setRawDraftContentState(JSON.parse(data['topicInformation']));
             setJSON(data['topicInformation']);
         });
@@ -47,17 +49,13 @@ function EditTopic({userData}) {
             alert("Topic name and description can't be empty");
             return;
         }
-        if (option == "") {
-            alert("Please select topic type");
-            return;
-        }
         console.log(json)
         localStorage.setItem('editorData', json);
         await fetch(baseURL + `/update-topic`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                "topicType": option,
+                "topicType": topic_route,
                 "title": filename,
                 "description": description,
                 "topicInformation": json,
@@ -74,35 +72,29 @@ function EditTopic({userData}) {
     }
 
     return (
-        <>
+        <div className='edit-topic-container'>
+            <div className="save-topic">
+                <input type="text" placeholder="Topic name" value={filename} onChange={(e) => setFilename(e.target.value)} className="input-topic"/>
+                <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-topic"/>
+                <button onClick={saveFile} className="btn-create-activities">Save</button>
+            </div>
             <div className="add-topic-container">
-                <div className='options-container'>
-                    <div className='optionx'>
-                        <input type="radio" id="SoftSkill" name="topicType" value="SoftSkill" onChange={(e) => setOption(e.target.value)}/>
-                        <label for="SoftSkill">Soft Skill</label>
-                    </div>
-                    <div className='optionx'>
-                        <input type="radio" id="AlgorithmTopic" name="topicType" value="AlgorithmTopic" onChange={(e) => setOption(e.target.value)}/>
-                        <label for="AlgorithmTopic">Algorithm Topic</label>
-                    </div>                            
+                <div className='add-topic-left'>
+                    <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
                 </div>
-                <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
-                <div className="preview-container">
-                    <h2>Preview</h2>
-                    <hr />
-                    <div className="preview">
-                        <div ref={node} key={Math.random()}>
-                            {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
+                <div className='add-topic-right'>
+                    <div className="preview-container">
+                        <h2 className='preview-title'>Preview</h2>
+                        <hr/>
+                        <div className="preview">
+                            <div ref={node} key={Math.random()}>
+                                {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="save">
-                    <input type="text" placeholder="Topic name" value={filename} onChange={(e) => setFilename(e.target.value)} className="input-topic"/>
-                    <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-topic"/>
-                    <button onClick={saveFile} className="btn-create-activities">Save</button>
-                </div>
             </div>
-        </>
+        </div>
     );
 }
 export default EditTopic

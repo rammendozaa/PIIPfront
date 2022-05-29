@@ -28,7 +28,6 @@ function AddTopic({userData}) {
     const [description, setDescription] = useState("")
     useEffect(() => {
         // Some async task (ie. getting editor data from DB)
-        alert(typeof(content))
         setTimeout(() => {
         setRawDraftContentState(content);
         setJSON(JSON.stringify(content));
@@ -75,7 +74,9 @@ function AddTopic({userData}) {
 
     return (
         <>
-            <div className="add-topic-container">
+            <div className="save-topic">
+                <input type="text" placeholder="Topic name" value={filename} onChange={(e) => setFilename(e.target.value)} className="input-topic"/>
+                <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-topic"/>
                 <div className='options-container'>
                     <div className='optionx'>
                         <input type="radio" id="SoftSkill" name="topicType" value="SoftSkill" onChange={(e) => setOption(e.target.value)}/>
@@ -86,20 +87,22 @@ function AddTopic({userData}) {
                         <label for="AlgorithmTopic">Algorithm Topic</label>
                     </div>                            
                 </div>
-                <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
-                <div className="preview-container">
-                    <h2>Preview</h2>
-                    <hr />
-                    <div className="preview">
-                        <div ref={node} key={Math.random()}>
-                            {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
+                <button onClick={saveFile} className="btn-create-activities">Save</button>
+            </div>
+            <div className="add-topic-container">
+                <div className='add-topic-left'>
+                    <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
+                </div>
+                <div className='add-topic-right'>
+                    <div className="preview-container">
+                        <h2 className='preview-title'>Preview</h2>
+                        <hr/>
+                        <div className="preview">
+                            <div ref={node} key={Math.random()}>
+                                {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="save">
-                    <input type="text" placeholder="Topic name" value={filename} onChange={(e) => setFilename(e.target.value)} className="input-topic"/>
-                    <input type="text" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="input-topic"/>
-                    <button onClick={saveFile} className="btn-create-activities">Save</button>
                 </div>
             </div>
         </>
