@@ -64,7 +64,7 @@ function Topics({userData}) {
                         </div>
                     </div>
                 </div>
-                <Cards data={search(data)} route={option}/>
+                <Cards data={search(data)} route={option} userData={userData}/>
             </div>
         </>
     )
