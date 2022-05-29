@@ -12,25 +12,27 @@ function MockInterviews({userData}) {
     const [goBack,setGoBack] = useState(false)
     const [goBackAdmin,setGoBackAdmin] = useState(false)
     const {activity} = useSelector(state => state.userActivity);
-    const [interviewInfo, setInterviewInfo] = useState({"feedback": null,
-    "interviewCode": null,
-    "chosenDate": "2022-05-18T21:36:40",
-    "isConfirmed": false,
-    "administratorId": 1,
-    "isActive": true,
-    "id": 2,
-    "interview_type_id": 1,
-    "languageId": null,
-    "userId": 2,
-    "comment": "this is a comment",
-    "interviewUrl": null,
-    "user": {
-        "email": "prueba@yahoo.com",
-        "school_id": "5",
-        "last_name": "prueba",
-        "id": "2",
-        "first_name": "prueba"
-    }});
+    const [interviewInfo, setInterviewInfo] = useState({
+        "isActive": true,
+        "interviewCode": null,
+        "userId": 1,
+        "interviewUrl": null,
+        "chosenDate": null,
+        "administratorId": 1,
+        "feedback": null,
+        "languageId": null,
+        "isConfirmed": true,
+        "comment": "that sounds good! ",
+        "interview_type_id": 2,
+        "id": 2,
+        "user": {
+            "school_id": "11",
+            "last_name": "Mendoza Ramirez",
+            "first_name": "Alvaro",
+            "email": "amendozar1300@alumno.ipn.mx",
+            "id": "1"
+        }
+    });
     const {interview_id} = useParams();
     useEffect(() => {
         if ((activity !== undefined && activity !== null)) {
@@ -85,8 +87,8 @@ function MockInterviews({userData}) {
         const comm = interviewInfo["comment"];
         const code = interviewInfo["interviewCode"];
         const [isChecked, setChecked] = useState(Boolean(isConfirmed));
-        const [chosenCalendarDate, setChosenDate] = useState((chosenDate !== null && chosenDate !== undefined) ? new Date(chosenDate) : new Date());
-        const [comment, setComment] = useState(comm);
+        const [chosenCalendarDate, setChosenDate] = useState((chosenDate) ? new Date(chosenDate) : new Date());
+        const [comment, setComment] = useState("");
         const [interviewURL, setInterviewURL] = useState(url);
         const [interviewFeedback, setInterviewFeedback] = useState(feedback);
         const [interviewCode, setInterviewCode] = useState(code);
@@ -99,20 +101,22 @@ function MockInterviews({userData}) {
                 new_feedback:interviewFeedback,
                 interview_code:interviewCode,
             });
+            alert("Interview information updated!")
+            setComment("");
         }
         return (
             <>
-                {isConfirmed === true &&
+                {isConfirmed &&
                     <div className='mock-interview-message'>
-                    <h1 className='message-h1'>Date for interview: {chosenCalendarDate}</h1>
+                    <h1 className='message-h1'>Date for interview: {chosenCalendarDate.toString()}</h1>
                     </div>
                 }
-                {isConfirmed === false &&
+                {!isConfirmed &&
                     <div className='mock-interview-message choose-interview'>
                         <h1 className='message-h1'>Choose a date for your interview:</h1>
                         <DateTimePicker onChange={setChosenDate} value={chosenCalendarDate}/>
                     </div>}
-                {interviewURL === null &&
+                {!url &&
                 <>
                     <div className='mock-interview-message commentsPink'>
                         <h1 className='message-h1'>Add a link for your upcoming interview:</h1>
@@ -125,20 +129,20 @@ function MockInterviews({userData}) {
                     </div>
                 </>
                 }
-                {url !== null &&
+                {url &&
                 <>
                 <div className='mock-interview-message'>
                     <h1 className='message-h1'>Upcoming interview link: {url}</h1>
                 </div>
                 </>
                 }
-                {comm !== null &&
+                {comm &&
                 <div className='mock-interview-message'>
                     <h1 className='message-h1'>Last interaction:</h1>
                     <h2 className='message-h2'>{comm}</h2>
                 </div>
                 }
-                {interviewFeedback === null &&
+                {!feedback &&
                 <>
                     <div className='mock-interview-message comments'>
                         <h1 className='message-h1'>Feedback:</h1>
@@ -151,14 +155,14 @@ function MockInterviews({userData}) {
                     </div>
                 </>
                 }
-                {interviewFeedback !== null &&
+                {feedback &&
                     <>
                     <div className='mock-interview-message'>
                         <h1 className='message-h1'>This is the feedback you submitted: <p>{url}</p></h1>
                     </div>
                     </>
                 }
-                {interviewCode === null &&
+                {!code &&
                 <>
                     <div className='mock-interview-message commentsBlue'>
                     <h1 className='message-h1'>Add the code written here:</h1>
@@ -171,7 +175,7 @@ function MockInterviews({userData}) {
                     </div>
                 </>
                 }
-                {isConfirmed === false &&
+                {!isConfirmed &&
                 <div className='mock-interview-message commentsOther'>
                     <label>
                         <input
@@ -204,8 +208,9 @@ function MockInterviews({userData}) {
         const feedback = interviewInfo["feedback"]
         const comm = interviewInfo["comment"]
         const chosenDate = interviewInfo["chosenDate"]
-        const [chosenCalendarDate, setChosenDate] = useState(new Date(chosenDate))
-        const [comment, setComment] = useState(comm)
+        const url = interviewInfo["interviewUrl"];
+        const [chosenCalendarDate, setChosenDate] = useState((chosenDate) ? new Date(chosenDate) : new Date())
+        const [comment, setComment] = useState("")
         if (chosenCalendarDate === null) {
             setChosenDate(new Date())
         }
@@ -215,31 +220,40 @@ function MockInterviews({userData}) {
                 chosen_comment:comment,
                 is_confirmed:isConfirmed,
             });
+            alert("Interview information updated!")
+            setComment("");
         }
         return (
             <>
-                {isConfirmed === true && feedback === null &&
+                {isConfirmed && !feedback &&
                 <div className='mock-interview-message'>
                     <h1 className='message-h1'>The interview will be held here: {interviewInfo["interview_url"]}</h1>
-                    <h1 className='message-h1'>At this date: {chosenCalendarDate}</h1>
+                    <h2 className='message-h2'>At this date: {chosenCalendarDate.toString()}</h2>
                 </div>}
-                {feedback !== null &&
-                    <div>
-                        <h1>Feedback for you: <p>{feedback}</p></h1>
-                    </div>
+                {url &&
+                <>
+                <div className='mock-interview-message'>
+                    <h1 className='message-h1'>Upcoming interview link: {url}</h1>
+                </div>
+                </>
                 }
-                {comm !== null &&
+                {comm &&
                 <div className='mock-interview-message'>
                         <h1 className='message-h1'>Last interaction:</h1>
                         <h2 className='message-h2'> {comm}</h2>
                         <a class="close">&times;</a>
                 </div>
                 }
-                {isConfirmed === false &&
+                {!isConfirmed &&
                 <div className='mock-interview-message choose-interview'>
                     <h1 className='message-h1'>Choose the interview day:</h1>
                     <DateTimePicker onChange={setChosenDate} value={chosenCalendarDate}/>
                 </div>
+                }
+                {feedback &&
+                    <div className='mock-interview-message'>
+                        <h1>Feedback for you: <p>{feedback}</p></h1>
+                    </div>
                 }
                 <div className='mock-interview-message comments'>
                     <h2 className='message-h2'>Comments or questions?</h2>

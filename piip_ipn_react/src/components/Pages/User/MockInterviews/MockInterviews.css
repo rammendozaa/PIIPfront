@@ -46,6 +46,7 @@
     border-radius:5px;
     box-shadow:0 0 15px 5px #ccc;
     margin-top: 20px;
+    overflow: auto;
 }
 .mock-interview-container .mock-interview .mi .choose-interview{
     display: flex;
