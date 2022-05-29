@@ -1,8 +1,14 @@
 import CardItem from './CardItem'
 import './Cards.css'
 
-function Cards({data, route}) {
-
+function Cards({data, route, userData}) {
+    const getPath = (id) => {
+        var path = "/topic/" + route + "/" + id
+        if(userData.role === "mentor" || userData.role === "super"){
+            path = "/edit_topic/" + route + "/" + id
+        }
+        return path
+    }
     return (
         <div className='cards'>
             <div className='cards__container'>
@@ -14,7 +20,7 @@ function Cards({data, route}) {
                                 src='images/img-1.svg'
                                 text = {current.description}
                                 label= {current.title}
-                                path={"/topic/" + route + "/" + current.id}
+                                path={getPath(current.id)}
                                 />
                             )
                         }

@@ -1,24 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import draftToHtml from 'draftjs-to-html';
+import convertFromRaw from 'draft-js'
 import ReactHTMLParser from 'react-html-parser';
 // Import Components
-import RDWMathJax from './rdw-mathjax';
+import { useNavigate, useParams } from "react-router-dom";
+import RDWMathJax from '../AddTopic/rdw-mathjax';
 import { content } from '../../../../configs';
-import './AddTopic.css'
+import '../AddTopic/AddTopic.css'
 
 const baseURL = "http://127.0.0.1:5000"
 
-function AddTopic({userData}) {
-    /*return (
-        <>
-            <div className="add-topic-container">
-                <DraftEditor/>
-                <ViewEditor/>
-                <input type='text' placeholder="File Name"/>
-                <button>Save</button>
-            </div>
-        </>
-    );*/
+function EditTopic({userData}) {
     const [option, setOption] = useState("")
     const node = useRef();
     const [rawDraftContentState, setRawDraftContentState] = useState(null);
@@ -26,14 +18,21 @@ function AddTopic({userData}) {
 
     const [filename, setFilename] = useState("")
     const [description, setDescription] = useState("")
+    const {topic_id} = useParams();
+    const {topic_type} = useParams();
+    const topic_route = (topic_type === "algorithm") ? "algorithmTopics" : "softSkillsTopics";
+
     useEffect(() => {
-        // Some async task (ie. getting editor data from DB)
-        alert(typeof(content))
-        setTimeout(() => {
-        setRawDraftContentState(content);
-        setJSON(JSON.stringify(content));
-        }, 1000);
+        fetch(`/${topic_route}?topicId=${topic_id}`, {
+            method: "GET",
+        })
+        .then(res => res.json())
+        .then(data => {
+            setRawDraftContentState(JSON.parse(data['topicInformation']));
+            setJSON(data['topicInformation']);
+        });
     }, []);
+
 
     useEffect(() => {
         window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current]);
@@ -54,7 +53,7 @@ function AddTopic({userData}) {
         }
         console.log(json)
         localStorage.setItem('editorData', json);
-        await fetch(baseURL + `/create-topic`, {
+        await fetch(baseURL + `/update-topic`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -63,14 +62,15 @@ function AddTopic({userData}) {
                 "description": description,
                 "topicInformation": json,
                 "createdBy": userData.user_id,
+                "id": topic_id
             }),
         });
         alert("Topic saved succesfully!");
-        setOption("");
+        /*setOption("");
         setJSON('');
         setFilename("");
         setDescription("");
-        setRawDraftContentState(null);
+        setRawDraftContentState(null);*/
     }
 
     return (
@@ -105,4 +105,4 @@ function AddTopic({userData}) {
         </>
     );
 }
-export default AddTopic
+export default EditTopic
