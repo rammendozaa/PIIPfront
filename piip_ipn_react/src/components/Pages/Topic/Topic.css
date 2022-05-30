@@ -18,6 +18,7 @@
     background: #fff;
     padding: 1%;
     border-radius: 10px;
+    overflow: hidden;
 }
 .d-flex-topic {
     display: -webkit-box !important;
