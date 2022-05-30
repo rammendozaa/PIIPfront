@@ -90,20 +90,7 @@ function AddTopic({userData}) {
                 <button onClick={saveFile} className="btn-create-activities">Save</button>
             </div>
             <div className="add-topic-container">
-                <div className='add-topic-left'>
-                    <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
-                </div>
-                <div className='add-topic-right'>
-                    <div className="preview-container">
-                        <h2 className='preview-title'>Preview</h2>
-                        <hr/>
-                        <div className="preview">
-                            <div ref={node} key={Math.random()}>
-                                {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} />
             </div>
         </>
     );
