@@ -8,7 +8,7 @@ import MathJaxOption from './mathjax_option';
 // Import Miscs
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const RDWMathJax = ({ rawDraftContentState, onContentStateChange }) => {
+const RDWMathJax = ({ rawDraftContentState, onContentStateChange, readOnly }) => {
   const [contentState, setContentState] = useState();
 
   // Will only execute when rawDraftContentState changes (ie. for default value)
@@ -21,6 +21,7 @@ const RDWMathJax = ({ rawDraftContentState, onContentStateChange }) => {
       contentState={contentState}
       onContentStateChange={onContentStateChange}
       toolbarCustomButtons={[<MathJaxOption />]}
+      readOnly={readOnly}
     />
   );
 };

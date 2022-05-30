@@ -5,12 +5,13 @@ import draftToHtml from 'draftjs-to-html';
 import ReactHTMLParser from 'react-html-parser';
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux"
+import RDWMathJax from "../Admin/AddTopic/rdw-mathjax";
 const baseURL = "http://127.0.0.1:5000"
-
 
 function Topic({userData}) {
   const navigate = useNavigate()
   const userId = userData.user_id;
+  const [rawDraftContentState, setRawDraftContentState] = useState(null);
   const {activity} = useSelector(state => state.userActivity);
   const {topic_id} = useParams();
   const {topic_type} = useParams();
@@ -61,6 +62,7 @@ function Topic({userData}) {
       .then(res => res.json())
       .then(data => {
         setJSON(data["topicInformation"]);
+        setRawDraftContentState(JSON.parse(data['topicInformation']));
         setTopicData(data);
       });
     }
@@ -70,6 +72,7 @@ function Topic({userData}) {
         updateUserTemplateActivity(activity.user_activity_id,2);
       }
     }
+
   }, []);
 
   const handleButtonClick = async () => {
@@ -81,7 +84,9 @@ function Topic({userData}) {
       navigate(`/my-course`);
     }
   }
-
+  const onContentStateChange = (rawDraftContentState) => {
+    setJSON(JSON.stringify(rawDraftContentState));
+  }
   const node = useRef();
   useEffect(() => {
     window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current]);
@@ -94,9 +99,10 @@ function Topic({userData}) {
               {topicData.title}: {topicData.description}
         </h1>
         <hr className="hr-style"/>
-            <div className="parser" ref={node} key={Math.random()}>
+            {/*<div className="parser" ref={node} key={Math.random()}>
               {json && ReactHTMLParser(draftToHtml(JSON.parse(json)))}
-            </div>
+            </div>*/}
+            <RDWMathJax rawDraftContentState={rawDraftContentState} onContentStateChange={onContentStateChange} readOnly={true}/>
             </div>
             {(userData.role === "user") &&
               <div className="d-flex-topic justify-content-center-topic">
