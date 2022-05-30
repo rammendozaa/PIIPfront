@@ -9,9 +9,11 @@
     justify-content: center;
     overflow: hidden;
 }
+.topic-container .rdw-editor-toolbar {
+  display: none;
+}
 .topic-container .topic{
     width: 85%;
-    overflow: auto;
     height: 80%;
     background: #fff;
     padding: 1%;
