@@ -66,7 +66,7 @@ function TemplatesView({ userData }) {
                       return (
                         <div className="templateview-wrap">
                           <h1 onClick={() => handleClick(template)}>
-                            {template.name}: {template.description}
+                            {template.name}
                           </h1>
                         </div>
                       );
