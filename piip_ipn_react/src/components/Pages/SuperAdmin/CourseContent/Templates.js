@@ -11,9 +11,9 @@ import React, {useEffect} from 'react'
 const baseURL = "http://127.0.0.1:5000"
 const activityIdToName = {
     1:"Problem",
-    2:"Algorithmic Topic",
+    2:"Topic",
     3:"Soft Skill Question",
-    4:"Soft Skill Topic",
+    4:"Topic",
     5:"Interview",
     6:"Questionnaire",
 }
