@@ -69,7 +69,7 @@ function CourseContent({userData}) {
     }
     // TODO - CHANGE QUESTIONNAIREID HERE
     useEffect(() => {
-        fetch(baseURL + `/questionnaire?questionnaireId=7`,{
+        fetch(`/questionnaire?questionnaireId=1000`,{
             method: "GET",
         })
         .then(res => res.json())
@@ -86,7 +86,7 @@ function CourseContent({userData}) {
         .then(data => {
             setAdministratorId(data.administrator_id)
         });
-        fetch(baseURL + `/user/${user_id}/template`,{
+        fetch(`/user/${user_id}/template`,{
             method: "GET",
         })
         .then(res => res.json())

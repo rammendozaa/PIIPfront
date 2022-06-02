@@ -7,7 +7,6 @@ import Popup from './Popup';
 import { useParams } from "react-router-dom";
 import React, {useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
-const baseURL = "http://127.0.0.1:5000"
 const activityIdToName = {
     1:"Problem",
     2:"Topic",
@@ -44,7 +43,7 @@ function CourseContent({userData}) {
         let response = null;
         if (activity.typeId == 5) {
             const admin_id = userData.user_id
-            response = await fetch(baseURL + `/user/${user_id}/interview/${templateSectionId}`, {
+            response = await fetch(`/user/${user_id}/interview/${templateSectionId}`, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -57,7 +56,7 @@ function CourseContent({userData}) {
                 }),
             })
         } else {
-            response = await fetch(baseURL + `/user/${user_id}/activity/${templateSectionId}`, {
+            response = await fetch(`/user/${user_id}/activity/${templateSectionId}`, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -86,7 +85,7 @@ function CourseContent({userData}) {
     const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
         if(window.confirm('Are you sure you want to delete this activity?')){
             var current = data;
-            await fetch(baseURL + `/user/activity/${sectionActivityId}`, {
+            await fetch(`/user/activity/${sectionActivityId}`, {
                 method: "DELETE"
             })
             current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item,idx) => idx != indexActivity)
@@ -103,7 +102,7 @@ function CourseContent({userData}) {
             return;
         }
         var current = data;
-        const response = await fetch(baseURL + `/user/${user_id}/section/${user_template_id}`,{
+        const response = await fetch(`/user/${user_id}/section/${user_template_id}`,{
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -128,7 +127,7 @@ function CourseContent({userData}) {
     const deleteSection = async (index, sectionId) => {
         if(window.confirm('Are you sure you want to delete this section?')){
             var current = data;
-            await fetch(baseURL + `/user/section/${sectionId}`, {
+            await fetch(`/user/section/${sectionId}`, {
                 method: "DELETE"
             })
             current.user_sections = current.user_sections.filter((item,idx) => idx != index)
@@ -144,15 +143,19 @@ function CourseContent({userData}) {
         setNewActivitySectionId(templateSectionId)
         setButtonPopup(true)
     }
+    const getTemplate = async() => {
+        const response = await fetch(`/user/${user_id}/template`,{
+            method: "GET",
+            headers: {
+                "Authorization": 'Bearer ' + userData.token
+            },
+        })
+        const data = await response.json()
+        setData(data);
+    }
 
     useEffect(() => {
-        fetch(baseURL + `/user/${user_id}/template`,{
-            method: "GET",
-        })
-        .then(res => res.json())
-        .then(data => {
-            setData(data)
-        });
+        getTemplate();
     }, []);
 
     const redirectToActivity = (activity) => {

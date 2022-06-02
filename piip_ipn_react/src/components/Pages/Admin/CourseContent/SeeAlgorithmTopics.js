@@ -12,7 +12,7 @@ function SeeAlgorithmTopics({userData, addActivity, activityIndex, sectionId}) {
     const [topics, setTopics] = useState([])
 
     const fetchAlgorithmTopics = async() => {
-        fetch(baseURL + `/algorithmTopics`,{
+        fetch(`/algorithmTopics`,{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token

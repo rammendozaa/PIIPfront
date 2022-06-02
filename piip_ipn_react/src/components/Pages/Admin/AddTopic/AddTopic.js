@@ -53,7 +53,7 @@ function AddTopic({userData}) {
         }
         console.log(json)
         localStorage.setItem('editorData', json);
-        await fetch(baseURL + `/create-topic`, {
+        await fetch(`/create-topic`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

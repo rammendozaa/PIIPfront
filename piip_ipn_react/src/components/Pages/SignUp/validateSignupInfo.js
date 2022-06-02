@@ -12,7 +12,6 @@ export default function validateSignupInfo(values){
     if(!values.email){
         errors.email = "Email required"
     } else {
-        const paragraph = 'amendozar.1300@alumno.ipn.mx';
         const endingRegex = /ipn.mx$/;
         const isSchoolEmail = values.email.match(endingRegex);
         if (!isSchoolEmail) {

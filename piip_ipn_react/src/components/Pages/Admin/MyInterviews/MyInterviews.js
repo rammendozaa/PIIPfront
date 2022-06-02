@@ -16,7 +16,7 @@ function MyInterviews({userData}) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        fetch(baseURL + `/interview?admin_id=${userData.user_id}`,{
+        fetch(`/interview?admin_id=${userData.user_id}`,{
             method: "GET",
         })
         .then(res => res.json())

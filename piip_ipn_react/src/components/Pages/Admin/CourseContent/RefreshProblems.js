@@ -6,7 +6,7 @@ function RefreshProblems() {
     const [waitingMessage, setWaitingMessage] = useState("Click the button below to get the latest problems.");
     const insertProblemsToDatabase = async() =>  {
         setWaitingMessage("Downloading...");
-        await fetch(baseURL + `/insertProblemsToDB`, {
+        await fetch(`/insertProblemsToDB`, {
             method: "GET",
         })
         setWaitingMessage("Download complete!");

@@ -51,7 +51,7 @@ function EditTopic({userData}) {
         }
         console.log(json)
         localStorage.setItem('editorData', json);
-        await fetch(baseURL + `/update-topic`, {
+        await fetch(`/update-topic`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

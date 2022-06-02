@@ -1,3 +1,5 @@
+import { RiNetflixFill } from "react-icons/ri";
+import { SiOracle, SiTesla } from "react-icons/si";
 import DateTimePicker from "react-datetime-picker";
 import { IconContext } from "react-icons";
 import { FiPlus } from "react-icons/fi";
@@ -12,6 +14,12 @@ import {
   FaGoogle,
   FaAmazon,
   FaApple,
+  FaAirbnb,
+  FaLyft,
+  FaUber,
+  FaTwitter,
+  FaTwitch,
+  FaBuilding,
 } from "react-icons/fa";
 import { GrDocumentUpdate } from "react-icons/gr";
 const baseURL = "http://127.0.0.1:5000";
@@ -22,6 +30,15 @@ const COMPANIES = {
   "Google": 3,
   "Amazon": 4,
   "Apple": 5,
+  "Airbnb": 6,
+  "Uber": 7,
+  "Lyft": 8,
+  "Twitter": 9,
+  "Netflix": 10,
+  "Tesla": 11,
+  "Oracle": 12,
+  "Twitch": 13,
+  "Other": 14,
 };
 
 const COMPANIES_TO_ICON = {
@@ -30,6 +47,15 @@ const COMPANIES_TO_ICON = {
   3: <FaGoogle />,
   4: <FaAmazon />,
   5: <FaApple />,
+  6: <FaAirbnb/>,
+  7: <FaUber/>,
+  8: <FaLyft/>,
+  9: <FaTwitter/>,
+  10: <RiNetflixFill/>,
+  11: <SiTesla/>,
+  12: <SiOracle/>,
+  13: <FaTwitch/>,
+  14: <FaBuilding/>,
 };
 
 const COMPANIES_LIST = ["Facebook", "Microsoft", "Google", "Amazon", "Apple"];
@@ -113,7 +139,7 @@ function CompanyTracking({ userData }) {
   };
 
   const getCompanies = async () => {
-    fetch(baseURL + `/user/${user_id}/tracking`, {
+    fetch(`/user/${user_id}/tracking`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -126,7 +152,7 @@ function CompanyTracking({ userData }) {
   }, []);
 
   const addCompanyTracking = async () => {
-    await fetch(baseURL + `/user/${user_id}/tracking`, {
+    await fetch(`/user/${user_id}/tracking`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -426,6 +452,16 @@ function CompanyTracking({ userData }) {
                     <option value="Google">Google</option>
                     <option value="Amazon">Amazon</option>
                     <option value="Apple">Apple</option>
+                    <option value="Airbnb">Airbnb</option>
+                    <option value="Uber">Uber</option>
+                    <option value="Lyft">Lyft</option>
+                    <option value="Twitter">Twitter</option>
+                    <option value="Netflix">Netflix</option>
+                    <option value="Tesla">Tesla</option>
+                    <option value="Oracle">Oracle</option>
+                    <option value="Twitch">Twitch</option>
+                    <option value="Other">Other</option>
+                    
                   </select>
                   <IconContext.Provider
                     value={{ color: "green", size: "25px" }}
