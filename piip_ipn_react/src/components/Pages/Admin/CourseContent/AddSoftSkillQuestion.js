@@ -10,7 +10,7 @@ function AddSoftSkillQuestion({userData}) {
     const [softSkillTopics, setSoftSkillTopics] = useState([])
     /*
     useEffect(() => {
-        fetch(baseURL + `/softSkillsTopics`, {
+        fetch(`/softSkillsTopics`, {
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token
@@ -23,7 +23,7 @@ function AddSoftSkillQuestion({userData}) {
     }, []);
     */
     const createSoftSkillQuestion = async () => {
-        await fetch(baseURL + `/soft-skill-question`, {
+        await fetch(`/soft-skill-question`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

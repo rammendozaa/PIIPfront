@@ -23,7 +23,7 @@ function TemplatesView({ userData }) {
   };
 
   const getTemplates = async() => {
-    const response = await fetch(baseURL + `/template`, {
+    const response = await fetch(`/template`, {
       method: "GET",
     })
     const response_json = await response.json()
@@ -35,7 +35,7 @@ function TemplatesView({ userData }) {
       alert("Title and description need to be filled out");
       return;
     }
-    await fetch(baseURL + `/template/add`, {
+    await fetch(`/template/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

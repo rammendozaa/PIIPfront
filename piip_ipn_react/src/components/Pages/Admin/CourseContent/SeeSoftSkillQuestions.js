@@ -8,7 +8,7 @@ function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId,
     const [questions, setQuestions] = useState([])
 
     const fetchSoftSkillQuestions = async() => {
-        fetch(baseURL + `/soft-skill-question?user_id=${userId}`,{
+        fetch(`/soft-skill-question?user_id=${userId}`,{
             method: "GET",
         })
         .then(res => res.json())

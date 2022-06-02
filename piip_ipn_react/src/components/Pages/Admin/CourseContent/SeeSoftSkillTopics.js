@@ -12,7 +12,7 @@ function SeeSoftSkillTopics({userData, addActivity, activityIndex, sectionId}) {
     const [topics, setTopics] = useState([])
 
     const fetchSoftSkillTopics = async() => {
-        fetch(baseURL + `/softSkillsTopics`,{
+        fetch(`/softSkillsTopics`,{
             method: "GET",
             headers: {
                 "Authorization": 'Bearer ' + userData.token

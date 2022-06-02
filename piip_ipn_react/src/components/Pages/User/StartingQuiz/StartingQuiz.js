@@ -11,11 +11,14 @@ function StartingQuiz({userData, questionnaire, description, descriptionText, se
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
 
+	for (let i = 0; i < questions.length ; i++) {
+		questions[i].answerOptions.sort((a, b) => 0.5 - Math.random());
+	}
+
 	const submitScore = async (actual_score) => {
 		if (description) {
 			setDescriptionText(descriptionText)
 		}
-		console.log("scoreood " + actual_score)
 		const response = await fetch(
 			baseURL + `/user/${userId}/questionnaire/${questionnaire["id"]}/assign`, {
 			method: "PUT",

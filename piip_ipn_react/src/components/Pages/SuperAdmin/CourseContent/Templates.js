@@ -48,7 +48,7 @@ function Templates({userData}) {
 
         var current = data;
         let response = null;
-        response = await fetch(baseURL + `/activity/section/${templateSectionId}/activity/add`, {
+        response = await fetch(`/activity/section/${templateSectionId}/activity/add`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -78,7 +78,7 @@ function Templates({userData}) {
         }
         var current = data;
         let response = null;
-        response = await fetch(baseURL + `/template/${template_id}/section/add`,{
+        response = await fetch(`/template/${template_id}/section/add`,{
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -103,7 +103,7 @@ function Templates({userData}) {
     const deleteSection = async (index, sectionId) => {
         if(window.confirm('Are you sure you want to delete this section?')){
             var current = data;
-            await fetch(baseURL + `/template/section/${sectionId}`, {
+            await fetch(`/template/section/${sectionId}`, {
                 method: "DELETE"
             })
             current.sections = current.sections.filter((item,idx) => idx != index)
@@ -117,7 +117,7 @@ function Templates({userData}) {
     const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
         if(window.confirm('Are you sure you want to delete this activity?')){
             var current = data;
-            await fetch(baseURL + `/template/section/activity/${sectionActivityId}`, {
+            await fetch(`/template/section/activity/${sectionActivityId}`, {
                 method: "DELETE"
             })
             current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item,idx) => idx != indexActivity)
@@ -134,7 +134,7 @@ function Templates({userData}) {
         setButtonPopup(true)
     }
     useEffect(() => {
-        fetch(baseURL + `/template?template_id=${template_id}`,{
+        fetch(`/template?template_id=${template_id}`,{
             method: "GET",
         })
         .then(res => res.json())

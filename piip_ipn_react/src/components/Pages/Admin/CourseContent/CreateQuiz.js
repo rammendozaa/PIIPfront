@@ -69,7 +69,7 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
     }
 
     const saveNewQuestionnaire = async () => {
-        const response = await fetch(baseURL + `/questionnaire`, {
+        const response = await fetch(`/questionnaire`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

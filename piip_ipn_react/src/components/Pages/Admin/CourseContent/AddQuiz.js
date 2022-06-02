@@ -9,7 +9,7 @@ function AddQuiz({userData, addActivity, activityIndex, sectionId, userId}) {
     const [quizzes, setQuizzes] = useState([])
 
     const fetchQuestionnaires = async () => {
-        fetch(baseURL + `/questionnaire?user_id=${userId}`,{
+        fetch(`/questionnaire?user_id=${userId}`,{
             method: "GET",
         })
         .then(res => res.json())
