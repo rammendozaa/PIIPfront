@@ -275,13 +275,6 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                     >
                     Run
                     </button>
-                    <button
-                        type="submit"
-                        className="btn submitCode"
-                        onClick={submitCode}
-                    >
-                    Submit
-                    </button>
                 </div>}
             </div> 
         </div>
