@@ -7,8 +7,6 @@ const slice = createSlice({
     },
     reducers: {
         setUserActivityInfo: (state, action) => {
-            console.log("activiyPayl")
-            console.log(action.payload)
             state.activity = action.payload;
         }
     },

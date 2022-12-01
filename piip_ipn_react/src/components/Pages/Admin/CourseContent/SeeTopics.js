@@ -24,7 +24,6 @@ function SeeTopics({userData, addActivity, activityIndex, sectionId, userId}) {
     const [query, setQuery] = useState("");
 
     function search(rows){
-        console.log(rows);
         return rows.filter(
             row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
         )

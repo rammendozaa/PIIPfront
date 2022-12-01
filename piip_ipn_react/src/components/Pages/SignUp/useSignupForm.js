@@ -14,7 +14,6 @@ const useSignupForm = (validate, setUserData, validUserData) => {
 
     const handleChange = e => {
         const { name, value} = e.target
-        console.log(name)
         setValues({
             ...values,
             [name]: value

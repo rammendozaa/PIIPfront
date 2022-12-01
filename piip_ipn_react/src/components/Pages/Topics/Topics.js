@@ -13,8 +13,6 @@ function Topics({userData}) {
             },
         })
         const data = await response.json()
-        console.log("Vale kk")
-        console.log(data)
         setData(data)
         setOption("algorithm")
     }
@@ -37,7 +35,6 @@ function Topics({userData}) {
     const [query, setQuery] = useState("");
 
     function search(rows){
-        console.log(rows);
         return rows.filter(
             row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
         )

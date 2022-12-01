@@ -11,7 +11,6 @@ function PendingStudentsPage({userData}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setSchools(data)
         });
     },[]);
@@ -44,9 +43,6 @@ function PendingStudentsPage({userData}) {
             body: formData
         })
         .then(res => res.json())
-        .then(data => {
-            console.log(data);
-        });
     }
     return (
         <>

@@ -80,7 +80,6 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
             }),
         })
         const newQuestionnaire = await response.json()
-        console.log(newQuestionnaire);
         alert("Questionnaire saved successfully!");
         setQuestionnaireName("");
         setDescription("");
@@ -101,7 +100,6 @@ function CreateQuiz({userData, addActivity, activityIndex, sectionId}) {
     const moveNext = (add) => {
         if(currentQuestion+add < 0){
             setCurrentQuestion(0);
-            console.log(0)
         }else if(currentQuestion+add < questions.length){
             setCurrentQuestion(currentQuestion+add)
         }

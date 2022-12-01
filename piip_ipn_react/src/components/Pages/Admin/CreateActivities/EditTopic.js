@@ -27,7 +27,6 @@ function EditTopic({userData}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setFilename(data['title'])
             setDescription(data['description']);
             setRawDraftContentState(JSON.parse(data['topicInformation']));
@@ -49,7 +48,6 @@ function EditTopic({userData}) {
             alert("Topic name and description can't be empty");
             return;
         }
-        console.log(json)
         localStorage.setItem('editorData', json);
         await fetch(`/update-topic`, {
             method: "POST",

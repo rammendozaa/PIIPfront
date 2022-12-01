@@ -3,7 +3,6 @@ import { Button } from '../../Button/Button';
 import './HeroSection.css';
 
 function HeroSection({userData}) {
-  console.log(userData);
   return (
     <div className='hero-container'>
       {(!userData.role || userData.role === "user") && <>

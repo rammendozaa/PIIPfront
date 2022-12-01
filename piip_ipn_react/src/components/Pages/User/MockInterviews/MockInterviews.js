@@ -46,8 +46,6 @@ function MockInterviews({userData}) {
                 setInterviewInfo(data)
             });
         }
-        console.log(activity);
-        console.log(interviewInfo);
     }, [])
     const saveInterviewChanges = async ({
         chosen_date,

@@ -20,7 +20,6 @@ function SeeSoftSkillTopics({userData, addActivity, activityIndex, sectionId}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setTopics(data)
         })
     }

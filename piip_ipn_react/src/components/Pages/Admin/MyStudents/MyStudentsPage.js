@@ -11,7 +11,6 @@ function MyStudentsPage({userData, setUserId}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setSchools(data)
         });
     },[]);

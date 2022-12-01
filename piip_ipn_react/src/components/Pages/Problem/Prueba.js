@@ -9,7 +9,6 @@ const textRef = React.useRef();
   useEffect(() => {
     if (textRef.current) {
       const obj = new SelectionText(textRef.current);
-      console.log("obj:", obj);
     }
   }, []);
   return (

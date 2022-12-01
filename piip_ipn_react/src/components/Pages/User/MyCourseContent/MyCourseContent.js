@@ -64,7 +64,6 @@ function CourseContent({userData}) {
             },
         })
         const data = await response.json()
-        console.log(data);
         setUser(data)
     }
     // TODO - CHANGE QUESTIONNAIREID HERE

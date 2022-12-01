@@ -13,7 +13,6 @@ function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId,
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setQuestions(data)
         })
     }
@@ -22,7 +21,6 @@ function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId,
     }, []);
 
     function search(rows){
-        console.log(rows);
         return rows.filter(
             row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
         )

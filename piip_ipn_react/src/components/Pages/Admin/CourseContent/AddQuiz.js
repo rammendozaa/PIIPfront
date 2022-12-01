@@ -14,7 +14,6 @@ function AddQuiz({userData, addActivity, activityIndex, sectionId, userId}) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setQuizzes(data)
         })
     }
@@ -23,7 +22,6 @@ function AddQuiz({userData, addActivity, activityIndex, sectionId, userId}) {
     }, []);
 
     function search(rows){
-        console.log(rows);
         return rows.filter(
             row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
         )

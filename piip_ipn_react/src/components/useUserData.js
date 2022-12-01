@@ -45,8 +45,6 @@ function useUserData() {
   }
 
   function validUserData(){
-    console.log("Valid Tokennn:", userData.token)
-    console.log("Valid Roleeee: ", userData.role)
     if(!userData.token || userData.token === undefined  || userData.token === ""
       || !userData.role || userData.role === undefined || userData.role === "") {
       return false;

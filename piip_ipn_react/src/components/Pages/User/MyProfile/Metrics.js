@@ -69,7 +69,6 @@ function Metrics({userData}) {
             body: formData
         })
         const data = await response.json()
-        console.log(data)
         setCntByDay(data)
         setProblemsSolved({
             labels: Object.keys(data),
@@ -128,7 +127,6 @@ function Metrics({userData}) {
             body: formData
         })
         const data = await response.json()
-        console.log(data)
         setRecommendations(data)
     }
     const getNumberOfInterviews = async() => {

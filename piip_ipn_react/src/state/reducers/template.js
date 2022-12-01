@@ -8,8 +8,6 @@ const slice = createSlice({
     },
     reducers: {
         setUserTemplate: (state, action) => {
-            console.log("payload")
-            console.log(action.payload)
             state.template = action.payload;
         }
     },
