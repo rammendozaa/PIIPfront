@@ -19,7 +19,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
         }
     )
     .then((response) => response.json())
-    .then((data) => console.log('This is your data', data.token));*/
+    */
     const [code, setCode] = useState("");
     const [language_id, setLanguageId] = useState(54);
     const [input, setInput] = useState("");
@@ -27,7 +27,6 @@ export const Compiler2 = ({userData,url, problem_id}) => {
     const [submissionUrl, setSubmissionUrl] = useState("");
     
     const handleClick = () => {
-        console.log("Datos"+input);
         let outputText = document.getElementById("output");
         outputText.innerHTML = "";
         outputText.innerHTML += "Creating Submission ...\n";
@@ -46,7 +45,6 @@ export const Compiler2 = ({userData,url, problem_id}) => {
         })
         .then((response) => response.json())
         .then( (data) => {
-            console.log('This is your data', data.token)
             let jsonGetSolution = {
                 status: { description: "Queue" },
                 stderr: null,
@@ -63,7 +61,6 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log('This is your data', data)
                     if (data.stdout) {
                         const output = atob(data.stdout);
                         outputText.innerHTML = "";
@@ -110,7 +107,6 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                 setSubmissionStatus(data.error)
             }else{
                 setSubmissionUrl(data.submissionUrl)
-                console.log(data.submissionUrl)
             }
         });
 
@@ -119,9 +115,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
         if("".localeCompare(submissionUrl) !== 0){
             let formData = new FormData();
             formData.append('submissionUrl', submissionUrl);
-            console.log("ES la misma:"+submissionUrl)
-            console.log(userData.token)
-            
+
             fetch('/submission',{
                 method: "POST",
                 headers: {
@@ -144,11 +138,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                     body: formData,
                 })
                 .then(res2 => res2.json())
-                .then(data2 => {
-                    console.log(data2)
-                });
                 
-                console.log("Veredicto: "+data.status.verdict)
             });
         }
     });

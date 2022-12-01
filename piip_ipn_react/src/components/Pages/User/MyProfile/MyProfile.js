@@ -15,7 +15,6 @@ function MyProfile({userData}) {
             },
         })
         const data = await response.json()
-        console.log(data);
         setUser(data)
     }
     useEffect(() => {

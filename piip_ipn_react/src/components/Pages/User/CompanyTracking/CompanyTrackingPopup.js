@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 function CompanyPopup(props) {
     const [progress, setProgress] = useState("Started");
     const [isChecked, setIsChecked] = useState(false);
-    console.log("here)" + props.trigger)
     return (props.trigger) ? (
         <div className='company'>
           <div className='company-inner'>

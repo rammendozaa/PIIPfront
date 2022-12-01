@@ -60,7 +60,6 @@ function Templates({userData}) {
             }),
         })
         const newActivityResponse = await response.json()
-        console.log(newActivityResponse)
         current.sections[index].activities = [
             ...current.sections[index].activities,
             newActivityResponse
@@ -88,7 +87,6 @@ function Templates({userData}) {
             }),
         })
         const newSectionResponse = await response.json()
-        console.log(newSectionResponse)
         current.sections = [
             ...current.sections,
             newSectionResponse,

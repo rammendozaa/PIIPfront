@@ -29,7 +29,6 @@ function StartingQuiz({userData, questionnaire, description, descriptionText, se
 			}),
 		})
 		const response_json = await response.json();
-		console.log(response_json)
 		setTimeout(() => {  window.location.reload(); }, 2000);
 	}
 	const handleAnswerOptionClick = (isCorrect) => {

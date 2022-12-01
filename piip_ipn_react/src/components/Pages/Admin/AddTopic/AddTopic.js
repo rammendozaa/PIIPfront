@@ -51,7 +51,6 @@ function AddTopic({userData}) {
             alert("Please select topic type");
             return;
         }
-        console.log(json)
         localStorage.setItem('editorData', json);
         await fetch(`/create-topic`, {
             method: "POST",

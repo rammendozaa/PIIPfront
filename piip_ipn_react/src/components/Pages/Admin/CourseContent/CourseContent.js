@@ -22,7 +22,6 @@ function CourseContent({userData}) {
     const navigate = useNavigate();
 
 
-    console.log("Token: ",userData.token)
     const [newActivityIndex, setNewActivityIndex] = useState(-1)
     const [newActivitySectionId, setNewActivitySectionId] = useState(-1)
     const [clicked, setClicked] = useState(-1);
@@ -69,7 +68,6 @@ function CourseContent({userData}) {
             })
         }
         const newActivityResponse = await response.json()
-        console.log(newActivityResponse)
         current.user_sections[index].user_activities = [
             ...current.user_sections[index].user_activities,
             newActivityResponse
@@ -112,7 +110,6 @@ function CourseContent({userData}) {
             }),
         })
         const newSectionResponse = await response.json()
-        console.log(newSectionResponse)
         current.user_sections = [
             ...current.user_sections,
             newSectionResponse,
@@ -161,9 +158,6 @@ function CourseContent({userData}) {
     const redirectToActivity = (activity) => {
         const activityType = activity.template_activity.activityType;
         const activity_id = activity.template_activity.activity.id;
-        console.log("here")
-        console.log(activityType)
-        console.log("here")
         if (activityType == 1) {
             navigate(`/problem/${activity_id}`)
         } else if (activityType == 2) {

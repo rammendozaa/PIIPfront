@@ -60,7 +60,6 @@ function Metrics({userData}) {
         })
         const data = await response.json()
         setCurrentInterviewData(data)
-        console.log(data);
         setCurrentStudentsStatus({
             labels: ["Never interviewed", "Interviewed but not accepted", "Accepted in at least one intership"],
             datasets: [{
@@ -90,7 +89,6 @@ function Metrics({userData}) {
         })
         const data = await response.json()
         setHistoricalInterviewData(data)
-        console.log(data);
         setStudentsStatus({
             labels: ["Never interviewed", "Interviewed but not accepted", "Accepted in at least one intership"],
             datasets: [{

@@ -18,7 +18,6 @@ const DraftEditor = () => {
     //convertContentToHTML();
   }
   const saveEditorContent = (data) => {
-    console.log("Saving data")
     localStorage.setItem('editorData', JSON.stringify(data));
   }
   /*const convertContentToHTML = () => {
@@ -30,7 +29,6 @@ const DraftEditor = () => {
         return originalText;
       },
     })(editorState.getCurrentContent());
-    console.log(currentContentAsHTML)
     setConvertedContent(currentContentAsHTML);
   }*/
   /*const createMarkup = (html) => {
