@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import FormLogin from './FormLogIn'
-import './FormLoginContainer.css';
+import './FormLoginContainer.css'
 
-export const FormLoginContainer = ({validUserData, setUserData}) => {
-    const [close, setClose] = useState(false)
-    if(close === true){
-        return (
-            <Navigate to="/"/>
-        )
-    }
+export const FormLoginContainer = ({ validUserData, setUserData }) => {
+  const [close, setClose] = useState(false)
+  if (close === true) {
     return (
+            <Navigate to="/"/>
+    )
+  }
+  return (
         <>
             <div className='form-container'>
                 <span className='close-btn' onClick={() => setClose(true)}>x</span>
@@ -20,7 +20,7 @@ export const FormLoginContainer = ({validUserData, setUserData}) => {
                 <FormLogin validUserData={validUserData} setUserData={setUserData}/>
             </div>
         </>
-    );
-};
+  )
+}
 
-export default FormLoginContainer;
+export default FormLoginContainer

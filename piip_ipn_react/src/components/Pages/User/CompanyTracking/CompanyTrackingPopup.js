@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 
-function CompanyPopup(props) {
-    const [progress, setProgress] = useState("Started");
-    const [isChecked, setIsChecked] = useState(false);
-    return (props.trigger) ? (
+function CompanyPopup (props) {
+  const [progress, setProgress] = useState('Started')
+  const [isChecked, setIsChecked] = useState(false)
+  return (props.trigger)
+    ? (
         <div className='company'>
           <div className='company-inner'>
             <div className="options-container">
@@ -17,9 +18,8 @@ function CompanyPopup(props) {
             </div>
           </div>
         </div>
-        ) : "";
-
-
+      )
+    : ''
 }
 
 export default CompanyPopup

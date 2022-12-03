@@ -3,26 +3,26 @@ import Metrics from './Metrics'
 import './MyProfile.css'
 import Settings from './Settings'
 
-function MyProfile({userData}) {
-    const [option,setOption] = useState("settings")
-    const [user, setUser] = useState(null)
+function MyProfile ({ userData }) {
+  const [option, setOption] = useState('settings')
+  const [user, setUser] = useState(null)
 
-    const getUserData = async() => {
-        const response = await fetch('/user',{
-            method: "GET",
-            headers: {
-                "Authorization": 'Bearer ' + userData.token
-            },
-        })
-        const data = await response.json()
-        setUser(data)
-    }
-    useEffect(() => {
-        getUserData()
-    }, []);
+  const getUserData = async () => {
+    const response = await fetch('/user', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
+    })
+    const data = await response.json()
+    setUser(data)
+  }
+  useEffect(() => {
+    getUserData()
+  }, [])
 
-    return (
-        user && 
+  return (
+    user &&
         <div className="my-profile-container">
             <div className='profile-left'>
                 <div className='user-profile'>
@@ -30,7 +30,7 @@ function MyProfile({userData}) {
                         <img src="/images/profile.jpg" alt='travel' className='profile-img'/>
                     </figure>
                     <div className='user-info'>
-                        <h1>{user.first_name + " "+ user.last_name}</h1>
+                        <h1>{user.first_name + ' ' + user.last_name}</h1>
                         <p>{user.email}</p>
                     </div>
                 </div>
@@ -39,13 +39,13 @@ function MyProfile({userData}) {
                 <nav className='profile-navbar'>
                     <div className='profile-navbar-container'>
                         <ul className="profile-nav-menu">
-                            <li className='profile-nav-item' onClick={() => setOption("settings")}>
+                            <li className='profile-nav-item' onClick={() => setOption('settings')}>
                                 Settings
                             </li>
                             <li className='profile-nav-item'>
                                 |
                             </li>
-                            <li className='profile-nav-item' onClick={() => setOption("statistics")}>
+                            <li className='profile-nav-item' onClick={() => setOption('statistics')}>
                                 Statistics
                             </li>
                         </ul>
@@ -53,12 +53,12 @@ function MyProfile({userData}) {
                 </nav>
                 <div className='profile-content'>
                     {
-                        option === "settings" ? <Settings user={user}/> : <Metrics userData={userData}/> 
+                        option === 'settings' ? <Settings user={user}/> : <Metrics userData={userData}/>
                     }
                 </div>
             </div>
         </div>
-    )
+  )
 }
 
 export default MyProfile

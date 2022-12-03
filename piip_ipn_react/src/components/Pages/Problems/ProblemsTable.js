@@ -1,8 +1,8 @@
-import './ProblemsTable.css' 
+import './ProblemsTable.css'
 
-function ProblemsTable({data, goToProblem}) {
+function ProblemsTable ({ data, goToProblem }) {
   return (
-    data && 
+    data &&
     <div className='div-table'>
       <table className='content-table'>
           <thead className='content-table-header'>
@@ -14,14 +14,15 @@ function ProblemsTable({data, goToProblem}) {
           </thead>
           <tbody>
             {
-              data.length > 0 ? ( 
-                data.map(row => 
+              data.length > 0
+                ? (
+                    data.map(row =>
                     <tr>
                         <td onClick={() => goToProblem(row)}>
-                          {row['title']}
+                          {row.title}
                         </td>
                         <td onClick={() => goToProblem(row)}>
-                          <ul style={{"list-style-type": "none"}}>
+                          <ul style={{ 'list-style-type': 'none' }}>
                             {
                               row.tags.map((row) =>
                                 <li>{row}</li>
@@ -30,24 +31,23 @@ function ProblemsTable({data, goToProblem}) {
                           </ul>
                         </td>
                         <td onClick={() => goToProblem(row)}>
-                          {row['solution']}
+                          {row.solution}
                         </td>
                     </tr>
-                )
-              )
-              :
-              (
+                    )
+                  )
+                : (
                 <tr>
                   <td>Problem not found</td>
                   <td></td>
                   <td></td>
                 </tr>
-              )
+                  )
             }
           </tbody>
       </table>
     </div>
-  );
+  )
 }
 
-export default ProblemsTable;
+export default ProblemsTable

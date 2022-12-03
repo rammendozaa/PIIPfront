@@ -1,64 +1,64 @@
 
-import React, { Component } from "react";
-import "./Compiler.css";
+import React, { Component } from 'react'
+import './Compiler.css'
 export default class Compiler extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      input: localStorage.getItem('input')||``,
-      output: ``,
-      language_id:localStorage.getItem('language_Id')|| 2,
-      user_input: ``,
-    };
+      input: localStorage.getItem('input') || '',
+      output: '',
+      language_id: localStorage.getItem('language_Id') || 2,
+      user_input: ''
+    }
   }
-  input = (event) => { 
-    event.preventDefault();
-    this.setState({ input: event.target.value });
-    localStorage.setItem('input', event.target.value) 
-  };
-  
+
+  input = (event) => {
+    event.preventDefault()
+    this.setState({ input: event.target.value })
+    localStorage.setItem('input', event.target.value)
+  }
+
   userInput = (event) => {
-    event.preventDefault();
-    this.setState({ user_input: event.target.value });
-  };
-  
-  language = (event) => {  
-    event.preventDefault();
-    this.setState({ language_id: event.target.value });
-    localStorage.setItem('language_Id',event.target.value)
-   
-  };
-  
+    event.preventDefault()
+    this.setState({ user_input: event.target.value })
+  }
+
+  language = (event) => {
+    event.preventDefault()
+    this.setState({ language_id: event.target.value })
+    localStorage.setItem('language_Id', event.target.value)
+  }
+
   submit = async (e) => {
-    e.preventDefault();
-    let outputText = document.getElementById("output");
-    outputText.innerHTML = "";
-    outputText.innerHTML += "Creating Submission ...\n";
+    e.preventDefault()
+    const outputText = document.getElementById('output')
+    outputText.innerHTML = ''
+    outputText.innerHTML += 'Creating Submission ...\n'
     const response = await fetch(
-      "https://judge0-ce.p.rapidapi.com/submissions",
+      'https://judge0-ce.p.rapidapi.com/submissions',
       {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-          "x-rapidapi-key": "6d48e1f7admshe6ce2e04d511a3dp138316jsn006825e2d1a6", // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
-          "content-type": "application/json",
-          accept: "application/json",
+          'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
+          'x-rapidapi-key': '6d48e1f7admshe6ce2e04d511a3dp138316jsn006825e2d1a6', // Get yours for free at https://rapidapi.com/judge0-official/api/judge0-ce/
+          'content-type': 'application/json',
+          accept: 'application/json'
         },
         body: JSON.stringify({
           source_code: this.state.input,
-          language_id: this.state.language_id,
-        }),
+          language_id: this.state.language_id
+        })
       }
-    );
-    
-    outputText.innerHTML += "Submission Created ...\n";
-    const jsonResponse = await response.json();
-    let jsonGetSolution = {
-      status: { description: "Queue" },
+    )
+
+    outputText.innerHTML += 'Submission Created ...\n'
+    const jsonResponse = await response.json()
+    const jsonGetSolution = {
+      status: { description: 'Queue' },
       stderr: null,
-      compile_output: null,
-    };
-    /*while (
+      compile_output: null
+    }
+    /* while (
       jsonGetSolution.status.description !== "Accepted" &&
       jsonGetSolution.stderr == null &&
       jsonGetSolution.compile_output == null
@@ -77,7 +77,7 @@ export default class Compiler extends Component {
         jsonGetSolution = await getSolution.json();
       }
     }
-    
+
     if (jsonGetSolution.stdout) {
       const output = atob(jsonGetSolution.stdout);
       outputText.innerHTML = "";
@@ -90,10 +90,10 @@ export default class Compiler extends Component {
       const compilation_error = atob(jsonGetSolution.compile_output);
       outputText.innerHTML = "";
       outputText.innerHTML += `\n Error :${compilation_error}`;
-    }*/
-  };
-  
-  render() { 
+    } */
+  }
+
+  render () {
     return (
       <>
         <div className="row container-fluid">
@@ -151,6 +151,6 @@ export default class Compiler extends Component {
           <textarea id="input" onChange={this.userInput}></textarea>
         </div>
       </>
-    );
+    )
   }
 }

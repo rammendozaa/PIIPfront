@@ -1,9 +1,9 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 
-function CardItem(props) {
-    const navigate = useNavigate()
-    return (
+function CardItem (props) {
+  const navigate = useNavigate()
+  return (
         <>
             <li className='cards__item'>
                 <div className='cards__item__link' onClick={() => navigate(props.path)}>
@@ -16,8 +16,7 @@ function CardItem(props) {
                 </div>
             </li>
         </>
-    );
+  )
 }
-
 
 export default CardItem

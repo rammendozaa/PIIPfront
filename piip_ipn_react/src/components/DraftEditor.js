@@ -1,41 +1,40 @@
-import React, { useState } from 'react';
-import { EditorState, convertToRaw} from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-/*import { convertToHTML } from 'draft-convert';
-import DOMPurify from 'dompurify';*/
-
+import React, { useState } from 'react'
+import { EditorState, convertToRaw } from 'draft-js'
+import { Editor } from 'react-draft-wysiwyg'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+/* import { convertToHTML } from 'draft-convert';
+import DOMPurify from 'dompurify'; */
 
 const DraftEditor = () => {
   const [editorState, setEditorState] = useState(
-    () => EditorState.createEmpty(),
-  );
-  /*const  [convertedContent, setConvertedContent] = useState(null);*/
+    () => EditorState.createEmpty()
+  )
+  /* const  [convertedContent, setConvertedContent] = useState(null); */
   const handleEditorChange = (state) => {
-    setEditorState(state);
-    const raw = convertToRaw(editorState.getCurrentContent());
-    saveEditorContent(raw);
-    //convertContentToHTML();
+    setEditorState(state)
+    const raw = convertToRaw(editorState.getCurrentContent())
+    saveEditorContent(raw)
+    // convertContentToHTML();
   }
   const saveEditorContent = (data) => {
-    localStorage.setItem('editorData', JSON.stringify(data));
+    localStorage.setItem('editorData', JSON.stringify(data))
   }
-  /*const convertContentToHTML = () => {
+  /* const convertContentToHTML = () => {
     let currentContentAsHTML = convertToHTML({
       entityToHTML: (entity, originalText) => {
-        if (entity.type === 'IMAGE') {          
+        if (entity.type === 'IMAGE') {
           return `<img src="${entity.data.src}" />`;
         }
         return originalText;
       },
     })(editorState.getCurrentContent());
     setConvertedContent(currentContentAsHTML);
-  }*/
-  /*const createMarkup = (html) => {
+  } */
+  /* const createMarkup = (html) => {
     return  {
       __html: DOMPurify.sanitize(html)
     }
-  }*/
+  } */
   return (
     <>
     <Editor
@@ -45,9 +44,9 @@ const DraftEditor = () => {
         editorClassName="editor-class"
         toolbarClassName="toolbar-class"
       />
-      {/*<div className="preview" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div>*/}
-    </>      
-  );
+      {/* <div className="preview" dangerouslySetInnerHTML={createMarkup(convertedContent)}></div> */}
+    </>
+  )
 }
 
-export default DraftEditor;
+export default DraftEditor

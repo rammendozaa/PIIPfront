@@ -1,29 +1,29 @@
-import activity from "./state/reducers/activity"
+import activity from './state/reducers/activity'
 
 // ACTIVITY
 export const NewActivity = (name, description, typeId, reference) => {
-    return {
-        name: name,
-        description: description,
-        typeId: typeId,
-        reference: reference,
-    }
+  return {
+    name,
+    description,
+    typeId,
+    reference
+  }
 }
 
 export const ActivityInfo = (
-    user_activity_id,
-    user_activity_status_id,
-    template_activity,
+  userActivityId,
+  userActivityStatusId,
+  templateActivity,
+  activity,
+  activityProgress
+) => {
+  return {
+    userActivityId,
+    userActivityStatusId,
+    templateActivity,
     activity,
-    activity_progress
-    ) => {
-    return {
-        user_activity_id: user_activity_id,
-        user_activity_status_id:user_activity_status_id,
-        template_activity: template_activity,
-        activity: activity,
-        activity_progress: activity_progress,
-    }
+    activityProgress
+  }
 }
 
 /*

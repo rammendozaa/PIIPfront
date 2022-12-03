@@ -1,50 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import './Problems.css'
-import { Navigate } from 'react-router-dom';
-import ProblemsTable from './ProblemsTable';
+import { Navigate } from 'react-router-dom'
+import ProblemsTable from './ProblemsTable'
 
-function Problems({userData}) {
-    const [data, setData] = useState([]);
-    const [query, setQuery] = useState("");
-    const [problemId, setProblemId] = useState(-1);
+function Problems ({ userData }) {
+  const [data, setData] = useState([])
+  const [query, setQuery] = useState('')
+  const [problemId, setProblemId] = useState(-1)
 
-    function search(rows){
-        return rows.filter(
-            row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
-        )
-    }
+  function search (rows) {
+    return rows.filter(
+      row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
+    )
+  }
 
-    useEffect(() => {
-        fetch('/problems',{
-            method: "GET",
-            headers: {
-                "Authorization": 'Bearer ' + userData.token
-            },
-        })
-        .then(res => res.json())
-        .then(data => {
-            setData(data)
-        });
-    },[]);
+  useEffect(() => {
+    fetch('/problems', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setData(data)
+      })
+  }, [])
 
-    const goToProblem = (problem) => {
-        setProblemId(problem.id)
-    }
+  const goToProblem = (problem) => {
+    setProblemId(problem.id)
+  }
 
-    if(problemId !== -1){
-        let url = '/problem/'+problemId
-        return (
-            <Navigate to={url}/>
-        )
-    }
-
+  if (problemId !== -1) {
+    const url = '/problem/' + problemId
     return (
+            <Navigate to={url}/>
+    )
+  }
+
+  return (
         <>
             <div className='problems-container'>
                 <div className='search_wrap'>
                     <div className='search_box'>
                         <div className='btn btn-common'>
-                            <i className='fas fa-search'></i> 
+                            <i className='fas fa-search'></i>
                         </div>
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
@@ -52,6 +52,6 @@ function Problems({userData}) {
                 <ProblemsTable data={search(data)} goToProblem={goToProblem}/>
             </div>
         </>
-    )
+  )
 }
 export default Problems

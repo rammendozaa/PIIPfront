@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function CardItem(props) {
-    return (
+function CardItem (props) {
+  return (
         <>
             <li className='cards2__item'>
                 <div className='cards2__item__link' onClick={() => props.thisFunction(props.topic)}>
@@ -15,8 +15,7 @@ function CardItem(props) {
                 </div>
             </li>
         </>
-    );
+  )
 }
-
 
 export default CardItem

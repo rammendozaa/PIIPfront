@@ -1,49 +1,48 @@
-import MarkdownRender from "../../MarkDownRender/MarkdownRender";
+import MarkdownRender from '../../MarkDownRender/MarkdownRender'
 import './Problem.css'
-//import Compiler from "../Compiler.js";
-import Compiler2 from "./Compiler2";
-import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
-import ReactHTMLParser from 'react-html-parser';
-import { useSelector } from "react-redux"
+// import Compiler from "../Compiler.js";
+import Compiler2 from './Compiler2'
+import { useParams } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import ReactHTMLParser from 'react-html-parser'
+import { useSelector } from 'react-redux'
 
-
-function Problem({userData}) {
-    const {template} = useSelector(state => state.userTemplate);
-    const {activity} = useSelector(state => state.userActivity);
-    const {problem_id} = useParams();
-    const [data, setData] = useState();
-    useEffect(() => {
-        let formData = new FormData();
-        formData.append('problem_id', problem_id);
-        fetch('/problem',{
-            method: "POST",
-            headers: {
-                "Authorization": 'Bearer ' + userData.token
-            },
-            body: formData
-        })
-        .then(res => res.json())
-        .then(data => {
-            setData(data)
-        });
-    },[]);
-    const node = useRef();
-    useEffect(() => {
-        window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current]);
-    });
-    const fixHtml = (text) => {
-        return text.replaceAll("$$$","$")
-    }
-    return (
+function Problem ({ userData }) {
+  const { template } = useSelector(state => state.userTemplate)
+  const { activity } = useSelector(state => state.userActivity)
+  const { problem_id } = useParams()
+  const [data, setData] = useState()
+  useEffect(() => {
+    const formData = new FormData()
+    formData.append('problem_id', problem_id)
+    fetch('/problem', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      },
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        setData(data)
+      })
+  }, [])
+  const node = useRef()
+  useEffect(() => {
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current])
+  })
+  const fixHtml = (text) => {
+    return text.replaceAll('$$$', '$')
+  }
+  return (
         <>
         {
-            data && 
+            data &&
             <div className="problem-container">
                 <div className="problem-data">
                     <div className="info">
                         <div className="info-header">
-                            <a href={data.url} target="_blank"><h1>{data.title}</h1></a>
+                            <a href={data.url} target="_blank" rel="noreferrer"><h1>{data.title}</h1></a>
                         </div>
                         <dl className="info-body">
                             <div className="problem-info-row">
@@ -57,7 +56,7 @@ function Problem({userData}) {
                             <div className="problem-info-row">
                                 <dt><b>Tags:</b></dt>
                                 <dd>
-                                    <ul style={{"list-style-type": "none"}}>
+                                    <ul style={{ 'list-style-type': 'none' }}>
                                         {
                                             data.tags.map((row) =>
                                                 <li>{row}</li>
@@ -93,6 +92,6 @@ function Problem({userData}) {
             </div>
         }
         </>
-    );
+  )
 }
 export default Problem

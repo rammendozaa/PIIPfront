@@ -1,1378 +1,1378 @@
-export const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Add topic information here.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
+export const content = { entityMap: {}, blocks: [{ key: '637gr', text: 'Add topic information here.', type: 'unstyled', depth: 0, inlineStyleRanges: [], entityRanges: [], data: {} }] }
 
 export const MathJaxSymbols = [
   [
     {
       label: '$A$',
-      syntax: 'A',
+      syntax: 'A'
     },
     {
       label: '$\\alpha$',
-      syntax: '\\alpha',
+      syntax: '\\alpha'
     },
     {
       label: '$B$',
-      syntax: 'B',
+      syntax: 'B'
     },
     {
       label: '$\\beta$',
-      syntax: '\\beta',
+      syntax: '\\beta'
     },
     {
       label: '$\\Gamma$',
-      syntax: '\\Gamma',
+      syntax: '\\Gamma'
     },
     {
       label: '$\\gamma$',
-      syntax: '\\gamma',
+      syntax: '\\gamma'
     },
     {
       label: '$\\Delta$',
-      syntax: '\\Delta',
+      syntax: '\\Delta'
     },
     {
       label: '$\\delta$',
-      syntax: '\\delta',
+      syntax: '\\delta'
     },
     {
       label: '$F$',
-      syntax: 'F',
+      syntax: 'F'
     },
     {
       label: '$\\digamma$',
-      syntax: '\\digamma',
+      syntax: '\\digamma'
     },
     {
       label: '$E$',
-      syntax: 'E',
+      syntax: 'E'
     },
     {
       label: '$\\epsilon$',
-      syntax: '\\epsilon',
+      syntax: '\\epsilon'
     },
     {
       label: '$\\varepsilon$',
-      syntax: '\\varepsilon',
+      syntax: '\\varepsilon'
     },
     {
       label: '$Z$',
-      syntax: 'Z',
+      syntax: 'Z'
     },
     {
       label: '$\\zeta$',
-      syntax: '\\zeta',
+      syntax: '\\zeta'
     },
     {
       label: '$H$',
-      syntax: 'H',
+      syntax: 'H'
     },
     {
       label: '$\\eta$',
-      syntax: '\\eta',
+      syntax: '\\eta'
     },
     {
       label: '$\\Theta$',
-      syntax: '\\Theta',
+      syntax: '\\Theta'
     },
     {
       label: '$\\theta$',
-      syntax: '\\theta',
+      syntax: '\\theta'
     },
     {
       label: '$\\vartheta$',
-      syntax: '\\vartheta',
+      syntax: '\\vartheta'
     },
     {
       label: '$I$',
-      syntax: 'I',
+      syntax: 'I'
     },
     {
       label: '$\\iota$',
-      syntax: '\\iota',
+      syntax: '\\iota'
     },
     {
       label: '$K$',
-      syntax: 'K',
+      syntax: 'K'
     },
     {
       label: '$\\kappa$',
-      syntax: '\\kappa',
+      syntax: '\\kappa'
     },
     {
       label: '$\\varkappa$',
-      syntax: '\\varkappa',
+      syntax: '\\varkappa'
     },
     {
       label: '$\\Lambda$',
-      syntax: '\\Lambda',
+      syntax: '\\Lambda'
     },
     {
       label: '$\\lambda$',
-      syntax: '\\lambda',
+      syntax: '\\lambda'
     },
     {
       label: '$M$',
-      syntax: 'M',
+      syntax: 'M'
     },
     {
       label: '$\\mu$',
-      syntax: '\\mu',
+      syntax: '\\mu'
     },
     {
       label: '$N$',
-      syntax: 'N',
+      syntax: 'N'
     },
     {
       label: '$\\nu$',
-      syntax: '\\nu',
+      syntax: '\\nu'
     },
     {
       label: '$\\Xi$',
-      syntax: '\\Xi',
+      syntax: '\\Xi'
     },
     {
       label: '$\\xi$',
-      syntax: '\\xi',
+      syntax: '\\xi'
     },
     {
       label: '$O$',
-      syntax: 'O',
+      syntax: 'O'
     },
     {
       label: '$\\omicron$',
-      syntax: '\\omicron',
+      syntax: '\\omicron'
     },
     {
       label: '$\\Pi$',
-      syntax: '\\Pi',
+      syntax: '\\Pi'
     },
     {
       label: '$\\pi$',
-      syntax: '\\pi',
+      syntax: '\\pi'
     },
     {
       label: '$\\varpi$',
-      syntax: '\\varpi',
+      syntax: '\\varpi'
     },
     {
       label: '$P$',
-      syntax: 'P',
+      syntax: 'P'
     },
     {
       label: '$\\rho$',
-      syntax: '\\rho',
+      syntax: '\\rho'
     },
     {
       label: '$\\varrho$',
-      syntax: '\\varrho',
+      syntax: '\\varrho'
     },
     {
       label: '$\\Sigma$',
-      syntax: '\\Sigma',
+      syntax: '\\Sigma'
     },
     {
       label: '$\\sigma$',
-      syntax: '\\sigma',
+      syntax: '\\sigma'
     },
     {
       label: '$\\varsigma$',
-      syntax: '\\varsigma',
+      syntax: '\\varsigma'
     },
     {
       label: '$T$',
-      syntax: 'T',
+      syntax: 'T'
     },
     {
       label: '$\\tau$',
-      syntax: '\\tau',
+      syntax: '\\tau'
     },
     {
       label: '$\\Upsilon$',
-      syntax: '\\Upsilon',
+      syntax: '\\Upsilon'
     },
     {
       label: '$\\upsilon$',
-      syntax: '\\upsilon',
+      syntax: '\\upsilon'
     },
     {
       label: '$\\Phi$',
-      syntax: '\\Phi',
+      syntax: '\\Phi'
     },
     {
       label: '$\\phi$',
-      syntax: '\\phi',
+      syntax: '\\phi'
     },
     {
       label: '$X$',
-      syntax: 'X',
+      syntax: 'X'
     },
     {
       label: '$\\chi$',
-      syntax: '\\chi',
+      syntax: '\\chi'
     },
     {
       label: '$\\Psi$',
-      syntax: '\\Psi',
+      syntax: '\\Psi'
     },
     {
       label: '$\\psi$',
-      syntax: '\\psi',
+      syntax: '\\psi'
     },
     {
       label: '$\\Omega$',
-      syntax: '\\Omega',
+      syntax: '\\Omega'
     },
     {
       label: '$\\omega$',
-      syntax: '\\omega',
-    },
+      syntax: '\\omega'
+    }
   ],
   [
     {
       label: '$+$',
-      syntax: '+',
+      syntax: '+'
     },
     {
       label: '$-$',
-      syntax: '-',
+      syntax: '-'
     },
     {
       label: '$!$',
-      syntax: '!',
+      syntax: '!'
     },
     {
       label: '$\\#$',
-      syntax: '\\#',
+      syntax: '\\#'
     },
     {
       label: '$\\neg$',
-      syntax: '\\neg',
-    },
+      syntax: '\\neg'
+    }
   ],
   [
     {
       label: '$<$',
-      syntax: '<',
+      syntax: '<'
     },
     {
       label: '$>$',
-      syntax: '>',
+      syntax: '>'
     },
     {
       label: '$\\nless$',
-      syntax: '\\nless',
+      syntax: '\\nless'
     },
     {
       label: '$\\ngtr$',
-      syntax: '\\ngtr',
+      syntax: '\\ngtr'
     },
     {
       label: '$\\leq$',
-      syntax: '\\leq',
+      syntax: '\\leq'
     },
     {
       label: '$\\geq$',
-      syntax: '\\geq',
+      syntax: '\\geq'
     },
     {
       label: '$\\leqslant$',
-      syntax: '\\leqslant',
+      syntax: '\\leqslant'
     },
     {
       label: '$\\geqslant$',
-      syntax: '\\geqslant',
+      syntax: '\\geqslant'
     },
     {
       label: '$\\nleq$',
-      syntax: '\\nleq',
+      syntax: '\\nleq'
     },
     {
       label: '$\\ngeq$',
-      syntax: '\\ngeq',
+      syntax: '\\ngeq'
     },
     {
       label: '$\\nleqslant$',
-      syntax: '\\nleqslant',
+      syntax: '\\nleqslant'
     },
     {
       label: '$\\ngeqslant$',
-      syntax: '\\ngeqslant',
+      syntax: '\\ngeqslant'
     },
     {
       label: '$\\prec$',
-      syntax: '\\prec',
+      syntax: '\\prec'
     },
     {
       label: '$\\succ$',
-      syntax: '\\succ',
+      syntax: '\\succ'
     },
     {
       label: '$\\nprec$',
-      syntax: '\\nprec',
+      syntax: '\\nprec'
     },
     {
       label: '$\\nsucc$',
-      syntax: '\\nsucc',
+      syntax: '\\nsucc'
     },
     {
       label: '$\\preceq$',
-      syntax: '\\preceq',
+      syntax: '\\preceq'
     },
     {
       label: '$\\succeq$',
-      syntax: '\\succeq',
+      syntax: '\\succeq'
     },
     {
       label: '$\\npreceq$',
-      syntax: '\\npreceq',
+      syntax: '\\npreceq'
     },
     {
       label: '$\\nsucceq$',
-      syntax: '\\nsucceq',
+      syntax: '\\nsucceq'
     },
     {
       label: '$\\ll$',
-      syntax: '\\ll',
+      syntax: '\\ll'
     },
     {
       label: '$\\gg$',
-      syntax: '\\gg',
+      syntax: '\\gg'
     },
     {
       label: '$\\lll$',
-      syntax: '\\lll',
+      syntax: '\\lll'
     },
     {
       label: '$\\ggg$',
-      syntax: '\\ggg',
+      syntax: '\\ggg'
     },
     {
       label: '$\\subset$',
-      syntax: '\\subset',
+      syntax: '\\subset'
     },
     {
       label: '$\\supset$',
-      syntax: '\\supset',
+      syntax: '\\supset'
     },
     {
       label: '$\\not\\subset$',
-      syntax: '\\not\\subset',
+      syntax: '\\not\\subset'
     },
     {
       label: '$\\not\\supset$',
-      syntax: '\\not\\supset',
+      syntax: '\\not\\supset'
     },
     {
       label: '$\\subseteq$',
-      syntax: '\\subseteq',
+      syntax: '\\subseteq'
     },
     {
       label: '$\\supseteq$',
-      syntax: '\\supseteq',
+      syntax: '\\supseteq'
     },
     {
       label: '$\\nsubseteq$',
-      syntax: '\\nsubseteq',
+      syntax: '\\nsubseteq'
     },
     {
       label: '$\\nsupseteq$',
-      syntax: '\\nsupseteq',
+      syntax: '\\nsupseteq'
     },
     {
       label: '$\\sqsubset$',
-      syntax: '\\sqsubset',
+      syntax: '\\sqsubset'
     },
     {
       label: '$\\sqsupset$',
-      syntax: '\\sqsupset',
+      syntax: '\\sqsupset'
     },
     {
       label: '$\\sqsubseteq$',
-      syntax: '\\sqsubseteq',
+      syntax: '\\sqsubseteq'
     },
     {
       label: '$\\sqsupseteq$',
-      syntax: '\\sqsupseteq',
+      syntax: '\\sqsupseteq'
     },
     {
       label: '$=$',
-      syntax: '=',
+      syntax: '='
     },
     {
       label: '$\\doteq$',
-      syntax: '\\doteq',
+      syntax: '\\doteq'
     },
     {
       label: '$\\equiv$',
-      syntax: '\\equiv',
+      syntax: '\\equiv'
     },
     {
       label: '$\\approx$',
-      syntax: '\\approx',
+      syntax: '\\approx'
     },
     {
       label: '$\\cong$',
-      syntax: '\\cong',
+      syntax: '\\cong'
     },
     {
       label: '$\\simeq$',
-      syntax: '\\simeq',
+      syntax: '\\simeq'
     },
     {
       label: '$\\sim$',
-      syntax: '\\sim',
+      syntax: '\\sim'
     },
     {
       label: '$\\propto$',
-      syntax: '\\propto',
+      syntax: '\\propto'
     },
     {
       label: '$\\neq$',
-      syntax: '\\neq',
+      syntax: '\\neq'
     },
     {
       label: '$\\ne$',
-      syntax: '\\ne',
+      syntax: '\\ne'
     },
     {
       label: '$\\parallel$',
-      syntax: '\\parallel',
+      syntax: '\\parallel'
     },
     {
       label: '$\\nparallel$',
-      syntax: '\\nparallel',
+      syntax: '\\nparallel'
     },
     {
       label: '$\\asymp$',
-      syntax: '\\asymp',
+      syntax: '\\asymp'
     },
     {
       label: '$\\bowtie$',
-      syntax: '\\bowtie',
+      syntax: '\\bowtie'
     },
     {
       label: '$\\vdash$',
-      syntax: '\\vdash',
+      syntax: '\\vdash'
     },
     {
       label: '$\\dashv$',
-      syntax: '\\dashv',
+      syntax: '\\dashv'
     },
     {
       label: '$\\in$',
-      syntax: '\\in',
+      syntax: '\\in'
     },
     {
       label: '$\\ni$',
-      syntax: '\\ni',
+      syntax: '\\ni'
     },
     {
       label: '$\\smile$',
-      syntax: '\\smile',
+      syntax: '\\smile'
     },
     {
       label: '$\\frown$',
-      syntax: '\\frown',
+      syntax: '\\frown'
     },
     {
       label: '$\\models$',
-      syntax: '\\models',
+      syntax: '\\models'
     },
     {
       label: '$\\notin$',
-      syntax: '\\notin',
+      syntax: '\\notin'
     },
     {
       label: '$\\perp$',
-      syntax: '\\perp',
+      syntax: '\\perp'
     },
     {
       label: '$\\mid$',
-      syntax: '\\mid',
-    },
+      syntax: '\\mid'
+    }
   ],
   [
     {
       label: '$\\pm$',
-      syntax: '\\pm',
+      syntax: '\\pm'
     },
     {
       label: '$\\cap$',
-      syntax: '\\cap',
+      syntax: '\\cap'
     },
     {
       label: '$\\diamond$',
-      syntax: '\\diamond',
+      syntax: '\\diamond'
     },
     {
       label: '$\\oplus$',
-      syntax: '\\oplus',
+      syntax: '\\oplus'
     },
     {
       label: '$\\mp$',
-      syntax: '\\mp',
+      syntax: '\\mp'
     },
     {
       label: '$\\cup$',
-      syntax: '\\cup',
+      syntax: '\\cup'
     },
     {
       label: '$\\bigtriangleup$',
-      syntax: '\\bigtriangleup',
+      syntax: '\\bigtriangleup'
     },
     {
       label: '$\\ominus$',
-      syntax: '\\ominus',
+      syntax: '\\ominus'
     },
     {
       label: '$\\times$',
-      syntax: '\\times',
+      syntax: '\\times'
     },
     {
       label: '$\\uplus$',
-      syntax: '\\uplus',
+      syntax: '\\uplus'
     },
     {
       label: '$\\bigtriangledown$',
-      syntax: '\\bigtriangledown',
+      syntax: '\\bigtriangledown'
     },
     {
       label: '$\\otimes$',
-      syntax: '\\otimes',
+      syntax: '\\otimes'
     },
     {
       label: '$\\div$',
-      syntax: '\\div',
+      syntax: '\\div'
     },
     {
       label: '$\\sqcap$',
-      syntax: '\\sqcap',
+      syntax: '\\sqcap'
     },
     {
       label: '$\\triangleleft$',
-      syntax: '\\triangleleft',
+      syntax: '\\triangleleft'
     },
     {
       label: '$\\oslash$',
-      syntax: '\\oslash',
+      syntax: '\\oslash'
     },
     {
       label: '$\\ast$',
-      syntax: '\\ast',
+      syntax: '\\ast'
     },
     {
       label: '$\\sqcup$',
-      syntax: '\\sqcup',
+      syntax: '\\sqcup'
     },
     {
       label: '$\\triangleright$',
-      syntax: '\\triangleright',
+      syntax: '\\triangleright'
     },
     {
       label: '$\\odot$',
-      syntax: '\\odot',
+      syntax: '\\odot'
     },
     {
       label: '$\\star$',
-      syntax: '\\star',
+      syntax: '\\star'
     },
     {
       label: '$\\vee$',
-      syntax: '\\vee',
+      syntax: '\\vee'
     },
     {
       label: '$\\bigcirc$',
-      syntax: '\\bigcirc',
+      syntax: '\\bigcirc'
     },
     {
       label: '$\\circ$',
-      syntax: '\\circ',
+      syntax: '\\circ'
     },
     {
       label: '$\\dagger$',
-      syntax: '\\dagger',
+      syntax: '\\dagger'
     },
     {
       label: '$\\wedge$',
-      syntax: '\\wedge',
+      syntax: '\\wedge'
     },
     {
       label: '$\\bullet$',
-      syntax: '\\bullet',
+      syntax: '\\bullet'
     },
     {
       label: '$\\setminus$',
-      syntax: '\\setminus',
+      syntax: '\\setminus'
     },
     {
       label: '$\\ddagger$',
-      syntax: '\\ddagger',
+      syntax: '\\ddagger'
     },
     {
       label: '$\\cdot$',
-      syntax: '\\cdot',
+      syntax: '\\cdot'
     },
     {
       label: '$\\wr$',
-      syntax: '\\wr',
+      syntax: '\\wr'
     },
     {
       label: '$\\amalg$',
-      syntax: '\\amalg',
-    },
+      syntax: '\\amalg'
+    }
   ],
   [
     {
       label: '$\\neq$',
-      syntax: '\\neq',
+      syntax: '\\neq'
     },
     {
       label: '$\\ne$',
-      syntax: '\\ne',
+      syntax: '\\ne'
     },
     {
       label: '$\\notin$',
-      syntax: '\\notin',
+      syntax: '\\notin'
     },
     {
       label: '$\\nless$',
-      syntax: '\\nless',
+      syntax: '\\nless'
     },
     {
       label: '$\\ngtr$',
-      syntax: '\\ngtr',
+      syntax: '\\ngtr'
     },
     {
       label: '$\\nleq$',
-      syntax: '\\nleq',
+      syntax: '\\nleq'
     },
     {
       label: '$\\ngeq$',
-      syntax: '\\ngeq',
+      syntax: '\\ngeq'
     },
     {
       label: '$\\nleqslant$',
-      syntax: '\\nleqslant',
+      syntax: '\\nleqslant'
     },
     {
       label: '$\\ngeqslant$',
-      syntax: '\\ngeqslant',
+      syntax: '\\ngeqslant'
     },
     {
       label: '$\\nleqq$',
-      syntax: '\\nleqq',
+      syntax: '\\nleqq'
     },
     {
       label: '$\\ngeqq$',
-      syntax: '\\ngeqq',
+      syntax: '\\ngeqq'
     },
     {
       label: '$\\lneq$',
-      syntax: '\\lneq',
+      syntax: '\\lneq'
     },
     {
       label: '$\\gneq$',
-      syntax: '\\gneq',
+      syntax: '\\gneq'
     },
     {
       label: '$\\lneqq$',
-      syntax: '\\lneqq',
+      syntax: '\\lneqq'
     },
     {
       label: '$\\gneqq$',
-      syntax: '\\gneqq',
+      syntax: '\\gneqq'
     },
     {
       label: '$\\lvertneqq$',
-      syntax: '\\lvertneqq',
+      syntax: '\\lvertneqq'
     },
     {
       label: '$\\gvertneqq$',
-      syntax: '\\gvertneqq',
+      syntax: '\\gvertneqq'
     },
     {
       label: '$\\lnsim$',
-      syntax: '\\lnsim',
+      syntax: '\\lnsim'
     },
     {
       label: '$\\gnsim$',
-      syntax: '\\gnsim',
+      syntax: '\\gnsim'
     },
     {
       label: '$\\lnapprox$',
-      syntax: '\\lnapprox',
+      syntax: '\\lnapprox'
     },
     {
       label: '$\\gnapprox$',
-      syntax: '\\gnapprox',
+      syntax: '\\gnapprox'
     },
     {
       label: '$\\nprec$',
-      syntax: '\\nprec',
+      syntax: '\\nprec'
     },
     {
       label: '$\\nsucc$',
-      syntax: '\\nsucc',
+      syntax: '\\nsucc'
     },
     {
       label: '$\\npreceq$',
-      syntax: '\\npreceq',
+      syntax: '\\npreceq'
     },
     {
       label: '$\\nsucceq$',
-      syntax: '\\nsucceq',
+      syntax: '\\nsucceq'
     },
     {
       label: '$\\precneqq$',
-      syntax: '\\precneqq',
+      syntax: '\\precneqq'
     },
     {
       label: '$\\succneqq$',
-      syntax: '\\succneqq',
+      syntax: '\\succneqq'
     },
     {
       label: '$\\precnsim$',
-      syntax: '\\precnsim',
+      syntax: '\\precnsim'
     },
     {
       label: '$\\succnsim$',
-      syntax: '\\succnsim',
+      syntax: '\\succnsim'
     },
     {
       label: '$\\precnapprox$',
-      syntax: '\\precnapprox',
+      syntax: '\\precnapprox'
     },
     {
       label: '$\\succnapprox$',
-      syntax: '\\succnapprox',
+      syntax: '\\succnapprox'
     },
     {
       label: '$\\nsim$',
-      syntax: '\\nsim',
+      syntax: '\\nsim'
     },
     {
       label: '$\\ncong$',
-      syntax: '\\ncong',
+      syntax: '\\ncong'
     },
     {
       label: '$\\nshortmid$',
-      syntax: '\\nshortmid',
+      syntax: '\\nshortmid'
     },
     {
       label: '$\\nshortparallel$',
-      syntax: '\\nshortparallel',
+      syntax: '\\nshortparallel'
     },
     {
       label: '$\\nmid$',
-      syntax: '\\nmid',
+      syntax: '\\nmid'
     },
     {
       label: '$\\nparallel$',
-      syntax: '\\nparallel',
+      syntax: '\\nparallel'
     },
     {
       label: '$\\nvdash$',
-      syntax: '\\nvdash',
+      syntax: '\\nvdash'
     },
     {
       label: '$\\nvDash$',
-      syntax: '\\nvDash',
+      syntax: '\\nvDash'
     },
     {
       label: '$\\nVdash$',
-      syntax: '\\nVdash',
+      syntax: '\\nVdash'
     },
     {
       label: '$\\nVDash$',
-      syntax: '\\nVDash',
+      syntax: '\\nVDash'
     },
     {
       label: '$\\ntriangleleft$',
-      syntax: '\\ntriangleleft',
+      syntax: '\\ntriangleleft'
     },
     {
       label: '$\\ntriangleright$',
-      syntax: '\\ntriangleright',
+      syntax: '\\ntriangleright'
     },
     {
       label: '$\\ntrianglelefteq$',
-      syntax: '\\ntrianglelefteq',
+      syntax: '\\ntrianglelefteq'
     },
     {
       label: '$\\ntrianglerighteq$',
-      syntax: '\\ntrianglerighteq',
+      syntax: '\\ntrianglerighteq'
     },
     {
       label: '$\\nsubseteq$',
-      syntax: '\\nsubseteq',
+      syntax: '\\nsubseteq'
     },
     {
       label: '$\\nsupseteq$',
-      syntax: '\\nsupseteq',
+      syntax: '\\nsupseteq'
     },
     {
       label: '$\\nsubseteqq$',
-      syntax: '\\nsubseteqq',
+      syntax: '\\nsubseteqq'
     },
     {
       label: '$\\nsupseteqq$',
-      syntax: '\\nsupseteqq',
+      syntax: '\\nsupseteqq'
     },
     {
       label: '$\\subsetneq$',
-      syntax: '\\subsetneq',
+      syntax: '\\subsetneq'
     },
     {
       label: '$\\supsetneq$',
-      syntax: '\\supsetneq',
+      syntax: '\\supsetneq'
     },
     {
       label: '$\\varsubsetneq$',
-      syntax: '\\varsubsetneq',
+      syntax: '\\varsubsetneq'
     },
     {
       label: '$\\varsupsetneq$',
-      syntax: '\\varsupsetneq',
+      syntax: '\\varsupsetneq'
     },
     {
       label: '$\\subsetneqq$',
-      syntax: '\\subsetneqq',
+      syntax: '\\subsetneqq'
     },
     {
       label: '$\\supsetneqq$',
-      syntax: '\\supsetneqq',
+      syntax: '\\supsetneqq'
     },
     {
       label: '$\\varsubsetneqq$',
-      syntax: '\\varsubsetneqq',
+      syntax: '\\varsubsetneqq'
     },
     {
       label: '$\\varsupsetneqq$',
-      syntax: '\\varsupsetneqq',
-    },
+      syntax: '\\varsupsetneqq'
+    }
   ],
   [
     {
       label: '$\\emptyset$',
-      syntax: '\\emptyset',
+      syntax: '\\emptyset'
     },
     {
       label: '$\\varnothing$',
-      syntax: '\\varnothing',
+      syntax: '\\varnothing'
     },
     {
       label: '$\\mathbb{N}$',
-      syntax: '\\mathbb{N}',
+      syntax: '\\mathbb{N}'
     },
     {
       label: '$\\mathbb{Z}$',
-      syntax: '\\mathbb{Z}',
+      syntax: '\\mathbb{Z}'
     },
     {
       label: '$\\mathbb{Q}$',
-      syntax: '\\mathbb{Q}',
+      syntax: '\\mathbb{Q}'
     },
     {
       label: '$\\mathbb{A}$',
-      syntax: '\\mathbb{A}',
+      syntax: '\\mathbb{A}'
     },
     {
       label: '$\\mathbb{R}$',
-      syntax: '\\mathbb{R}',
+      syntax: '\\mathbb{R}'
     },
     {
       label: '$\\mathbb{C}$',
-      syntax: '\\mathbb{C}',
+      syntax: '\\mathbb{C}'
     },
     {
       label: '$\\mathbb{H}$',
-      syntax: '\\mathbb{H}',
+      syntax: '\\mathbb{H}'
     },
     {
       label: '$\\mathbb{O}$',
-      syntax: '\\mathbb{O}',
+      syntax: '\\mathbb{O}'
     },
     {
       label: '$\\mathbb{S}$',
-      syntax: '\\mathbb{S}',
+      syntax: '\\mathbb{S}'
     },
     {
       label: '$\\in$',
-      syntax: '\\in',
+      syntax: '\\in'
     },
     {
       label: '$\\notin$',
-      syntax: '\\notin',
+      syntax: '\\notin'
     },
     {
       label: '$\\ni$',
-      syntax: '\\ni',
+      syntax: '\\ni'
     },
     {
       label: '$\\subset$',
-      syntax: '\\subset',
+      syntax: '\\subset'
     },
     {
       label: '$\\subseteq$',
-      syntax: '\\subseteq',
+      syntax: '\\subseteq'
     },
     {
       label: '$\\supset$',
-      syntax: '\\supset',
+      syntax: '\\supset'
     },
     {
       label: '$\\supseteq$',
-      syntax: '\\supseteq',
+      syntax: '\\supseteq'
     },
     {
       label: '$\\cup$',
-      syntax: '\\cup',
+      syntax: '\\cup'
     },
     {
       label: '$\\cap$',
-      syntax: '\\cap',
+      syntax: '\\cap'
     },
     {
       label: '$\\setminus$',
-      syntax: '\\setminus',
+      syntax: '\\setminus'
     },
     {
       label: '$\\exists$',
-      syntax: '\\exists',
+      syntax: '\\exists'
     },
     {
       label: '$\\exists!$',
-      syntax: '\\exists!',
+      syntax: '\\exists!'
     },
     {
       label: '$\\nexists$',
-      syntax: '\\nexists',
+      syntax: '\\nexists'
     },
     {
       label: '$\\forall$',
-      syntax: '\\forall',
+      syntax: '\\forall'
     },
     {
       label: '$\\neg$',
-      syntax: '\\neg',
+      syntax: '\\neg'
     },
     {
       label: '$\\lor$',
-      syntax: '\\lor',
+      syntax: '\\lor'
     },
     {
       label: '$\\land$',
-      syntax: '\\land',
+      syntax: '\\land'
     },
     {
       label: '$\\Longrightarrow$',
-      syntax: '\\Longrightarrow',
+      syntax: '\\Longrightarrow'
     },
     {
       label: '$\\implies$',
-      syntax: '\\implies',
+      syntax: '\\implies'
     },
     {
       label: '$\\Rightarrow$',
-      syntax: '\\Rightarrow',
+      syntax: '\\Rightarrow'
     },
     {
       label: '$\\Longleftarrow$',
-      syntax: '\\Longleftarrow',
+      syntax: '\\Longleftarrow'
     },
     {
       label: '$\\Leftarrow$',
-      syntax: '\\Leftarrow',
+      syntax: '\\Leftarrow'
     },
     {
       label: '$\\iff$',
-      syntax: '\\iff',
+      syntax: '\\iff'
     },
     {
       label: '$\\Leftrightarrow$',
-      syntax: '\\Leftrightarrow',
+      syntax: '\\Leftrightarrow'
     },
     {
       label: '$\\top$',
-      syntax: '\\top',
+      syntax: '\\top'
     },
     {
       label: '$\\bot$',
-      syntax: '\\bot',
-    },
+      syntax: '\\bot'
+    }
   ],
   [
     {
       label: '$\\overline{\\rm AB}$',
-      syntax: '\\overline{\\rm AB}',
+      syntax: '\\overline{\\rm AB}'
     },
     {
       label: '$\\overrightarrow{\\rm AB}$',
-      syntax: '\\overrightarrow{\\rm AB}',
+      syntax: '\\overrightarrow{\\rm AB}'
     },
     {
       label: '$\\angle$',
-      syntax: '\\angle',
+      syntax: '\\angle'
     },
     {
       label: '$\\measuredangle$',
-      syntax: '\\measuredangle',
+      syntax: '\\measuredangle'
     },
     {
       label: '$\\triangle$',
-      syntax: '\\triangle',
+      syntax: '\\triangle'
     },
     {
       label: '$\\square$',
-      syntax: '\\square',
+      syntax: '\\square'
     },
     {
       label: '$\\cong$',
-      syntax: '\\cong',
+      syntax: '\\cong'
     },
     {
       label: '$\\ncong$',
-      syntax: '\\ncong',
+      syntax: '\\ncong'
     },
     {
       label: '$\\sim$',
-      syntax: '\\sim',
+      syntax: '\\sim'
     },
     {
       label: '$\\nsim$',
-      syntax: '\\nsim',
+      syntax: '\\nsim'
     },
     {
       label: '$\\|$',
-      syntax: '\\|',
+      syntax: '\\|'
     },
     {
       label: '$\\nparallel$',
-      syntax: '\\nparallel',
+      syntax: '\\nparallel'
     },
     {
       label: '$\\perp$',
-      syntax: '\\perp',
+      syntax: '\\perp'
     },
     {
       label: '$\\not\\perp$',
-      syntax: '\\not\\perp',
-    },
+      syntax: '\\not\\perp'
+    }
   ],
   [
     {
       label: '$|$',
-      syntax: '|',
+      syntax: '|'
     },
     {
       label: '$\\|$',
-      syntax: '\\|',
+      syntax: '\\|'
     },
     {
       label: '$/$',
-      syntax: '/',
+      syntax: '/'
     },
     {
       label: '$\\backslash$',
-      syntax: '\\backslash',
+      syntax: '\\backslash'
     },
     {
       label: '$( \\,$',
-      syntax: '( \\,',
+      syntax: '( \\,'
     },
     {
       label: '$) \\,$',
-      syntax: ') \\,',
+      syntax: ') \\,'
     },
     {
       label: '$[ \\,$',
-      syntax: '[ \\,',
+      syntax: '[ \\,'
     },
     {
       label: '$] \\,$',
-      syntax: '] \\,',
+      syntax: '] \\,'
     },
     {
       label: '$\\{$',
-      syntax: '\\{',
+      syntax: '\\{'
     },
     {
       label: '$\\}$',
-      syntax: '\\}',
+      syntax: '\\}'
     },
     {
       label: '$\\langle$',
-      syntax: '\\langle',
+      syntax: '\\langle'
     },
     {
       label: '$\\rangle$',
-      syntax: '\\rangle',
+      syntax: '\\rangle'
     },
     {
       label: '$\\lceil$',
-      syntax: '\\lceil',
+      syntax: '\\lceil'
     },
     {
       label: '$\\rceil$',
-      syntax: '\\rceil',
+      syntax: '\\rceil'
     },
     {
       label: '$\\lfloor$',
-      syntax: '\\lfloor',
+      syntax: '\\lfloor'
     },
     {
       label: '$\\rfloor$',
-      syntax: '\\rfloor',
+      syntax: '\\rfloor'
     },
     {
       label: '$\\ulcorner$',
-      syntax: '\\ulcorner',
+      syntax: '\\ulcorner'
     },
     {
       label: '$\\urcorner$',
-      syntax: '\\urcorner',
+      syntax: '\\urcorner'
     },
     {
       label: '$\\llcorner$',
-      syntax: '\\llcorner',
+      syntax: '\\llcorner'
     },
     {
       label: '$\\lrcorner$',
-      syntax: '\\lrcorner',
-    },
+      syntax: '\\lrcorner'
+    }
   ],
   [
     {
       label: '$\\rightarrow$',
-      syntax: '\\rightarrow',
+      syntax: '\\rightarrow'
     },
     {
       label: '$\\to$',
-      syntax: '\\to',
+      syntax: '\\to'
     },
     {
       label: '$\\Rightarrow$',
-      syntax: '\\Rightarrow',
+      syntax: '\\Rightarrow'
     },
     {
       label: '$\\longrightarrow$',
-      syntax: '\\longrightarrow',
+      syntax: '\\longrightarrow'
     },
     {
       label: '$\\Longrightarrow$',
-      syntax: '\\Longrightarrow',
+      syntax: '\\Longrightarrow'
     },
     {
       label: '$\\mapsto$',
-      syntax: '\\mapsto',
+      syntax: '\\mapsto'
     },
     {
       label: '$\\longmapsto$',
-      syntax: '\\longmapsto',
+      syntax: '\\longmapsto'
     },
     {
       label: '$\\leftarrow$',
-      syntax: '\\leftarrow',
+      syntax: '\\leftarrow'
     },
     {
       label: '$\\gets$',
-      syntax: '\\gets',
+      syntax: '\\gets'
     },
     {
       label: '$\\Leftarrow$',
-      syntax: '\\Leftarrow',
+      syntax: '\\Leftarrow'
     },
     {
       label: '$\\longleftarrow$',
-      syntax: '\\longleftarrow',
+      syntax: '\\longleftarrow'
     },
     {
       label: '$\\Longleftarrow$',
-      syntax: '\\Longleftarrow',
+      syntax: '\\Longleftarrow'
     },
     {
       label: '$\\uparrow$',
-      syntax: '\\uparrow',
+      syntax: '\\uparrow'
     },
     {
       label: '$\\Uparrow$',
-      syntax: '\\Uparrow',
+      syntax: '\\Uparrow'
     },
     {
       label: '$\\downarrow$',
-      syntax: '\\downarrow',
+      syntax: '\\downarrow'
     },
     {
       label: '$\\Downarrow$',
-      syntax: '\\Downarrow',
+      syntax: '\\Downarrow'
     },
     {
       label: '$\\updownarrow$',
-      syntax: '\\updownarrow',
+      syntax: '\\updownarrow'
     },
     {
       label: '$\\Updownarrow$',
-      syntax: '\\Updownarrow',
-    },
+      syntax: '\\Updownarrow'
+    }
   ],
   [
     {
       label: '$\\partial$',
-      syntax: '\\partial',
+      syntax: '\\partial'
     },
     {
       label: '$\\imath$',
-      syntax: '\\imath',
+      syntax: '\\imath'
     },
     {
       label: '$\\Re$',
-      syntax: '\\Re',
+      syntax: '\\Re'
     },
     {
       label: '$\\nabla$',
-      syntax: '\\nabla',
+      syntax: '\\nabla'
     },
     {
       label: '$\\eth$',
-      syntax: '\\eth',
+      syntax: '\\eth'
     },
     {
       label: '$\\jmath$',
-      syntax: '\\jmath',
+      syntax: '\\jmath'
     },
     {
       label: '$\\Im$',
-      syntax: '\\Im',
+      syntax: '\\Im'
     },
     {
       label: '$\\Box$',
-      syntax: '\\Box',
+      syntax: '\\Box'
     },
     {
       label: '$\\hbar$',
-      syntax: '\\hbar',
+      syntax: '\\hbar'
     },
     {
       label: '$\\ell$',
-      syntax: '\\ell',
+      syntax: '\\ell'
     },
     {
       label: '$\\wp$',
-      syntax: '\\wp',
+      syntax: '\\wp'
     },
     {
       label: '$\\infty$',
-      syntax: '\\infty',
+      syntax: '\\infty'
     },
     {
       label: '$\\aleph$',
-      syntax: '\\aleph',
+      syntax: '\\aleph'
     },
     {
       label: '$\\beth$',
-      syntax: '\\beth',
+      syntax: '\\beth'
     },
     {
       label: '$\\gimel$',
-      syntax: '\\gimel',
-    },
+      syntax: '\\gimel'
+    }
   ],
   [
     {
       label: '$\\sin$',
-      syntax: '\\sin',
+      syntax: '\\sin'
     },
     {
       label: '$\\arcsin$',
-      syntax: '\\arcsin',
+      syntax: '\\arcsin'
     },
     {
       label: '$\\csc$',
-      syntax: '\\csc',
+      syntax: '\\csc'
     },
     {
       label: '$\\operatorname{arccsc}$',
-      syntax: '\\operatorname{arccsc}',
+      syntax: '\\operatorname{arccsc}'
     },
     {
       label: '$\\cos$',
-      syntax: '\\cos',
+      syntax: '\\cos'
     },
     {
       label: '$\\arccos$',
-      syntax: '\\arccos',
+      syntax: '\\arccos'
     },
     {
       label: '$\\sec$',
-      syntax: '\\sec',
+      syntax: '\\sec'
     },
     {
       label: '$\\operatorname{arcsec}$',
-      syntax: '\\operatorname{arcsec}',
+      syntax: '\\operatorname{arcsec}'
     },
     {
       label: '$\\tan$',
-      syntax: '\\tan',
+      syntax: '\\tan'
     },
     {
       label: '$\\arctan$',
-      syntax: '\\arctan',
+      syntax: '\\arctan'
     },
     {
       label: '$\\cot$',
-      syntax: '\\cot',
+      syntax: '\\cot'
     },
     {
       label: '$\\operatorname{arccot}$',
-      syntax: '\\operatorname{arccot}',
+      syntax: '\\operatorname{arccot}'
     },
     {
       label: '$\\sinh$',
-      syntax: '\\sinh',
+      syntax: '\\sinh'
     },
     {
       label: '$\\operatorname{arsinh}$',
-      syntax: '\\operatorname{arsinh}',
+      syntax: '\\operatorname{arsinh}'
     },
     {
       label: '$\\operatorname{csch}$',
-      syntax: '\\operatorname{csch}',
+      syntax: '\\operatorname{csch}'
     },
     {
       label: '$\\operatorname{arcsch}$',
-      syntax: '\\operatorname{arcsch}',
+      syntax: '\\operatorname{arcsch}'
     },
     {
       label: '$\\cosh$',
-      syntax: '\\cosh',
+      syntax: '\\cosh'
     },
     {
       label: '$\\operatorname{arcosh}$',
-      syntax: '\\operatorname{arcosh}',
+      syntax: '\\operatorname{arcosh}'
     },
     {
       label: '$\\operatorname{sech}$',
-      syntax: '\\operatorname{sech}',
+      syntax: '\\operatorname{sech}'
     },
     {
       label: '$\\operatorname{arsech}$',
-      syntax: '\\operatorname{arsech}',
+      syntax: '\\operatorname{arsech}'
     },
     {
       label: '$\\tanh$',
-      syntax: '\\tanh',
+      syntax: '\\tanh'
     },
     {
       label: '$\\operatorname{artanh}$',
-      syntax: '\\operatorname{artanh}',
+      syntax: '\\operatorname{artanh}'
     },
     {
       label: '$\\coth$',
-      syntax: '\\coth',
+      syntax: '\\coth'
     },
     {
       label: '$\\operatorname{arcoth}$',
-      syntax: '\\operatorname{arcoth}',
-    },
-  ],
-];
+      syntax: '\\operatorname{arcoth}'
+    }
+  ]
+]

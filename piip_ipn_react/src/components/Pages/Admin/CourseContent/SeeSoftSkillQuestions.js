@@ -1,44 +1,44 @@
 import './SeeSoftSkillQuestions.css'
 import { NewActivity } from '../../../../../src/externalClasses'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Cards from './Cards'
-const baseURL = "http://127.0.0.1:5000"
+const baseURL = 'http://127.0.0.1:5000'
 
-function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId, userId}) {
-    const [questions, setQuestions] = useState([])
+function SeeSoftSkillQuestions ({ userData, addActivity, activityIndex, sectionId, userId }) {
+  const [questions, setQuestions] = useState([])
 
-    const fetchSoftSkillQuestions = async() => {
-        fetch(`/soft-skill-question?user_id=${userId}`,{
-            method: "GET",
-        })
-        .then(res => res.json())
-        .then(data => {
-            setQuestions(data)
-        })
-    }
-    useEffect(() => {
-        fetchSoftSkillQuestions();
-    }, []);
+  const fetchSoftSkillQuestions = async () => {
+    fetch(`/soft-skill-question?user_id=${userId}`, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        setQuestions(data)
+      })
+  }
+  useEffect(() => {
+    fetchSoftSkillQuestions()
+  }, [])
 
-    function search(rows){
-        return rows.filter(
-            row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
-        )
-    }
+  function search (rows) {
+    return rows.filter(
+      row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
+    )
+  }
 
-    const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('')
 
-    const addSoftSkillQuestion = (question, index) => {
-        const newAct = NewActivity(question.title, "desc", 3, question.id);
-        addActivity(newAct, activityIndex, sectionId);
-    }
-    return (
+  const addSoftSkillQuestion = (question, index) => {
+    const newAct = NewActivity(question.title, 'desc', 3, question.id)
+    addActivity(newAct, activityIndex, sectionId)
+  }
+  return (
         <>
             <div className='see-topics-container'>
                 <div className='search_wrap'>
                     <div className='search_box'>
                         <div className='btn btn-common'>
-                            <i className='fas fa-search'></i> 
+                            <i className='fas fa-search'></i>
                         </div>
                         <input type="text" className='input' value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search ...'></input>
                     </div>
@@ -46,8 +46,8 @@ function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId,
                 <Cards data={search(questions)} execute={addSoftSkillQuestion}/>
             </div>
         </>
-    )
-        /*
+  )
+  /*
     return (
         <div className='div-table'>
             <table className='content-table'>
@@ -58,7 +58,7 @@ function SeeSoftSkillQuestions({userData, addActivity, activityIndex, sectionId,
                 </thead>
                 <tbody>
                     {
-                        questions.map((question, index) => 
+                        questions.map((question, index) =>
                             <tr>
                                 <td className='tdd'>
                                 {question['title']}
