@@ -8,7 +8,7 @@ const DraftEditor = () => {
     const savedData = localStorage.getItem('editorData')
     return savedData ? JSON.parse(savedData) : null
   }
-  const [editorState, setEditorState] = useState(
+  const [editorState] = useState(
     () => {
       const rawEditorData = getSavedEditorData()
       if (rawEditorData !== null) {

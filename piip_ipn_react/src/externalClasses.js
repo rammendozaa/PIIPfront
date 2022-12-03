@@ -11,18 +11,18 @@ export const NewActivity = (name, description, typeId, reference) => {
 }
 
 export const ActivityInfo = (
-  user_activity_id,
-  user_activity_status_id,
-  template_activity,
+  userActivityId,
+  userActivityStatusId,
+  templateActivity,
   activity,
-  activity_progress
+  activityProgress
 ) => {
   return {
-    user_activity_id,
-    user_activity_status_id,
-    template_activity,
+    userActivityId,
+    userActivityStatusId,
+    templateActivity,
     activity,
-    activity_progress
+    activityProgress
   }
 }
 
