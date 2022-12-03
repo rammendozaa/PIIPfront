@@ -1,15 +1,15 @@
-import React from 'react';
-import { Button } from '../../Button/Button';
-import './HeroSection.css';
+import React from 'react'
+import { Button } from '../../Button/Button'
+import './HeroSection.css'
 
-function HeroSection({userData}) {
+function HeroSection ({ userData }) {
   return (
     <div className='hero-container'>
-      {(!userData.role || userData.role === "user") && <>
+      {(!userData.role || userData.role === 'user') && <>
       <h1>Prepare yourself for the internship of your dreams</h1>
       <p>PIIP IPN Helps you find the right tools to improve your personal and technical abilities</p>
       </>}
-      {userData.role && userData.role !== "user" && 
+      {userData.role && userData.role !== 'user' &&
       <>
       <h1>Prepare students for the internship of their dreams!</h1>
       <p>PIIP IPN enables you to help find the right tools to improve personal and technical abilities</p>
@@ -29,7 +29,7 @@ function HeroSection({userData}) {
       }
       <img src='/images/home.png'></img>
     </div>
-  );
+  )
 }
 
-export default HeroSection;
+export default HeroSection

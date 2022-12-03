@@ -1,13 +1,12 @@
-import { RiNetflixFill } from "react-icons/ri";
-import { SiOracle, SiTesla } from "react-icons/si";
-import DateTimePicker from "react-datetime-picker";
-import { IconContext } from "react-icons";
-import { FiPlus } from "react-icons/fi";
-import { TiDelete } from "react-icons/ti";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import "./CompanyTracking.css";
-import CompanyPopup from "./CompanyTrackingPopup";
+import { RiNetflixFill } from 'react-icons/ri'
+import { SiOracle, SiTesla } from 'react-icons/si'
+import DateTimePicker from 'react-datetime-picker'
+import { IconContext } from 'react-icons'
+import { FiPlus } from 'react-icons/fi'
+import { TiDelete } from 'react-icons/ti'
+import React, { useState, useEffect } from 'react'
+import './CompanyTracking.css'
+import CompanyPopup from './CompanyTrackingPopup'
 import {
   FaFacebook,
   FaMicrosoft,
@@ -19,27 +18,27 @@ import {
   FaUber,
   FaTwitter,
   FaTwitch,
-  FaBuilding,
-} from "react-icons/fa";
-import { GrDocumentUpdate } from "react-icons/gr";
-const baseURL = "http://127.0.0.1:5000";
+  FaBuilding
+} from 'react-icons/fa'
+import { GrDocumentUpdate } from 'react-icons/gr'
+const baseURL = 'http://127.0.0.1:5000'
 
 const COMPANIES = {
-  "Facebook": 1,
-  "Microsoft": 2,
-  "Google": 3,
-  "Amazon": 4,
-  "Apple": 5,
-  "Airbnb": 6,
-  "Uber": 7,
-  "Lyft": 8,
-  "Twitter": 9,
-  "Netflix": 10,
-  "Tesla": 11,
-  "Oracle": 12,
-  "Twitch": 13,
-  "Other": 14,
-};
+  Facebook: 1,
+  Microsoft: 2,
+  Google: 3,
+  Amazon: 4,
+  Apple: 5,
+  Airbnb: 6,
+  Uber: 7,
+  Lyft: 8,
+  Twitter: 9,
+  Netflix: 10,
+  Tesla: 11,
+  Oracle: 12,
+  Twitch: 13,
+  Other: 14
+}
 
 const COMPANIES_TO_ICON = {
   1: <FaFacebook />,
@@ -55,46 +54,46 @@ const COMPANIES_TO_ICON = {
   11: <SiTesla/>,
   12: <SiOracle/>,
   13: <FaTwitch/>,
-  14: <FaBuilding/>,
-};
+  14: <FaBuilding/>
+}
 
-const COMPANIES_LIST = ["Facebook", "Microsoft", "Google", "Amazon", "Apple"];
+const COMPANIES_LIST = ['Facebook', 'Microsoft', 'Google', 'Amazon', 'Apple']
 
 const USER_COMPANY_STATUS = {
-  "Not applied": 1,
-  "Applied": 2,
-  "Coding challenge": 3,
-  "Interviewing": 4,
-  "Received offer": 5,
-  "Rejected": 6,
-};
+  'Not applied': 1,
+  Applied: 2,
+  'Coding challenge': 3,
+  Interviewing: 4,
+  'Received offer': 5,
+  Rejected: 6
+}
 
 const USER_ID_TO_STATUS = {
-  1: "Not applied",
-  2: "Applied",
-  3: "Coding challenge",
-  4: "Interviewing",
-  5: "Received offer",
-  6: "Rejected",
-};
+  1: 'Not applied',
+  2: 'Applied',
+  3: 'Coding challenge',
+  4: 'Interviewing',
+  5: 'Received offer',
+  6: 'Rejected'
+}
 
-function CompanyTracking({ userData }) {
-  const user_id = userData.user_id;
-  const [chosenCalendarDate, setChosenDate] = useState(new Date());
-  const [updateTracking, setUpdateTracking] = useState(false);
-  const [dropDownOption, setDropDownOption] = useState("Facebook");
-  const [buttonPopup, setButtonPopup] = useState(false);
-  const [newDescription, setNewDescription] = useState("");
-  const [newUrl, setNewUrl] = useState("");
-  const [newActivityIndex, setNewActivityIndex] = useState(-1);
-  const [newActivitySectionId, setNewActivitySectionId] = useState(-1);
-  const [description, setDescription] = useState("");
-  const [clicked, setClicked] = useState(-1);
+function CompanyTracking ({ userData }) {
+  const user_id = userData.user_id
+  const [chosenCalendarDate, setChosenDate] = useState(new Date())
+  const [updateTracking, setUpdateTracking] = useState(false)
+  const [dropDownOption, setDropDownOption] = useState('Facebook')
+  const [buttonPopup, setButtonPopup] = useState(false)
+  const [newDescription, setNewDescription] = useState('')
+  const [newUrl, setNewUrl] = useState('')
+  const [newActivityIndex, setNewActivityIndex] = useState(-1)
+  const [newActivitySectionId, setNewActivitySectionId] = useState(-1)
+  const [description, setDescription] = useState('')
+  const [clicked, setClicked] = useState(-1)
   const [dropDownStatusOption, setDropDownStatusOption] =
-    useState("Not applied");
+    useState('Not applied')
   const [companies, setCompanies] = useState([
     {
-      applicationURL: "https://www.metacareers.com/",
+      applicationURL: 'https://www.metacareers.com/',
       id: 1,
       userId: 1,
       statusId: 1,
@@ -102,106 +101,106 @@ function CompanyTracking({ userData }) {
       companyId: 1,
       trackingLinks: [
         {
-          description: "Meta openings",
+          description: 'Meta openings',
           id: 1,
-          url: "https://www.metacareers.com/jobs",
+          url: 'https://www.metacareers.com/jobs',
           companyTrackingId: 1,
-          is_active: true,
+          is_active: true
         },
         {
-          description: "hla",
+          description: 'hla',
           id: 2,
-          url: "here",
+          url: 'here',
           companyTrackingId: 1,
-          is_active: true,
-        },
+          is_active: true
+        }
       ],
-      companyName: "Facebook",
-    },
-  ]);
+      companyName: 'Facebook'
+    }
+  ])
   const handleSubmit = (event) => {
-    setDropDownOption(event.target.value);
-  };
+    setDropDownOption(event.target.value)
+  }
   const handleStatusSubmit = (event) => {
-    setDropDownStatusOption(event.target.value);
-  };
+    setDropDownStatusOption(event.target.value)
+  }
   const toggle = (index) => {
     if (clicked === index) {
-      //if clicked question is already active, then close it 2
-      return setClicked(-1);
+      // if clicked question is already active, then close it 2
+      return setClicked(-1)
     }
-    setClicked(index);
-  };
+    setClicked(index)
+  }
 
   const prepareNewSection = (index, templateSectionId) => {
-    setNewActivityIndex(index);
-    setNewActivitySectionId(templateSectionId);
-  };
+    setNewActivityIndex(index)
+    setNewActivitySectionId(templateSectionId)
+  }
 
   const getCompanies = async () => {
     fetch(`/user/${user_id}/tracking`, {
-      method: "GET",
+      method: 'GET'
     })
       .then((res) => res.json())
       .then((data) => {
-        setCompanies(data);
-      });
-  };
+        setCompanies(data)
+      })
+  }
   useEffect(() => {
-    getCompanies();
-  }, []);
+    getCompanies()
+  }, [])
 
   const addCompanyTracking = async () => {
     await fetch(`/user/${user_id}/tracking`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        companyId: COMPANIES[dropDownOption],
-      }),
-    });
-    getCompanies();
-  };
+        companyId: COMPANIES[dropDownOption]
+      })
+    })
+    getCompanies()
+  }
 
   const addCompanyTrackingLink = async (company_tracking_id) => {
     const response = await fetch(
       baseURL + `/user/tracking/${company_tracking_id}`,
       {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           description: newDescription,
-          url: newUrl,
-        }),
+          url: newUrl
+        })
       }
-    );
-    setNewUrl("");
-    setNewDescription("");
-    getCompanies();
-  };
+    )
+    setNewUrl('')
+    setNewDescription('')
+    getCompanies()
+  }
 
   const updateCompanyTracking = async (
     company_tracking_id,
     statusId,
     interviewDate
   ) => {
-    var status = null
+    let status = null
     if (statusId !== null) {
-        status = USER_COMPANY_STATUS[statusId];
+      status = USER_COMPANY_STATUS[statusId]
     }
     const response = await fetch(
       baseURL + `/user/tracking/${company_tracking_id}`,
       {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           statusId: status,
-          interviewDate: interviewDate,
-        }),
+          interviewDate
+        })
       }
-    );
-    setUpdateTracking(false);
-    getCompanies();
-  };
+    )
+    setUpdateTracking(false)
+    getCompanies()
+  }
 
   const updateCompanyTrackingLink = async (
     company_tracking_link_id,
@@ -211,26 +210,26 @@ function CompanyTracking({ userData }) {
     const response = await fetch(
       baseURL + `/user/tracking/link/${company_tracking_link_id}`,
       {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          description: description,
-          url: url,
-        }),
+          description,
+          url
+        })
       }
-    );
-    getCompanies();
-  };
+    )
+    getCompanies()
+  }
 
   const deleteCompanyTracking = async (indexCompany, company_tracking_id) => {
     const response = await fetch(
       baseURL + `/user/tracking/${company_tracking_id}`,
       {
-        method: "DELETE",
+        method: 'DELETE'
       }
-    );
-    getCompanies();
-  };
+    )
+    getCompanies()
+  }
 
   const deleteCompanyTrackingLink = async (
     indexLink,
@@ -239,18 +238,18 @@ function CompanyTracking({ userData }) {
     const response = await fetch(
       baseURL + `/user/tracking/link/${company_tracking_link_id}`,
       {
-        method: "DELETE",
+        method: 'DELETE'
       }
-    );
-    getCompanies();
-  };
+    )
+    getCompanies()
+  }
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('')
 
-  function search(rows) {
+  function search (rows) {
     return rows.filter(
       (row) => row.companyName.toLowerCase().indexOf(query.toLowerCase()) > -1
-    );
+    )
   }
 
   return (
@@ -266,16 +265,16 @@ function CompanyTracking({ userData }) {
             <div className="AccordionSection">
               <div className="Container">
                 {companies.map((company, indexCompany) => {
-                    var newDate = new Date().toString();
-                    if (company.interviewDate !== null) {
-                        var dateString  = company.interviewDate;
-                        var year        = dateString.substring(0,4);
-                        var month       = dateString.substring(5,7);
-                        var day         = dateString.substring(8,10);
-                        var hour        = dateString.substring(11,16)
-                        var date        = new Date(year, month-1, day);
-                        newDate = date.toString().substring(0, 15) + " at " + hour;
-                    }
+                  let newDate = new Date().toString()
+                  if (company.interviewDate !== null) {
+                    const dateString = company.interviewDate
+                    const year = dateString.substring(0, 4)
+                    const month = dateString.substring(5, 7)
+                    const day = dateString.substring(8, 10)
+                    const hour = dateString.substring(11, 16)
+                    const date = new Date(year, month - 1, day)
+                    newDate = date.toString().substring(0, 15) + ' at ' + hour
+                  }
                   return (
                     <>
                       <div
@@ -287,35 +286,43 @@ function CompanyTracking({ userData }) {
                           {COMPANIES_TO_ICON[company.companyId]}
                           <h1>{company.companyName}</h1>
                           <h2>
-                            Current status:{" "}
+                            Current status:{' '}
                             {USER_ID_TO_STATUS[company.statusId]}
                           </h2>
                         </span>
                         <span>
-                          {company.statusId === 5 ? (
+                          {company.statusId === 5
+                            ? (
                             <div>
                               <h3>Congratulations! We are so excited for you!</h3>
                             </div>
-                            ) : company.statusId === 6 ? (
+                              )
+                            : company.statusId === 6
+                              ? (
                             <div>
                               <h3>Don't worry! Keep on practicing and you'll be ready next time!</h3>
                             </div>
-                            ) : company.interviewDate === null ? (
+                                )
+                              : company.interviewDate === null
+                                ? (
                             <div>
                               <h3>You don't have any upcoming interviews</h3>
                             </div>
-                            ) : company.interviewDate !== null ? (
+                                  )
+                                : company.interviewDate !== null
+                                  ? (
                               <div>
                                 <h3>
                                   You have an upcoming interview on: {company.interviewDate}
                                 </h3>
                               </div>
-                            ) : <></>}
+                                    )
+                                  : <></>}
                         </span>
                         <span></span>
                         <span>
                           <IconContext.Provider
-                            value={{ color: "red", size: "25px" }}
+                            value={{ color: 'red', size: '25px' }}
                           >
                             <TiDelete
                               onClick={() =>
@@ -328,7 +335,7 @@ function CompanyTracking({ userData }) {
                       <div className="company-container-activities-container">
                         {clicked === indexCompany
                           ? company.trackingLinks.map((link, indexLink) => {
-                              return (
+                            return (
                                 <>
                                   <div className="company-container-Dropdown" key={indexLink}>
                                     <p>
@@ -336,7 +343,7 @@ function CompanyTracking({ userData }) {
                                     </p>
                                     <span>
                                       <IconContext.Provider
-                                        value={{ color: "red", size: "25px" }}
+                                        value={{ color: 'red', size: '25px' }}
                                       >
                                         <TiDelete
                                           onClick={() =>
@@ -350,10 +357,11 @@ function CompanyTracking({ userData }) {
                                     </span>
                                   </div>
                                 </>
-                              );
-                            })
+                            )
+                          })
                           : null}
-                        {clicked === indexCompany ? (
+                        {clicked === indexCompany
+                          ? (
                           <div className="AddNewActivity-company-tracking">
                               <h3>Save important information here</h3>
                             <textarea
@@ -373,7 +381,7 @@ function CompanyTracking({ userData }) {
                               onChange={(e) => setNewUrl(e.target.value)}
                             ></textarea>
                             <IconContext.Provider
-                              value={{ color: "green", size: "25px" }}
+                              value={{ color: 'green', size: '25px' }}
                             >
                               <span>
                                 {
@@ -386,8 +394,10 @@ function CompanyTracking({ userData }) {
                               </span>
                             </IconContext.Provider>
                           </div>
-                        ) : null}
-                        {clicked === indexCompany ? (
+                            )
+                          : null}
+                        {clicked === indexCompany
+                          ? (
                           <div className="AddNewActivity-company-tracking">
                             <div className="Wrap-tracking">
                               <span>
@@ -399,7 +409,7 @@ function CompanyTracking({ userData }) {
                                   className="dropdown-menu-company"
                                   value={dropDownStatusOption}
                                   onChange={handleStatusSubmit}
-                                  disabled={company.statusId===5||company.statusId===6}
+                                  disabled={company.statusId === 5 || company.statusId === 6}
                                 >
                                   <option value="Not applied">
                                     Not applied
@@ -435,10 +445,11 @@ function CompanyTracking({ userData }) {
                               </div>
                             </div>
                           </div>
-                        ) : null}
+                            )
+                          : null}
                       </div>
                     </>
-                  );
+                  )
                 })}
                 <div className="company-container-AddNewSection">
                   <h2>Add a new company to track: </h2>
@@ -461,10 +472,10 @@ function CompanyTracking({ userData }) {
                     <option value="Oracle">Oracle</option>
                     <option value="Twitch">Twitch</option>
                     <option value="Other">Other</option>
-                    
+
                   </select>
                   <IconContext.Provider
-                    value={{ color: "green", size: "25px" }}
+                    value={{ color: 'green', size: '25px' }}
                   >
                     <span>
                       {<FiPlus onClick={() => addCompanyTracking()} />}
@@ -477,7 +488,7 @@ function CompanyTracking({ userData }) {
         )}
       </div>
     </>
-  );
+  )
 }
 
-export default CompanyTracking;
+export default CompanyTracking

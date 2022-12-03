@@ -1,7 +1,7 @@
-import './Datatable.css' 
+import './Datatable.css'
 
-function Datatable({data, goToUpdateCourse}) {
-    const colums = data[0] && Object.keys(data[0])
+function Datatable ({ data, goToUpdateCourse }) {
+  const colums = data[0] && Object.keys(data[0])
   return (
     <div className='div-table'>
       <table className='content-table'>
@@ -16,12 +16,12 @@ function Datatable({data, goToUpdateCourse}) {
           </thead>
           <tbody>
             {
-                data.map(row => 
+                data.map(row =>
                     <tr>
-                        <td>{row['first_name']}</td>
-                        <td>{row['last_name']}</td>
-                        <td>{row['school_id']}</td>
-                        <td>{row['email']}</td>
+                        <td>{row.first_name}</td>
+                        <td>{row.last_name}</td>
+                        <td>{row.school_id}</td>
+                        <td>{row.email}</td>
                         <td><button onClick={() => goToUpdateCourse(row)}>Go</button></td>
                     </tr>
                 )
@@ -29,7 +29,7 @@ function Datatable({data, goToUpdateCourse}) {
           </tbody>
       </table>
     </div>
-  );
+  )
 }
 
-export default Datatable;
+export default Datatable

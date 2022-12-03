@@ -1,108 +1,107 @@
-import React from 'react'
-import { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
-import DateTimePicker from 'react-datetime-picker';
-import { useSelector } from "react-redux"
+import React, { useState, useEffect } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
+import DateTimePicker from 'react-datetime-picker'
+import { useSelector } from 'react-redux'
 import './MockInterviews.css'
-import { IconContext } from 'react-icons';
-import { BiArrowBack } from 'react-icons/bi';
-const baseURL = "http://127.0.0.1:5000"
+import { IconContext } from 'react-icons'
+import { BiArrowBack } from 'react-icons/bi'
+const baseURL = 'http://127.0.0.1:5000'
 
-function MockInterviews({userData}) {
-    const [goBack,setGoBack] = useState(false)
-    const [goBackAdmin,setGoBackAdmin] = useState(false)
-    const {activity} = useSelector(state => state.userActivity);
-    const [interviewInfo, setInterviewInfo] = useState({
-        "isActive": true,
-        "interviewCode": null,
-        "userId": 1,
-        "interviewUrl": null,
-        "chosenDate": null,
-        "administratorId": 1,
-        "feedback": null,
-        "languageId": null,
-        "isConfirmed": true,
-        "comment": "that sounds good! ",
-        "interview_type_id": 2,
-        "id": 2,
-        "user": {
-            "school_id": "11",
-            "last_name": "Mendoza Ramirez",
-            "first_name": "Alvaro",
-            "email": "amendozar1300@alumno.ipn.mx",
-            "id": "1"
-        }
-    });
-    const {interview_id} = useParams();
-    useEffect(() => {
-        if ((activity !== undefined && activity !== null)) {
-            setInterviewInfo(activity["activity"])
-        } else {
-            fetch(`/interview?interview_id=${interview_id}`, {
-                method: "GET"
-            })
-            .then(res => res.json())
-            .then(data => {
-                setInterviewInfo(data)
-            });
-        }
-    }, [])
-    const saveInterviewChanges = async ({
-        chosen_date,
-        chosen_comment,
-        interview_url,
-        interview_code,
-        new_feedback,
-        is_confirmed,
-    }) => {
-        const chosenDate = chosen_date
-        const comment = chosen_comment
-        const interviewURL = interview_url
-        const interviewCode = interview_code
-        const feedback = new_feedback
-        const isConfirmed = is_confirmed
-
-        await fetch(
-            baseURL + `/interview?interview_id=${interviewInfo["id"]}&user_id=${interviewInfo["userId"]}&role=${userData.role}`, {
-                method: "PUT",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    "chosenDate": chosenDate,
-                    "comment": comment,
-                    "interviewUrl": interviewURL,
-                    "interviewCode": interviewCode,
-                    "feedback": feedback,
-                    "isConfirmed": isConfirmed,
-                }),
-            })
+function MockInterviews ({ userData }) {
+  const [goBack, setGoBack] = useState(false)
+  const [goBackAdmin, setGoBackAdmin] = useState(false)
+  const { activity } = useSelector(state => state.userActivity)
+  const [interviewInfo, setInterviewInfo] = useState({
+    isActive: true,
+    interviewCode: null,
+    userId: 1,
+    interviewUrl: null,
+    chosenDate: null,
+    administratorId: 1,
+    feedback: null,
+    languageId: null,
+    isConfirmed: true,
+    comment: 'that sounds good! ',
+    interview_type_id: 2,
+    id: 2,
+    user: {
+      school_id: '11',
+      last_name: 'Mendoza Ramirez',
+      first_name: 'Alvaro',
+      email: 'amendozar1300@alumno.ipn.mx',
+      id: '1'
     }
+  })
+  const { interview_id } = useParams()
+  useEffect(() => {
+    if ((activity !== undefined && activity !== null)) {
+      setInterviewInfo(activity.activity)
+    } else {
+      fetch(`/interview?interview_id=${interview_id}`, {
+        method: 'GET'
+      })
+        .then(res => res.json())
+        .then(data => {
+          setInterviewInfo(data)
+        })
+    }
+  }, [])
+  const saveInterviewChanges = async ({
+    chosen_date,
+    chosen_comment,
+    interview_url,
+    interview_code,
+    new_feedback,
+    is_confirmed
+  }) => {
+    const chosenDate = chosen_date
+    const comment = chosen_comment
+    const interviewURL = interview_url
+    const interviewCode = interview_code
+    const feedback = new_feedback
+    const isConfirmed = is_confirmed
 
-    function AdminInterview({interviewInfo}){
-        const chosenDate = interviewInfo["chosenDate"];
-        const isConfirmed = interviewInfo["isConfirmed"];
-        const feedback = interviewInfo["feedback"];
-        const url = interviewInfo["interviewUrl"];
-        const comm = interviewInfo["comment"];
-        const code = interviewInfo["interviewCode"];
-        const [isChecked, setChecked] = useState(Boolean(isConfirmed));
-        const [chosenCalendarDate, setChosenDate] = useState((chosenDate) ? new Date(chosenDate) : new Date());
-        const [comment, setComment] = useState("");
-        const [interviewURL, setInterviewURL] = useState(url);
-        const [interviewFeedback, setInterviewFeedback] = useState(feedback);
-        const [interviewCode, setInterviewCode] = useState(code);
-        const saveChanges = async() => {
-            await saveInterviewChanges({
-                chosen_date:chosenCalendarDate,
-                chosen_comment:comment,
-                is_confirmed:isChecked,
-                interview_url:interviewURL,
-                new_feedback:interviewFeedback,
-                interview_code:interviewCode,
-            });
-            alert("Interview information updated!")
-            setComment("");
-        }
-        return (
+    await fetch(
+      baseURL + `/interview?interview_id=${interviewInfo.id}&user_id=${interviewInfo.userId}&role=${userData.role}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chosenDate,
+          comment,
+          interviewUrl: interviewURL,
+          interviewCode,
+          feedback,
+          isConfirmed
+        })
+      })
+  }
+
+  function AdminInterview ({ interviewInfo }) {
+    const chosenDate = interviewInfo.chosenDate
+    const isConfirmed = interviewInfo.isConfirmed
+    const feedback = interviewInfo.feedback
+    const url = interviewInfo.interviewUrl
+    const comm = interviewInfo.comment
+    const code = interviewInfo.interviewCode
+    const [isChecked, setChecked] = useState(Boolean(isConfirmed))
+    const [chosenCalendarDate, setChosenDate] = useState((chosenDate) ? new Date(chosenDate) : new Date())
+    const [comment, setComment] = useState('')
+    const [interviewURL, setInterviewURL] = useState(url)
+    const [interviewFeedback, setInterviewFeedback] = useState(feedback)
+    const [interviewCode, setInterviewCode] = useState(code)
+    const saveChanges = async () => {
+      await saveInterviewChanges({
+        chosen_date: chosenCalendarDate,
+        chosen_comment: comment,
+        is_confirmed: isChecked,
+        interview_url: interviewURL,
+        new_feedback: interviewFeedback,
+        interview_code: interviewCode
+      })
+      alert('Interview information updated!')
+      setComment('')
+    }
+    return (
             <>
                 {isConfirmed &&
                     <div className='mock-interview-message'>
@@ -178,7 +177,7 @@ function MockInterviews({userData}) {
                     <label>
                         <input
                             type="checkbox"
-                            onChange={() => {setChecked(!isChecked)}}
+                            onChange={() => { setChecked(!isChecked) }}
                             />
                         <h2 className='message-h2'>
                         Confirm interview?
@@ -196,36 +195,36 @@ function MockInterviews({userData}) {
                     </textarea>
                     <button className="btn10" onClick={() => saveChanges()}>Save interview info</button>
                 </div>
-                {/*<button onClick={() => saveChanges()}>Go back to my pending interviews</button>*/}
+                {/* <button onClick={() => saveChanges()}>Go back to my pending interviews</button> */}
             </>
-        )
-    }
+    )
+  }
 
-    function UserInterview({interviewInfo}) {
-        const isConfirmed = interviewInfo["isConfirmed"]
-        const feedback = interviewInfo["feedback"]
-        const comm = interviewInfo["comment"]
-        const chosenDate = interviewInfo["chosenDate"]
-        const url = interviewInfo["interviewUrl"];
-        const [chosenCalendarDate, setChosenDate] = useState((chosenDate) ? new Date(chosenDate) : new Date())
-        const [comment, setComment] = useState("")
-        if (chosenCalendarDate === null) {
-            setChosenDate(new Date())
-        }
-        const saveChanges = async() => {
-            await saveInterviewChanges({
-                chosen_date:chosenCalendarDate,
-                chosen_comment:comment,
-                is_confirmed:isConfirmed,
-            });
-            alert("Interview information updated!")
-            setComment("");
-        }
-        return (
+  function UserInterview ({ interviewInfo }) {
+    const isConfirmed = interviewInfo.isConfirmed
+    const feedback = interviewInfo.feedback
+    const comm = interviewInfo.comment
+    const chosenDate = interviewInfo.chosenDate
+    const url = interviewInfo.interviewUrl
+    const [chosenCalendarDate, setChosenDate] = useState((chosenDate) ? new Date(chosenDate) : new Date())
+    const [comment, setComment] = useState('')
+    if (chosenCalendarDate === null) {
+      setChosenDate(new Date())
+    }
+    const saveChanges = async () => {
+      await saveInterviewChanges({
+        chosen_date: chosenCalendarDate,
+        chosen_comment: comment,
+        is_confirmed: isConfirmed
+      })
+      alert('Interview information updated!')
+      setComment('')
+    }
+    return (
             <>
                 {isConfirmed && !feedback &&
                 <div className='mock-interview-message'>
-                    <h1 className='message-h1'>The interview will be held here: {interviewInfo["interview_url"]}</h1>
+                    <h1 className='message-h1'>The interview will be held here: {interviewInfo.interview_url}</h1>
                     <h2 className='message-h2'>At this date: {chosenCalendarDate.toString()}</h2>
                 </div>}
                 {url &&
@@ -239,7 +238,7 @@ function MockInterviews({userData}) {
                 <div className='mock-interview-message'>
                         <h1 className='message-h1'>Last interaction:</h1>
                         <h2 className='message-h2'> {comm}</h2>
-                        <a class="close">&times;</a>
+                        <a className="close">&times;</a>
                 </div>
                 }
                 {!isConfirmed &&
@@ -264,25 +263,25 @@ function MockInterviews({userData}) {
                     <button className="btn10" onClick={() => saveChanges()}>Save interview info</button>
                 </div>
             </>
-        )
-    }
-    if(goBack === true){
-        let url = '/my-course'
-        return (
-            <Navigate to={url}/>
-        )
-    }
-    if(goBackAdmin === true){
-        let url = '/my-interviews'
-        return (
-            <Navigate to={url}/>
-        )
-    }
+    )
+  }
+  if (goBack === true) {
+    const url = '/my-course'
     return (
+            <Navigate to={url}/>
+    )
+  }
+  if (goBackAdmin === true) {
+    const url = '/my-interviews'
+    return (
+            <Navigate to={url}/>
+    )
+  }
+  return (
         <>
             <div className='mock-interview-container'>
                 <div className='mock-interview'>
-                    {userData.role === "user" &&
+                    {userData.role === 'user' &&
                         <>
                             <div className='mock-bar'>
                                 <IconContext.Provider value={{ color: '#202731', size: '25px' }}>
@@ -295,14 +294,14 @@ function MockInterviews({userData}) {
                             </div>
                         </>
                     }
-                    {userData.role !== "user" &&
+                    {userData.role !== 'user' &&
                         <>
                             <div className='mock-bar'>
                                 <IconContext.Provider value={{ color: '#202731', size: '25px' }}>
                                     <BiArrowBack onClick={() => setGoBackAdmin(true)}/>
                                 </IconContext.Provider>
                                 <h1 className='view-details'>Interview's details:</h1>
-                            </div>                                
+                            </div>
                             <div className='mi'>
                                 <AdminInterview interviewInfo={interviewInfo}/>
                             </div>
@@ -311,7 +310,7 @@ function MockInterviews({userData}) {
                 </div>
             </div>
         </>
-    )
+  )
 }
 
 export default MockInterviews

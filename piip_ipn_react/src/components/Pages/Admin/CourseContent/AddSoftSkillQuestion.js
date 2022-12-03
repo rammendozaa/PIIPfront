@@ -1,14 +1,13 @@
-import {useState} from 'react'
-import React, {useEffect} from 'react'
-import "./AddSoftSkillQuestion.css"
+import React, { useState, useEffect } from 'react'
+import './AddSoftSkillQuestion.css'
 
-const baseURL = "http://127.0.0.1:5000"
+const baseURL = 'http://127.0.0.1:5000'
 
-function AddSoftSkillQuestion({userData}) {
-    const [title, setTitle] = useState("")
-    const [question, setQuestion] = useState("")
-    const [softSkillTopics, setSoftSkillTopics] = useState([])
-    /*
+function AddSoftSkillQuestion ({ userData }) {
+  const [title, setTitle] = useState('')
+  const [question, setQuestion] = useState('')
+  const [softSkillTopics, setSoftSkillTopics] = useState([])
+  /*
     useEffect(() => {
         fetch(`/softSkillsTopics`, {
             method: "GET",
@@ -22,21 +21,21 @@ function AddSoftSkillQuestion({userData}) {
         })
     }, []);
     */
-    const createSoftSkillQuestion = async () => {
-        await fetch(`/soft-skill-question`, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                "title": title,
-                "question": question,
-                "createdBy": userData.user_id,
-            }),
-        })
-        alert("Question saved correctly!");
-        setTitle("");
-        setQuestion("");
-    }
-    return (
+  const createSoftSkillQuestion = async () => {
+    await fetch('/soft-skill-question', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title,
+        question,
+        createdBy: userData.user_id
+      })
+    })
+    alert('Question saved correctly!')
+    setTitle('')
+    setQuestion('')
+  }
+  return (
         <>
         <div className='softkillq-container'>
             <div className='softskill'>
@@ -57,7 +56,7 @@ function AddSoftSkillQuestion({userData}) {
             </div>
         </div>
         </>
-    );
+  )
 }
 
 export default AddSoftSkillQuestion

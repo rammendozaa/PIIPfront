@@ -1,50 +1,48 @@
-import { useDispatch } from "react-redux"
-import {useState} from 'react'
-import React, {useEffect} from 'react'
-import { ActivityInfo } from '../../../../externalClasses';
-import { setUserActivityInfo } from '../../../../state/reducers/activity';
-import { useNavigate } from "react-router-dom";
-import "./MyInterviews.css"
-import { FiCheck, FiX } from 'react-icons/fi';
-import { IconContext } from 'react-icons';
+import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { ActivityInfo } from '../../../../externalClasses'
+import { setUserActivityInfo } from '../../../../state/reducers/activity'
+import { useNavigate } from 'react-router-dom'
+import './MyInterviews.css'
+import { FiCheck, FiX } from 'react-icons/fi'
+import { IconContext } from 'react-icons'
 
-const baseURL = "http://127.0.0.1:5000"
+const baseURL = 'http://127.0.0.1:5000'
 
+function MyInterviews ({ userData }) {
+  const [interviews, setInterviews] = useState([])
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    fetch(`/interview?admin_id=${userData.user_id}`, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .then(data => {
+        setInterviews(data)
+      })
+  }, [])
 
-function MyInterviews({userData}) {
-    const [interviews, setInterviews] = useState([]);
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    useEffect(() => {
-        fetch(`/interview?admin_id=${userData.user_id}`,{
-            method: "GET",
-        })
-        .then(res => res.json())
-        .then(data => {
-            setInterviews(data);
-        });
-    }, []);
+  const handleClick = (interview) => {
+    const activityInfo = ActivityInfo(
+      interview.id,
+      1,
+      interview,
+      interview,
+      interview
+    )
+    dispatch(setUserActivityInfo(activityInfo))
+    navigate(`/mock-interviews/${interview.id}`)
+  }
 
-    const handleClick = (interview) => {
-        const activityInfo = ActivityInfo(
-            interview.id,
-            1,
-            interview,
-            interview,
-            interview,
-        );
-        dispatch(setUserActivityInfo(activityInfo));
-        navigate(`/mock-interviews/${interview.id}`);
-    }
-
-    return (
+  return (
         <>
             <div className='my-interviews-container'>
                 <div className="my-interviews">
                     {interviews.length > 0 && (<>
                         <h1 className='interview-title'>Here are your pending interviews. Click to view the details:</h1>
                             {interviews.map((interview, indexInterview) => {
-                            return (
+                              return (
                                     <>
                                     <div className='Container' onClick={() => handleClick(interview)}>
                                         <span>
@@ -57,19 +55,19 @@ function MyInterviews({userData}) {
                                         <span>
                                             <h2>Confirmed?</h2>
                                                 <IconContext.Provider
-                                                value={{ color: "red", size: "25px" }}
+                                                value={{ color: 'red', size: '25px' }}
                                                 >
-                                            {interview.isConfirmed && 
+                                            {interview.isConfirmed &&
                                                     <FiCheck/>
                                             }
-                                            {!interview.isConfirmed && 
+                                            {!interview.isConfirmed &&
                                                     <FiX/>
                                             }
                                                 </IconContext.Provider>
                                         </span>
                                     </div>
                                     </>
-                                )
+                              )
                             })}
                         </>)
                     }
@@ -79,7 +77,7 @@ function MyInterviews({userData}) {
                 </div>
             </div>
         </>
-    )
+  )
 }
 
 export default MyInterviews

@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import './Compiler.css'
-import CodeEditor from '@uiw/react-textarea-code-editor';
+import CodeEditor from '@uiw/react-textarea-code-editor'
 
-
-export const Compiler2 = ({userData,url, problem_id}) => {
-    /*fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
+export const Compiler2 = ({ userData, url, problem_id }) => {
+  /* fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*',
         {
             method: "POST",
             headers: {
@@ -20,129 +19,127 @@ export const Compiler2 = ({userData,url, problem_id}) => {
     )
     .then((response) => response.json())
     */
-    const [code, setCode] = useState("");
-    const [language_id, setLanguageId] = useState(54);
-    const [input, setInput] = useState("");
-    const [submissionStatus, setSubmissionStatus] = useState("")
-    const [submissionUrl, setSubmissionUrl] = useState("");
-    
-    const handleClick = () => {
-        let outputText = document.getElementById("output");
-        outputText.innerHTML = "";
-        outputText.innerHTML += "Creating Submission ...\n";
-        fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-                "x-rapidapi-key": "6d48e1f7admshe6ce2e04d511a3dp138316jsn006825e2d1a6"
-            },
-            body: JSON.stringify({
-                language_id: language_id,
-                source_code: btoa(code),
-                stdin: btoa(input)
-            }),
-        })
-        .then((response) => response.json())
-        .then( (data) => {
-            let jsonGetSolution = {
-                status: { description: "Queue" },
-                stderr: null,
-                compile_output: null,
-            };
-            //while( jsonGetSolution.status.description !== "Accepted" && jsonGetSolution.stderr == null && jsonGetSolution.compile_output == null) {
-                let url = `https://judge0-ce.p.rapidapi.com/submissions/${data.token}?base64_encoded=true&fields=*`;
-                fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-                        "x-rapidapi-key": "6d48e1f7admshe6ce2e04d511a3dp138316jsn006825e2d1a6"                        
-                    },
-                })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.stdout) {
-                        const output = atob(data.stdout);
-                        outputText.innerHTML = "";
-                        outputText.innerHTML += `Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`;
-                    }else if (data.stderr) {
-                        const error = atob(data.stderr);
-                        outputText.innerHTML = "";
-                        outputText.innerHTML += `\n Error :${error}`;
-                    }else {
-                        const compilation_error = atob(data.compile_output);
-                        outputText.innerHTML = "";
-                        outputText.innerHTML += `\n Error :${compilation_error}`;
-                    }
-                })              
-            //}
-        }); 
-    }
-    const getLanguague = () => {
-        if(language_id == 54){
-            return "cpp"    
-        }else if(language_id == 50){
-            return "c"
-        }else if(language_id == 62){
-            return "java"
-        }else if(language_id == 71){
-            return "py"
+  const [code, setCode] = useState('')
+  const [language_id, setLanguageId] = useState(54)
+  const [input, setInput] = useState('')
+  const [submissionStatus, setSubmissionStatus] = useState('')
+  const [submissionUrl, setSubmissionUrl] = useState('')
+
+  const handleClick = () => {
+    const outputText = document.getElementById('output')
+    outputText.innerHTML = ''
+    outputText.innerHTML += 'Creating Submission ...\n'
+    fetch('https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
+        'x-rapidapi-key': '6d48e1f7admshe6ce2e04d511a3dp138316jsn006825e2d1a6'
+      },
+      body: JSON.stringify({
+        language_id,
+        source_code: btoa(code),
+        stdin: btoa(input)
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const jsonGetSolution = {
+          status: { description: 'Queue' },
+          stderr: null,
+          compile_output: null
         }
-    }
-    const submitCode = () => {
-        setSubmissionStatus("Submitting ...")
-        let formData = new FormData();
-        formData.append('problem_url', url);
-        formData.append('code', code);
-        fetch('/problem/submit',{
-            method: "POST",
-            headers: {
-                "Authorization": 'Bearer ' + userData.token
-            },
-            body: formData
+        // while( jsonGetSolution.status.description !== "Accepted" && jsonGetSolution.stderr == null && jsonGetSolution.compile_output == null) {
+        const url = `https://judge0-ce.p.rapidapi.com/submissions/${data.token}?base64_encoded=true&fields=*`
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            'x-rapidapi-host': 'judge0-ce.p.rapidapi.com',
+            'x-rapidapi-key': '6d48e1f7admshe6ce2e04d511a3dp138316jsn006825e2d1a6'
+          }
         })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.stdout) {
+              const output = atob(data.stdout)
+              outputText.innerHTML = ''
+              outputText.innerHTML += `Results :\n${output}\nExecution Time : ${jsonGetSolution.time} Secs\nMemory used : ${jsonGetSolution.memory} bytes`
+            } else if (data.stderr) {
+              const error = atob(data.stderr)
+              outputText.innerHTML = ''
+              outputText.innerHTML += `\n Error :${error}`
+            } else {
+              const compilation_error = atob(data.compile_output)
+              outputText.innerHTML = ''
+              outputText.innerHTML += `\n Error :${compilation_error}`
+            }
+          })
+        // }
+      })
+  }
+  const getLanguague = () => {
+    if (language_id == 54) {
+      return 'cpp'
+    } else if (language_id == 50) {
+      return 'c'
+    } else if (language_id == 62) {
+      return 'java'
+    } else if (language_id == 71) {
+      return 'py'
+    }
+  }
+  const submitCode = () => {
+    setSubmissionStatus('Submitting ...')
+    const formData = new FormData()
+    formData.append('problem_url', url)
+    formData.append('code', code)
+    fetch('/problem/submit', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      },
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.error !== undefined) {
+          setSubmissionStatus(data.error)
+        } else {
+          setSubmissionUrl(data.submissionUrl)
+        }
+      })
+  }
+  useEffect(() => {
+    if (''.localeCompare(submissionUrl) !== 0) {
+      const formData = new FormData()
+      formData.append('submissionUrl', submissionUrl)
+
+      fetch('/submission', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        },
+        body: formData
+      })
         .then(res => res.json())
         .then(data => {
-            if(data.error !== undefined){
-                setSubmissionStatus(data.error)
-            }else{
-                setSubmissionUrl(data.submissionUrl)
-            }
-        });
-
+          setSubmissionStatus(data.status.verdict)
+          const formData = new FormData()
+          formData.append('problem_id', problem_id)
+          formData.append('user_id', userData.user_id)
+          formData.append('status', data.status.verdict)
+          fetch('/updateProblemStatus', {
+            method: 'POST',
+            headers: {
+              Authorization: 'Bearer ' + userData.token
+            },
+            body: formData
+          })
+            .then(res2 => res2.json())
+        })
     }
-    useEffect(() => {
-        if("".localeCompare(submissionUrl) !== 0){
-            let formData = new FormData();
-            formData.append('submissionUrl', submissionUrl);
-
-            fetch('/submission',{
-                method: "POST",
-                headers: {
-                    "Authorization": 'Bearer ' + userData.token
-                },
-                body: formData,
-            })
-            .then(res => res.json())
-            .then(data => {
-                setSubmissionStatus(data.status.verdict)
-                let formData = new FormData();
-                formData.append('problem_id', problem_id);
-                formData.append('user_id', userData.user_id);
-                formData.append('status', data.status.verdict);
-                fetch('/updateProblemStatus',{
-                    method: "POST",
-                    headers: {
-                        "Authorization": 'Bearer ' + userData.token
-                    },
-                    body: formData,
-                })
-                .then(res2 => res2.json())
-                
-            });
-        }
-    });
-    /*return (
+  })
+  /* return (
         <>
             <div className="row container-fluid">
                 <div className="col-6 ml-4 ">
@@ -168,7 +165,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                         <i className="fas fa-cog fa-fw">
                         </i>Run
                     </button>
-        
+
                     <label htmlFor="tags" className="mr-1">
                         <b className="heading">Language:</b>
                     </label>
@@ -205,8 +202,8 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                 </textarea>
             </div>
         </>
-    );*/
-    return (
+    ); */
+  return (
         <div className="compiler">
             <div className="compiler-toolbar">
                 <div className="languageDiv">
@@ -226,11 +223,11 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                     </select>
                 </div>
                 <div className="statusDiv">
-                    <p className="status">Status: <a href={submissionUrl} target="_blank">{submissionStatus}</a></p>
+                    <p className="status">Status: <a href={submissionUrl} target="_blank" rel="noreferrer">{submissionStatus}</a></p>
                 </div>
             </div>
             <div className="editor">
-                {/*<textarea
+                {/* <textarea
                     required
                     name="solution"
                     id="source"
@@ -238,11 +235,11 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                 >
-                </textarea>*/}
+                </textarea> */}
                 <CodeEditor
                     value={code}
                     language= {getLanguague()}
-                    placeholder={"Please enter "+getLanguague()+" code."}
+                    placeholder={'Please enter ' + getLanguague() + ' code.'}
                     onChange={(evn) => setCode(evn.target.value)}
                     padding={15}
                     className="source"
@@ -257,7 +254,7 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                         onChange={(e) => setInput(e.target.value)}>
                     </textarea>
                 </div>
-                {userData.role === "user" && <div className="right">
+                {userData.role === 'user' && <div className="right">
                     <button
                         type="run"
                         className="btn runCode"
@@ -273,9 +270,9 @@ export const Compiler2 = ({userData,url, problem_id}) => {
                     Submit
                     </button>
                 </div>}
-            </div> 
+            </div>
         </div>
-    )
-};
+  )
+}
 
-export default Compiler2;
+export default Compiler2

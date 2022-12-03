@@ -1,20 +1,20 @@
 // Import Modules
-import { useEffect, useState } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
+import { useEffect, useState } from 'react'
+import { Editor } from 'react-draft-wysiwyg'
 
 // Import Components
-import MathJaxOption from './mathjax_option';
+import MathJaxOption from './mathjax_option'
 
 // Import Miscs
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 const RDWMathJax = ({ rawDraftContentState, onContentStateChange, readOnly }) => {
-  const [contentState, setContentState] = useState();
+  const [contentState, setContentState] = useState()
 
   // Will only execute when rawDraftContentState changes (ie. for default value)
   useEffect(() => {
-    setContentState(rawDraftContentState);
-  }, [setContentState, rawDraftContentState]);
+    setContentState(rawDraftContentState)
+  }, [setContentState, rawDraftContentState])
 
   return (
     <Editor
@@ -23,7 +23,7 @@ const RDWMathJax = ({ rawDraftContentState, onContentStateChange, readOnly }) =>
       toolbarCustomButtons={[<MathJaxOption />]}
       readOnly={readOnly}
     />
-  );
-};
+  )
+}
 
-export default RDWMathJax;
+export default RDWMathJax

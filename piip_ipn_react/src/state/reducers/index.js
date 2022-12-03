@@ -1,10 +1,10 @@
-import { combineReducers } from "redux"
-import template from "./template"
-import activity from "./activity"
+import { combineReducers } from 'redux'
+import template from './template'
+import activity from './activity'
 
 const rootReducer = combineReducers({
-    userTemplate: template,
-    userActivity: activity,
-});
+  userTemplate: template,
+  userActivity: activity
+})
 
-export default rootReducer;
+export default rootReducer
