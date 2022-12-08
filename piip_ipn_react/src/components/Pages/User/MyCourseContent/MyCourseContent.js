@@ -62,9 +62,8 @@ function CourseContent ({ userData }) {
     const data = await response.json()
     setUser(data)
   }
-  // TODO - CHANGE QUESTIONNAIREID HERE
   useEffect(() => {
-    fetch('/questionnaire?questionnaireId=1000', {
+    fetch('/questionnaire?questionnaireId=999999', {
       method: 'GET'
     })
       .then(res => res.json())
