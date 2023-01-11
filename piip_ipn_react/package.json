@@ -8,12 +8,21 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@uiw/react-textarea-code-editor": "^1.6.0",
+    "assert": "^2.0.0",
+    "bootstrap": "^3.4.1",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
     "chart.js": "^3.7.1",
     "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
+    "process": "^0.11.10",
     "react": "^17.0.2",
+    "react-datetime-picker": "^3.5.0",
+    "react-draft-wysiwyg": "^1.14.7",
     "react-chartjs-2": "^4.1.0",
     "react-dom": "^17.0.2",
     "react-html-parser": "^2.0.2",
+    "react-icons": "^4.3.1",
     "react-katex": "^2.0.2",
     "react-markdown": "^8.0.0",
     "react-redux": "^8.0.1",
@@ -24,11 +33,12 @@
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-api": "cd ../piip_ipn_api && venv/bin/flask run --no-debugger",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -51,5 +61,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://api:5000/"
 }
