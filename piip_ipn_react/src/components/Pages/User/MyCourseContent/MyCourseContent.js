@@ -64,7 +64,10 @@ function CourseContent ({ userData }) {
   }
   useEffect(() => {
     fetch('/questionnaire?questionnaireId=999999', {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {
@@ -81,7 +84,10 @@ function CourseContent ({ userData }) {
         setAdministratorId(data.administrator_id)
       })
     fetch(`/user/${user_id}/template`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {

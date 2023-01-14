@@ -23,7 +23,10 @@ function TemplatesView ({ userData }) {
 
   const getTemplates = async () => {
     const response = await fetch('/template', {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
     const response_json = await response.json()
     setTemplates(response_json)
@@ -36,7 +39,10 @@ function TemplatesView ({ userData }) {
     }
     await fetch('/template/add', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         name: newTemplateTitle,
         description: newTemplateDescription

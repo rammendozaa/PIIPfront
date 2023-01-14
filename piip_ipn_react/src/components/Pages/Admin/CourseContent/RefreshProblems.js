@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import './RefreshProblems.css'
-const baseURL = 'http://127.0.0.1:5000'
 
-function RefreshProblems () {
+function RefreshProblems ({ userData }) {
   const [waitingMessage, setWaitingMessage] = useState('Click the button below to get the latest problems.')
   const insertProblemsToDatabase = async () => {
     setWaitingMessage('Downloading...')
     await fetch('/insertProblemsToDB', {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
     setWaitingMessage('Download complete!')
   }

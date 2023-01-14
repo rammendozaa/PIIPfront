@@ -30,7 +30,10 @@ function Topic ({ userData }) {
     await fetch(
       baseURL + `/user/activity/${user_activity_id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           statusId: status_id
         })
@@ -41,7 +44,10 @@ function Topic ({ userData }) {
     await fetch(
       baseURL + `/user/${userId}/topic/${topic_type}/${topic_id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           statusId: status_id
         })
@@ -57,7 +63,10 @@ function Topic ({ userData }) {
       setTopicData(activity)
     } else {
       fetch(`/${topic_route}?topicId=${topic_id}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
         .then(res => res.json())
         .then(data => {

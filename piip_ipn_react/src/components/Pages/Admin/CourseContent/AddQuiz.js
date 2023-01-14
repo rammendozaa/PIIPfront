@@ -9,7 +9,10 @@ function AddQuiz ({ userData, addActivity, activityIndex, sectionId, userId }) {
 
   const fetchQuestionnaires = async () => {
     fetch(`/questionnaire?user_id=${userId}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {

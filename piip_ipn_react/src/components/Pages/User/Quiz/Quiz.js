@@ -43,7 +43,10 @@ function Quiz ({ userData }) {
       setQuestions(activity.questions)
     } else {
       fetch(`/questionnaire?questionnaireId=${quiz_id}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
         .then(res => res.json())
         .then(data => {
@@ -65,8 +68,11 @@ function Quiz ({ userData }) {
       await fetch(
         baseURL + `/user/${userId}/questionnaire/${quiz_id}`, {
           method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + userData.token
+          },
           mode: 'cors',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             correctAnswers: actual_score
           })
@@ -75,7 +81,10 @@ function Quiz ({ userData }) {
         await fetch(
           baseURL + `/user/activity/${activity.user_activity_id}`, {
             method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + userData.token
+            },
             body: JSON.stringify({
               statusId: 4
             })

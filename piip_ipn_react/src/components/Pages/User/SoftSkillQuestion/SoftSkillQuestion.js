@@ -18,7 +18,10 @@ function SoftSkillQuestion ({ userData }) {
     await fetch(
       baseURL + `/user/activity/${user_activity_id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           statusId: status_id
         })
@@ -29,7 +32,10 @@ function SoftSkillQuestion ({ userData }) {
     await fetch(
       baseURL + `/user/${userId}/soft-skill-question/${question_id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           statusId: status_id,
           answer
@@ -55,7 +61,10 @@ function SoftSkillQuestion ({ userData }) {
       setAnswer(activity_progress.answer)
     } else {
       fetch(`/soft-skill-question?questionId=${question_id}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
         .then(res => res.json())
         .then(data => {

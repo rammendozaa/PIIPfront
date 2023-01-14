@@ -40,7 +40,7 @@ function CreateActivities ({ userData }) {
          <div className='create-activity'>
             {
                option === 'problem'
-                 ? <RefreshProblems/>
+                 ? <RefreshProblems userData={userData}/>
                  : option === 'topic'
                    ? <AddTopic userData={userData}/>
                    : option === 'softskillquestion'

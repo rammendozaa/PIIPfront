@@ -70,7 +70,10 @@ function CreateQuiz ({ userData, addActivity, activityIndex, sectionId }) {
   const saveNewQuestionnaire = async () => {
     const response = await fetch('/questionnaire', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         title: questionnaireName || 'Surprise quiz',
         description: description || 'Questionnaire to test your learnings',

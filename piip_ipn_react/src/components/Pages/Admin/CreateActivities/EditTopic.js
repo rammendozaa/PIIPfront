@@ -23,7 +23,10 @@ function EditTopic ({ userData }) {
 
   useEffect(() => {
     fetch(`/${topic_route}?topicId=${topic_id}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {
@@ -50,7 +53,10 @@ function EditTopic ({ userData }) {
     localStorage.setItem('editorData', json)
     await fetch('/update-topic', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         topicType: topic_route,
         title: filename,
