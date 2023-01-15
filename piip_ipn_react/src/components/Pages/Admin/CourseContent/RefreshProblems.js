@@ -8,7 +8,9 @@ function RefreshProblems ({ userData }) {
     await fetch('/insertProblemsToDB', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     setWaitingMessage('Download complete!')

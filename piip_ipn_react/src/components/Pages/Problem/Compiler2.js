@@ -96,7 +96,9 @@ export const Compiler2 = ({ userData, url, problem_id }) => {
     fetch('/problem/submit', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -117,7 +119,9 @@ export const Compiler2 = ({ userData, url, problem_id }) => {
       fetch('/submission', {
         method: 'POST',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: formData
       })
@@ -131,7 +135,9 @@ export const Compiler2 = ({ userData, url, problem_id }) => {
           fetch('/updateProblemStatus', {
             method: 'POST',
             headers: {
-              Authorization: 'Bearer ' + userData.token
+              Authorization: 'Bearer ' + userData.token,
+              'User-Type': userData.role,
+              'User-Id': userData.user_id,
             },
             body: formData
           })

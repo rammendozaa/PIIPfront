@@ -7,10 +7,16 @@ function SeeSoftSkills ({ userData, addActivity, activityIndex, sectionId, userI
   const [data, setData] = useState([])
 
   const getSoftSkillsTopics = async () => {
-    const response = await fetch(`/softSkillsTopics?user_id=${userId}`, {
+    let route = `/softSkillsTopics?sectionId=${sectionId}`
+    if (userId !== undefined && userId !== null) {
+      route = `/softSkillsTopics?user_id=${userId}`
+    }
+    const response = await fetch(route, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()

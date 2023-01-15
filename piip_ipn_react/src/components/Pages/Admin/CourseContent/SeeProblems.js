@@ -26,10 +26,16 @@ function SeeProblems ({ userData, addActivity, activityIndex, sectionId, userId 
   }
 
   const getProblems = async () => {
-    const response = await fetch(`/problems?user_id=${userId}`, {
+    let route = `/problems?sectionId=${sectionId}`
+    if (userId !== undefined && userId !== null) {
+      route = `/problems?user_id=${userId}`
+    }
+    const response = await fetch(route, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()

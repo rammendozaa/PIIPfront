@@ -56,7 +56,9 @@ function CourseContent ({ userData }) {
     const response = await fetch('/user', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()
@@ -66,7 +68,9 @@ function CourseContent ({ userData }) {
     fetch('/questionnaire?questionnaireId=999999', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())
@@ -76,7 +80,9 @@ function CourseContent ({ userData }) {
     fetch('/get-admin', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())
@@ -86,7 +92,9 @@ function CourseContent ({ userData }) {
     fetch(`/user/${user_id}/template`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())

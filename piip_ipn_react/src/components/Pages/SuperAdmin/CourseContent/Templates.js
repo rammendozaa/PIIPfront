@@ -47,7 +47,9 @@ function Templates ({ userData }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: JSON.stringify({
         name: activity.name,
@@ -79,7 +81,9 @@ function Templates ({ userData }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: JSON.stringify({
         name: newSectionName,
@@ -105,7 +109,9 @@ function Templates ({ userData }) {
       await fetch(`/template/section/${sectionId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       })
       current.sections = current.sections.filter((item, idx) => idx != index)
@@ -122,7 +128,9 @@ function Templates ({ userData }) {
       await fetch(`/template/section/activity/${sectionActivityId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       })
       current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item, idx) => idx != indexActivity)
@@ -142,7 +150,9 @@ function Templates ({ userData }) {
     fetch(`/template?template_id=${template_id}`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())

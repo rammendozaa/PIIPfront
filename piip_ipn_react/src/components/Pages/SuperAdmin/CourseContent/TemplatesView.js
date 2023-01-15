@@ -25,7 +25,9 @@ function TemplatesView ({ userData }) {
     const response = await fetch('/template', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const response_json = await response.json()
@@ -41,7 +43,9 @@ function TemplatesView ({ userData }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: JSON.stringify({
         name: newTemplateTitle,

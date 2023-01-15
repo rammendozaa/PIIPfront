@@ -4,12 +4,14 @@ import './Topics.css'
 
 function Topics ({ userData }) {
   const [data, setData] = useState([])
-  const [option, setOption] = useState('')
+  const [option, setOption] = useState('algorithm')
   const getProgrammingTopics = async () => {
     const response = await fetch('/algorithmTopics', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()
@@ -20,7 +22,9 @@ function Topics ({ userData }) {
     const response = await fetch('/softSkillsTopics', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()

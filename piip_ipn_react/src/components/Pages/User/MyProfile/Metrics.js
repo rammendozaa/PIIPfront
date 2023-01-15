@@ -63,7 +63,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfProblemsByDay', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -92,7 +94,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfProblemsByTag', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -121,7 +125,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getRecommendations', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -134,7 +140,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfInterviews', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -147,7 +155,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfProblemsSolvedByUser', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -160,7 +170,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfProgrammingTopicsSolvedByUser', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -173,7 +185,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfSoftSkillTopicsSolvedByUser', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
