@@ -9,7 +9,10 @@ function SeeSoftSkillQuestions ({ userData, addActivity, activityIndex, sectionI
 
   const fetchSoftSkillQuestions = async () => {
     fetch(`/soft-skill-question?user_id=${userId}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {

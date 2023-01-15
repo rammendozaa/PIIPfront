@@ -54,7 +54,10 @@ function AddTopic ({ userData }) {
     localStorage.setItem('editorData', json)
     await fetch('/create-topic', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         topicType: option,
         title: filename,

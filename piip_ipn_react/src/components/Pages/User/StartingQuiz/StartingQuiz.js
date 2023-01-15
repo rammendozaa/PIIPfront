@@ -21,8 +21,11 @@ function StartingQuiz ({ userData, questionnaire, description, descriptionText, 
     const response = await fetch(
       baseURL + `/user/${userId}/questionnaire/${questionnaire.id}/assign`, {
         method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         mode: 'cors',
-        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           correctAnswers: actual_score
         })

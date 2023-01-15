@@ -45,7 +45,10 @@ function Templates ({ userData }) {
     let response = null
     response = await fetch(`/activity/section/${templateSectionId}/activity/add`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         name: activity.name,
         description: activity.description,
@@ -74,7 +77,10 @@ function Templates ({ userData }) {
     let response = null
     response = await fetch(`/template/${template_id}/section/add`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         name: newSectionName,
         description: newSectionName,
@@ -97,7 +103,10 @@ function Templates ({ userData }) {
     if (window.confirm('Are you sure you want to delete this section?')) {
       const current = data
       await fetch(`/template/section/${sectionId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
       current.sections = current.sections.filter((item, idx) => idx != index)
       setData(prevState => ({
@@ -111,7 +120,10 @@ function Templates ({ userData }) {
     if (window.confirm('Are you sure you want to delete this activity?')) {
       const current = data
       await fetch(`/template/section/activity/${sectionActivityId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
       current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item, idx) => idx != indexActivity)
       setData(prevState => ({
@@ -128,7 +140,10 @@ function Templates ({ userData }) {
   }
   useEffect(() => {
     fetch(`/template?template_id=${template_id}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {

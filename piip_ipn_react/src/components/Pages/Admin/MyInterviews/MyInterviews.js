@@ -15,7 +15,10 @@ function MyInterviews ({ userData }) {
   const dispatch = useDispatch()
   useEffect(() => {
     fetch(`/interview?admin_id=${userData.user_id}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then(res => res.json())
       .then(data => {

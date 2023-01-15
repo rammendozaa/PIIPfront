@@ -139,7 +139,10 @@ function CompanyTracking ({ userData }) {
 
   const getCompanies = async () => {
     fetch(`/user/${user_id}/tracking`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + userData.token
+      }
     })
       .then((res) => res.json())
       .then((data) => {
@@ -153,7 +156,10 @@ function CompanyTracking ({ userData }) {
   const addCompanyTracking = async () => {
     await fetch(`/user/${user_id}/tracking`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         companyId: COMPANIES[dropDownOption]
       })
@@ -166,7 +172,10 @@ function CompanyTracking ({ userData }) {
       baseURL + `/user/tracking/${company_tracking_id}`,
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           description: newDescription,
           url: newUrl
@@ -191,7 +200,10 @@ function CompanyTracking ({ userData }) {
       baseURL + `/user/tracking/${company_tracking_id}`,
       {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           statusId: status,
           interviewDate
@@ -211,7 +223,10 @@ function CompanyTracking ({ userData }) {
       baseURL + `/user/tracking/link/${company_tracking_link_id}`,
       {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           description,
           url
@@ -225,7 +240,10 @@ function CompanyTracking ({ userData }) {
     const response = await fetch(
       baseURL + `/user/tracking/${company_tracking_id}`,
       {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       }
     )
     getCompanies()
@@ -238,7 +256,10 @@ function CompanyTracking ({ userData }) {
     const response = await fetch(
       baseURL + `/user/tracking/link/${company_tracking_link_id}`,
       {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       }
     )
     getCompanies()

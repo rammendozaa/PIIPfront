@@ -38,7 +38,10 @@ function MockInterviews ({ userData }) {
       setInterviewInfo(activity.activity)
     } else {
       fetch(`/interview?interview_id=${interview_id}`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
         .then(res => res.json())
         .then(data => {
@@ -64,7 +67,10 @@ function MockInterviews ({ userData }) {
     await fetch(
       baseURL + `/interview?interview_id=${interviewInfo.id}&user_id=${interviewInfo.userId}&role=${userData.role}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           chosenDate,
           comment,

@@ -39,7 +39,10 @@ function CourseContent ({ userData }) {
       const admin_id = userData.user_id
       response = await fetch(`/user/${user_id}/interview/${templateSectionId}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           name: activity.name,
           description: activity.description,
@@ -52,7 +55,10 @@ function CourseContent ({ userData }) {
     } else {
       response = await fetch(`/user/${user_id}/activity/${templateSectionId}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + userData.token
+        },
         body: JSON.stringify({
           name: activity.name,
           description: activity.description,
@@ -79,7 +85,10 @@ function CourseContent ({ userData }) {
     if (window.confirm('Are you sure you want to delete this activity?')) {
       const current = data
       await fetch(`/user/activity/${sectionActivityId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
       current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item, idx) => idx != indexActivity)
       setData(prevState => ({
@@ -97,7 +106,10 @@ function CourseContent ({ userData }) {
     const current = data
     const response = await fetch(`/user/${user_id}/section/${user_template_id}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         name: newSectionName,
         description: newSectionName,
@@ -120,7 +132,10 @@ function CourseContent ({ userData }) {
     if (window.confirm('Are you sure you want to delete this section?')) {
       const current = data
       await fetch(`/user/section/${sectionId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer ' + userData.token
+        }
       })
       current.user_sections = current.user_sections.filter((item, idx) => idx != index)
       setData(prevState => ({

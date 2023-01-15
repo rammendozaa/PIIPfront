@@ -24,7 +24,10 @@ function AddSoftSkillQuestion ({ userData }) {
   const createSoftSkillQuestion = async () => {
     await fetch('/soft-skill-question', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + userData.token
+      },
       body: JSON.stringify({
         title,
         question,
