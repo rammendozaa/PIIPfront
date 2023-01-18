@@ -8,10 +8,16 @@ function AddQuiz ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [quizzes, setQuizzes] = useState([])
 
   const fetchQuestionnaires = async () => {
-    fetch(`/questionnaire?user_id=${userId}`, {
+    let route = `/questionnaire?sectionId=${sectionId}`
+    if (userId !== undefined && userId !== null) {
+      route = `/questionnaire?user_id=${userId}`
+    }
+    fetch(route, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())

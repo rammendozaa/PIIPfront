@@ -23,7 +23,9 @@ function StartingQuiz ({ userData, questionnaire, description, descriptionText, 
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         mode: 'cors',
         body: JSON.stringify({

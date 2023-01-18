@@ -40,7 +40,9 @@ function MockInterviews ({ userData }) {
       fetch(`/interview?interview_id=${interview_id}`, {
         method: 'GET',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       })
         .then(res => res.json())
@@ -69,7 +71,9 @@ function MockInterviews ({ userData }) {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + userData.token
+            Authorization: 'Bearer ' + userData.token,
+            'User-Type': userData.role,
+            'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           chosenDate,

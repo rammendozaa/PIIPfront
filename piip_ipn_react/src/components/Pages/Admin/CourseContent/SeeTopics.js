@@ -7,10 +7,16 @@ function SeeTopics ({ userData, addActivity, activityIndex, sectionId, userId })
   const [data, setData] = useState([])
 
   const getProgrammingTopics = async () => {
-    const response = await fetch(`/algorithmTopics?user_id=${userId}`, {
+    let route = `/algorithmTopics?sectionId=${sectionId}`
+    if (userId !== undefined && userId !== null) {
+      route = `/algorithmTopics?user_id=${userId}`
+    }
+    const response = await fetch(route, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()

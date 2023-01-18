@@ -8,10 +8,16 @@ function SeeSoftSkillQuestions ({ userData, addActivity, activityIndex, sectionI
   const [questions, setQuestions] = useState([])
 
   const fetchSoftSkillQuestions = async () => {
-    fetch(`/soft-skill-question?user_id=${userId}`, {
+    let route = `/soft-skill-question?sectionId=${sectionId}`
+    if (userId !== undefined && userId !== null) {
+      route = `/soft-skill-question?user_id=${userId}`
+    }
+    fetch(route, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())

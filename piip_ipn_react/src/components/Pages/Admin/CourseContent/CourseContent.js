@@ -41,7 +41,9 @@ function CourseContent ({ userData }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           name: activity.name,
@@ -57,7 +59,9 @@ function CourseContent ({ userData }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           name: activity.name,
@@ -87,7 +91,9 @@ function CourseContent ({ userData }) {
       await fetch(`/user/activity/${sectionActivityId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       })
       current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item, idx) => idx != indexActivity)
@@ -108,7 +114,9 @@ function CourseContent ({ userData }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: JSON.stringify({
         name: newSectionName,
@@ -134,7 +142,9 @@ function CourseContent ({ userData }) {
       await fetch(`/user/section/${sectionId}`, {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       })
       current.user_sections = current.user_sections.filter((item, idx) => idx != index)
@@ -154,7 +164,9 @@ function CourseContent ({ userData }) {
     const response = await fetch(`/user/${user_id}/template`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()

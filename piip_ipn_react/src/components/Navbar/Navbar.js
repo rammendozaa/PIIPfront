@@ -126,7 +126,9 @@ function Navbar ({ userData, validUserData, removeUserData }) {
         fetch('/get-admin', {
           method: 'GET',
           headers: {
-            Authorization: 'Bearer ' + userData.token
+            Authorization: 'Bearer ' + userData.token,
+            'User-Type': userData.role,
+            'User-Id': userData.user_id,
           }
         })
           .then(res => res.json())

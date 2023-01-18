@@ -11,27 +11,17 @@ export const NewActivity = (name, description, typeId, reference) => {
 }
 
 export const ActivityInfo = (
-  userActivityId,
-  userActivityStatusId,
-  templateActivity,
+  user_activity_id,
+  user_activity_status_id,
+  template_activity,
   activity,
-  activityProgress
+  activity_progress
 ) => {
   return {
-    userActivityId,
-    userActivityStatusId,
-    templateActivity,
+    user_activity_id,
+    user_activity_status_id,
+    template_activity,
     activity,
-    activityProgress
+    activity_progress
   }
 }
-
-/*
-const Card = (rank, suit) => { return { rank: rank, suit: suit } }
-
-const cardOne = Card('3', 'H')
-
-cardOne // {rank: "3", suit: "H"}
-cardOne.rank // "3"
-cardOne.suit // "H"
-*/

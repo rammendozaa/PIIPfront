@@ -18,7 +18,9 @@ function PendingStudentsPage ({ userData }) {
     const response = await fetch('/pendingStudents', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()
@@ -38,7 +40,9 @@ function PendingStudentsPage ({ userData }) {
     fetch('/assign-student', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })

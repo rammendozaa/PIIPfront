@@ -17,7 +17,9 @@ function MyInterviews ({ userData }) {
     fetch(`/interview?admin_id=${userData.user_id}`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then(res => res.json())

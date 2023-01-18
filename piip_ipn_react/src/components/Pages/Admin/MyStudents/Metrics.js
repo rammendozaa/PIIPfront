@@ -54,7 +54,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getCurrentStudentsInterviewsData', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -83,7 +85,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getStudentsInterviewsData', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -112,7 +116,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfLosers', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -125,7 +131,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfGraduatedStudents', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
@@ -138,7 +146,9 @@ function Metrics ({ userData }) {
     const response = await fetch('/getNumberOfActiveStudents', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })

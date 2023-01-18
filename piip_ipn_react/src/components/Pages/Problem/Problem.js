@@ -18,7 +18,9 @@ function Problem ({ userData }) {
     fetch('/problem', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })

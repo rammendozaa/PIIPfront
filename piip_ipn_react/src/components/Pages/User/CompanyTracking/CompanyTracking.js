@@ -141,7 +141,9 @@ function CompanyTracking ({ userData }) {
     fetch(`/user/${user_id}/tracking`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
       .then((res) => res.json())
@@ -158,7 +160,9 @@ function CompanyTracking ({ userData }) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: JSON.stringify({
         companyId: COMPANIES[dropDownOption]
@@ -174,7 +178,9 @@ function CompanyTracking ({ userData }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           description: newDescription,
@@ -202,7 +208,9 @@ function CompanyTracking ({ userData }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           statusId: status,
@@ -225,7 +233,9 @@ function CompanyTracking ({ userData }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           description,
@@ -242,7 +252,9 @@ function CompanyTracking ({ userData }) {
       {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       }
     )
@@ -258,7 +270,9 @@ function CompanyTracking ({ userData }) {
       {
         method: 'DELETE',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       }
     )

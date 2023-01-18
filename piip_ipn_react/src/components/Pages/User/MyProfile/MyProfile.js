@@ -11,7 +11,9 @@ function MyProfile ({ userData }) {
     const response = await fetch('/user', {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       }
     })
     const data = await response.json()

@@ -20,7 +20,9 @@ function SoftSkillQuestion ({ userData }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           statusId: status_id
@@ -34,7 +36,9 @@ function SoftSkillQuestion ({ userData }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         },
         body: JSON.stringify({
           statusId: status_id,
@@ -63,7 +67,9 @@ function SoftSkillQuestion ({ userData }) {
       fetch(`/soft-skill-question?questionId=${question_id}`, {
         method: 'GET',
         headers: {
-          Authorization: 'Bearer ' + userData.token
+          Authorization: 'Bearer ' + userData.token,
+          'User-Type': userData.role,
+          'User-Id': userData.user_id,
         }
       })
         .then(res => res.json())

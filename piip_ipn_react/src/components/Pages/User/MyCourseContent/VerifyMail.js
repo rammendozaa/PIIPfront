@@ -12,7 +12,9 @@ function VerifyMail ({ userData }) {
     const response = await fetch('/confirm', {
       method: 'POST',
       headers: {
-        Authorization: 'Bearer ' + userData.token
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
       },
       body: formData
     })
