@@ -11,11 +11,6 @@ function VerifyMail ({ userData }) {
     formData.append('token', token)
     const response = await fetch('/confirm', {
       method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + userData.token,
-        'User-Type': userData.role,
-        'User-Id': userData.user_id,
-      },
       body: formData
     })
     const data = await response.json()
@@ -36,7 +31,7 @@ function VerifyMail ({ userData }) {
   } else if (confirmationMsg === 'success') {
     return (
             <div className='mycourse-content-container'>
-                <h1>Thanks four verifying your account!</h1><p className='subtitle'>Ready to start your journey?</p>
+                <h1>Thanks for verifying your account!</h1><p className='subtitle'>Ready to start your journey?</p>
                 {redirect()}
             </div>
     )
