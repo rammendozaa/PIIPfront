@@ -3,11 +3,13 @@ import React, { useEffect, useState } from 'react'
 import './SeeProblem.css'
 import ProblemsTable from './ProblemsTable'
 import { NewActivity } from '../../../../../src/externalClasses'
+import RequestError from '../../../RequestError'
 
 function SeeProblems ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [data, setData] = useState([])
   const [query, setQuery] = useState('')
   const [addedProblems, setAddedProblems] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
   function search (rows) {
     return rows.filter(
       row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
@@ -38,6 +40,10 @@ function SeeProblems ({ userData, addActivity, activityIndex, sectionId, userId 
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setData(data)
   }
@@ -57,6 +63,9 @@ function SeeProblems ({ userData, addActivity, activityIndex, sectionId, userId 
       addActivity(newAct, activityIndex, sectionId)
     }
     setAddedProblems([])
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
   return (
         <>

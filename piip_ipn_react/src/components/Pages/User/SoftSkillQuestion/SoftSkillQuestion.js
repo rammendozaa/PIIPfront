@@ -4,6 +4,7 @@ import { useEffect } from 'react/cjs/react.development'
 import { useSelector } from 'react-redux'
 import './SoftSkillQuestion.css'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../../RequestError'
 
 function SoftSkillQuestion ({ userData }) {
   const { activity } = useSelector(state => state.userActivity)
@@ -13,9 +14,10 @@ function SoftSkillQuestion ({ userData }) {
   const { question_id } = useParams()
   const [question, setQuestion] = useState('Is this a question?')
   const [answer, setAnswer] = useState((activity_progress !== undefined && activity_progress !== null) ? activity_progress.answer : '')
+  const [errorCode, setErrorCode] = useState(null)
 
   const updateUserTemplateActivity = async (user_activity_id, status_id) => {
-    await fetch(
+    const response = await fetch(
       baseURL + `/user/activity/${user_activity_id}`, {
         method: 'PUT',
         headers: {
@@ -28,10 +30,14 @@ function SoftSkillQuestion ({ userData }) {
           statusId: status_id
         })
       })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
   }
 
   const saveQuestionProgress = async (status_id) => {
-    await fetch(
+    const response = await fetch(
       baseURL + `/user/${userId}/soft-skill-question/${question_id}`, {
         method: 'PUT',
         headers: {
@@ -45,6 +51,10 @@ function SoftSkillQuestion ({ userData }) {
           answer
         })
       })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     alert('Question progress saved succesfully.')
   }
   const handleQuestionUpdate = async (status_id) => {
@@ -72,12 +82,25 @@ function SoftSkillQuestion ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
-        .then(res => res.json())
-        .then(data => {
-          setQuestion(data.question)
-        })
+      .then(async res => {
+        if (res.status !== 200) {
+          const error_status = res.status
+          return Promise.reject(error_status);
+        }  
+        return res.json()
+      })
+      .then(data => {
+        setQuestion(data.question)
+      })
+      .catch(error_status => {
+        setErrorCode(error_status)
+        return
+      })
     }
   }, [])
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
 
   return (
         <>

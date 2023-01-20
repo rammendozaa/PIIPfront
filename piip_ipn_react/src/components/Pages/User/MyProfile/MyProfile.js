@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import Metrics from './Metrics'
 import './MyProfile.css'
 import Settings from './Settings'
+import RequestError from '../../../RequestError'
 
 function MyProfile ({ userData }) {
   const [option, setOption] = useState('settings')
   const [user, setUser] = useState(null)
+  const [errorCode, setErrorCode] = useState(null)
 
   const getUserData = async () => {
     const response = await fetch('/user', {
@@ -16,12 +18,19 @@ function MyProfile ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setUser(data)
   }
   useEffect(() => {
     getUserData()
   }, [])
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
 
   return (
     user &&

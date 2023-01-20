@@ -5,6 +5,8 @@ import { FaSave } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 import { FiPlus, FiMinus } from 'react-icons/fi'
 import { TiDelete } from 'react-icons/ti'
+import RequestError from '../../../RequestError'
+
 const baseURL = 'http://127.0.0.1:5000'
 
 function CreateQuiz ({ userData, addActivity, activityIndex, sectionId }) {
@@ -22,6 +24,7 @@ function CreateQuiz ({ userData, addActivity, activityIndex, sectionId }) {
   ])
   const [questionnaireName, setQuestionnaireName] = useState('')
   const [description, setDescription] = useState('')
+  const [errorCode, setErrorCode] = useState(null)
 
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const changeCorrectAnswer = (idx) => {
@@ -83,6 +86,10 @@ function CreateQuiz ({ userData, addActivity, activityIndex, sectionId }) {
         createdBy: userData.user_id
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const newQuestionnaire = await response.json()
     alert('Questionnaire saved successfully!')
     setQuestionnaireName('')
@@ -108,6 +115,11 @@ function CreateQuiz ({ userData, addActivity, activityIndex, sectionId }) {
       setCurrentQuestion(currentQuestion + add)
     }
   }
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
+
   return (
         <div className='create-quiz-container'>
             <div className="d-flex-create-quiz justify-content-center-create-quiz">

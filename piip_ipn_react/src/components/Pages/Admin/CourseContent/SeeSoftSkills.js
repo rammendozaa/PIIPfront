@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import Cards from './Cards'
 import { NewActivity } from '../../../../externalClasses'
 import './SeeTopics.css'
+import RequestError from '../../../RequestError'
 
 function SeeSoftSkills ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [data, setData] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
 
   const getSoftSkillsTopics = async () => {
     let route = `/softSkillsTopics?sectionId=${sectionId}`
@@ -19,6 +21,10 @@ function SeeSoftSkills ({ userData, addActivity, activityIndex, sectionId, userI
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setData(data)
   }
@@ -37,6 +43,10 @@ function SeeSoftSkills ({ userData, addActivity, activityIndex, sectionId, userI
   const addSoftSkillTopic = (topic) => {
     const newAct = NewActivity(topic.title, topic.description, 4, topic.id)
     addActivity(newAct, activityIndex, sectionId)
+  }
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

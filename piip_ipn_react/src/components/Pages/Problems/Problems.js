@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './Problems.css'
 import { Navigate } from 'react-router-dom'
 import ProblemsTable from './ProblemsTable'
+import RequestError from '../../RequestError'
 
 function Problems ({ userData }) {
   const [data, setData] = useState([])
   const [query, setQuery] = useState('')
   const [problemId, setProblemId] = useState(-1)
+  const [errorCode, setErrorCode] = useState(null)
 
   function search (rows) {
     return rows.filter(
@@ -23,10 +25,20 @@ function Problems ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setData(data)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setData(data)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
   }, [])
 
   const goToProblem = (problem) => {
@@ -38,6 +50,9 @@ function Problems ({ userData }) {
     return (
             <Navigate to={url}/>
     )
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

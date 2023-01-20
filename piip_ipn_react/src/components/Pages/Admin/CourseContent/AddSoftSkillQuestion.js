@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './AddSoftSkillQuestion.css'
+import RequestError from '../../../RequestError'
 
 const baseURL = 'http://127.0.0.1:5000'
 
@@ -7,6 +8,7 @@ function AddSoftSkillQuestion ({ userData }) {
   const [title, setTitle] = useState('')
   const [question, setQuestion] = useState('')
   const [softSkillTopics, setSoftSkillTopics] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
   /*
     useEffect(() => {
         fetch(`/softSkillsTopics`, {
@@ -22,7 +24,7 @@ function AddSoftSkillQuestion ({ userData }) {
     }, []);
     */
   const createSoftSkillQuestion = async () => {
-    await fetch('/soft-skill-question', {
+    const response = await fetch('/soft-skill-question', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,10 +38,19 @@ function AddSoftSkillQuestion ({ userData }) {
         createdBy: userData.user_id
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     alert('Question saved correctly!')
     setTitle('')
     setQuestion('')
   }
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
+
   return (
         <>
         <div className='softkillq-container'>

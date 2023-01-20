@@ -6,6 +6,7 @@ import { FiPlus } from 'react-icons/fi'
 import { TiDelete } from 'react-icons/ti'
 import Popup from '../../Admin/CourseContent/Popup'
 import { useParams } from 'react-router-dom'
+import RequestError from '../../../RequestError'
 
 const baseURL = 'http://127.0.0.1:5000'
 const activityIdToName = {
@@ -26,6 +27,7 @@ function Templates ({ userData }) {
     sections: [],
     position: null
   })
+  const [errorCode, setErrorCode] = useState(null)
 
   const [newActivityIndex, setNewActivityIndex] = useState(-1)
   const [newActivitySectionId, setNewActivitySectionId] = useState(-1)
@@ -59,6 +61,10 @@ function Templates ({ userData }) {
         externalReference: activity.reference
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const newActivityResponse = await response.json()
     current.sections[index].activities = [
       ...current.sections[index].activities,
@@ -91,6 +97,10 @@ function Templates ({ userData }) {
         position: (current.sections.length) + 1
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const newSectionResponse = await response.json()
     current.sections = [
       ...current.sections,
@@ -106,7 +116,7 @@ function Templates ({ userData }) {
   const deleteSection = async (index, sectionId) => {
     if (window.confirm('Are you sure you want to delete this section?')) {
       const current = data
-      await fetch(`/template/section/${sectionId}`, {
+      const response = await fetch(`/template/section/${sectionId}`, {
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + userData.token,
@@ -114,6 +124,10 @@ function Templates ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
       current.sections = current.sections.filter((item, idx) => idx != index)
       setData(prevState => ({
         ...prevState,
@@ -125,7 +139,7 @@ function Templates ({ userData }) {
   const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
     if (window.confirm('Are you sure you want to delete this activity?')) {
       const current = data
-      await fetch(`/template/section/activity/${sectionActivityId}`, {
+      const response = await fetch(`/template/section/activity/${sectionActivityId}`, {
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + userData.token,
@@ -133,6 +147,10 @@ function Templates ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
       current.sections[indexSection].activities = current.sections[indexSection].activities.filter((item, idx) => idx != indexActivity)
       setData(prevState => ({
         ...prevState,
@@ -155,11 +173,24 @@ function Templates ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setData(data)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setData(data)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
   }, [])
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
   return (
         <>
             <div className='template-content-container'>

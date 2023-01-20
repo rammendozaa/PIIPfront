@@ -6,12 +6,14 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 import ReactHTMLParser from 'react-html-parser'
 import { useSelector } from 'react-redux'
+import RequestError from '../../RequestError'
 
 function Problem ({ userData }) {
   const { template } = useSelector(state => state.userTemplate)
   const { activity } = useSelector(state => state.userActivity)
   const { problem_id } = useParams()
   const [data, setData] = useState()
+  const [errorCode, setErrorCode] = useState(null)
   useEffect(() => {
     const formData = new FormData()
     formData.append('problem_id', problem_id)
@@ -24,17 +26,30 @@ function Problem ({ userData }) {
       },
       body: formData
     })
-      .then(res => res.json())
-      .then(data => {
-        setData(data)
-      })
-  }, [])
+    .then(async res => {
+        if (res.status !== 200) {
+          const error_status = res.status
+          return Promise.reject(error_status);
+        }  
+        return res.json()
+    })
+    .then(data => {
+      setData(data)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
+    }, [])
   const node = useRef()
   useEffect(() => {
     window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current])
   })
   const fixHtml = (text) => {
     return text.replaceAll('$$$', '$')
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
   return (
         <>

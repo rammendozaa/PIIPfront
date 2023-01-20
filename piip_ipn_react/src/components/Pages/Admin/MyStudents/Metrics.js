@@ -1,6 +1,8 @@
 import PieChart from '../../../PieChart'
 import { useState, useEffect } from 'react'
 import './Metrics.css'
+import RequestError from '../../../RequestError'
+
 
 function Metrics ({ userData }) {
   const [numberOfStudents, setNumberOfStudents] = useState(0)
@@ -48,6 +50,8 @@ function Metrics ({ userData }) {
       ]
     }]
   })
+  const [errorCode, setErrorCode] = useState(null)
+
   const getCurrentUsersInteviewData = async () => {
     const formData = new FormData()
     formData.append('user_id', userData.user_id)
@@ -60,6 +64,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setCurrentInterviewData(data)
     setCurrentStudentsStatus({
@@ -91,6 +99,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setHistoricalInterviewData(data)
     setStudentsStatus({
@@ -122,6 +134,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfLosers(data.numberOfLosers)
   }
@@ -137,6 +153,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfGraduated(data.numberOfGraduated)
   }
@@ -152,6 +172,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfStudents(data.numberOfStudents)
   }
@@ -162,6 +186,10 @@ function Metrics ({ userData }) {
     getUsersInteviewData()
     getCurrentUsersInteviewData()
   }, [])
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
+
   return (
         <>
             <div className="metrics-container-admin">

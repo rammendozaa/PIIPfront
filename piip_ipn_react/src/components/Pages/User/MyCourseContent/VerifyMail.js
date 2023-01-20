@@ -1,10 +1,13 @@
 import { useNavigate, Navigate, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
+import RequestError from '../../../RequestError'
+
 
 function VerifyMail ({ userData }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const [confirmationMsg, setConfirmationMsg] = useState('')
   const navigate = useNavigate()
+  const [errorCode, setErrorCode] = useState(null)
 
   const confirmEmail = async (token) => {
     const formData = new FormData()
@@ -13,12 +16,20 @@ function VerifyMail ({ userData }) {
       method: 'POST',
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setConfirmationMsg(data.msg)
   }
   const redirect = () => {
     const timer = setTimeout(() => navigate('/my-course'), 4000)
     return () => clearTimeout(timer)
+  }
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   if (confirmationMsg === 'confirmed') {

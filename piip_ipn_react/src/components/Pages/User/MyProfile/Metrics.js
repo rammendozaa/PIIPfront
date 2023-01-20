@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import PieChart from '../../../PieChart'
 import './Metrics.css'
 import { Navigate } from 'react-router-dom'
+import RequestError from '../../../RequestError'
 
 function Metrics ({ userData }) {
   const [numberOfProblems, setNumberOfProblems] = useState(0)
@@ -11,6 +12,7 @@ function Metrics ({ userData }) {
   const [numberOfInterviews, setNumberOfInterviews] = useState(0)
   const [recommendations, setRecommendations] = useState([])
   const [problemId, setProblemId] = useState(-1)
+  const [errorCode, setErrorCode] = useState(null)
 
   const colors = ['#CC4948', '#FFCC00', '#7A577A', '#8BC441']
   const leftColor = ['#912c2c', '#9e7e1c', '#553755', '#5f8330']
@@ -69,6 +71,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setCntByDay(data)
     setProblemsSolved({
@@ -100,6 +106,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setCntByTag(data)
     setCntByCategory({
@@ -131,6 +141,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setRecommendations(data)
   }
@@ -146,6 +160,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfInterviews(data.numberOfInterviews)
   }
@@ -161,6 +179,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfProblems(data.numberOfProblems)
   }
@@ -176,6 +198,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfProgrammingTopics(data.numberOfProgrammingTopics)
   }
@@ -191,6 +217,10 @@ function Metrics ({ userData }) {
       },
       body: formData
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setNumberOfSoftSkillTopics(data.numberOfSoftSkillsTopics)
   }
@@ -212,6 +242,9 @@ function Metrics ({ userData }) {
   /*
         UserData.map((data) => data.field)
     */
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
   return (
         <div className="metrics-container">
             <div className="categories">

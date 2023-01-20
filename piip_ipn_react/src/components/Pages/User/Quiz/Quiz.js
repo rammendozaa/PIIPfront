@@ -5,6 +5,7 @@ import { useState } from 'react'
 import './Quiz.css'
 import { useEffect } from 'react/cjs/react.development'
 import { useSelector } from 'react-redux'
+import RequestError from '../../../RequestError'
 
 const baseURL = 'http://127.0.0.1:5000'
 
@@ -37,6 +38,7 @@ function Quiz ({ userData }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [showScore, setShowScore] = useState(false)
   const [score, setScore] = useState(0)
+  const [errorCode, setErrorCode] = useState(null)
 
   useEffect(() => {
     if ((activity !== undefined && activity !== null) && activity.questions) {
@@ -50,10 +52,20 @@ function Quiz ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
-        .then(res => res.json())
-        .then(data => {
-          setQuestions(data.questions)
-        })
+      .then(async res => {
+        if (res.status !== 200) {
+          const error_status = res.status
+          return Promise.reject(error_status);
+        }  
+        return res.json()
+      })
+      .then(data => {
+        setQuestions(data.questions)
+      })
+      .catch(error_status => {
+        setErrorCode(error_status)
+        return
+      })
     }
   }, [])
 
@@ -67,7 +79,7 @@ function Quiz ({ userData }) {
 
   const submitScore = async (actual_score) => {
     if (userData.role === 'user' && (activity.user_activity_status_id !== undefined && activity.user_activity_status_id !== 4)) {
-      await fetch(
+      const response = await fetch(
         baseURL + `/user/${userId}/questionnaire/${quiz_id}`, {
           method: 'PUT',
           headers: {
@@ -81,8 +93,12 @@ function Quiz ({ userData }) {
             correctAnswers: actual_score
           })
         })
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
       if ((activity !== undefined && activity !== null) && activity.user_activity_id) {
-        await fetch(
+        const response = await fetch(
           baseURL + `/user/activity/${activity.user_activity_id}`, {
             method: 'PUT',
             headers: {
@@ -95,6 +111,10 @@ function Quiz ({ userData }) {
               statusId: 4
             })
           })
+        if (response.status !== 200) {
+          setErrorCode(response.status)
+          return
+        }
       }
     }
   }
@@ -116,6 +136,9 @@ function Quiz ({ userData }) {
         setCurrentQuestion(nextQuestion)
       }
     }
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

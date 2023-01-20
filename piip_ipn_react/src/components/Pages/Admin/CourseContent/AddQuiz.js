@@ -2,17 +2,20 @@ import './AddQuiz.css'
 import { NewActivity } from '../../../../../src/externalClasses'
 import { useState, useEffect } from 'react'
 import Cards from './Cards'
+import RequestError from '../../../RequestError'
+
 const baseURL = 'http://127.0.0.1:5000'
 
 function AddQuiz ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [quizzes, setQuizzes] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
 
   const fetchQuestionnaires = async () => {
     let route = `/questionnaire?sectionId=${sectionId}`
     if (userId !== undefined && userId !== null) {
       route = `/questionnaire?user_id=${userId}`
     }
-    fetch(route, {
+    const response = await fetch(route, {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + userData.token,
@@ -20,10 +23,12 @@ function AddQuiz ({ userData, addActivity, activityIndex, sectionId, userId }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setQuizzes(data)
-      })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
+    const data = await response.json();
+    setQuizzes(data);
   }
   useEffect(() => {
     fetchQuestionnaires()
@@ -40,6 +45,10 @@ function AddQuiz ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const addQuestionnaire = (quiz, index) => {
     const newAct = NewActivity(quiz.title, quiz.description, 6, quiz.id)
     addActivity(newAct, activityIndex, sectionId)
+  }
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

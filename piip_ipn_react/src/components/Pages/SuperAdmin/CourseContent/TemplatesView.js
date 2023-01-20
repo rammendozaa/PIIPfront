@@ -3,6 +3,7 @@ import { FiPlus } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import './TemplatesView.css'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../../RequestError'
 
 function TemplatesView ({ userData }) {
   const [templates, setTemplates] = useState([{
@@ -16,6 +17,7 @@ function TemplatesView ({ userData }) {
   const navigate = useNavigate()
   const [newTemplateTitle, setNewTemplateTitle] = useState('')
   const [newTemplateDescription, setNewTemplateDescription] = useState('')
+  const [errorCode, setErrorCode] = useState(null)
 
   const handleClick = (template) => {
     navigate(`/templates/${template.id}`)
@@ -30,6 +32,10 @@ function TemplatesView ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const response_json = await response.json()
     setTemplates(response_json)
   }
@@ -39,7 +45,7 @@ function TemplatesView ({ userData }) {
       alert('Title and description need to be filled out')
       return
     }
-    await fetch('/template/add', {
+    const response = await fetch('/template/add', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -52,6 +58,10 @@ function TemplatesView ({ userData }) {
         description: newTemplateDescription
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     setNewTemplateTitle('')
     setNewTemplateDescription('')
     getTemplates()
@@ -60,6 +70,10 @@ function TemplatesView ({ userData }) {
   useEffect(() => {
     getTemplates()
   }, [])
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
+
   return (
     <>
       <div className="templateview-container">

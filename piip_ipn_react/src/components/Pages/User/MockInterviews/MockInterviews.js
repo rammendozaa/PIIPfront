@@ -6,6 +6,7 @@ import './MockInterviews.css'
 import { IconContext } from 'react-icons'
 import { BiArrowBack } from 'react-icons/bi'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../../RequestError'
 
 function MockInterviews ({ userData }) {
   const [goBack, setGoBack] = useState(false)
@@ -32,6 +33,7 @@ function MockInterviews ({ userData }) {
       id: '1'
     }
   })
+  const [errorCode, setErrorCode] = useState(null)
   const { interview_id } = useParams()
   useEffect(() => {
     if ((activity !== undefined && activity !== null)) {
@@ -45,10 +47,20 @@ function MockInterviews ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
-        .then(res => res.json())
-        .then(data => {
-          setInterviewInfo(data)
-        })
+      .then(async res => {
+        if (res.status !== 200) {
+          const error_status = res.status
+          return Promise.reject(error_status);
+        }  
+        return res.json()
+      })
+      .then(data => {
+        setInterviewInfo(data)
+      })
+      .catch(error_status => {
+        setErrorCode(error_status)
+        return
+      })
     }
   }, [])
   const saveInterviewChanges = async ({
@@ -66,7 +78,7 @@ function MockInterviews ({ userData }) {
     const feedback = new_feedback
     const isConfirmed = is_confirmed
 
-    await fetch(
+    const response = await fetch(
       baseURL + `/interview?interview_id=${interviewInfo.id}&user_id=${interviewInfo.userId}&role=${userData.role}`, {
         method: 'PUT',
         headers: {
@@ -84,6 +96,10 @@ function MockInterviews ({ userData }) {
           isConfirmed
         })
       })
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
   }
 
   function AdminInterview ({ interviewInfo }) {
@@ -110,6 +126,9 @@ function MockInterviews ({ userData }) {
       })
       alert('Interview information updated!')
       setComment('')
+    }
+    if (errorCode !== null) {
+      return <RequestError errorCode={errorCode}/>
     }
     return (
             <>
