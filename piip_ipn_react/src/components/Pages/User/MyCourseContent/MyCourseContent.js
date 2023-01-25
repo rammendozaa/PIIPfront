@@ -52,6 +52,19 @@ function CourseContent ({ userData }) {
       }
     ]
   })
+  const resendEmail = async () => {
+    const response = await fetch(`/sendVerificationEmail`, {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + userData.token,
+        'User-Type': userData.role,
+        'User-Id': userData.user_id,
+      }
+  })
+    const data = await response.json()
+    // TODO: add error handling
+  }
+
   const getUserData = async () => {
     const response = await fetch('/user', {
       method: 'GET',
@@ -143,6 +156,8 @@ function CourseContent ({ userData }) {
     return (
             <div className='mycourse-content-container'>
                 <h1>Please verify your email.</h1><p className='subtitle'>We've sent an email to {user.email} to verify your email address and activate your account. The link in the mail will expire in 24 hours</p>
+                <p className="subtitle">Didn't receive email?</p>
+                <p className="subtitle" style={{cursor:"pointer"}} onClick={ resendEmail }>Click here to resend it</p>
                 <img className='mycourse-sorryimg' src='/images/sorry-removebg-preview.png'></img>
             </div>
     )
