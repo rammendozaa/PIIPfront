@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import { useSelector } from 'react-redux'
 import './SoftSkillQuestion.css'
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 import RequestError from '../../../RequestError'
 
 function SoftSkillQuestion ({ userData }) {

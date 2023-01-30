@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './AddSoftSkillQuestion.css'
 import RequestError from '../../../RequestError'
 
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 
 function AddSoftSkillQuestion ({ userData }) {
   const [title, setTitle] = useState('')

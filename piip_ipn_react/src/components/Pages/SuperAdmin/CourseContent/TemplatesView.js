@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FiPlus } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import './TemplatesView.css'
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 import RequestError from '../../../RequestError'
 
 function TemplatesView ({ userData }) {

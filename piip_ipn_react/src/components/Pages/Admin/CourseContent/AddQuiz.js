@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Cards from './Cards'
 import RequestError from '../../../RequestError'
 
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 
 function AddQuiz ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [quizzes, setQuizzes] = useState([])

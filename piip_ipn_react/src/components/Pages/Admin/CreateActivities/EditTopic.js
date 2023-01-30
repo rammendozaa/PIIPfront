@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import RDWMathJax from '../AddTopic/rdw-mathjax'
 import { content } from '../../../../configs'
 import './EditTopic.css'
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 import RequestError from '../../../RequestError'
 
 function EditTopic ({ userData }) {

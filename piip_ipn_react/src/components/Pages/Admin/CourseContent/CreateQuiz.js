@@ -7,7 +7,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi'
 import { TiDelete } from 'react-icons/ti'
 import RequestError from '../../../RequestError'
 
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 
 function CreateQuiz ({ userData, addActivity, activityIndex, sectionId }) {
   const [addedQuiz, setAddedQuiz] = useState()

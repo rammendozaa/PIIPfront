@@ -10,7 +10,7 @@ import { setUserActivityInfo } from '../../../../state/reducers/activity'
 import { ActivityInfo } from '../../../../../src/externalClasses'
 import RequestError from '../../../RequestError'
 
-const baseURL = 'http://127.0.0.1:5000'
+const baseURL = 'http://127.0.0.1:1234'
 const activityIdToName = {
   1: 'Problem',
   2: 'Topic',
