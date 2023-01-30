@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import './MyInterviews.css'
 import { FiCheck, FiX } from 'react-icons/fi'
 import { IconContext } from 'react-icons'
+import RequestError from '../../../RequestError'
 
 const baseURL = 'http://127.0.0.1:5000'
 
@@ -13,6 +14,8 @@ function MyInterviews ({ userData }) {
   const [interviews, setInterviews] = useState([])
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [errorCode, setErrorCode] = useState(null)
+
   useEffect(() => {
     fetch(`/interview?admin_id=${userData.user_id}`, {
       method: 'GET',
@@ -22,10 +25,20 @@ function MyInterviews ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setInterviews(data)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setInterviews(data)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
   }, [])
 
   const handleClick = (interview) => {
@@ -38,6 +51,9 @@ function MyInterviews ({ userData }) {
     )
     dispatch(setUserActivityInfo(activityInfo))
     navigate(`/mock-interviews/${interview.id}`)
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

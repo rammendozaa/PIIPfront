@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import Cards from './Cards'
 import './Topics.css'
+import RequestError from '../../RequestError'
 
 function Topics ({ userData }) {
   const [data, setData] = useState([])
   const [option, setOption] = useState('algorithm')
+  const [errorCode, setErrorCode] = useState(null)
+
   const getProgrammingTopics = async () => {
     const response = await fetch('/algorithmTopics', {
       method: 'GET',
@@ -14,6 +17,10 @@ function Topics ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setData(data)
     setOption('algorithm')
@@ -27,6 +34,10 @@ function Topics ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setData(data)
     setOption('soft-skill')
@@ -42,6 +53,9 @@ function Topics ({ userData }) {
     return rows.filter(
       row => row.title.toLowerCase().indexOf(query.toLowerCase()) > -1
     )
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

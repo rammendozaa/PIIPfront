@@ -5,6 +5,8 @@ import { FiCheck, FiPlus, FiSlash, FiEdit3 } from 'react-icons/fi'
 import { TiDelete } from 'react-icons/ti'
 import Popup from './Popup'
 import { useParams, useNavigate } from 'react-router-dom'
+import RequestError from '../../../RequestError'
+
 const activityIdToName = {
   1: 'Problem',
   2: 'Topic',
@@ -24,6 +26,8 @@ function CourseContent ({ userData }) {
   const [clicked, setClicked] = useState(-1)
   const [newSectionName, setNewSectionName] = useState('')
   const [buttonPopup, setButtonPopup] = useState(false)
+  const [errorCode, setErrorCode] = useState(null)
+
   const toggle = index => {
     if (clicked === index) {
       // if clicked question is already active, then close it 2
@@ -72,6 +76,11 @@ function CourseContent ({ userData }) {
         })
       })
     }
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
+
     const newActivityResponse = await response.json()
     current.user_sections[index].user_activities = [
       ...current.user_sections[index].user_activities,
@@ -88,7 +97,7 @@ function CourseContent ({ userData }) {
   const deleteActivity = async (indexSection, indexActivity, sectionActivityId) => {
     if (window.confirm('Are you sure you want to delete this activity?')) {
       const current = data
-      await fetch(`/user/activity/${sectionActivityId}`, {
+      const response = await fetch(`/user/activity/${sectionActivityId}`, {
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + userData.token,
@@ -96,7 +105,11 @@ function CourseContent ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
-      current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item, idx) => idx != indexActivity)
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
+        current.user_sections[indexSection].user_activities = current.user_sections[indexSection].user_activities.filter((item, idx) => idx != indexActivity)
       setData(prevState => ({
         ...prevState,
         current
@@ -124,6 +137,10 @@ function CourseContent ({ userData }) {
         position: (current.user_sections.length) + 1
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const newSectionResponse = await response.json()
     current.user_sections = [
       ...current.user_sections,
@@ -139,7 +156,7 @@ function CourseContent ({ userData }) {
   const deleteSection = async (index, sectionId) => {
     if (window.confirm('Are you sure you want to delete this section?')) {
       const current = data
-      await fetch(`/user/section/${sectionId}`, {
+      const response = await fetch(`/user/section/${sectionId}`, {
         method: 'DELETE',
         headers: {
           Authorization: 'Bearer ' + userData.token,
@@ -147,7 +164,11 @@ function CourseContent ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
-      current.user_sections = current.user_sections.filter((item, idx) => idx != index)
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
+        current.user_sections = current.user_sections.filter((item, idx) => idx != index)
       setData(prevState => ({
         ...prevState,
         current
@@ -169,6 +190,10 @@ function CourseContent ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setData(data)
   }
@@ -193,6 +218,9 @@ function CourseContent ({ userData }) {
     } else if (activityType == 6) {
       navigate(`/solve-quiz/${activity_id}`)
     }
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

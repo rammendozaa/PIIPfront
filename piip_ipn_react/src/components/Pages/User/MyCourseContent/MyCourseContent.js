@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setUserTemplate } from '../../../../state/reducers/template'
 import { setUserActivityInfo } from '../../../../state/reducers/activity'
 import { ActivityInfo } from '../../../../../src/externalClasses'
+import RequestError from '../../../RequestError'
 
 const baseURL = 'http://127.0.0.1:5000'
 const activityIdToName = {
@@ -52,6 +53,7 @@ function CourseContent ({ userData }) {
       }
     ]
   })
+  const [errorCode, setErrorCode] = useState(null)
   const resendEmail = async () => {
     const response = await fetch(`/sendVerificationEmail`, {
       method: 'POST',
@@ -60,7 +62,11 @@ function CourseContent ({ userData }) {
         'User-Type': userData.role,
         'User-Id': userData.user_id,
       }
-  })
+    })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     // TODO: add error handling
   }
@@ -86,10 +92,20 @@ function CourseContent ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setBaseQuestionnaire(data)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setBaseQuestionnaire(data)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
     fetch('/get-admin', {
       method: 'GET',
       headers: {
@@ -98,10 +114,20 @@ function CourseContent ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setAdministratorId(data.administrator_id)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setAdministratorId(data.administrator_id)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
     fetch(`/user/${user_id}/template`, {
       method: 'GET',
       headers: {
@@ -110,11 +136,21 @@ function CourseContent ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setData(data)
-        dispatch(setUserTemplate(data))
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setData(data)
+      dispatch(setUserTemplate(data))
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
     getUserData()
   }, [user_id])
 
@@ -155,10 +191,10 @@ function CourseContent ({ userData }) {
   if (user && user.is_active === 2) {
     return (
             <div className='mycourse-content-container'>
-                <h1>Please verify your email.</h1><p className='subtitle'>We've sent an email to {user.email} to verify your email address and activate your account. The link in the mail will expire in 24 hours</p>
-                <p className="subtitle">Didn't receive email?</p>
-                <p className="subtitle" style={{cursor:"pointer"}} onClick={ resendEmail }>Click here to resend it</p>
+                <h1>Please verify your email.</h1><p className='subtitle'>We've sent a confirmation link to {user.email} to verify your email address and activate your account. The link will expire in 1 hour</p>
                 <img className='mycourse-sorryimg' src='/images/sorry-removebg-preview.png'></img>
+                <br/>
+                <p className="subtitle">Didn't receive email? <span style={{cursor:"pointer"}} onClick={ resendEmail }>Click here to resend it</span></p>
             </div>
     )
   }
@@ -187,6 +223,9 @@ function CourseContent ({ userData }) {
                 <img className='mycourse-sorryimg' src='/images/sorry-removebg-preview.png'></img>
             </div>
     )
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

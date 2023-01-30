@@ -8,12 +8,14 @@ import RDWMathJax from '../AddTopic/rdw-mathjax'
 import { content } from '../../../../configs'
 import './EditTopic.css'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../../RequestError'
 
 function EditTopic ({ userData }) {
   const [option, setOption] = useState('')
   const node = useRef()
   const [rawDraftContentState, setRawDraftContentState] = useState(null)
   const [json, setJSON] = useState('')
+  const [errorCode, setErrorCode] = useState(null)
 
   const [filename, setFilename] = useState('')
   const [description, setDescription] = useState('')
@@ -30,13 +32,23 @@ function EditTopic ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setFilename(data.title)
-        setDescription(data.description)
-        setRawDraftContentState(JSON.parse(data.topicInformation))
-        setJSON(data.topicInformation)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then(data => {
+      setFilename(data.title)
+      setDescription(data.description)
+      setRawDraftContentState(JSON.parse(data.topicInformation))
+      setJSON(data.topicInformation)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
   }, [])
 
   useEffect(() => {
@@ -53,7 +65,7 @@ function EditTopic ({ userData }) {
       return
     }
     localStorage.setItem('editorData', json)
-    await fetch('/update-topic', {
+    const response = await fetch('/update-topic', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -70,12 +82,20 @@ function EditTopic ({ userData }) {
         id: topic_id
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     alert('Topic saved succesfully!')
     /* setOption("");
         setJSON('');
         setFilename("");
         setDescription("");
         setRawDraftContentState(null); */
+  }
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

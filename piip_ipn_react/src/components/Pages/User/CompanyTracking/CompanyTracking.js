@@ -22,6 +22,7 @@ import {
 } from 'react-icons/fa'
 import { GrDocumentUpdate } from 'react-icons/gr'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../../RequestError'
 
 const COMPANIES = {
   Facebook: 1,
@@ -118,6 +119,7 @@ function CompanyTracking ({ userData }) {
       companyName: 'Facebook'
     }
   ])
+  const [errorCode, setErrorCode] = useState(null)
   const handleSubmit = (event) => {
     setDropDownOption(event.target.value)
   }
@@ -146,17 +148,27 @@ function CompanyTracking ({ userData }) {
         'User-Id': userData.user_id,
       }
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setCompanies(data)
-      })
+    .then(async res => {
+      if (res.status !== 200) {
+        const error_status = res.status
+        return Promise.reject(error_status);
+      }  
+      return res.json()
+    })
+    .then((data) => {
+      setCompanies(data)
+    })
+    .catch(error_status => {
+      setErrorCode(error_status)
+      return
+    })
   }
   useEffect(() => {
     getCompanies()
   }, [])
 
   const addCompanyTracking = async () => {
-    await fetch(`/user/${user_id}/tracking`, {
+    const response = await fetch(`/user/${user_id}/tracking`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -168,6 +180,10 @@ function CompanyTracking ({ userData }) {
         companyId: COMPANIES[dropDownOption]
       })
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     getCompanies()
   }
 
@@ -188,6 +204,10 @@ function CompanyTracking ({ userData }) {
         })
       }
     )
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     setNewUrl('')
     setNewDescription('')
     getCompanies()
@@ -218,6 +238,10 @@ function CompanyTracking ({ userData }) {
         })
       }
     )
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     setUpdateTracking(false)
     getCompanies()
   }
@@ -243,6 +267,10 @@ function CompanyTracking ({ userData }) {
         })
       }
     )
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     getCompanies()
   }
 
@@ -258,6 +286,10 @@ function CompanyTracking ({ userData }) {
         }
       }
     )
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     getCompanies()
   }
 
@@ -276,6 +308,10 @@ function CompanyTracking ({ userData }) {
         }
       }
     )
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     getCompanies()
   }
 
@@ -285,6 +321,9 @@ function CompanyTracking ({ userData }) {
     return rows.filter(
       (row) => row.companyName.toLowerCase().indexOf(query.toLowerCase()) > -1
     )
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

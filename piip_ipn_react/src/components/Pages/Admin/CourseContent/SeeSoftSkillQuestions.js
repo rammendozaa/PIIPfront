@@ -2,17 +2,20 @@ import './SeeSoftSkillQuestions.css'
 import { NewActivity } from '../../../../../src/externalClasses'
 import { useState, useEffect } from 'react'
 import Cards from './Cards'
+import RequestError from '../../../RequestError'
+
 const baseURL = 'http://127.0.0.1:5000'
 
 function SeeSoftSkillQuestions ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [questions, setQuestions] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
 
   const fetchSoftSkillQuestions = async () => {
     let route = `/soft-skill-question?sectionId=${sectionId}`
     if (userId !== undefined && userId !== null) {
       route = `/soft-skill-question?user_id=${userId}`
     }
-    fetch(route, {
+    const response = await fetch(route, {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + userData.token,
@@ -20,10 +23,12 @@ function SeeSoftSkillQuestions ({ userData, addActivity, activityIndex, sectionI
         'User-Id': userData.user_id,
       }
     })
-      .then(res => res.json())
-      .then(data => {
-        setQuestions(data)
-      })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
+    const data = await response.json()
+    setQuestions(data)
   }
   useEffect(() => {
     fetchSoftSkillQuestions()
@@ -41,6 +46,10 @@ function SeeSoftSkillQuestions ({ userData, addActivity, activityIndex, sectionI
     const newAct = NewActivity(question.title, 'desc', 3, question.id)
     addActivity(newAct, activityIndex, sectionId)
   }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
+
   return (
         <>
             <div className='see-topics-container'>

@@ -2,20 +2,36 @@ import React, { useState, useEffect } from 'react'
 import useSignupForm from './useSignupForm'
 import validate from './validateSignupInfo'
 import { Link } from 'react-router-dom'
+import RequestError from '../../RequestError'
 
 const FormSignUp = ({ validUserData, setUserData }) => {
   const { handleChange, values, handleSubmit, errors } = useSignupForm(validate, setUserData, validUserData)
   const [schools, setSchools] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
 
   useEffect(() => {
     fetch('/schools', {
       method: 'GET'
     })
-      .then(res => res.json())
-      .then(data => {
+    .then(async res => {
+        if (res.status !== 200) {
+          const error_status = res.status
+          return Promise.reject(error_status);
+        }  
+        return res.json()
+      })
+    .then(data => {
         setSchools(data)
+    })
+    .catch(error_status => {
+        setErrorCode(error_status)
+        return
       })
   }, [])
+
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
 
   return (
         <div className='form-content-right'>

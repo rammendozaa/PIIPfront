@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import { NewActivity } from '../../../../externalClasses'
 import Cards from './Cards'
 import './SeeTopics.css'
+import RequestError from '../../../RequestError'
 
 function SeeTopics ({ userData, addActivity, activityIndex, sectionId, userId }) {
   const [data, setData] = useState([])
+  const [errorCode, setErrorCode] = useState(null)
 
   const getProgrammingTopics = async () => {
     let route = `/algorithmTopics?sectionId=${sectionId}`
@@ -19,6 +21,10 @@ function SeeTopics ({ userData, addActivity, activityIndex, sectionId, userId })
         'User-Id': userData.user_id,
       }
     })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const data = await response.json()
     setData(data)
   }
@@ -38,6 +44,9 @@ function SeeTopics ({ userData, addActivity, activityIndex, sectionId, userId })
   const addProgrammingTopic = (topic) => {
     const newAct = NewActivity(topic.title, topic.description, 2, topic.id)
     addActivity(newAct, activityIndex, sectionId)
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

@@ -84,7 +84,7 @@ function Navbar ({ userData, validUserData, removeUserData }) {
                         {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
                     </>
         )
-      } if (userData.role === 'super') {
+      } else if (userData.role === 'super') {
         return (
                     <>
                         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
@@ -183,13 +183,11 @@ function Navbar ({ userData, validUserData, removeUserData }) {
         )
       } else {
         return (
-                    <>
-                    <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-                        {button && <Button buttonStyle="btn--outline" link="/" onClick={logMeOut}>Log Out</Button>}
-                    </ul>
-                    </>
-        )
-      }
+            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                {button && <Button buttonStyle="btn--outline" link="/log-in">Log In</Button>}
+            </ul>
+  )
+  }
     }
   }
   return (

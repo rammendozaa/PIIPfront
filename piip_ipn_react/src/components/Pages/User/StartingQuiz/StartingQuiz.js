@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import './StartingQuiz.css'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../../RequestError'
 
 function StartingQuiz ({ userData, questionnaire, description, descriptionText, setDescriptionText }) {
   const userId = userData.user_id
@@ -9,6 +10,7 @@ function StartingQuiz ({ userData, questionnaire, description, descriptionText, 
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [showScore, setShowScore] = useState(false)
   const [score, setScore] = useState(0)
+  const [errorCode, setErrorCode] = useState(null)
 
   for (let i = 0; i < questions.length; i++) {
     questions[i].answerOptions.sort((a, b) => 0.5 - Math.random())
@@ -32,6 +34,10 @@ function StartingQuiz ({ userData, questionnaire, description, descriptionText, 
           correctAnswers: actual_score
         })
       })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     const response_json = await response.json()
     setTimeout(() => { window.location.reload() }, 2000)
   }
@@ -51,6 +57,9 @@ function StartingQuiz ({ userData, questionnaire, description, descriptionText, 
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion)
     }
+  }
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
   }
 
   return (

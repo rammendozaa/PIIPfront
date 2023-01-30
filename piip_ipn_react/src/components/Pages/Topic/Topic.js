@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import RDWMathJax from '../Admin/AddTopic/rdw-mathjax'
 const baseURL = 'http://127.0.0.1:5000'
+import RequestError from '../../RequestError'
 
 function Topic ({ userData }) {
   const navigate = useNavigate()
@@ -25,9 +26,10 @@ function Topic ({ userData }) {
     description: 'this is a descritpion',
     title: 'aaaa'
   })
+  const [errorCode, setErrorCode] = useState(null)
 
   const updateUserTemplateActivity = async (user_activity_id, status_id) => {
-    await fetch(
+    const response = await fetch(
       baseURL + `/user/activity/${user_activity_id}`, {
         method: 'PUT',
         headers: {
@@ -40,10 +42,14 @@ function Topic ({ userData }) {
           statusId: status_id
         })
       })
-  }
+      if (response.status !== 200) {
+        setErrorCode(response.status)
+        return
+      }
+    }
 
   const updateUserTopic = async (status_id) => {
-    await fetch(
+    const response = await fetch(
       baseURL + `/user/${userId}/topic/${topic_type}/${topic_id}`, {
         method: 'PUT',
         headers: {
@@ -56,6 +62,10 @@ function Topic ({ userData }) {
           statusId: status_id
         })
       })
+    if (response.status !== 200) {
+      setErrorCode(response.status)
+      return
+    }
     if (status_id === 4) {
       alert('Topic progress saved succesfully.')
     }
@@ -74,12 +84,22 @@ function Topic ({ userData }) {
           'User-Id': userData.user_id,
         }
       })
-        .then(res => res.json())
-        .then(data => {
-          setJSON(data.topicInformation)
-          setRawDraftContentState(JSON.parse(data.topicInformation))
-          setTopicData(data)
-        })
+      .then(async res => {
+        if (res.status !== 200) {
+          const error_status = res.status
+          return Promise.reject(error_status);
+        }  
+        return res.json()
+      })
+      .then(data => {
+        setJSON(data.topicInformation)
+        setRawDraftContentState(JSON.parse(data.topicInformation))
+        setTopicData(data)
+      })
+      .catch(error_status => {
+        setErrorCode(error_status)
+        return
+      })
     }
     if (userData.role === 'user') {
       updateUserTopic(2)
@@ -105,6 +125,9 @@ function Topic ({ userData }) {
   useEffect(() => {
     window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, node.current])
   })
+  if (errorCode !== null) {
+    return <RequestError errorCode={errorCode}/>
+  }
   return (
     <>
       <div className="topic-container">
