@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import RequestError from '../../RequestError'
 
 const useSignupForm = (validate, setUserData, validUserData) => {
   const [values, setValues] = useState({
@@ -12,7 +11,6 @@ const useSignupForm = (validate, setUserData, validUserData) => {
   })
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [errorCode, setErrorCode] = useState(null)
 
   const handleChange = e => {
     const { name, value } = e.target
@@ -34,10 +32,6 @@ const useSignupForm = (validate, setUserData, validUserData) => {
       method: 'POST',
       body: formData
     })
-    if (response.status !== 200) {
-      setErrorCode(response.status)
-      return
-    }
     const data = await response.json()
     return data
   }
@@ -63,10 +57,6 @@ const useSignupForm = (validate, setUserData, validUserData) => {
       }
     }
   )
-  if (errorCode !== null) {
-    return <RequestError errorCode={errorCode}/>
-  }
-
   return { handleChange, values, handleSubmit, errors }
 }
 
